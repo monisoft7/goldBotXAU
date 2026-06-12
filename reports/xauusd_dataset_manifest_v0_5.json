@@ -1,0 +1,73 @@
+{
+  "dataset": {
+    "auditor_status": "data_has_warnings",
+    "candle_count": 81024,
+    "detected_timeframe_minutes": 15,
+    "end_timestamp": "2026-06-11T11:45:00",
+    "file_count": 1,
+    "start_timestamp": "2023-01-03T01:00:00",
+    "symbol_scope": "XAUUSD_ONLY",
+    "timeframe": "M15",
+    "usable_for_backtest": true
+  },
+  "manifest_version": "v0_5",
+  "quality": {
+    "duplicate_timestamp_count": 0,
+    "errors": [],
+    "flat_candle_count": 17,
+    "invalid_ohlc_count": 0,
+    "large_gap_count": 727,
+    "missing_bar_count": 3746,
+    "non_positive_price_count": 0,
+    "warnings": [
+      "Non-weekend timestamp gaps found.",
+      "Weekend market closure gaps classified separately.",
+      "Flat candles found."
+    ],
+    "weekend_gap_count": 179
+  },
+  "readiness": {
+    "blocker_reasons": [],
+    "ready_for_strategy_research": true,
+    "warnings": [
+      "Non-weekend timestamp gaps found.",
+      "Weekend market closure gaps classified separately.",
+      "Flat candles found."
+    ]
+  },
+  "safety": {
+    "demo_enabled": false,
+    "live_enabled": false,
+    "order_send_allowed": false,
+    "strategy_logic_added": false
+  },
+  "split_policy": {
+    "leakage_prevention": "chronological_only_no_shuffle",
+    "method": "fixed_chronological_split",
+    "oos_start": "2026-01-01T00:00:00",
+    "train_end": "2025-06-30T23:59:59",
+    "validation_end": "2025-12-31T23:59:59",
+    "validation_start": "2025-07-01T00:00:00"
+  },
+  "splits": {
+    "out_of_sample": {
+      "candle_count": 10180,
+      "end": "2026-06-11T11:45:00",
+      "pct_of_dataset": 0.125642,
+      "start": "2026-01-02T01:00:00"
+    },
+    "train": {
+      "candle_count": 58922,
+      "end": "2025-06-30T23:45:00",
+      "pct_of_dataset": 0.727217,
+      "start": "2023-01-03T01:00:00"
+    },
+    "validation": {
+      "candle_count": 11922,
+      "end": "2025-12-31T23:45:00",
+      "pct_of_dataset": 0.147142,
+      "start": "2025-07-01T01:00:00"
+    }
+  },
+  "status": "manifest_has_warnings"
+}

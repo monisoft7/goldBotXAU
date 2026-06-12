@@ -1,0 +1,122 @@
+{
+  "board_version": "v0_13",
+  "candidate_family_options": [
+    {
+      "blacklisted": false,
+      "expected_failure_mode": "Fails quickly if low-volatility compression does not retain follow-through under one fixed rule set.",
+      "family_name": "low_atr_range_expansion_followthrough",
+      "rationale": "Use the only positive v0_12 ATR-regime bucket as a fresh fixed hypothesis around expansion after compressed range.",
+      "risk": "The positive bucket may be a narrow artifact of the rejected v0_11 setup rather than a stable market behavior.",
+      "score_0_to_100": 82,
+      "train_only_basis": "low_atr train bucket: trades=91, profit_factor=1.1334896756238315, expectancy=0.06024325123411593.",
+      "why_not_blacklisted": "It is not a retune of v0_7, v0_8, or v0_11 and is not in the local failed-family list."
+    },
+    {
+      "blacklisted": false,
+      "expected_failure_mode": "Fails if the pre-active compression condition does not create a distinct active-session response.",
+      "family_name": "asia_range_compression_london_response",
+      "rationale": "Study response after quieter pre-active periods using train-only session structure, without reviving classic range-break logic.",
+      "risk": "Can accidentally become the forbidden range-break family if specified around simple boundary crossing.",
+      "score_0_to_100": 74,
+      "train_only_basis": "Train profile shows lower 00-06 UTC average range-to-ATR (0.8206428421788244) before elevated 12-18 UTC movement (1.428709955317565).",
+      "why_not_blacklisted": "It is framed as session response behavior, not the old range-break drawdown-control family."
+    },
+    {
+      "blacklisted": false,
+      "expected_failure_mode": "Fails if high-ATR weakness is just v0_11-specific noise and has no fixed behavioral edge.",
+      "family_name": "momentum_failure_after_high_atr",
+      "rationale": "Use weak high and extreme ATR behavior as a fresh hypothesis that large-range momentum may degrade afterward.",
+      "risk": "Could drift back into generic impulse reversion, which v0_10 explicitly discouraged.",
+      "score_0_to_100": 68,
+      "train_only_basis": "high_atr train bucket: trades=105, profit_factor=0.6972166260846693, expectancy=-0.16541957596470494. extreme_atr train bucket: trades=268, profit_factor=0.8644161488644502, expectancy=-0.05848430315068185.",
+      "why_not_blacklisted": "It is only acceptable if defined as high-ATR failure context, not generic impulse reversal."
+    }
+  ],
+  "evidence_summary": {
+    "generic_impulse_bias": "none",
+    "generic_reversion_bias": "none",
+    "session_volatility_family_status": "abandoned",
+    "strongest_train_observations": [
+      "best_v0_12_bucket: low_atr trades=91 profit_factor=1.1334896756238315 final_equity_r=5.482135862304556",
+      "low volatility bucket was the only positive v0_12 ATR-regime result",
+      "v0_10 12-18 UTC block had elevated next-4-bar movement"
+    ],
+    "weakest_train_observations": [
+      "worst_v0_12_bucket: block_12_18 trades=490 profit_factor=0.898542384840849 final_equity_r=-24.236724699316326",
+      "fixed impulse bins showed near-even continuation and reversal rates",
+      "v0_11 failed broadly enough that the session volatility expansion family is abandoned"
+    ]
+  },
+  "forbidden_next_families": [
+    "atr_impulse_reversion",
+    "baseline_current_rules",
+    "broad_scanner_pending_order_scanner",
+    "fomc_direction_as_trade_signal",
+    "local_threshold_tinkering_variants",
+    "multi_bar_exhaustion_reversion",
+    "old_hypothesis_lab_outputs",
+    "old_regime_aware_families",
+    "productivity_signal_variants",
+    "range_break_drawdown_control",
+    "recent_only_promotion_variants",
+    "session_volatility_expansion",
+    "speaker_tone_as_trade_signal"
+  ],
+  "input_summary": {
+    "abandoned_families": [
+      "session_volatility_expansion"
+    ],
+    "discovery_split": "train",
+    "eligible_for_oos_review_count": 0,
+    "missing_inputs": [],
+    "oos_locked": true,
+    "rejected_candidates": [
+      {
+        "candidate_id": "xauusd_atr_impulse_reversion_v0_7",
+        "do_not_retune": true,
+        "eligible_for_oos_review": false,
+        "family_name": "atr_impulse_reversion",
+        "status": "rejected"
+      },
+      {
+        "candidate_id": "xauusd_multi_bar_exhaustion_reversion_v0_8",
+        "do_not_retune": true,
+        "eligible_for_oos_review": false,
+        "family_name": "multi_bar_exhaustion_reversion",
+        "status": "rejected"
+      },
+      {
+        "candidate_id": "xauusd_session_volatility_expansion_v0_11",
+        "do_not_retune": true,
+        "eligible_for_oos_review": false,
+        "family_name": "session_volatility_expansion",
+        "status": "rejected"
+      }
+    ],
+    "validation_used_for_discovery": false
+  },
+  "next_task_prompt_summary": "v0_14 should implement exactly one fixed train/validation candidate for low_atr_range_expansion_followthrough; keep OOS locked and do not retune rejected families.",
+  "oos_policy": {
+    "oos_locked": true,
+    "oos_review_allowed": false
+  },
+  "recommended_next_family": "low_atr_range_expansion_followthrough",
+  "recommended_v0_14_candidate_id": "xauusd_low_atr_range_expansion_followthrough_v0_14",
+  "safety": {
+    "buy_sell_output_allowed": false,
+    "demo_enabled": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "oos_evaluated": false,
+    "order_send_allowed": false,
+    "strategy_logic_added": false,
+    "trade_simulation_added": false
+  },
+  "status": "board_ready",
+  "why_not_others": {
+    "asia_range_compression_london_response": "Can accidentally become the forbidden range-break family if specified around simple boundary crossing.",
+    "low_atr_range_expansion_followthrough": "Selected as the highest-scored train-only non-blacklisted family.",
+    "momentum_failure_after_high_atr": "Could drift back into generic impulse reversion, which v0_10 explicitly discouraged."
+  },
+  "why_this_family": "Use the only positive v0_12 ATR-regime bucket as a fresh fixed hypothesis around expansion after compressed range."
+}

@@ -1,0 +1,36 @@
+# Next Codex Handoff
+
+- Current project: goldBotXAU
+- Last completed checkpoint: v0_17
+- v0_7 result: rejected
+- v0_8 result: rejected
+- v0_11 result: rejected
+- v0_14 result: rejected
+- v0_17 result: rejected
+- OOS: locked
+- Current test baseline: 200 passed
+- Last profile checkpoint: v0_10 train-only market behavior profiler
+- Last candidate checkpoint: v0_14 low ATR range expansion followthrough rejected on validation gate
+- Next checkpoint: post-v0_17 new hypothesis selection
+- Next safe task: choose a new non-blacklisted hypothesis family; do not retune v0_17
+- Avoid: v0_7 retune, v0_8 retune, v0_11 retune, v0_14 retune, generic impulse reversion, generic multi-bar exhaustion reversion
+- Keep validation reserved for testing only
+- Do not read old multiGold
+- Do not retune v0_7
+- Do not retune v0_8
+- Do not retune v0_11
+- Do not retune v0_14
+- Do not retune v0_17
+- OOS remains locked
+- v0_12 diagnostic says session_volatility_expansion should be abandoned
+- v0_13 selected low_atr_range_expansion_followthrough for v0_14
+- v0_14 failed the validation gate and is not eligible for OOS review
+- Rejected/do-not-retune families: atr_impulse_reversion, multi_bar_exhaustion_reversion, session_volatility_expansion, low_atr_range_expansion_followthrough
+- No new strategy candidate in v0_16
+- After v0_16, use ranking to decide if v0_17 should be a new fixed candidate
+- v0_16 recommended low_atr_x_hour_16 for v0_17
+- v0_17 low_atr_x_dataset_hour_16_response failed the validation gate and is not eligible for OOS review
+- v0_17 used dataset_hour_16 naming; hour 16 is not proven UTC
+- v0_17 used fixed_low_atr only; rolling_low_atr remained diagnostic-only
+- Do not use forbidden families
+- Start from docs/codex_operating_notes.md and docs/next_codex_handoff.md

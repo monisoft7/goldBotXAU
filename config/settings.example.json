@@ -1,0 +1,10 @@
+{
+  "symbol": "XAUUSD",
+  "timeframe": "M15",
+  "execution_enabled": false,
+  "demo_enabled": false,
+  "live_enabled": false,
+  "order_send_enabled": false,
+  "max_risk_per_trade_pct": 0.25,
+  "initial_balance": 10000
+}
