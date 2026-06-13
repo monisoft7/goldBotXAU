@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_29_1"
+    assert context["context_version"] == "v0_30"
     json.dumps(context)
 
 
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_29_1"
+    assert context["context_version"] == "v0_30"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_29_1.json"
+    output_path = tmp_path / "codex_context_v0_30.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_29_1"
+    assert context["context_version"] == "v0_30"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -103,3 +103,18 @@ def test_context_includes_v0_29_1_repair_summary() -> None:
     assert context["latest_oos_repair"]["marker_decision_preserved"] == "oos_passed_research_validation"
     assert context["latest_oos_repair"]["detailed_oos_metrics_available"] is False
     assert context["latest_oos_repair"]["repeat_review_allowed"] is False
+
+
+def test_context_includes_v0_30_post_oos_governance_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    governance = context["latest_post_oos_governance"]
+    assert governance is not None
+    assert governance["governance_version"] == "v0_30"
+    assert governance["source_oos_marker_decision"] == "oos_passed_research_validation"
+    assert governance["detailed_oos_metrics_available"] is False
+    assert governance["repeat_oos_review_allowed"] is False
+    assert governance["paper_shadow_protocol_status"] == "design_only_not_started"
+    assert governance["execution_allowed"] is False
+    assert governance["demo_allowed"] is False
+    assert governance["live_allowed"] is False

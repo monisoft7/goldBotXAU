@@ -1,0 +1,59 @@
+{
+  "context_version": "v0_30",
+  "current_safety_rules": {
+    "no_buy_sell_output": true,
+    "no_demo": true,
+    "no_execution_queue": true,
+    "no_live": true,
+    "no_order_check": true,
+    "no_order_send": true,
+    "oos_locked": true
+  },
+  "current_tests": 334,
+  "health": {
+    "eligible_for_oos_review_count": 0,
+    "oos_locked": true,
+    "recommended_action": "review_warnings",
+    "rejected_candidate_count": 6,
+    "status": "warnings"
+  },
+  "latest_oos_repair": {
+    "detailed_oos_metrics_available": false,
+    "marker_decision_preserved": "oos_passed_research_validation",
+    "marker_report_mismatch_detected": false,
+    "overwritten_report_detected": false,
+    "repair_version": "v0_29_1",
+    "repeat_review_allowed": false
+  },
+  "latest_post_oos_governance": {
+    "candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "demo_allowed": false,
+    "detailed_oos_metrics_available": false,
+    "execution_allowed": false,
+    "governance_status": "post_oos_governance_created_design_only",
+    "governance_version": "v0_30",
+    "live_allowed": false,
+    "next_recommended_step": "v0_31 build read-only paper-shadow journal simulator, no execution",
+    "paper_shadow_protocol_status": "design_only_not_started",
+    "repeat_oos_review_allowed": false,
+    "source_oos_marker_decision": "oos_passed_research_validation"
+  },
+  "next_task_protocol": [
+    "read docs/codex_operating_notes.md",
+    "read docs/codex_task_protocol.md",
+    "run targeted tests",
+    "run project health check",
+    "return files changed, tests, safety confirmation"
+  ],
+  "path": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU",
+  "project": "goldBotXAU",
+  "recommended_next_step": "v0_31 build read-only paper-shadow journal simulator, no execution",
+  "rejected_do_not_retune_candidates": [
+    "v0_7",
+    "v0_8",
+    "v0_11",
+    "v0_14",
+    "v0_17",
+    "v0_23"
+  ]
+}

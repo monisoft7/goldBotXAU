@@ -1,0 +1,136 @@
+{
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "candidate_rules_modified": false,
+    "fixed_rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "fixed_rules_source": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "demo_allowed": false,
+  "detailed_oos_metrics_available": false,
+  "detailed_oos_metrics_confirmed_unavailable": true,
+  "execution_allowed": false,
+  "future_paper_shadow_pass_fail_criteria": {
+    "fail_if_any": [
+      "the candidate rule hash changes",
+      "a repeated OOS review is attempted",
+      "new historical data is evaluated as a substitute for the missing detailed OOS metrics",
+      "any execution, broker, account, or queue path is introduced",
+      "journal output contains a recommendation or directional instruction",
+      "the observation process proposes retuning, threshold search, parameter search, or a new variant",
+      "manual review is missing or rejects journal integrity"
+    ],
+    "pass_requires_all": [
+      "candidate rules hash matches the locked v0_26 source before and after journal generation",
+      "market data source is read-only and cannot write, route, or submit anything",
+      "every journal row is observation-only and contains no recommendation field",
+      "every journal row records data timestamp, timeframe, reference block, response block, data quality note, and risk note",
+      "manual reviewer signs off that no rule change, retune, threshold search, or parameter search was proposed",
+      "manual reviewer signs off that the journal is complete enough for governance review",
+      "zero safety violations are found by project health checks"
+    ],
+    "phase_status": "not_started"
+  },
+  "future_paper_shadow_prerequisites": {
+    "journal_only_observations": true,
+    "locked_candidate_rules": true,
+    "manual_review_required": true,
+    "no_directional_instruction_output": true,
+    "no_new_variant_from_oos_result": true,
+    "no_order_path": true,
+    "no_parameter_grid": true,
+    "no_parameter_optimization": true,
+    "no_retune": true,
+    "no_threshold_search": true,
+    "no_trade_recommendation_output": true,
+    "read_only_market_data": true,
+    "risk_notes_only": true
+  },
+  "generated_at": "2026-06-13T15:54:52.915055+00:00",
+  "governance_status": "post_oos_governance_created_design_only",
+  "governance_version": "v0_30",
+  "live_allowed": false,
+  "next_recommended_step": "v0_31 build read-only paper-shadow journal simulator, no execution",
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "journal_simulator_built": false,
+    "new_data_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_variant_created_from_oos_result": false,
+    "paper_shadow_observation_started": false
+  },
+  "one_time_oos_review_completed": true,
+  "paper_shadow_protocol_status": "design_only_not_started",
+  "post_oos_robustness_checklist": [
+    {
+      "check": "one_time_oos_marker_present_and_locked",
+      "required": true,
+      "status": "required_before_any_future_observation"
+    },
+    {
+      "check": "repeat_oos_review_disallowed",
+      "required": true,
+      "status": "required_before_any_future_observation"
+    },
+    {
+      "check": "detailed_oos_metrics_treated_as_unavailable",
+      "required": true,
+      "status": "active_governance_constraint"
+    },
+    {
+      "check": "candidate_rules_remain_locked",
+      "required": true,
+      "status": "active_governance_constraint"
+    },
+    {
+      "check": "no_rule_change_from_oos_result",
+      "required": true,
+      "status": "active_governance_constraint"
+    },
+    {
+      "check": "no_new_data_evaluation_in_v0_30",
+      "required": true,
+      "status": "satisfied_by_design"
+    },
+    {
+      "check": "no_execution_path_created",
+      "required": true,
+      "status": "satisfied_by_design"
+    },
+    {
+      "check": "manual_review_required_before_future_phase",
+      "required": true,
+      "status": "required_before_any_future_observation"
+    }
+  ],
+  "repeat_oos_review_allowed": false,
+  "repeat_oos_review_allowed_source_value": false,
+  "safety": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "martingale_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_path_allowed": false,
+    "order_send_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_oos_marker_decision": "oos_passed_research_validation",
+  "source_oos_review_version": "v0_29",
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "oos_marker": "reports\\xauusd_oos_review_v0_29.marker.json",
+    "oos_repair_report": "reports\\xauusd_oos_review_repair_v0_29_1.json"
+  }
+}

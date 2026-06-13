@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_29_1 OOS report consistency repair
-- OOS: evaluated once, marker locked, and main report repaired from marker
-- Current test baseline: 325 passed
+- Last completed checkpoint: v0_30 post-OOS governance and paper-shadow protocol design
+- OOS: evaluated once, marker locked, repeated review disallowed
+- Current test baseline: 334 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -15,29 +15,49 @@
 - Latest OOS review result: `reports/xauusd_oos_review_v0_29.json`
 - Latest OOS review marker: `reports/xauusd_oos_review_v0_29.marker.json`
 - Latest OOS repair report: `reports/xauusd_oos_review_repair_v0_29_1.json`
-- Latest context pack: `reports/codex_context_v0_29_1.json`
-- Latest health report: `reports/project_health_v0_29_1.json`
-- Latest decision: `oos_passed_research_validation`
-- Next safe task: v0_30 post-OOS robustness and paper-shadow protocol design only; detailed OOS metrics were overwritten unless recovered from an external backup; do not create demo, live, execution, order, or trade-instruction paths.
+- Latest post-OOS governance report: `reports/xauusd_post_oos_governance_v0_30.json`
+- Latest context pack: `reports/codex_context_v0_30.json`
+- Latest health report: `reports/project_health_v0_30.json`
+- Latest decision: `post_oos_governance_created_design_only`
+- Next safe task: v0_31 build read-only paper-shadow journal simulator, no execution
 
-## v0_29_1 Repair Result
+## v0_30 Governance Result
 
-- Repair script: `scripts/repair_xauusd_oos_review_report_v0_29_1.py`
-- Repair checkpoint: `docs/checkpoints/v0_29_1_oos_report_repair_result.md`
-- Repair decision: `repaired_oos_report_from_locked_marker`
-- Marker/report mismatch detected: `true`
-- Overwritten invalid-token report detected: `true`
-- Marker decision preserved: `oos_passed_research_validation`
+- Governance script: `scripts/build_xauusd_post_oos_governance_v0_30.py`
+- Governance checkpoint: `docs/checkpoints/v0_30_post_oos_governance_result.md`
 - Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Source OOS marker decision: `oos_passed_research_validation`
+- Detailed OOS metrics available: `false`
 - Repeat OOS review allowed: `false`
-- Detailed OOS metrics available in repaired main report: `false`
-- Recovery status: `locked_report_restored_from_marker_without_detailed_metrics`
+- Governance status: `post_oos_governance_created_design_only`
+- Paper-shadow protocol status: `design_only_not_started`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
 
-The current main report was restored to a consistent locked state based on `reports/xauusd_oos_review_v0_29.marker.json`. It intentionally does not include detailed OOS metrics because the accidental invalid-token rerun overwrote the main report and those details were not recoverable from the current file.
+v0_30 did not run OOS, did not evaluate new data, did not retune, did not change candidate rules, did not create a new variant, and did not start paper-shadow observation. It only created a governance checklist and future paper-shadow design criteria.
 
-## Guard Update
+## Source OOS State
 
-`scripts/run_xauusd_oos_review_v0_29.py` now blocks a repeated OOS review when the marker exists with `repeat_review_allowed: false`, and the save path avoids overwriting the existing main report with a blocked rerun result.
+- v0_29 marker: `reports/xauusd_oos_review_v0_29.marker.json`
+- marker decision: `oos_passed_research_validation`
+- repeat OOS review allowed: `false`
+- v0_29_1 repair report: `reports/xauusd_oos_review_repair_v0_29_1.json`
+- repair status: `locked_report_restored_from_marker_without_detailed_metrics`
+- detailed OOS metrics available in repaired main report: `false`
+
+The detailed v0_29 OOS metrics remain unavailable because the main OOS report was overwritten by an accidental invalid-token rerun before v0_29_1 restored the locked marker decision. Do not recreate those metrics by rerunning OOS.
+
+## Future Paper-Shadow Prerequisites
+
+- locked candidate rules
+- read-only market data
+- no order path
+- journal-only observations
+- risk notes only
+- manual review required
+- no retune, threshold search, parameter grid, or parameter optimization
+- no new variant from the OOS result
 
 ## Registry State
 
@@ -63,6 +83,6 @@ The current main report was restored to a consistent locked state based on `repo
 - no OOS result-driven rule modification
 - no promotion to strategy or execution semantics from the v0_29 OOS pass alone
 
-## v0_30 Boundary
+## v0_31 Boundary
 
-v0_30 should be post-OOS robustness and paper-shadow protocol design only. It may design review/governance steps, but must not create demo, live, order, execution, or trade-instruction paths. Treat detailed v0_29 OOS metrics as unavailable unless an external backup is explicitly recovered.
+v0_31 may build a read-only paper-shadow journal simulator only. It must not create demo, live, order, execution, or trade-instruction paths. The simulator should be journal-only, observation-only, use locked candidate rules, and require manual review before any later phase.
