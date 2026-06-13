@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_30"
+CONTEXT_VERSION = "v0_31"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -85,6 +85,26 @@ def _post_oos_governance_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _paper_shadow_journal_summary(root: Path) -> dict[str, Any] | None:
+    journal_path = root / "reports" / "xauusd_paper_shadow_journal_protocol_v0_31.json"
+    if not journal_path.exists():
+        return None
+    report = json.loads(journal_path.read_text(encoding="utf-8"))
+    return {
+        "protocol_version": report.get("protocol_version"),
+        "candidate_id": report.get("candidate_id"),
+        "journal_status": report.get("journal_status"),
+        "data_source_status": report.get("data_source_status"),
+        "real_market_observation_started": report.get("real_market_observation_started"),
+        "execution_allowed": report.get("execution_allowed"),
+        "demo_allowed": report.get("demo_allowed"),
+        "live_allowed": report.get("live_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "candidate_rules_modified": report.get("candidate_rules_modified"),
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
 def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
     root = root.resolve()
     health = build_project_health_report(root)
@@ -104,6 +124,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         },
         "latest_oos_repair": _oos_repair_summary(root),
         "latest_post_oos_governance": _post_oos_governance_summary(root),
+        "latest_paper_shadow_journal": _paper_shadow_journal_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,

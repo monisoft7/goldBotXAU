@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_30"
+    assert context["context_version"] == "v0_31"
     json.dumps(context)
 
 
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_30"
+    assert context["context_version"] == "v0_31"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_30.json"
+    output_path = tmp_path / "codex_context_v0_31.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_30"
+    assert context["context_version"] == "v0_31"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -118,3 +118,20 @@ def test_context_includes_v0_30_post_oos_governance_summary() -> None:
     assert governance["execution_allowed"] is False
     assert governance["demo_allowed"] is False
     assert governance["live_allowed"] is False
+
+
+def test_context_includes_v0_31_paper_shadow_journal_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    journal = context["latest_paper_shadow_journal"]
+    assert journal is not None
+    assert journal["protocol_version"] == "v0_31"
+    assert journal["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert journal["journal_status"] == "framework_ready_not_started"
+    assert journal["data_source_status"] == "synthetic_fixtures_only"
+    assert journal["real_market_observation_started"] is False
+    assert journal["execution_allowed"] is False
+    assert journal["demo_allowed"] is False
+    assert journal["live_allowed"] is False
+    assert journal["repeated_oos_review"] is False
+    assert journal["candidate_rules_modified"] is False
