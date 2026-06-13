@@ -1,0 +1,37 @@
+{
+  "context_version": "v0_22",
+  "current_safety_rules": {
+    "no_buy_sell_output": true,
+    "no_demo": true,
+    "no_execution_queue": true,
+    "no_live": true,
+    "no_order_check": true,
+    "no_order_send": true,
+    "oos_locked": true
+  },
+  "current_tests": 246,
+  "health": {
+    "eligible_for_oos_review_count": 0,
+    "oos_locked": true,
+    "recommended_action": "review_warnings",
+    "rejected_candidate_count": 5,
+    "status": "warnings"
+  },
+  "next_task_protocol": [
+    "read docs/codex_operating_notes.md",
+    "read docs/codex_task_protocol.md",
+    "run targeted tests",
+    "run project health check",
+    "return files changed, tests, safety confirmation"
+  ],
+  "path": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU",
+  "project": "goldBotXAU",
+  "recommended_next_step": "future v0_23 may consider one fixed predeclared candidate from the strongest stable v0_22 diagnostic group, or abandon this family if that cannot be done without threshold searching",
+  "rejected_do_not_retune_candidates": [
+    "v0_7",
+    "v0_8",
+    "v0_11",
+    "v0_14",
+    "v0_17"
+  ]
+}

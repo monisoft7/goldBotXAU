@@ -1,0 +1,45 @@
+{
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_registry_update": {
+    "candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "eligible_for_oos_review": false,
+    "oos_status": "evaluated_passed",
+    "research_only": true,
+    "status": "oos_passed_research_validation_pending_post_oos_protocol"
+  },
+  "decision": "oos_passed_research_validation",
+  "decision_checks": null,
+  "detailed_oos_metrics_available": false,
+  "detailed_oos_metrics_note": "Original detailed OOS metrics may have been overwritten by the accidental invalid-token rerun. No detailed OOS metrics were recovered from the current main report, so the repaired report does not invent metrics.",
+  "one_time_review": {
+    "marker_path": "reports\\xauusd_oos_review_v0_29.marker.json",
+    "output_path": "reports\\xauusd_oos_review_v0_29.json",
+    "repeat_review_allowed": false
+  },
+  "oos_result": null,
+  "output_path": "reports\\xauusd_oos_review_v0_29.json",
+  "overwritten_report_detected": false,
+  "recommended_next_step": "v0_30 post-OOS robustness and paper-shadow protocol design only; caution: detailed OOS metrics were overwritten unless recovered from an external backup.",
+  "recovery_status": "locked_report_restored_from_marker_without_detailed_metrics",
+  "report_repair_version": "v0_29_1",
+  "review_version": "v0_29",
+  "safety": {
+    "candidate_rules_modified": false,
+    "demo_enabled": false,
+    "execution_logic_present": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "one_time_oos_review_completed": true,
+    "oos_evaluated": true,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_used": false,
+    "parameter_optimization_used": false,
+    "rejected_candidate_retuned": false,
+    "repeat_review_allowed": false,
+    "retune_used": false,
+    "threshold_search_used": false,
+    "trade_direction_output_present": false,
+    "trade_recommendation_output_present": false
+  }
+}

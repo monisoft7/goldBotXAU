@@ -1,0 +1,514 @@
+{
+  "any_family_strong_enough_for_future_single_fixed_candidate": true,
+  "data_files_used": [
+    "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+    "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+  ],
+  "dataset": {
+    "oos_row_count_used": 0,
+    "profiled_splits": [
+      "train",
+      "validation"
+    ],
+    "source_timeframes_allowed": [
+      "M10",
+      "M5"
+    ],
+    "source_timeframes_used": [
+      "M10",
+      "M5"
+    ],
+    "train_row_count": 265112,
+    "validation_row_count": 53373
+  },
+  "families_profiled": [
+    "asia_range_to_london_expansion",
+    "london_to_ny_handoff_continuation_or_reversal",
+    "ny_opening_range_followthrough_or_reversal",
+    "compression_then_expansion",
+    "trend_day_vs_mean_reversion_day_shape"
+  ],
+  "family_results": {
+    "asia_range_to_london_expansion": {
+      "degradation_assessment": {
+        "primary_metric_train": 0.6423017107309487,
+        "primary_metric_validation": 0.5153846153846153,
+        "validation_degradation": 0.12691709534633333,
+        "within_fixed_limit": false
+      },
+      "sample_size": {
+        "train": 1286,
+        "validation": 260
+      },
+      "stability_assessment": {
+        "label": "weak",
+        "reason": "Dominant behavior matched, but edge or degradation failed the fixed stability requirements.",
+        "stable": false
+      },
+      "strong_enough_for_future_single_fixed_candidate": false,
+      "train_result": {
+        "average_expansion_ratio": 1.3481334265640421,
+        "dominant_behavior": "later_expansion",
+        "edge_over_neutral": 0.14230171073094866,
+        "label_rates": {
+          "later_expansion": 0.6423017107309487,
+          "no_later_expansion": 0.35769828926905134
+        },
+        "median_expansion_ratio": 1.195577231368198,
+        "primary_metric_rate": 0.6423017107309487,
+        "reference_windows": [
+          "block_00_06"
+        ],
+        "response_windows": [
+          "block_06_12"
+        ],
+        "sample_count": 1286,
+        "timeframe_counts": {
+          "M10": 643,
+          "M5": 643
+        }
+      },
+      "validation_result": {
+        "average_expansion_ratio": 1.1398725853632883,
+        "dominant_behavior": "later_expansion",
+        "edge_over_neutral": 0.01538461538461533,
+        "label_rates": {
+          "later_expansion": 0.5153846153846153,
+          "no_later_expansion": 0.4846153846153846
+        },
+        "median_expansion_ratio": 1.0118791960213713,
+        "primary_metric_rate": 0.5153846153846153,
+        "reference_windows": [
+          "block_00_06"
+        ],
+        "response_windows": [
+          "block_06_12"
+        ],
+        "sample_count": 260,
+        "timeframe_counts": {
+          "M10": 130,
+          "M5": 130
+        }
+      }
+    },
+    "compression_then_expansion": {
+      "degradation_assessment": {
+        "primary_metric_train": 0.7846034214618973,
+        "primary_metric_validation": 0.7137404580152672,
+        "validation_degradation": 0.07086296344663012,
+        "within_fixed_limit": true
+      },
+      "sample_size": {
+        "train": 1286,
+        "validation": 262
+      },
+      "stability_assessment": {
+        "label": "stable",
+        "reason": "Dominant behavior matched with material train/validation edge and limited degradation.",
+        "stable": true
+      },
+      "strong_enough_for_future_single_fixed_candidate": true,
+      "train_result": {
+        "average_expansion_ratio": 1.600781881687403,
+        "dominant_behavior": "next_block_expansion",
+        "edge_over_neutral": 0.2846034214618973,
+        "label_rates": {
+          "next_block_expansion": 0.7846034214618973,
+          "no_next_block_expansion": 0.21539657853810265
+        },
+        "median_expansion_ratio": 1.4416994897581323,
+        "primary_metric_rate": 0.7846034214618973,
+        "reference_windows": [
+          "block_00_06",
+          "block_06_12",
+          "block_12_18"
+        ],
+        "response_windows": [
+          "block_06_12",
+          "block_12_18",
+          "block_18_24"
+        ],
+        "sample_count": 1286,
+        "timeframe_counts": {
+          "M10": 643,
+          "M5": 643
+        }
+      },
+      "validation_result": {
+        "average_expansion_ratio": 1.5134092160808685,
+        "dominant_behavior": "next_block_expansion",
+        "edge_over_neutral": 0.2137404580152672,
+        "label_rates": {
+          "next_block_expansion": 0.7137404580152672,
+          "no_next_block_expansion": 0.2862595419847328
+        },
+        "median_expansion_ratio": 1.319253121469146,
+        "primary_metric_rate": 0.7137404580152672,
+        "reference_windows": [
+          "block_00_06",
+          "block_06_12",
+          "block_12_18"
+        ],
+        "response_windows": [
+          "block_06_12",
+          "block_12_18",
+          "block_18_24"
+        ],
+        "sample_count": 262,
+        "timeframe_counts": {
+          "M10": 131,
+          "M5": 131
+        }
+      }
+    },
+    "london_to_ny_handoff_continuation_or_reversal": {
+      "degradation_assessment": {
+        "primary_metric_train": 0.514866979655712,
+        "primary_metric_validation": 0.5076923076923077,
+        "validation_degradation": 0.007174671963404378,
+        "within_fixed_limit": true
+      },
+      "sample_size": {
+        "train": 1278,
+        "validation": 260
+      },
+      "stability_assessment": {
+        "label": "weak",
+        "reason": "Dominant behavior matched, but edge or degradation failed the fixed stability requirements.",
+        "stable": false
+      },
+      "strong_enough_for_future_single_fixed_candidate": false,
+      "train_result": {
+        "average_expansion_ratio": 1.8944335841368478,
+        "dominant_behavior": "reversal",
+        "edge_over_neutral": 0.014866979655712043,
+        "label_rates": {
+          "continuation": 0.48513302034428796,
+          "reversal": 0.514866979655712
+        },
+        "median_expansion_ratio": 1.67800000000002,
+        "primary_metric_rate": 0.514866979655712,
+        "reference_windows": [
+          "block_06_12"
+        ],
+        "response_windows": [
+          "block_12_18"
+        ],
+        "sample_count": 1278,
+        "timeframe_counts": {
+          "M10": 639,
+          "M5": 639
+        }
+      },
+      "validation_result": {
+        "average_expansion_ratio": 1.5798479020975804,
+        "dominant_behavior": "reversal",
+        "edge_over_neutral": 0.007692307692307665,
+        "label_rates": {
+          "continuation": 0.49230769230769234,
+          "reversal": 0.5076923076923077
+        },
+        "median_expansion_ratio": 1.2979640685905662,
+        "primary_metric_rate": 0.5076923076923077,
+        "reference_windows": [
+          "block_06_12"
+        ],
+        "response_windows": [
+          "block_12_18"
+        ],
+        "sample_count": 260,
+        "timeframe_counts": {
+          "M10": 130,
+          "M5": 130
+        }
+      }
+    },
+    "ny_opening_range_followthrough_or_reversal": {
+      "degradation_assessment": {
+        "primary_metric_train": 0.5155763239875389,
+        "primary_metric_validation": 0.5801526717557252,
+        "validation_degradation": -0.06457634776818622,
+        "within_fixed_limit": true
+      },
+      "sample_size": {
+        "train": 1284,
+        "validation": 262
+      },
+      "stability_assessment": {
+        "label": "weak",
+        "reason": "Dominant behavior matched, but edge or degradation failed the fixed stability requirements.",
+        "stable": false
+      },
+      "strong_enough_for_future_single_fixed_candidate": false,
+      "train_result": {
+        "average_expansion_ratio": 3.1054952011286714,
+        "dominant_behavior": "reversal",
+        "edge_over_neutral": 0.015576323987538943,
+        "label_rates": {
+          "continuation": 0.48442367601246106,
+          "reversal": 0.5155763239875389
+        },
+        "median_expansion_ratio": 2.581155098543319,
+        "primary_metric_rate": 0.5155763239875389,
+        "reference_windows": [
+          "hour_12"
+        ],
+        "response_windows": [
+          "hours_13_16"
+        ],
+        "sample_count": 1284,
+        "timeframe_counts": {
+          "M10": 642,
+          "M5": 642
+        }
+      },
+      "validation_result": {
+        "average_expansion_ratio": 2.559726842410792,
+        "dominant_behavior": "reversal",
+        "edge_over_neutral": 0.08015267175572516,
+        "label_rates": {
+          "continuation": 0.4198473282442748,
+          "reversal": 0.5801526717557252
+        },
+        "median_expansion_ratio": 2.1056000000000497,
+        "primary_metric_rate": 0.5801526717557252,
+        "reference_windows": [
+          "hour_12"
+        ],
+        "response_windows": [
+          "hours_13_16"
+        ],
+        "sample_count": 262,
+        "timeframe_counts": {
+          "M10": 131,
+          "M5": 131
+        }
+      }
+    },
+    "trend_day_vs_mean_reversion_day_shape": {
+      "degradation_assessment": {
+        "primary_metric_train": 0.5241057542768274,
+        "primary_metric_validation": 0.5572519083969466,
+        "validation_degradation": -0.03314615412011923,
+        "within_fixed_limit": true
+      },
+      "sample_size": {
+        "train": 1286,
+        "validation": 262
+      },
+      "stability_assessment": {
+        "label": "weak",
+        "reason": "Dominant train and validation behavior did not match.",
+        "stable": false
+      },
+      "strong_enough_for_future_single_fixed_candidate": false,
+      "train_result": {
+        "average_expansion_ratio": 1.7313067123588062,
+        "dominant_behavior": "continuation",
+        "edge_over_neutral": 0.024105754276827374,
+        "label_rates": {
+          "continuation": 0.5241057542768274,
+          "reversal": 0.4758942457231726
+        },
+        "median_expansion_ratio": 1.491469816272914,
+        "primary_metric_rate": 0.5241057542768274,
+        "reference_windows": [
+          "hours_00_12"
+        ],
+        "response_windows": [
+          "hours_12_24"
+        ],
+        "sample_count": 1286,
+        "timeframe_counts": {
+          "M10": 643,
+          "M5": 643
+        }
+      },
+      "validation_result": {
+        "average_expansion_ratio": 1.4113748501666292,
+        "dominant_behavior": "reversal",
+        "edge_over_neutral": 0.057251908396946605,
+        "label_rates": {
+          "continuation": 0.44274809160305345,
+          "reversal": 0.5572519083969466
+        },
+        "median_expansion_ratio": 1.1952476020456926,
+        "primary_metric_rate": 0.5572519083969466,
+        "reference_windows": [
+          "hours_00_12"
+        ],
+        "response_windows": [
+          "hours_12_24"
+        ],
+        "sample_count": 262,
+        "timeframe_counts": {
+          "M10": 131,
+          "M5": 131
+        }
+      }
+    }
+  },
+  "fixed_research_design": {
+    "families": {
+      "asia_range_to_london_expansion": "Compare fixed block_00_06 range with fixed block_06_12 range.",
+      "compression_then_expansion": "Use each day's lowest fixed six-hour block with a following block, then measure next-block expansion.",
+      "london_to_ny_handoff_continuation_or_reversal": "Compare fixed block_06_12 direction with fixed block_12_18 direction.",
+      "ny_opening_range_followthrough_or_reversal": "Compare fixed hour_12 opening range direction with fixed hours_13_16 direction.",
+      "trend_day_vs_mean_reversion_day_shape": "Compare fixed first-half day direction with fixed second-half day direction."
+    },
+    "material_edge_over_neutral": 0.06,
+    "maximum_validation_degradation": 0.12,
+    "minimum_train_samples": 50,
+    "minimum_validation_samples": 20,
+    "parameter_grid_used": false,
+    "session_blocks": {
+      "block_00_06": "00-06",
+      "block_06_12": "06-12",
+      "block_12_18": "12-18",
+      "block_18_24": "18-24"
+    },
+    "threshold_search_used": false,
+    "time_basis": "dataset_timestamp_hour_buckets_only"
+  },
+  "low_tf_catalog": {
+    "catalog_version": "v0_22",
+    "data_dir": "data",
+    "entries": [
+      {
+        "end_timestamp": "2026-06-11T22:50:00",
+        "errors": [],
+        "filename": "xauusd_m10_xauusd_m1_xauusd_2026_01_01_2026_06_11_2026-01-02_2026-06-11.csv",
+        "oos_row_count": 15323,
+        "path": "data\\xauusd_m10_xauusd_m1_xauusd_2026_01_01_2026_06_11_2026-01-02_2026-06-11.csv",
+        "quarantine_reason": "oos_only_file_blocked_from_profiler",
+        "row_count": 15323,
+        "source_timeframe": "M10",
+        "split_classification": "oos_only",
+        "start_timestamp": "2026-01-02T01:00:00",
+        "train_row_count": 0,
+        "usable_for_profiler": false,
+        "validation_row_count": 0
+      },
+      {
+        "end_timestamp": "2025-12-31T23:50:00",
+        "errors": [],
+        "filename": "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+        "oos_row_count": 0,
+        "path": "data\\xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+        "quarantine_reason": null,
+        "row_count": 106117,
+        "source_timeframe": "M10",
+        "split_classification": "train_validation",
+        "start_timestamp": "2023-01-03T01:00:00",
+        "train_row_count": 88366,
+        "usable_for_profiler": true,
+        "validation_row_count": 17751
+      },
+      {
+        "end_timestamp": "2026-01-02T23:59:00",
+        "errors": [],
+        "filename": "xauusd_m1_xauusd_2026-01-01_2026-01-02.csv",
+        "oos_row_count": 1380,
+        "path": "data\\xauusd_m1_xauusd_2026-01-01_2026-01-02.csv",
+        "quarantine_reason": "oos_only_file_blocked_from_profiler",
+        "row_count": 1380,
+        "source_timeframe": "M1",
+        "split_classification": "oos_only",
+        "start_timestamp": "2026-01-02T01:00:00",
+        "train_row_count": 0,
+        "usable_for_profiler": false,
+        "validation_row_count": 0
+      },
+      {
+        "end_timestamp": "2026-06-11T22:59:00",
+        "errors": [],
+        "filename": "xauusd_m1_xauusd_2026-01-01_2026-06-11.csv",
+        "oos_row_count": 153281,
+        "path": "data\\xauusd_m1_xauusd_2026-01-01_2026-06-11.csv",
+        "quarantine_reason": "oos_only_file_blocked_from_profiler",
+        "row_count": 153281,
+        "source_timeframe": "M1",
+        "split_classification": "oos_only",
+        "start_timestamp": "2026-01-02T01:00:00",
+        "train_row_count": 0,
+        "usable_for_profiler": false,
+        "validation_row_count": 0
+      },
+      {
+        "end_timestamp": "2025-12-31T23:55:00",
+        "errors": [],
+        "filename": "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv",
+        "oos_row_count": 0,
+        "path": "data\\xauusd_m5_xauusd_2023-01-01_2025-12-31.csv",
+        "quarantine_reason": null,
+        "row_count": 212368,
+        "source_timeframe": "M5",
+        "split_classification": "train_validation",
+        "start_timestamp": "2023-01-03T01:00:00",
+        "train_row_count": 176746,
+        "usable_for_profiler": true,
+        "validation_row_count": 35622
+      }
+    ],
+    "file_count": 5,
+    "low_timeframe_pattern": "xauusd_m*.csv",
+    "manifest_path": "reports\\xauusd_dataset_manifest_v0_5.json",
+    "quarantined_file_count": 3,
+    "safety": {
+      "oos_locked": true,
+      "oos_rows_available_for_profiler": false,
+      "quarantines_mixed_oos_files": true,
+      "quarantines_oos_only_files": true
+    },
+    "split_policy": {
+      "leakage_prevention": "chronological_only_no_shuffle",
+      "method": "fixed_chronological_split",
+      "oos_start": "2026-01-01T00:00:00",
+      "train_end": "2025-06-30T23:59:59",
+      "validation_end": "2025-12-31T23:59:59",
+      "validation_start": "2025-07-01T00:00:00"
+    },
+    "train_validation_row_count": 318485,
+    "usable_file_count": 2
+  },
+  "notes": [
+    "This atlas is diagnostic research only and does not create a strategy candidate.",
+    "OOS-only and mixed-OOS files are quarantined by the low-timeframe catalog before rows are loaded.",
+    "Window labels are dataset timestamp hour buckets, not timezone claims."
+  ],
+  "oos_rows_used": 0,
+  "profiler_version": "v0_25",
+  "purpose": "diagnostic_session_structure_research_atlas_only",
+  "recommended_next_step": "create_one_fixed_session_candidate_v0_26",
+  "safety": {
+    "buy_sell_output_allowed": false,
+    "candidate_registry_promotion_created": false,
+    "demo_enabled": false,
+    "execution_logic_present": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "oos_evaluated": false,
+    "order_send_allowed": false,
+    "parameter_grid_used": false,
+    "rejected_candidate_retuned": false,
+    "strategy_candidate_created": false,
+    "threshold_search_used": false,
+    "trade_recommendation_output_present": false
+  },
+  "split_policy": {
+    "leakage_prevention": "chronological_only_no_shuffle",
+    "method": "fixed_chronological_split",
+    "oos_start": "2026-01-01T00:00:00",
+    "train_end": "2025-06-30T23:59:59",
+    "validation_end": "2025-12-31T23:59:59",
+    "validation_start": "2025-07-01T00:00:00"
+  },
+  "status": "profile_ready",
+  "strongest_family": {
+    "dominant_behavior": "next_block_expansion",
+    "family": "compression_then_expansion",
+    "validation_edge_over_neutral": 0.2137404580152672,
+    "validation_primary_metric_rate": 0.7137404580152672,
+    "validation_sample_count": 262
+  }
+}

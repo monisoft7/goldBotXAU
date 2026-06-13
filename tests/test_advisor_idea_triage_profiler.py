@@ -189,7 +189,7 @@ def test_no_strategy_candidate_is_registered() -> None:
     after = research_candidate_registry()
 
     assert before == after
-    assert after["candidate_count"] == 6
+    assert after["candidate_count"] == 8
     assert all("v0_16" not in candidate["candidate_id"] for candidate in after["candidates"])
 
 

@@ -34,6 +34,39 @@ Every future strategy candidate must report:
 For Codex operating rules, see:
 `docs/codex_operating_notes.md`
 
+## Repository Workflow
+
+- Use branches/checkpoints for scoped changes.
+- Open PRs for repository changes.
+- GitHub Actions runs tests on push and pull request.
+- Codex task rules are in `docs/codex_task_protocol.md`.
+
+## Project Health Check
+
+Run after major Codex changes and before PR merge:
+
+```powershell
+py -3 scripts/project_health_check.py --json --output reports/project_health_v0_20.json
+```
+
+The health check is infrastructure-only. It does not trade, does not access out-of-sample data, and only scans the local project tree.
+
+## Compact Codex Context
+
+Use the compact context pack instead of pasting long handoffs into future Codex tasks:
+
+```powershell
+py -3 scripts/print_codex_context.py --json --output reports/codex_context_v0_20.json
+```
+
+Recommended workflow after every major task:
+
+```powershell
+py -3 -m pytest -q
+py -3 scripts/project_health_check.py --json --output reports/project_health_v0_21.json
+py -3 scripts/print_codex_context.py --json --output reports/codex_context_v0_21.json
+```
+
 ## v0_3 Data Readiness Auditor
 
 - v0_3 adds XAUUSD data readiness auditing
@@ -137,3 +170,12 @@ v0_14 result:
 
 v0_17 result:
 `docs/checkpoints/v0_17_low_atr_x_hour_16_result.md`
+
+## v0_21 Low-Timeframe Data Tooling
+
+- v0_21 adds read-only local MT5 XAUUSD M1/M5 export tooling and local CSV M10 resampling
+- strategy status: none added
+- execution status: disabled
+- out-of-sample remains locked and was not evaluated
+- low-timeframe data export: `py -3 scripts/export_mt5_xauusd_low_tf.py --symbol XAUUSD --timeframe M1 --from-date 2026-01-01 --to-date 2026-06-11 --data-dir data --json`
+- M10 resampling: `py -3 scripts/resample_xauusd_timeframe.py --input <m1_csv_file> --target-timeframe M10 --data-dir data --json`

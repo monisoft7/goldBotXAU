@@ -152,7 +152,7 @@ def test_no_demo_live_order_send_permission_exposed() -> None:
 def test_no_strategy_candidate_is_registered_by_profiler_task() -> None:
     registry = research_candidate_registry()
 
-    assert registry["candidate_count"] == 6
+    assert registry["candidate_count"] == 8
     assert all("v0_10" not in candidate["candidate_id"] for candidate in registry["candidates"])
 
 

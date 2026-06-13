@@ -132,8 +132,13 @@ def test_v0_14_remains_rejected_and_do_not_retune() -> None:
     assert candidate["do_not_retune"] is True
 
 
-def test_no_candidate_is_eligible_for_oos_review() -> None:
+def test_no_candidate_remains_eligible_after_one_time_oos_review() -> None:
     registry = research_candidate_registry()
+    eligible = [
+        candidate
+        for candidate in registry["candidates"]
+        if candidate["eligible_for_oos_review"] is True
+    ]
 
     assert registry["eligible_for_oos_review_count"] == 0
-    assert all(candidate["eligible_for_oos_review"] is False for candidate in registry["candidates"])
+    assert eligible == []

@@ -1,0 +1,150 @@
+{
+  "candidate_id": "xauusd_low_tf_spike_m5_hour_11_fade_v0_23",
+  "candidate_registry_update": {
+    "candidate_id": "xauusd_low_tf_spike_m5_hour_11_fade_v0_23",
+    "eligible_for_oos_review": false,
+    "human_approval_required_before_oos": false,
+    "oos_status": "locked_not_evaluated",
+    "status": "rejected_train_validation_gate_failed"
+  },
+  "candidate_report_path": "reports\\xauusd_spike_fixed_candidate_v0_23_train_validation.json",
+  "decision": "reject_train_validation_candidate",
+  "evidence_summary": {
+    "adverse_excursion_evidence_available": false,
+    "candidate_observed_behavior_label": "fade",
+    "oos_rows_used": 0,
+    "train_3bar_target_rate": 0.5283018867924528,
+    "train_sample_count": 902,
+    "train_target_rates": {
+      "forward_1bar": 0.54,
+      "forward_3bar": 0.5283018867924528,
+      "forward_6bar": 0.5211111111111111
+    },
+    "train_tendency": "fade",
+    "train_validation_directionally_consistent": true,
+    "validation_3bar_edge_over_neutral": 0.03191489361702127,
+    "validation_3bar_target_rate": 0.5319148936170213,
+    "validation_degradation_vs_train_3bar": -0.0036130068245684432,
+    "validation_sample_count": 142,
+    "validation_target_rates": {
+      "forward_1bar": 0.5319148936170213,
+      "forward_3bar": 0.5319148936170213,
+      "forward_6bar": 0.5319148936170213
+    },
+    "validation_tendency": "fade",
+    "year_month_concentration_evidence_available": false
+  },
+  "failed_checks": [
+    "validation_sample_size_sufficiency",
+    "material_train_3bar_edge",
+    "material_validation_3bar_edge",
+    "validation_edge_over_neutral_not_tiny",
+    "train_forward_horizon_consistency",
+    "validation_forward_horizon_consistency"
+  ],
+  "fixed_gate": {
+    "maximum_validation_degradation_vs_train_3bar": 0.03,
+    "minimum_train_sample_count": 500,
+    "minimum_train_target_rate_3bar": 0.55,
+    "minimum_train_target_rate_all_horizons": 0.53,
+    "minimum_validation_edge_over_neutral_3bar": 0.06,
+    "minimum_validation_sample_count": 200,
+    "minimum_validation_target_rate_3bar": 0.56,
+    "minimum_validation_target_rate_all_horizons": 0.55,
+    "required_forward_horizons": [
+      "forward_1bar",
+      "forward_3bar",
+      "forward_6bar"
+    ]
+  },
+  "gate_checks": [
+    {
+      "check": "train_validation_directional_consistency",
+      "observed": {
+        "candidate_observed_behavior_label": "fade",
+        "train_tendency": "fade",
+        "validation_tendency": "fade"
+      },
+      "status": "passed"
+    },
+    {
+      "check": "train_sample_size_sufficiency",
+      "observed": 902,
+      "required": 500,
+      "status": "passed"
+    },
+    {
+      "check": "validation_sample_size_sufficiency",
+      "observed": 142,
+      "required": 200,
+      "status": "failed"
+    },
+    {
+      "check": "material_train_3bar_edge",
+      "observed": 0.5283018867924528,
+      "required": 0.55,
+      "status": "failed"
+    },
+    {
+      "check": "material_validation_3bar_edge",
+      "observed": 0.5319148936170213,
+      "required": 0.56,
+      "status": "failed"
+    },
+    {
+      "check": "validation_edge_over_neutral_not_tiny",
+      "observed": 0.03191489361702127,
+      "required": 0.06,
+      "status": "failed"
+    },
+    {
+      "check": "limited_validation_degradation_vs_train",
+      "observed": -0.0036130068245684432,
+      "required": 0.03,
+      "status": "passed"
+    },
+    {
+      "check": "train_forward_horizon_consistency",
+      "observed": {
+        "forward_1bar": 0.54,
+        "forward_3bar": 0.5283018867924528,
+        "forward_6bar": 0.5211111111111111
+      },
+      "required": 0.53,
+      "status": "failed"
+    },
+    {
+      "check": "validation_forward_horizon_consistency",
+      "observed": {
+        "forward_1bar": 0.5319148936170213,
+        "forward_3bar": 0.5319148936170213,
+        "forward_6bar": 0.5319148936170213
+      },
+      "required": 0.55,
+      "status": "failed"
+    }
+  ],
+  "gate_version": "v0_24",
+  "reasons": [
+    "Fixed train/validation gate failed before OOS evaluation.",
+    "Spike family is abandoned unless a future non-retuned fixed hypothesis is separately justified."
+  ],
+  "registry_count_effect_if_applied": {
+    "eligible_for_oos_review_count_delta": 0,
+    "rejected_candidate_count_delta": 1
+  },
+  "safety": {
+    "buy_sell_output_allowed": false,
+    "demo_enabled": false,
+    "execution_logic_present": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "oos_evaluated": false,
+    "order_send_allowed": false,
+    "parameter_grid_used": false,
+    "rejected_candidate_retuned": false,
+    "threshold_search_used": false,
+    "trade_recommendation_output_present": false
+  },
+  "spike_family_status": "abandoned"
+}

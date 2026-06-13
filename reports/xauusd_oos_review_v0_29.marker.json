@@ -1,0 +1,7 @@
+{
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "decision": "oos_passed_research_validation",
+  "output_path": "reports\\xauusd_oos_review_v0_29.json",
+  "repeat_review_allowed": false,
+  "review_version": "v0_29"
+}

@@ -1,0 +1,549 @@
+{
+  "atlas_family_result": {
+    "degradation_assessment": {
+      "primary_metric_train": 0.7846034214618973,
+      "primary_metric_validation": 0.7137404580152672,
+      "validation_degradation": 0.07086296344663012,
+      "within_fixed_limit": true
+    },
+    "sample_size": {
+      "train": 1286,
+      "validation": 262
+    },
+    "stability_assessment": {
+      "label": "stable",
+      "reason": "Dominant behavior matched with material train/validation edge and limited degradation.",
+      "stable": true
+    },
+    "strong_enough_for_future_single_fixed_candidate": true,
+    "train_result": {
+      "average_expansion_ratio": 1.600781881687403,
+      "dominant_behavior": "next_block_expansion",
+      "edge_over_neutral": 0.2846034214618973,
+      "label_rates": {
+        "next_block_expansion": 0.7846034214618973,
+        "no_next_block_expansion": 0.21539657853810265
+      },
+      "median_expansion_ratio": 1.4416994897581323,
+      "primary_metric_rate": 0.7846034214618973,
+      "reference_windows": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_windows": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "sample_count": 1286,
+      "timeframe_counts": {
+        "M10": 643,
+        "M5": 643
+      }
+    },
+    "validation_result": {
+      "average_expansion_ratio": 1.5134092160808685,
+      "dominant_behavior": "next_block_expansion",
+      "edge_over_neutral": 0.2137404580152672,
+      "label_rates": {
+        "next_block_expansion": 0.7137404580152672,
+        "no_next_block_expansion": 0.2862595419847328
+      },
+      "median_expansion_ratio": 1.319253121469146,
+      "primary_metric_rate": 0.7137404580152672,
+      "reference_windows": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_windows": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "sample_count": 262,
+      "timeframe_counts": {
+        "M10": 131,
+        "M5": 131
+      }
+    }
+  },
+  "atlas_report_path": "reports\\xauusd_session_structure_atlas_v0_25.json",
+  "candidate": {
+    "candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "candidate_version": "v0_26",
+    "data_files_used": [
+      "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+      "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+    ],
+    "decision": "create_fixed_compression_expansion_candidate",
+    "degradation_assessment": {
+      "primary_metric_train": 0.7846034214618973,
+      "primary_metric_validation": 0.7137404580152672,
+      "validation_degradation": 0.07086296344663012,
+      "within_fixed_limit": true
+    },
+    "eligible_for_oos_review": false,
+    "fixed_rules": {
+      "compression_definition": "select the available fixed six-hour reference block with the lowest average bar range",
+      "forward_behavior_label": "next_block_expansion",
+      "hypothetical_event_outcome": "response block range is greater than selected compressed reference block range",
+      "parameter_grid_used": false,
+      "reference_blocks": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_blocks": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "retuning_used": false,
+      "threshold_search_used": false,
+      "tie_break": "earliest fixed reference block",
+      "time_basis": "dataset_timestamp_hour_buckets_only"
+    },
+    "oos_rows_used": 0,
+    "oos_status": "locked_not_evaluated",
+    "parameter_grid_used": false,
+    "recommended_next_step": "future v0_27 fixed promotion gate",
+    "research_only": true,
+    "rules_are_fixed_from_atlas_family": true,
+    "safety_block": {
+      "demo_enabled": false,
+      "eligible_for_oos_review": false,
+      "execution_logic_present": false,
+      "execution_queue_enabled": false,
+      "live_enabled": false,
+      "oos_locked": true,
+      "oos_rows_used": 0,
+      "order_check_allowed": false,
+      "order_send_allowed": false,
+      "parameter_grid_used": false,
+      "rejected_candidate_retuned": false,
+      "research_only": true,
+      "strategy_promotion_created": false,
+      "threshold_search_used": false,
+      "trade_recommendation_output_present": false
+    },
+    "sample_size_assessment": {
+      "meets_fixed_minimums": true,
+      "minimum_train_samples": 50,
+      "minimum_validation_samples": 20,
+      "train": 1286,
+      "validation": 262
+    },
+    "source_atlas": "xauusd_session_structure_atlas_v0_25",
+    "source_family": "compression_then_expansion",
+    "splits_used": [
+      "train",
+      "validation"
+    ],
+    "stability_assessment": {
+      "atlas": {
+        "label": "stable",
+        "reason": "Dominant behavior matched with material train/validation edge and limited degradation.",
+        "stable": true
+      },
+      "timeframe_evidence": {
+        "all_timeframes_individually_stable": true,
+        "combined_sample_count_not_treated_as_independent_event_count": true,
+        "confidence_inflation_blocked": false,
+        "duplicated_like_counts_across_timeframes": true,
+        "independent_timeframe_evidence_required": true,
+        "timeframe_counts": {
+          "train": {
+            "M10": 643,
+            "M5": 643
+          },
+          "validation": {
+            "M10": 131,
+            "M5": 131
+          }
+        }
+      }
+    },
+    "status": "train_validation_research_candidate_only",
+    "threshold_search_used": false,
+    "train_result": {
+      "average_expansion_ratio": 1.600781881687403,
+      "dominant_behavior": "next_block_expansion",
+      "edge_over_neutral": 0.2846034214618973,
+      "label_rates": {
+        "next_block_expansion": 0.7846034214618973,
+        "no_next_block_expansion": 0.21539657853810265
+      },
+      "median_expansion_ratio": 1.4416994897581323,
+      "primary_metric_rate": 0.7846034214618973,
+      "reference_windows": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_windows": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "sample_count": 1286,
+      "timeframe_counts": {
+        "M10": 643,
+        "M5": 643
+      }
+    },
+    "validation_result": {
+      "average_expansion_ratio": 1.5134092160808685,
+      "dominant_behavior": "next_block_expansion",
+      "edge_over_neutral": 0.2137404580152672,
+      "label_rates": {
+        "next_block_expansion": 0.7137404580152672,
+        "no_next_block_expansion": 0.2862595419847328
+      },
+      "median_expansion_ratio": 1.319253121469146,
+      "primary_metric_rate": 0.7137404580152672,
+      "reference_windows": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_windows": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "sample_count": 262,
+      "timeframe_counts": {
+        "M10": 131,
+        "M5": 131
+      }
+    }
+  },
+  "candidate_created": true,
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_report_path": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+  "decision": "create_fixed_compression_expansion_candidate",
+  "decision_version": "v0_26",
+  "fixed_rules": {
+    "compression_definition": "select the available fixed six-hour reference block with the lowest average bar range",
+    "forward_behavior_label": "next_block_expansion",
+    "hypothetical_event_outcome": "response block range is greater than selected compressed reference block range",
+    "parameter_grid_used": false,
+    "reference_blocks": [
+      "block_00_06",
+      "block_06_12",
+      "block_12_18"
+    ],
+    "response_blocks": [
+      "block_06_12",
+      "block_12_18",
+      "block_18_24"
+    ],
+    "retuning_used": false,
+    "threshold_search_used": false,
+    "tie_break": "earliest fixed reference block",
+    "time_basis": "dataset_timestamp_hour_buckets_only"
+  },
+  "input_summary": {
+    "atlas_status": "profile_ready",
+    "atlas_version": "v0_25",
+    "family_stability_label": "stable",
+    "oos_rows_used": 0,
+    "splits_used": [
+      "train",
+      "validation"
+    ]
+  },
+  "reasons": [
+    "v0_25 atlas marked compression_then_expansion stable on train/validation rows only.",
+    "M5-only and M10-only fixed evidence are each stable, so combined counts are not used as inflated confidence.",
+    "Exactly one fixed research candidate was copied from the v0_25 family definition."
+  ],
+  "recommended_next_step": "future v0_27 fixed promotion gate",
+  "safety": {
+    "demo_enabled": false,
+    "execution_logic_present": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "oos_evaluated": false,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_used": false,
+    "rejected_candidate_retuned": false,
+    "threshold_search_used": false,
+    "trade_recommendation_output_present": false
+  },
+  "safety_block": {
+    "demo_enabled": false,
+    "eligible_for_oos_review": false,
+    "execution_logic_present": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "oos_locked": true,
+    "oos_rows_used": 0,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_used": false,
+    "rejected_candidate_retuned": false,
+    "research_only": true,
+    "strategy_promotion_created": false,
+    "threshold_search_used": false,
+    "trade_recommendation_output_present": false
+  },
+  "selection_policy": {
+    "combined_timeframe_counts_used_for_confidence": false,
+    "parameter_grid_used": false,
+    "retuning_used": false,
+    "single_candidate_limit": 1,
+    "source_family_only": "compression_then_expansion",
+    "threshold_search_used": false
+  },
+  "source_atlas": "xauusd_session_structure_atlas_v0_25",
+  "source_family": "compression_then_expansion",
+  "timeframe_evidence": {
+    "by_timeframe": {
+      "M10": {
+        "degradation_assessment": {
+          "primary_metric_train": 0.7900466562986003,
+          "primary_metric_validation": 0.7175572519083969,
+          "validation_degradation": 0.07248940439020335,
+          "within_fixed_limit": true
+        },
+        "sample_size_assessment": {
+          "meets_fixed_minimums": true,
+          "minimum_train_samples": 50,
+          "minimum_validation_samples": 20,
+          "train": 643,
+          "validation": 131
+        },
+        "stability_assessment": {
+          "label": "stable",
+          "reason": "Dominant behavior matched with material train/validation edge and limited degradation.",
+          "stable": true
+        },
+        "train_result": {
+          "average_expansion_ratio": 1.613520644446214,
+          "dominant_behavior": "next_block_expansion",
+          "edge_over_neutral": 0.29004665629860027,
+          "label_rates": {
+            "next_block_expansion": 0.7900466562986003,
+            "no_next_block_expansion": 0.2099533437013997
+          },
+          "median_expansion_ratio": 1.4557477110885098,
+          "primary_metric_rate": 0.7900466562986003,
+          "reference_windows": [
+            "block_00_06",
+            "block_06_12",
+            "block_12_18"
+          ],
+          "response_windows": [
+            "block_06_12",
+            "block_12_18",
+            "block_18_24"
+          ],
+          "sample_count": 643,
+          "timeframe_counts": {
+            "M10": 643
+          }
+        },
+        "validation_result": {
+          "average_expansion_ratio": 1.520931584100017,
+          "dominant_behavior": "next_block_expansion",
+          "edge_over_neutral": 0.21755725190839692,
+          "label_rates": {
+            "next_block_expansion": 0.7175572519083969,
+            "no_next_block_expansion": 0.2824427480916031
+          },
+          "median_expansion_ratio": 1.3393804074797748,
+          "primary_metric_rate": 0.7175572519083969,
+          "reference_windows": [
+            "block_00_06",
+            "block_06_12",
+            "block_12_18"
+          ],
+          "response_windows": [
+            "block_06_12",
+            "block_12_18",
+            "block_18_24"
+          ],
+          "sample_count": 131,
+          "timeframe_counts": {
+            "M10": 131
+          }
+        }
+      },
+      "M5": {
+        "degradation_assessment": {
+          "primary_metric_train": 0.7791601866251944,
+          "primary_metric_validation": 0.7099236641221374,
+          "validation_degradation": 0.06923652250305701,
+          "within_fixed_limit": true
+        },
+        "sample_size_assessment": {
+          "meets_fixed_minimums": true,
+          "minimum_train_samples": 50,
+          "minimum_validation_samples": 20,
+          "train": 643,
+          "validation": 131
+        },
+        "stability_assessment": {
+          "label": "stable",
+          "reason": "Dominant behavior matched with material train/validation edge and limited degradation.",
+          "stable": true
+        },
+        "train_result": {
+          "average_expansion_ratio": 1.5880431189285922,
+          "dominant_behavior": "next_block_expansion",
+          "edge_over_neutral": 0.2791601866251944,
+          "label_rates": {
+            "next_block_expansion": 0.7791601866251944,
+            "no_next_block_expansion": 0.2208398133748056
+          },
+          "median_expansion_ratio": 1.4283667621776506,
+          "primary_metric_rate": 0.7791601866251944,
+          "reference_windows": [
+            "block_00_06",
+            "block_06_12",
+            "block_12_18"
+          ],
+          "response_windows": [
+            "block_06_12",
+            "block_12_18",
+            "block_18_24"
+          ],
+          "sample_count": 643,
+          "timeframe_counts": {
+            "M5": 643
+          }
+        },
+        "validation_result": {
+          "average_expansion_ratio": 1.5058868480617202,
+          "dominant_behavior": "next_block_expansion",
+          "edge_over_neutral": 0.20992366412213737,
+          "label_rates": {
+            "next_block_expansion": 0.7099236641221374,
+            "no_next_block_expansion": 0.2900763358778626
+          },
+          "median_expansion_ratio": 1.299337748344369,
+          "primary_metric_rate": 0.7099236641221374,
+          "reference_windows": [
+            "block_00_06",
+            "block_06_12",
+            "block_12_18"
+          ],
+          "response_windows": [
+            "block_06_12",
+            "block_12_18",
+            "block_18_24"
+          ],
+          "sample_count": 131,
+          "timeframe_counts": {
+            "M5": 131
+          }
+        }
+      }
+    },
+    "catalog_split_policy": {
+      "leakage_prevention": "chronological_only_no_shuffle",
+      "method": "fixed_chronological_split",
+      "oos_start": "2026-01-01T00:00:00",
+      "train_end": "2025-06-30T23:59:59",
+      "validation_end": "2025-12-31T23:59:59",
+      "validation_start": "2025-07-01T00:00:00"
+    },
+    "combined": {
+      "degradation_assessment": {
+        "primary_metric_train": 0.7846034214618973,
+        "primary_metric_validation": 0.7137404580152672,
+        "validation_degradation": 0.07086296344663012,
+        "within_fixed_limit": true
+      },
+      "sample_size_assessment": {
+        "meets_fixed_minimums": true,
+        "minimum_train_samples": 50,
+        "minimum_validation_samples": 20,
+        "train": 1286,
+        "validation": 262
+      },
+      "stability_assessment": {
+        "label": "stable",
+        "reason": "Dominant behavior matched with material train/validation edge and limited degradation.",
+        "stable": true
+      },
+      "train_result": {
+        "average_expansion_ratio": 1.600781881687403,
+        "dominant_behavior": "next_block_expansion",
+        "edge_over_neutral": 0.2846034214618973,
+        "label_rates": {
+          "next_block_expansion": 0.7846034214618973,
+          "no_next_block_expansion": 0.21539657853810265
+        },
+        "median_expansion_ratio": 1.4416994897581323,
+        "primary_metric_rate": 0.7846034214618973,
+        "reference_windows": [
+          "block_00_06",
+          "block_06_12",
+          "block_12_18"
+        ],
+        "response_windows": [
+          "block_06_12",
+          "block_12_18",
+          "block_18_24"
+        ],
+        "sample_count": 1286,
+        "timeframe_counts": {
+          "M10": 643,
+          "M5": 643
+        }
+      },
+      "validation_result": {
+        "average_expansion_ratio": 1.5134092160808685,
+        "dominant_behavior": "next_block_expansion",
+        "edge_over_neutral": 0.2137404580152672,
+        "label_rates": {
+          "next_block_expansion": 0.7137404580152672,
+          "no_next_block_expansion": 0.2862595419847328
+        },
+        "median_expansion_ratio": 1.319253121469146,
+        "primary_metric_rate": 0.7137404580152672,
+        "reference_windows": [
+          "block_00_06",
+          "block_06_12",
+          "block_12_18"
+        ],
+        "response_windows": [
+          "block_06_12",
+          "block_12_18",
+          "block_18_24"
+        ],
+        "sample_count": 262,
+        "timeframe_counts": {
+          "M10": 131,
+          "M5": 131
+        }
+      }
+    },
+    "data_files_used": [
+      "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+      "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+    ],
+    "double_counting_assessment": {
+      "all_timeframes_individually_stable": true,
+      "combined_sample_count_not_treated_as_independent_event_count": true,
+      "confidence_inflation_blocked": false,
+      "duplicated_like_counts_across_timeframes": true,
+      "independent_timeframe_evidence_required": true,
+      "timeframe_counts": {
+        "train": {
+          "M10": 643,
+          "M5": 643
+        },
+        "validation": {
+          "M10": 131,
+          "M5": 131
+        }
+      }
+    }
+  }
+}

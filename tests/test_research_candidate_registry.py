@@ -14,6 +14,8 @@ V0_8_ID = "xauusd_multi_bar_exhaustion_reversion_v0_8"
 V0_11_ID = "xauusd_session_volatility_expansion_v0_11"
 V0_14_ID = "xauusd_low_atr_range_expansion_followthrough_v0_14"
 V0_17_ID = "xauusd_low_atr_x_hour_16_v0_17"
+V0_23_ID = "xauusd_low_tf_spike_m5_hour_11_fade_v0_23"
+V0_26_ID = "xauusd_compression_then_expansion_v0_26"
 
 
 def _write_csv(path: Path, rows: list[str]) -> None:
@@ -40,7 +42,7 @@ def _registry_by_id() -> dict[str, dict[str, object]]:
     }
 
 
-def test_registry_includes_null_v0_7_v0_8_v0_11_v0_14_and_v0_17() -> None:
+def test_registry_includes_null_v0_7_v0_8_v0_11_v0_14_v0_17_v0_23_and_v0_26() -> None:
     candidates = _registry_by_id()
 
     assert "null_research_harness_test" in candidates
@@ -49,6 +51,8 @@ def test_registry_includes_null_v0_7_v0_8_v0_11_v0_14_and_v0_17() -> None:
     assert V0_11_ID in candidates
     assert V0_14_ID in candidates
     assert V0_17_ID in candidates
+    assert V0_23_ID in candidates
+    assert V0_26_ID in candidates
 
 
 def test_rejected_candidates_are_marked_do_not_retune() -> None:
@@ -93,8 +97,37 @@ def test_v0_17_is_recorded_with_oos_locked_after_fixed_evaluation() -> None:
 def test_registry_keeps_oos_locked_and_has_no_oos_eligible_candidates() -> None:
     report = research_candidate_registry()
 
-    assert report["eligible_for_oos_review_count"] in {0, 1}
+    assert report["eligible_for_oos_review_count"] == 0
     assert report["oos_locked"] is True
+
+
+def test_v0_23_is_rejected_after_v0_24_train_validation_gate() -> None:
+    candidates = _registry_by_id()
+
+    assert candidates[V0_23_ID]["status"] == "rejected_train_validation_gate_failed"
+    assert candidates[V0_23_ID]["rejection_reason"] == (
+        "v0_24_fixed_promotion_gate_failed_marginal_train_validation_evidence"
+    )
+    assert candidates[V0_23_ID]["source_profile"] == "xauusd_low_tf_spike_profile_v0_22"
+    assert candidates[V0_23_ID]["oos_status"] == "locked_not_evaluated"
+    assert candidates[V0_23_ID]["eligible_for_oos_review"] is False
+    assert candidates[V0_23_ID]["threshold_search_used"] is False
+    assert candidates[V0_23_ID]["parameter_grid_used"] is False
+    assert candidates[V0_23_ID]["retuned_rejected_candidate"] is False
+
+
+def test_v0_26_is_research_only_after_one_time_oos_review() -> None:
+    candidates = _registry_by_id()
+
+    assert candidates[V0_26_ID]["status"] == "oos_passed_research_validation_pending_post_oos_protocol"
+    assert candidates[V0_26_ID]["source_atlas"] == "xauusd_session_structure_atlas_v0_25"
+    assert candidates[V0_26_ID]["source_family"] == "compression_then_expansion"
+    assert candidates[V0_26_ID]["oos_status"] == "evaluated_passed"
+    assert candidates[V0_26_ID]["eligible_for_oos_review"] is False
+    assert candidates[V0_26_ID]["one_time_oos_review_completed"] is True
+    assert candidates[V0_26_ID]["repeat_oos_review_allowed"] is False
+    assert candidates[V0_26_ID]["threshold_search_used"] is False
+    assert candidates[V0_26_ID]["parameter_grid_used"] is False
 
 
 def test_registry_safety_flags_exist() -> None:
@@ -157,9 +190,9 @@ def test_list_research_candidates_cli_prints_registry_json() -> None:
     )
     report = json.loads(completed.stdout)
 
-    assert report["registry_version"] == "v0_17"
-    assert report["candidate_count"] == 6
-    assert report["rejected_count"] >= 4
+    assert report["registry_version"] == "v0_29"
+    assert report["candidate_count"] == 8
+    assert report["rejected_count"] == 6
 
 
 def test_compact_cli_omits_equity_curve(tmp_path: Path) -> None:

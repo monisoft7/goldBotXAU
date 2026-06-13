@@ -129,12 +129,21 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
+*.env
+.venv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Local credentials and secrets
+*.key
+*.pem
+credentials*
+secrets*
+mt5_login*
+mt5_password*
 
 # Spyder project settings
 .spyderproject
@@ -169,6 +178,16 @@ cython_debug/
 
 # Ruff stuff:
 .ruff_cache/
+
+# Local runtime output
+logs/
+tmp/
+temp/
+
+# Data policy
+# Do not ignore data/ as a whole yet; tracked project fixtures and manifests may
+# be useful for reproducible research. Large raw exports can be moved to
+# local-only storage later once the repository data policy is formalized.
 
 # PyPI configuration file
 .pypirc

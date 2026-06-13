@@ -1,0 +1,150 @@
+{
+  "allowed_future_oos_review": {
+    "approval_token_required": "HUMAN_APPROVED_OOS_REVIEW_V0_29",
+    "exact_command": "py -3 scripts/run_xauusd_oos_review_v0_29.py --protocol reports/xauusd_oos_review_protocol_v0_28.json --approval-token HUMAN_APPROVED_OOS_REVIEW_V0_29 --json --output reports/xauusd_oos_review_v0_29.json",
+    "may_run_in_v0_28": false,
+    "result_path": "reports\\xauusd_oos_review_v0_29.json",
+    "script": "scripts/run_xauusd_oos_review_v0_29.py",
+    "script_created_in_v0_28": false
+  },
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_status_at_protocol_build": "eligible_for_oos_review_pending_human_approval",
+  "created_metrics": {
+    "oos_performance_results_created": false,
+    "oos_rows_evaluated": 0,
+    "oos_rows_read": 0
+  },
+  "decision": "create_oos_review_protocol_pending_future_human_approval",
+  "eligibility_confirmation": {
+    "eligible_candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "eligible_for_oos_review_count": 1,
+    "human_approval_required_before_oos": true,
+    "oos_status": "locked_not_evaluated",
+    "promotion_gate_decision": "promote_to_oos_review_candidate_pending_human_approval"
+  },
+  "fixed_rules_source": {
+    "candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "rules": {
+      "compression_definition": "select the available fixed six-hour reference block with the lowest average bar range",
+      "forward_behavior_label": "next_block_expansion",
+      "hypothetical_event_outcome": "response block range is greater than selected compressed reference block range",
+      "parameter_grid_used": false,
+      "reference_blocks": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_blocks": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "retuning_used": false,
+      "threshold_search_used": false,
+      "tie_break": "earliest fixed reference block",
+      "time_basis": "dataset_timestamp_hour_buckets_only"
+    },
+    "rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "source_atlas": "xauusd_session_structure_atlas_v0_25",
+    "source_family": "compression_then_expansion"
+  },
+  "if_oos_fails": [
+    "Mark the candidate rejected with do_not_retune true.",
+    "Do not alter thresholds, parameters, or fixed rules to rescue the candidate.",
+    "Move to a different non-blacklisted research family."
+  ],
+  "if_oos_passes": [
+    "Create a post-OOS checkpoint and keep the candidate research-only pending human review.",
+    "Do not add execution, order, demo, live, or trade-direction output.",
+    "Require a separate future promotion protocol before any strategy status change."
+  ],
+  "leakage_controls": {
+    "chronological_only_no_shuffle": true,
+    "future_review_may_read_only_oos_rows_after_approval": true,
+    "future_review_must_abort_if_result_path_already_exists": true,
+    "future_review_must_abort_if_rules_hash_mismatch": true,
+    "no_oos_data_may_change_rules": true,
+    "no_oos_data_may_change_thresholds": true,
+    "no_train_validation_recalculation_during_oos_review": true,
+    "protocol_builder_reads_oos_rows": false
+  },
+  "no_retune_policy_after_oos": {
+    "candidate_rules_may_be_changed_after_oos": false,
+    "failed_oos_candidate_must_not_be_retuned": true,
+    "parameter_grid_after_oos_allowed": false,
+    "threshold_search_after_oos_allowed": false
+  },
+  "one_time_review_policy": {
+    "current_oos_result_exists": false,
+    "future_result_path": "reports\\xauusd_oos_review_v0_29.json",
+    "one_time_only": true,
+    "rerun_allowed": false
+  },
+  "oos_split_boundaries": {
+    "out_of_sample": {
+      "end": "2026-06-11T11:45:00",
+      "start": "2026-01-02T01:00:00"
+    },
+    "source_manifest": "reports\\xauusd_dataset_manifest_v0_5.json",
+    "split_policy": {
+      "leakage_prevention": "chronological_only_no_shuffle",
+      "method": "fixed_chronological_split",
+      "oos_start": "2026-01-01T00:00:00",
+      "train_end": "2025-06-30T23:59:59",
+      "validation_end": "2025-12-31T23:59:59",
+      "validation_start": "2025-07-01T00:00:00"
+    }
+  },
+  "pass_fail_criteria": {
+    "combined_timeframe_counts_must_not_be_treated_as_independent_confidence": true,
+    "maximum_combined_oos_degradation_vs_validation": 0.1,
+    "maximum_timeframe_oos_degradation_vs_validation": 0.1,
+    "minimum_combined_oos_edge_over_neutral": 0.18,
+    "minimum_combined_oos_primary_metric_rate": 0.68,
+    "minimum_timeframe_oos_edge_over_neutral": 0.18,
+    "minimum_timeframe_oos_primary_metric_rate": 0.68,
+    "must_pass_all_leakage_controls": true,
+    "must_preserve_all_safety_flags": true,
+    "must_report_m5_and_m10_separately": true,
+    "must_use_fixed_rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "required_reference_windows": [
+      "block_00_06",
+      "block_06_12",
+      "block_12_18"
+    ],
+    "required_response_windows": [
+      "block_06_12",
+      "block_12_18",
+      "block_18_24"
+    ],
+    "required_timeframes": [
+      "M5",
+      "M10"
+    ]
+  },
+  "protocol_version": "v0_28",
+  "recommended_next_step": "v0_29 may run the one-time OOS review only after explicit human approval using the exact command.",
+  "safety": {
+    "candidate_rules_modified": false,
+    "demo_enabled": false,
+    "execution_logic_present": false,
+    "execution_queue_enabled": false,
+    "live_enabled": false,
+    "oos_evaluated": false,
+    "oos_metrics_created": false,
+    "oos_rows_read": 0,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_used": false,
+    "rejected_candidate_retuned": false,
+    "threshold_search_used": false,
+    "trade_direction_output_allowed": false,
+    "trade_recommendation_output_present": false
+  },
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "dataset_manifest": "reports\\xauusd_dataset_manifest_v0_5.json",
+    "promotion_gate_report": "reports\\xauusd_compression_expansion_promotion_gate_v0_27.json"
+  }
+}
