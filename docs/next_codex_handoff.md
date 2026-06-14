@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_31 read-only paper-shadow journal simulator framework
+- Last completed checkpoint: v0_32 read-only forward observation export plan
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 344 passed
+- Current test baseline: 358 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -17,10 +17,11 @@
 - Latest OOS repair report: `reports/xauusd_oos_review_repair_v0_29_1.json`
 - Latest post-OOS governance report: `reports/xauusd_post_oos_governance_v0_30.json`
 - Latest paper-shadow journal protocol: `reports/xauusd_paper_shadow_journal_protocol_v0_31.json`
-- Latest context pack: `reports/codex_context_v0_31.json`
-- Latest health report: `reports/project_health_v0_31.json`
-- Latest decision: `framework_ready_not_started`
-- Next safe task: v0_32 read-only forward observation data export plan, no execution
+- Latest forward observation export plan: `reports/xauusd_forward_observation_export_plan_v0_32.json`
+- Latest context pack: `reports/codex_context_v0_32.json`
+- Latest health report: `reports/project_health_v0_32.json`
+- Latest decision: `export_plan_ready_not_started`
+- Next safe task: v0_33 build read-only forward observation exporter and journal runner, no execution
 
 ## v0_31 Journal Framework Result
 
@@ -90,4 +91,24 @@ The detailed v0_29 OOS metrics remain unavailable because the main OOS report wa
 
 ## v0_32 Boundary
 
-v0_32 may design a read-only forward observation data export plan only. It must not create demo, live, order, execution, broker, account, queue, recommendation, or directional-instruction paths. It should plan how future observation data would be exported for journal records, with manual review required before any later phase.
+v0_32 designed a read-only forward observation data export plan only. It did not create demo, live, order, execution, broker, account, queue, recommendation, or directional-instruction paths. It did not call MT5, export market data, run real observation, run a new backtest, repeat OOS, change candidate rules, or create a strategy variant.
+
+## v0_32 Forward Observation Export Plan Result
+
+- Plan module: `src/research/xauusd_forward_observation_plan.py`
+- Plan script: `scripts/build_xauusd_forward_observation_export_plan_v0_32.py`
+- Plan checkpoint: `docs/checkpoints/v0_32_forward_observation_export_plan_result.md`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Plan status: `export_plan_ready_not_started`
+- Future observation mode: `journal_only`
+- Allowed future timeframes: `M5`, `M10`
+- MT5 called: `false`
+- Data exported: `false`
+- Observation run: `false`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+
+Future v0_33 may build the read-only forward observation exporter and journal runner, still no execution. It must remain journal-only and must require a declared forward date range before any future collection.

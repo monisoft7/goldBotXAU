@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_31"
+    assert context["context_version"] == "v0_32"
     json.dumps(context)
 
 
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_31"
+    assert context["context_version"] == "v0_32"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_31.json"
+    output_path = tmp_path / "codex_context_v0_32.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_31"
+    assert context["context_version"] == "v0_32"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -135,3 +135,24 @@ def test_context_includes_v0_31_paper_shadow_journal_summary() -> None:
     assert journal["live_allowed"] is False
     assert journal["repeated_oos_review"] is False
     assert journal["candidate_rules_modified"] is False
+
+
+def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    plan = context["latest_forward_observation_plan"]
+    assert plan is not None
+    assert plan["plan_version"] == "v0_32"
+    assert plan["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert plan["plan_status"] == "export_plan_ready_not_started"
+    assert plan["real_market_observation_started"] is False
+    assert plan["mt5_called"] is False
+    assert plan["data_exported"] is False
+    assert plan["observation_run"] is False
+    assert plan["execution_allowed"] is False
+    assert plan["demo_allowed"] is False
+    assert plan["live_allowed"] is False
+    assert plan["repeated_oos_review"] is False
+    assert plan["candidate_rules_modified"] is False
+    assert plan["allowed_future_timeframes"] == ["M5", "M10"]
+    assert plan["future_observation_mode"] == "journal_only"

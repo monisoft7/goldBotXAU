@@ -1,0 +1,139 @@
+{
+  "allowed_future_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "fixed_rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "fixed_rules_source": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "candidate_rules_modified": false,
+  "data_exported": false,
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "future_journal_read_plan": {
+    "allowed_record_purpose": "observation records for locked candidate governance review",
+    "journal_record_schema_source": "reports/xauusd_paper_shadow_journal_protocol_v0_31.json",
+    "read_csv_only": true,
+    "required_symbol_filter": [
+      "XAUUSD",
+      "XAUUSD.",
+      "XAUUSDm"
+    ],
+    "required_timeframes": [
+      "M5",
+      "M10"
+    ]
+  },
+  "future_observation_inputs": {
+    "allowed_read_only_exporter": {
+      "name": "xauusd_forward_observation_readonly_csv_exporter_v0_33",
+      "permitted_outputs": [
+        "csv_bar_data_for_journal_records"
+      ],
+      "prohibited_capabilities": [
+        "account access",
+        "position access",
+        "route creation",
+        "request submission",
+        "queue creation"
+      ],
+      "status": "planned_not_built"
+    },
+    "allowed_symbol_names": [
+      "XAUUSD",
+      "XAUUSD.",
+      "XAUUSDm"
+    ],
+    "allowed_timeframes": [
+      "M5",
+      "M10"
+    ],
+    "candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "expected_csv_schema": [
+      "timestamp_utc",
+      "symbol",
+      "timeframe",
+      "open",
+      "high",
+      "low",
+      "close",
+      "tick_volume",
+      "spread",
+      "source"
+    ],
+    "no_execution_guarantee": {
+      "csv_output_only": true,
+      "journal_records_only": true,
+      "no_account_or_position_fields": true,
+      "no_directional_instruction_fields": true,
+      "no_trade_recommendation_fields": true
+    },
+    "observation_date_range_requirements": {
+      "chronological_order_required": true,
+      "end_utc_required": true,
+      "excluded_ranges": [
+        "train_validation_source_data_through_2025-12-31",
+        "locked_or_unavailable_v0_29_oos_detail_reconstruction"
+      ],
+      "minimum_start_constraint": "after v0_32 approval and not before the declared v0_33 collection window",
+      "mode": "prospective_forward_only",
+      "must_be_declared_before_collection": true,
+      "start_utc_required": true,
+      "timeframe_alignment_required": true
+    }
+  },
+  "future_observation_mode": "journal_only",
+  "generated_at": "2026-06-14T19:58:53.551052+00:00",
+  "live_allowed": false,
+  "mt5_called": false,
+  "next_recommended_step": "v0_33 build read-only forward observation exporter and journal runner, no execution",
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "real_observation_run": false,
+    "repeated_oos_review": false
+  },
+  "observation_run": false,
+  "plan_status": "export_plan_ready_not_started",
+  "plan_version": "v0_32",
+  "real_market_observation_started": false,
+  "repeated_oos_review": false,
+  "safety": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "martingale_allowed": false,
+    "new_backtest_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_path_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "paper_shadow_journal_protocol": "reports\\xauusd_paper_shadow_journal_protocol_v0_31.json"
+  }
+}
