@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_34"
+    assert context["context_version"] == "v0_34_2"
     json.dumps(context)
 
 
@@ -54,7 +54,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 5000
+    assert len(context_text) < 6000
 
 
 def test_context_cli_json_works() -> None:
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_34"
+    assert context["context_version"] == "v0_34_2"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_34.json"
+    output_path = tmp_path / "codex_context_v0_34_2.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_34"
+    assert context["context_version"] == "v0_34_2"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -194,3 +194,59 @@ def test_context_includes_v0_34_forward_observation_journal_summary() -> None:
     assert journal["order_check_allowed"] is False
     assert journal["repeated_oos_review"] is False
     assert journal["candidate_rules_modified"] is False
+
+
+def test_context_includes_v0_34_1_forward_observation_schema_adapter_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    adapter = context["latest_forward_observation_schema_adapter"]
+    assert adapter is not None
+    assert adapter["adapter_version"] == "v0_34_1"
+    assert adapter["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert adapter["adapter_status"] == "framework_ready"
+    assert adapter["mt5_called"] is False
+    assert adapter["data_exported_from_mt5"] is False
+    assert adapter["execution_allowed"] is False
+    assert adapter["demo_allowed"] is False
+    assert adapter["live_allowed"] is False
+    assert adapter["repeated_oos_review"] is False
+    assert adapter["candidate_rules_modified"] is False
+    assert adapter["supported_timeframes"] == ["M5", "M10"]
+    assert adapter["expected_output_schema"] == [
+        "timestamp_utc",
+        "symbol",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "tick_volume",
+        "spread",
+        "source",
+    ]
+    assert adapter["spread_warning"] == "spread_unavailable_from_exporter_set_to_0"
+
+
+def test_context_includes_v0_34_2_forward_observation_consolidated_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    consolidated = context["latest_forward_observation_consolidated"]
+    assert consolidated is not None
+    assert consolidated["consolidation_version"] == "v0_34_2"
+    assert consolidated["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert consolidated["consolidation_status"] == "completed"
+    assert consolidated["observation_mode"] == "local_read_only_forward_journal"
+    assert consolidated["raw_market_data_embedded"] is False
+    assert consolidated["timeframes_observed"] == ["M10", "M5"]
+    assert consolidated["journal_record_count_by_timeframe"] == {"M10": 1, "M5": 1}
+    assert consolidated["total_journal_record_count"] == 2
+    assert consolidated["expansion_observed_count"] == 0
+    assert consolidated["no_expansion_observed_count"] == 2
+    assert consolidated["observation_quality_status"] == "insufficient_sample_for_quality_gate"
+    assert consolidated["execution_allowed"] is False
+    assert consolidated["demo_allowed"] is False
+    assert consolidated["live_allowed"] is False
+    assert consolidated["order_send_allowed"] is False
+    assert consolidated["order_check_allowed"] is False
+    assert consolidated["repeated_oos_review"] is False
+    assert consolidated["candidate_rules_modified"] is False

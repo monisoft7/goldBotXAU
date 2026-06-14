@@ -1,0 +1,99 @@
+{
+  "adapter_status": "framework_ready",
+  "adapter_version": "v0_34_1",
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_modified": false,
+  "data_exported_from_mt5": false,
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "expected_input_schema_source": {
+    "exporter_resampler_schema": [
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "source": "src.data.xauusd_timeframe_resampler.REQUIRED_COLUMNS"
+  },
+  "expected_output_schema": [
+    "timestamp_utc",
+    "symbol",
+    "timeframe",
+    "open",
+    "high",
+    "low",
+    "close",
+    "tick_volume",
+    "spread",
+    "source"
+  ],
+  "generated_at": "2026-06-14T21:15:43+00:00",
+  "live_allowed": false,
+  "mt5_called": false,
+  "next_recommended_step": "v0_34_2 normalize local forward CSV files and rerun journal pass, no execution",
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "local_market_csv_normalized": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "repeated_oos_review": false
+  },
+  "output_policy": {
+    "local_only": true,
+    "market_data_embedded_in_report": false,
+    "normalized_csv_output_roots": [
+      "data",
+      "reports"
+    ],
+    "tests_depend_on_real_local_market_files": false
+  },
+  "repeated_oos_review": false,
+  "safety": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "martingale_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_path_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_files": {
+    "adapter_module": "src/research/xauusd_forward_observation_schema_adapter.py",
+    "adapter_script": "scripts/normalize_xauusd_forward_observation_csv_v0_34_1.py",
+    "candidate_report": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "forward_observation_runner_protocol": "reports/xauusd_forward_observation_runner_protocol_v0_33.json"
+  },
+  "spread_policy": {
+    "fallback_value": 0,
+    "reason": "unavailable_from_exporter",
+    "warning": "spread_unavailable_from_exporter_set_to_0"
+  },
+  "supported_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "tests": {
+    "full_test_suite": "396 passed",
+    "project_health": "warnings_only_zero_failures",
+    "real_market_files_required": false,
+    "synthetic_fixture_only": true,
+    "targeted_adapter_tests": "10 passed"
+  }
+}

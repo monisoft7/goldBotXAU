@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_34 read-only forward observation journal pass
+- Last completed checkpoint: v0_34_2 forward observation journal consolidation
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 385 passed
+- Current test baseline: 406 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -20,10 +20,12 @@
 - Latest forward observation export plan: `reports/xauusd_forward_observation_export_plan_v0_32.json`
 - Latest forward observation runner protocol: `reports/xauusd_forward_observation_runner_protocol_v0_33.json`
 - Latest forward observation journal report: `reports/xauusd_forward_observation_journal_v0_34.json`
-- Latest context pack: `reports/codex_context_v0_34.json`
-- Latest health report: `reports/project_health_v0_34.json`
-- Latest decision: `blocked_need_forward_observation_data`
-- Next safe task: v0_35 forward observation quality gate, no execution
+- Latest forward observation schema adapter protocol: `reports/xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json`
+- Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
+- Latest context pack: `reports/codex_context_v0_34_2.json`
+- Latest health report: `reports/project_health_v0_34_2.json`
+- Latest decision: `completed`
+- Next safe task: v0_35 collect more read-only forward observation samples over multiple sessions, no execution
 
 ## v0_31 Journal Framework Result
 
@@ -160,3 +162,67 @@ v0_34 ran one read-only local forward observation journal pass, still no executi
 - Candidate rules modified: `false`
 
 v0_34 ran exactly one local read-only pass and blocked cleanly before creating journal records because required forward observation data was incomplete. It did not call MT5, did not export market data, did not start real observation, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
+
+## v0_34_1 Forward Observation Schema Adapter Result
+
+- Adapter module: `src/research/xauusd_forward_observation_schema_adapter.py`
+- Adapter script: `scripts/normalize_xauusd_forward_observation_csv_v0_34_1.py`
+- Adapter checkpoint: `docs/checkpoints/v0_34_1_forward_observation_schema_adapter_result.md`
+- Adapter protocol: `reports/xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Adapter status: `framework_ready`
+- Supported timeframes: `M5`, `M10`
+- Expected output schema: `timestamp_utc`, `symbol`, `timeframe`, `open`, `high`, `low`, `close`, `tick_volume`, `spread`, `source`
+- Source schema inspected from project code: `src.data.xauusd_timeframe_resampler.REQUIRED_COLUMNS`
+- MT5 called: `false`
+- Market data exported from MT5: `false`
+- Local real CSV files normalized in v0_34_1: `false`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+
+v0_34_1 built a local-only schema adapter that converts existing read-only exporter/resampler CSVs into the v0_33/v0_34 forward observation journal schema. If `symbol` or `timeframe` is absent from the input CSV, the adapter requires explicit arguments. If spread is unavailable from the exporter, the adapter writes `spread=0`, records `spread=unavailable_from_exporter` in `source`, and emits warning `spread_unavailable_from_exporter_set_to_0`.
+
+The actual local market CSV files remain uncommitted and were not normalized during v0_34_1. The next safe step is to normalize them locally and rerun the journal pass without execution:
+
+```powershell
+py -3 scripts/normalize_xauusd_forward_observation_csv_v0_34_1.py --json --input-csv data/xauusd_m5_xauusd_2026-06-12_2026-06-14.csv --symbol XAUUSD --timeframe M5 --output data/xauusd_m5_xauusd_2026-06-12_2026-06-14_forward_observation_v0_34_1.csv
+```
+
+```powershell
+py -3 scripts/normalize_xauusd_forward_observation_csv_v0_34_1.py --json --input-csv data/xauusd_m10_xauusd_m5_xauusd_2026_06_12_2026_06_14_2026-06-12_2026-06-12.csv --symbol XAUUSD --timeframe M10 --output data/xauusd_m10_xauusd_m5_xauusd_2026_06_12_2026_06_14_2026-06-12_2026-06-12_forward_observation_v0_34_1.csv
+```
+
+v0_34_1 did not call MT5, did not export market data, did not run the journal over real data, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
+
+## v0_34_2 Forward Observation Consolidated Result
+
+- Consolidator module: `src/research/xauusd_forward_observation_consolidator.py`
+- Consolidator script: `scripts/consolidate_xauusd_forward_observation_v0_34_2.py`
+- Consolidator checkpoint: `docs/checkpoints/v0_34_2_forward_observation_consolidated_result.md`
+- Consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Consolidation status: `completed`
+- Observation mode: `local_read_only_forward_journal`
+- Raw market data embedded: `false`
+- Total input reports: `2`
+- Timeframes observed: `M10`, `M5`
+- Journal record count by timeframe: `M10=1`, `M5=1`
+- Total journal record count: `2`
+- Expansion observed count: `0`
+- No expansion observed count: `2`
+- Blockers: none
+- Observation quality status: `insufficient_sample_for_quality_gate`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+
+v0_34_2 consolidated the existing local M5/M10 journal runner JSON reports as read-only forward observation artifacts. It did not embed raw OHLC rows, did not call MT5, did not export market data, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
+
+Next safe step: `v0_35 collect more read-only forward observation samples over multiple sessions, no execution`.

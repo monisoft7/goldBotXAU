@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_34"
+CONTEXT_VERSION = "v0_34_2"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -176,6 +176,58 @@ def _forward_observation_journal_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _forward_observation_schema_adapter_summary(root: Path) -> dict[str, Any] | None:
+    adapter_path = root / "reports" / "xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json"
+    if not adapter_path.exists():
+        return None
+    report = json.loads(adapter_path.read_text(encoding="utf-8"))
+    spread_policy = report.get("spread_policy", {})
+    return {
+        "adapter_version": report.get("adapter_version"),
+        "candidate_id": report.get("candidate_id"),
+        "adapter_status": report.get("adapter_status"),
+        "mt5_called": report.get("mt5_called"),
+        "data_exported_from_mt5": report.get("data_exported_from_mt5"),
+        "execution_allowed": report.get("execution_allowed"),
+        "demo_allowed": report.get("demo_allowed"),
+        "live_allowed": report.get("live_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "candidate_rules_modified": report.get("candidate_rules_modified"),
+        "expected_output_schema": report.get("expected_output_schema"),
+        "supported_timeframes": report.get("supported_timeframes"),
+        "spread_warning": spread_policy.get("warning") if isinstance(spread_policy, dict) else None,
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
+def _forward_observation_consolidated_summary(root: Path) -> dict[str, Any] | None:
+    consolidated_path = root / "reports" / "xauusd_forward_observation_consolidated_v0_34_2.json"
+    if not consolidated_path.exists():
+        return None
+    report = json.loads(consolidated_path.read_text(encoding="utf-8"))
+    return {
+        "consolidation_version": report.get("consolidation_version"),
+        "candidate_id": report.get("candidate_id"),
+        "consolidation_status": report.get("consolidation_status"),
+        "observation_mode": report.get("observation_mode"),
+        "raw_market_data_embedded": report.get("raw_market_data_embedded"),
+        "timeframes_observed": report.get("timeframes_observed"),
+        "journal_record_count_by_timeframe": report.get("journal_record_count_by_timeframe"),
+        "total_journal_record_count": report.get("total_journal_record_count"),
+        "expansion_observed_count": report.get("expansion_observed_count"),
+        "no_expansion_observed_count": report.get("no_expansion_observed_count"),
+        "observation_quality_status": report.get("observation_quality_status"),
+        "execution_allowed": report.get("execution_allowed"),
+        "demo_allowed": report.get("demo_allowed"),
+        "live_allowed": report.get("live_allowed"),
+        "order_send_allowed": report.get("order_send_allowed"),
+        "order_check_allowed": report.get("order_check_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "candidate_rules_modified": report.get("candidate_rules_modified"),
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
 def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
     root = root.resolve()
     health = build_project_health_report(root)
@@ -199,6 +251,8 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_forward_observation_plan": _forward_observation_plan_summary(root),
         "latest_forward_observation_runner": _forward_observation_runner_summary(root),
         "latest_forward_observation_journal": _forward_observation_journal_summary(root),
+        "latest_forward_observation_schema_adapter": _forward_observation_schema_adapter_summary(root),
+        "latest_forward_observation_consolidated": _forward_observation_consolidated_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,
