@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_32 read-only forward observation export plan
+- Last completed checkpoint: v0_33 read-only forward observation runner framework
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 358 passed
+- Current test baseline: 373 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -18,10 +18,11 @@
 - Latest post-OOS governance report: `reports/xauusd_post_oos_governance_v0_30.json`
 - Latest paper-shadow journal protocol: `reports/xauusd_paper_shadow_journal_protocol_v0_31.json`
 - Latest forward observation export plan: `reports/xauusd_forward_observation_export_plan_v0_32.json`
-- Latest context pack: `reports/codex_context_v0_32.json`
-- Latest health report: `reports/project_health_v0_32.json`
-- Latest decision: `export_plan_ready_not_started`
-- Next safe task: v0_33 build read-only forward observation exporter and journal runner, no execution
+- Latest forward observation runner protocol: `reports/xauusd_forward_observation_runner_protocol_v0_33.json`
+- Latest context pack: `reports/codex_context_v0_33.json`
+- Latest health report: `reports/project_health_v0_33.json`
+- Latest decision: `framework_ready_not_started`
+- Next safe task: v0_34 run one read-only local forward observation export and journal pass, no execution
 
 ## v0_31 Journal Framework Result
 
@@ -111,4 +112,27 @@ v0_32 designed a read-only forward observation data export plan only. It did not
 - Repeated OOS review: `false`
 - Candidate rules modified: `false`
 
-Future v0_33 may build the read-only forward observation exporter and journal runner, still no execution. It must remain journal-only and must require a declared forward date range before any future collection.
+v0_33 built the read-only forward observation exporter wrapper and journal runner framework. It remains journal-only and validates synthetic/local fixture CSV rows only.
+
+## v0_33 Forward Observation Runner Result
+
+- Runner module: `src/research/xauusd_forward_observation_runner.py`
+- Runner script: `scripts/run_xauusd_forward_observation_v0_33.py`
+- Runner checkpoint: `docs/checkpoints/v0_33_forward_observation_runner_result.md`
+- Runner protocol: `reports/xauusd_forward_observation_runner_protocol_v0_33.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Runner status: `framework_ready_not_started`
+- Data source status: `synthetic_fixtures_only`
+- Future mode: `journal_only`
+- Allowed timeframes: `M5`, `M10`
+- Real market observation started: `false`
+- MT5 called in tests: `false`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+
+v0_33 did not call MT5, did not export real market data, did not start real observation, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
+
+Future v0_34 may run one read-only local forward observation export and journal pass, still no execution. It must remain journal-only and must use only the locked candidate rules.

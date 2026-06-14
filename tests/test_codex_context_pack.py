@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_32"
+    assert context["context_version"] == "v0_33"
     json.dumps(context)
 
 
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_32"
+    assert context["context_version"] == "v0_33"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_32.json"
+    output_path = tmp_path / "codex_context_v0_33.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_32"
+    assert context["context_version"] == "v0_33"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -156,3 +156,23 @@ def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
     assert plan["candidate_rules_modified"] is False
     assert plan["allowed_future_timeframes"] == ["M5", "M10"]
     assert plan["future_observation_mode"] == "journal_only"
+
+
+def test_context_includes_v0_33_forward_observation_runner_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    runner = context["latest_forward_observation_runner"]
+    assert runner is not None
+    assert runner["runner_version"] == "v0_33"
+    assert runner["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert runner["runner_status"] == "framework_ready_not_started"
+    assert runner["data_source_status"] == "synthetic_fixtures_only"
+    assert runner["real_market_observation_started"] is False
+    assert runner["mt5_called_in_tests"] is False
+    assert runner["execution_allowed"] is False
+    assert runner["demo_allowed"] is False
+    assert runner["live_allowed"] is False
+    assert runner["repeated_oos_review"] is False
+    assert runner["candidate_rules_modified"] is False
+    assert runner["allowed_timeframes"] == ["M5", "M10"]
+    assert runner["future_mode"] == "journal_only"
