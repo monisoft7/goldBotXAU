@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_33"
+    assert context["context_version"] == "v0_34"
     json.dumps(context)
 
 
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_33"
+    assert context["context_version"] == "v0_34"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_33.json"
+    output_path = tmp_path / "codex_context_v0_34.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_33"
+    assert context["context_version"] == "v0_34"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -176,3 +176,21 @@ def test_context_includes_v0_33_forward_observation_runner_summary() -> None:
     assert runner["candidate_rules_modified"] is False
     assert runner["allowed_timeframes"] == ["M5", "M10"]
     assert runner["future_mode"] == "journal_only"
+
+
+def test_context_includes_v0_34_forward_observation_journal_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    journal = context["latest_forward_observation_journal"]
+    assert journal is not None
+    assert journal["observation_version"] == "v0_34"
+    assert journal["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert journal["observation_status"] in {"journal_pass_completed", "blocked_need_forward_observation_data"}
+    assert journal["real_market_observation_started"] is False
+    assert journal["execution_allowed"] is False
+    assert journal["demo_allowed"] is False
+    assert journal["live_allowed"] is False
+    assert journal["order_send_allowed"] is False
+    assert journal["order_check_allowed"] is False
+    assert journal["repeated_oos_review"] is False
+    assert journal["candidate_rules_modified"] is False

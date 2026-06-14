@@ -1,0 +1,84 @@
+{
+  "allowed_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "blockers": [
+    "blocked_need_forward_observation_data",
+    "forward_data_missing_for_timeframes: M5"
+  ],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "fixed_rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "fixed_rules_source": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "candidate_rules_modified": false,
+  "data_files_inspected": [
+    "data\\xauusd_m10_xauusd_m1_xauusd_2026_01_01_2026_06_11_2026-01-02_2026-06-11.csv",
+    "data\\xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+    "data\\xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+  ],
+  "data_files_used": [],
+  "data_source_status": "blocked_need_forward_observation_data",
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "generated_at": "2026-06-14T20:49:00.191662+00:00",
+  "journal_record_count": 0,
+  "journal_records": [],
+  "live_allowed": false,
+  "mt5_export_used": false,
+  "neutral_observation_summary": {
+    "blocker_count": 2,
+    "status": "blocked",
+    "summary": "Forward observation journal pass blocked because required read-only M5/M10 data was unavailable or insufficient."
+  },
+  "next_recommended_step": "v0_35 forward observation quality gate, no execution",
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "repeated_oos_review": false
+  },
+  "observation_status": "blocked_need_forward_observation_data",
+  "observation_version": "v0_34",
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "read_only_data_access": true,
+  "real_market_observation_started": false,
+  "repeated_oos_review": false,
+  "safety": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "martingale_allowed": false,
+    "new_backtest_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_path_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "forward_observation_runner_protocol": "reports\\xauusd_forward_observation_runner_protocol_v0_33.json"
+  },
+  "timeframes_used": []
+}

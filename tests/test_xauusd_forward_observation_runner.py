@@ -7,9 +7,11 @@ from scripts.project_health_check import build_project_health_report
 from src.research.xauusd_forward_observation_runner import (
     ALLOWED_TIMEFRAMES,
     CANDIDATE_ID,
+    build_xauusd_forward_observation_journal_v0_34,
     build_xauusd_forward_observation_runner_protocol_v0_33,
     csv_rows_to_journal_fixture_rows,
     default_synthetic_fixture_csv_rows,
+    save_xauusd_forward_observation_journal,
     save_xauusd_forward_observation_runner_protocol,
     validate_forward_observation_csv_rows,
     write_local_fixture_forward_observation_csv,
@@ -274,6 +276,177 @@ def test_runner_does_not_modify_candidate_rules(tmp_path: Path) -> None:
 
 
 def test_runner_keeps_project_health_safe() -> None:
+    health = build_project_health_report(ROOT)
+
+    assert health["status"] in {"healthy", "warnings"}
+    assert health["failures"] == []
+    assert health["failure_files"] == []
+    assert health["project_state"]["oos_locked"] is True
+
+
+def _real_v0_33_runner_protocol() -> dict[str, object]:
+    return json.loads((ROOT / "reports" / "xauusd_forward_observation_runner_protocol_v0_33.json").read_text())
+
+
+def _write_v0_34_inputs(
+    tmp_path: Path,
+    *,
+    runner_protocol: dict[str, object] | None = None,
+) -> Path:
+    reports = tmp_path / "reports"
+    reports.mkdir()
+    runner_path = reports / "xauusd_forward_observation_runner_protocol_v0_33.json"
+    if runner_protocol is not None:
+        runner_path.write_text(json.dumps(runner_protocol), encoding="utf-8")
+    return runner_path
+
+
+def test_v0_34_blocks_if_v0_33_protocol_missing(tmp_path: Path) -> None:
+    runner_path = _write_v0_34_inputs(tmp_path)
+
+    report = build_xauusd_forward_observation_journal_v0_34(
+        runner_protocol_path=runner_path,
+        data_dir=tmp_path / "data",
+    )
+
+    assert report["observation_status"] == "blocked_need_forward_observation_data"
+    assert any(blocker.startswith("v0_33_forward_observation_runner_protocol_missing") for blocker in report["blockers"])
+    assert report["real_market_observation_started"] is False
+
+
+def test_v0_34_confirms_candidate_and_runner_ready_state(tmp_path: Path) -> None:
+    csv_path = tmp_path / "fixture_forward_rows.csv"
+    write_local_fixture_forward_observation_csv(default_synthetic_fixture_csv_rows(), csv_path)
+
+    report = build_xauusd_forward_observation_journal_v0_34(fixture_csv_path=csv_path)
+
+    assert report["candidate_id"] == CANDIDATE_ID
+    assert report["observation_version"] == "v0_34"
+    assert report["observation_status"] == "journal_pass_completed"
+    assert report["next_recommended_step"] == "v0_35 forward observation quality gate, no execution"
+
+
+def test_v0_34_blocks_if_execution_demo_or_live_allowed(tmp_path: Path) -> None:
+    runner_protocol = _real_v0_33_runner_protocol()
+    runner_protocol["execution_allowed"] = True
+    runner_protocol["demo_allowed"] = True
+    runner_protocol["live_allowed"] = True
+    runner_path = _write_v0_34_inputs(tmp_path, runner_protocol=runner_protocol)
+
+    report = build_xauusd_forward_observation_journal_v0_34(
+        runner_protocol_path=runner_path,
+        data_dir=tmp_path / "data",
+    )
+
+    assert "runner_execution_allowed_not_false" in report["blockers"]
+    assert "runner_demo_allowed_not_false" in report["blockers"]
+    assert "runner_live_allowed_not_false" in report["blockers"]
+    assert report["execution_allowed"] is False
+    assert report["demo_allowed"] is False
+    assert report["live_allowed"] is False
+
+
+def test_v0_34_supports_m5_and_m10_only(tmp_path: Path) -> None:
+    rows = default_synthetic_fixture_csv_rows()
+    report = build_xauusd_forward_observation_journal_v0_34(fixture_csv_rows=rows)
+
+    assert report["observation_status"] == "journal_pass_completed"
+    assert report["timeframes_used"] == ["M10", "M5"]
+
+    bad_rows = [dict(rows[0], timeframe="M15")]
+    blocked = build_xauusd_forward_observation_journal_v0_34(fixture_csv_rows=bad_rows)
+    assert blocked["observation_status"] == "blocked_need_forward_observation_data"
+    assert "row_0_timeframe_not_allowed" in blocked["blockers"]
+
+
+def test_v0_34_handles_missing_forward_data_cleanly(tmp_path: Path) -> None:
+    report = build_xauusd_forward_observation_journal_v0_34(data_dir=tmp_path / "missing_data")
+
+    assert report["observation_status"] == "blocked_need_forward_observation_data"
+    assert "blocked_need_forward_observation_data" in report["blockers"]
+    assert report["journal_record_count"] == 0
+    assert report["data_files_used"] == []
+    assert report["real_market_observation_started"] is False
+
+
+def test_v0_34_generates_neutral_journal_records_from_fixture_csv(tmp_path: Path) -> None:
+    csv_path = tmp_path / "fixture_forward_rows.csv"
+    write_local_fixture_forward_observation_csv(default_synthetic_fixture_csv_rows(), csv_path)
+
+    report = build_xauusd_forward_observation_journal_v0_34(fixture_csv_path=csv_path)
+    report_text = json.dumps(report)
+
+    assert report["observation_status"] == "journal_pass_completed"
+    assert report["journal_record_count"] == 2
+    assert report["data_files_used"] == [str(csv_path)]
+    assert report["real_market_observation_started"] is False
+    assert {record["rule_match_status"] for record in report["journal_records"]} == {"rule match"}
+    assert "recommendation" not in json.dumps(report["journal_records"]).lower()
+    assert "B" + "UY" not in report_text
+    assert "S" + "ELL" not in report_text
+
+
+def test_v0_34_does_not_repeat_oos() -> None:
+    report = build_xauusd_forward_observation_journal_v0_34(fixture_csv_rows=default_synthetic_fixture_csv_rows())
+    source_text = (ROOT / "src" / "research" / "xauusd_forward_observation_runner.py").read_text(encoding="utf-8")
+
+    assert report["repeated_oos_review"] is False
+    assert report["non_actions_performed"]["new_oos_run_performed"] is False
+    assert "run_xauusd_oos_review_v0_29" not in source_text
+    assert "load_oos_rows" not in source_text
+    assert "evaluate_oos" not in source_text
+
+
+def test_v0_34_introduces_no_buy_sell_output() -> None:
+    report_text = json.dumps(build_xauusd_forward_observation_journal_v0_34(fixture_csv_rows=default_synthetic_fixture_csv_rows()))
+    source_text_raw = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in [
+            ROOT / "src" / "research" / "xauusd_forward_observation_runner.py",
+            ROOT / "scripts" / "run_xauusd_forward_observation_journal_v0_34.py",
+        ]
+    )
+
+    assert "B" + "UY" not in report_text
+    assert "S" + "ELL" not in report_text
+    assert "B" + "UY" not in source_text_raw
+    assert "S" + "ELL" not in source_text_raw
+
+
+def test_v0_34_introduces_no_execution_order_demo_or_live_semantics() -> None:
+    source_text_raw = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in [
+            ROOT / "src" / "research" / "xauusd_forward_observation_runner.py",
+            ROOT / "scripts" / "run_xauusd_forward_observation_journal_v0_34.py",
+        ]
+    )
+    source_text = source_text_raw.lower()
+
+    assert "order" + "_send(" not in source_text
+    assert "order" + "_check(" not in source_text
+    assert "executionqueue" not in source_text
+    assert "broker" not in source_text
+    assert "demo_allowed\": true" not in source_text
+    assert "live_allowed\": true" not in source_text
+    assert "execution_allowed\": true" not in source_text
+
+
+def test_v0_34_does_not_modify_candidate_rules(tmp_path: Path) -> None:
+    candidate_path = ROOT / "reports" / "xauusd_compression_expansion_candidate_v0_26_train_validation.json"
+    before = candidate_path.read_text(encoding="utf-8")
+    output_path = tmp_path / "xauusd_forward_observation_journal_v0_34.json"
+
+    report = build_xauusd_forward_observation_journal_v0_34(fixture_csv_rows=default_synthetic_fixture_csv_rows())
+    save_xauusd_forward_observation_journal(report, output_path)
+    after = candidate_path.read_text(encoding="utf-8")
+
+    assert before == after
+    assert report["candidate_rules_modified"] is False
+    assert report["candidate_rules_lock"]["rule_change_allowed"] is False
+
+
+def test_v0_34_keeps_project_health_safe() -> None:
     health = build_project_health_report(ROOT)
 
     assert health["status"] in {"healthy", "warnings"}

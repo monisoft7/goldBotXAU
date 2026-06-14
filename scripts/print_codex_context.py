@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_33"
+CONTEXT_VERSION = "v0_34"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -152,6 +152,30 @@ def _forward_observation_runner_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _forward_observation_journal_summary(root: Path) -> dict[str, Any] | None:
+    journal_path = root / "reports" / "xauusd_forward_observation_journal_v0_34.json"
+    if not journal_path.exists():
+        return None
+    report = json.loads(journal_path.read_text(encoding="utf-8"))
+    return {
+        "observation_version": report.get("observation_version"),
+        "candidate_id": report.get("candidate_id"),
+        "observation_status": report.get("observation_status"),
+        "real_market_observation_started": report.get("real_market_observation_started"),
+        "journal_record_count": report.get("journal_record_count"),
+        "timeframes_used": report.get("timeframes_used"),
+        "data_files_used": report.get("data_files_used"),
+        "execution_allowed": report.get("execution_allowed"),
+        "demo_allowed": report.get("demo_allowed"),
+        "live_allowed": report.get("live_allowed"),
+        "order_send_allowed": report.get("order_send_allowed"),
+        "order_check_allowed": report.get("order_check_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "candidate_rules_modified": report.get("candidate_rules_modified"),
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
 def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
     root = root.resolve()
     health = build_project_health_report(root)
@@ -174,6 +198,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_paper_shadow_journal": _paper_shadow_journal_summary(root),
         "latest_forward_observation_plan": _forward_observation_plan_summary(root),
         "latest_forward_observation_runner": _forward_observation_runner_summary(root),
+        "latest_forward_observation_journal": _forward_observation_journal_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,

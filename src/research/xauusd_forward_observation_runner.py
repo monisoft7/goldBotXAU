@@ -1,4 +1,4 @@
-"""v0_33 read-only forward observation CSV runner for local fixtures."""
+"""Read-only forward observation CSV runners for local XAUUSD journal records."""
 
 from __future__ import annotations
 
@@ -12,12 +12,17 @@ from typing import Any
 from src.research.xauusd_paper_shadow_journal import build_neutral_journal_records
 
 RUNNER_VERSION = "v0_33"
+JOURNAL_VERSION = "v0_34"
 CANDIDATE_ID = "xauusd_compression_then_expansion_v0_26"
 DEFAULT_PLAN = Path("reports") / "xauusd_forward_observation_export_plan_v0_32.json"
 DEFAULT_JOURNAL_PROTOCOL = Path("reports") / "xauusd_paper_shadow_journal_protocol_v0_31.json"
 DEFAULT_CANDIDATE_REPORT = Path("reports") / "xauusd_compression_expansion_candidate_v0_26_train_validation.json"
 DEFAULT_OUTPUT = Path("reports") / "xauusd_forward_observation_runner_protocol_v0_33.json"
+DEFAULT_RUNNER_PROTOCOL = DEFAULT_OUTPUT
+DEFAULT_V0_34_OUTPUT = Path("reports") / "xauusd_forward_observation_journal_v0_34.json"
 NEXT_RECOMMENDED_STEP = "v0_34 run one read-only local forward observation export and journal pass, no execution"
+V0_34_NEXT_RECOMMENDED_STEP = "v0_35 forward observation quality gate, no execution"
+FORWARD_DATA_START = "2026-01-01"
 
 ALLOWED_TIMEFRAMES = ["M5", "M10"]
 ALLOWED_SYMBOLS = ["XAUUSD", "XAUUSD.", "XAUUSDm"]
@@ -140,6 +145,115 @@ def build_xauusd_forward_observation_runner_protocol_v0_33(
     }
 
 
+def build_xauusd_forward_observation_journal_v0_34(
+    *,
+    runner_protocol_path: str | Path = DEFAULT_RUNNER_PROTOCOL,
+    candidate_report_path: str | Path = DEFAULT_CANDIDATE_REPORT,
+    data_dir: str | Path = "data",
+    forward_csv_paths: list[str | Path] | None = None,
+    fixture_csv_path: str | Path | None = None,
+    fixture_csv_rows: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    runner_file = Path(runner_protocol_path)
+    candidate_file = Path(candidate_report_path)
+
+    runner_protocol, runner_errors = _read_json_object(runner_file, "v0_33_forward_observation_runner_protocol")
+    candidate_report, candidate_errors = _read_json_object(candidate_file, "candidate_report")
+    blockers = [*runner_errors, *candidate_errors]
+
+    if runner_protocol is not None:
+        blockers.extend(_runner_protocol_blockers(runner_protocol))
+    if candidate_report is not None:
+        blockers.extend(_candidate_blockers(candidate_report))
+    if runner_protocol is not None and candidate_report is not None:
+        blockers.extend(_candidate_rules_hash_blockers(runner_protocol, candidate_report))
+
+    csv_rows: list[dict[str, Any]] = []
+    data_files_used: list[str] = []
+    data_files_inspected: list[str] = []
+    data_mode = "local_readonly_csv"
+    data_source_status = "blocked_need_forward_observation_data"
+
+    if not blockers:
+        csv_rows, data_files_used, data_files_inspected, data_blockers, data_mode = _load_v0_34_forward_csv_rows(
+            data_dir=data_dir,
+            forward_csv_paths=forward_csv_paths,
+            fixture_csv_path=fixture_csv_path,
+            fixture_csv_rows=fixture_csv_rows,
+        )
+        blockers.extend(data_blockers)
+
+    fixed_rules = _fixed_rules(candidate_report)
+    fixture_rows = [] if blockers else csv_rows_to_journal_fixture_rows(csv_rows, fixed_rules)
+    journal_records = [] if blockers else build_neutral_journal_records(fixture_rows, fixed_rules)
+    if not blockers and not journal_records:
+        blockers.append("blocked_need_forward_observation_data")
+        blockers.append("journal_records_empty_after_csv_conversion")
+
+    observation_status = "journal_pass_completed" if not blockers else "blocked_need_forward_observation_data"
+    journal_records = [] if blockers else journal_records
+    timeframes_used = sorted({str(row.get("timeframe")) for row in csv_rows if row.get("timeframe") in ALLOWED_TIMEFRAMES})
+    if observation_status == "journal_pass_completed":
+        data_source_status = data_mode
+
+    real_market_observation_started = observation_status == "journal_pass_completed" and data_mode == "local_readonly_market_csv"
+
+    return {
+        "observation_version": JOURNAL_VERSION,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "candidate_id": CANDIDATE_ID,
+        "source_reports": {
+            "forward_observation_runner_protocol": str(runner_file),
+            "candidate_report": str(candidate_file),
+        },
+        "observation_status": observation_status,
+        "data_source_status": data_source_status,
+        "real_market_observation_started": real_market_observation_started,
+        "execution_allowed": False,
+        "demo_allowed": False,
+        "live_allowed": False,
+        "order_send_allowed": False,
+        "order_check_allowed": False,
+        "repeated_oos_review": False,
+        "candidate_rules_modified": False,
+        "timeframes_used": [] if blockers else timeframes_used,
+        "allowed_timeframes": ALLOWED_TIMEFRAMES,
+        "data_files_used": [] if blockers else data_files_used,
+        "data_files_inspected": data_files_inspected,
+        "journal_record_count": len(journal_records),
+        "journal_records": journal_records,
+        "blockers": blockers,
+        "neutral_observation_summary": _neutral_observation_summary(
+            observation_status=observation_status,
+            journal_records=journal_records,
+            blockers=blockers,
+            timeframes_used=[] if blockers else timeframes_used,
+        ),
+        "mt5_export_used": False,
+        "read_only_data_access": True,
+        "candidate_rules_lock": {
+            "fixed_rules_hash_sha256": _stable_hash(fixed_rules) if fixed_rules else None,
+            "fixed_rules_source": str(candidate_file),
+            "rule_change_allowed": False,
+            "threshold_search_allowed": False,
+            "parameter_grid_allowed": False,
+            "parameter_optimization_allowed": False,
+            "retune_allowed": False,
+        },
+        "non_actions_performed": {
+            "mt5_called": False,
+            "market_data_exported": False,
+            "new_backtest_evaluated": False,
+            "new_oos_run_performed": False,
+            "repeated_oos_review": False,
+            "candidate_rules_changed": False,
+            "new_strategy_variant_created": False,
+        },
+        "safety": _safety_summary(),
+        "next_recommended_step": V0_34_NEXT_RECOMMENDED_STEP,
+    }
+
+
 def read_forward_observation_csv(csv_path: str | Path) -> list[dict[str, Any]]:
     csv_file = Path(csv_path)
     with csv_file.open("r", encoding="utf-8", newline="") as handle:
@@ -197,6 +311,15 @@ def csv_rows_to_journal_fixture_rows(
 def save_xauusd_forward_observation_runner_protocol(
     report: dict[str, Any],
     output_path: str | Path = DEFAULT_OUTPUT,
+) -> None:
+    output_file = Path(output_path)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    output_file.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def save_xauusd_forward_observation_journal(
+    report: dict[str, Any],
+    output_path: str | Path = DEFAULT_V0_34_OUTPUT,
 ) -> None:
     output_file = Path(output_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -406,6 +529,211 @@ def _candidate_rules_hash_blockers(plan: dict[str, Any], candidate_report: dict[
     if expected_hash != actual_hash:
         return ["candidate_rules_hash_mismatch"]
     return []
+
+
+def _runner_protocol_blockers(runner_protocol: dict[str, Any]) -> list[str]:
+    blockers: list[str] = []
+    if runner_protocol.get("runner_version") != "v0_33":
+        blockers.append("runner_protocol_version_not_v0_33")
+    if runner_protocol.get("runner_status") != "framework_ready_not_started":
+        blockers.append("runner_status_not_framework_ready_not_started")
+    if runner_protocol.get("candidate_id") != CANDIDATE_ID:
+        blockers.append("runner_candidate_id_mismatch")
+    if runner_protocol.get("future_mode") != "journal_only":
+        blockers.append("runner_future_mode_not_journal_only")
+    if runner_protocol.get("allowed_timeframes") != ALLOWED_TIMEFRAMES:
+        blockers.append("runner_allowed_timeframes_not_m5_m10")
+    if runner_protocol.get("execution_allowed") is not False:
+        blockers.append("runner_execution_allowed_not_false")
+    if runner_protocol.get("demo_allowed") is not False:
+        blockers.append("runner_demo_allowed_not_false")
+    if runner_protocol.get("live_allowed") is not False:
+        blockers.append("runner_live_allowed_not_false")
+    if runner_protocol.get("repeated_oos_review") is not False:
+        blockers.append("runner_repeated_oos_review_not_false")
+    if runner_protocol.get("candidate_rules_modified") is not False:
+        blockers.append("runner_candidate_rules_modified_not_false")
+
+    safety = runner_protocol.get("safety", {})
+    if not isinstance(safety, dict):
+        blockers.append("runner_safety_not_object")
+    else:
+        for key in (
+            "order_send_allowed",
+            "order_check_allowed",
+            "execution_queue_allowed",
+            "new_oos_evaluation_allowed",
+            "oos_repeat_allowed",
+            "threshold_search_allowed",
+            "parameter_grid_allowed",
+            "parameter_optimization_allowed",
+            "retune_allowed",
+        ):
+            if safety.get(key) is not False:
+                blockers.append(f"runner_safety_{key}_not_false")
+    return blockers
+
+
+def _load_v0_34_forward_csv_rows(
+    *,
+    data_dir: str | Path,
+    forward_csv_paths: list[str | Path] | None,
+    fixture_csv_path: str | Path | None,
+    fixture_csv_rows: list[dict[str, Any]] | None,
+) -> tuple[list[dict[str, Any]], list[str], list[str], list[str], str]:
+    supplied_sources = sum(
+        source is not None
+        for source in (
+            forward_csv_paths,
+            fixture_csv_path,
+            fixture_csv_rows,
+        )
+    )
+    if supplied_sources > 1:
+        return [], [], [], ["multiple_forward_data_sources_supplied"], "local_readonly_csv"
+
+    if fixture_csv_path is not None or fixture_csv_rows is not None:
+        rows, blockers = _load_fixture_csv_rows(fixture_csv_path, fixture_csv_rows)
+        used = [str(Path(fixture_csv_path))] if fixture_csv_path is not None else ["in_memory_fixture_csv_rows"]
+        return rows, used, used, blockers, "fixture_csv"
+
+    paths = [Path(path) for path in forward_csv_paths] if forward_csv_paths is not None else _discover_forward_csv_paths(data_dir)
+    inspected = [str(path) for path in paths]
+    if not paths:
+        return [], [], inspected, ["blocked_need_forward_observation_data", "forward_csv_files_missing"], "local_readonly_market_csv"
+
+    all_rows: list[dict[str, Any]] = []
+    used_files: list[str] = []
+    blockers: list[str] = []
+    for path in paths:
+        rows, row_blockers = _read_local_market_csv_as_forward_rows(path)
+        if row_blockers:
+            blockers.extend(row_blockers)
+            continue
+        forward_rows = [row for row in rows if _is_forward_row(row)]
+        if forward_rows:
+            all_rows.extend(forward_rows)
+            used_files.append(str(path))
+
+    if blockers:
+        return [], [], inspected, blockers, "local_readonly_market_csv"
+
+    csv_blockers = validate_forward_observation_csv_rows(sorted(all_rows, key=lambda row: (str(row["timeframe"]), str(row["timestamp_utc"]))))
+    if csv_blockers:
+        return [], [], inspected, csv_blockers, "local_readonly_market_csv"
+
+    available_timeframes = {str(row.get("timeframe")) for row in all_rows}
+    missing_timeframes = [timeframe for timeframe in ALLOWED_TIMEFRAMES if timeframe not in available_timeframes]
+    if missing_timeframes:
+        return (
+            [],
+            [],
+            inspected,
+            [
+                "blocked_need_forward_observation_data",
+                f"forward_data_missing_for_timeframes: {','.join(missing_timeframes)}",
+            ],
+            "local_readonly_market_csv",
+        )
+
+    return (
+        sorted(all_rows, key=lambda row: (str(row["timeframe"]), str(row["timestamp_utc"]))),
+        sorted(used_files),
+        inspected,
+        [],
+        "local_readonly_market_csv",
+    )
+
+
+def _discover_forward_csv_paths(data_dir: str | Path) -> list[Path]:
+    root = Path(data_dir)
+    if not root.exists():
+        return []
+    paths: list[Path] = []
+    for timeframe in ("m5", "m10"):
+        paths.extend(path for path in root.glob(f"xauusd_{timeframe}_*.csv") if path.is_file())
+    return sorted(paths)
+
+
+def _read_local_market_csv_as_forward_rows(path: Path) -> tuple[list[dict[str, Any]], list[str]]:
+    if not path.exists():
+        return [], [f"forward_csv_missing: {path}"]
+    timeframe = _infer_timeframe_from_path(path)
+    if timeframe not in ALLOWED_TIMEFRAMES:
+        return [], [f"forward_csv_timeframe_not_allowed: {path}"]
+
+    rows = read_forward_observation_csv(path)
+    if not rows:
+        return [], []
+    fieldnames = set(rows[0])
+    if set(EXPECTED_CSV_SCHEMA).issubset(fieldnames):
+        return [dict(row, timeframe=str(row.get("timeframe", timeframe))) for row in rows], []
+    if {"timestamp", "open", "high", "low", "close", "volume"}.issubset(fieldnames):
+        return [_normalized_market_row(row, timeframe, path) for row in rows], []
+    return [], [f"forward_csv_schema_not_supported: {path}"]
+
+
+def _normalized_market_row(row: dict[str, Any], timeframe: str, path: Path) -> dict[str, Any]:
+    timestamp = str(row["timestamp"])
+    timestamp_text = timestamp if timestamp.endswith("+00:00") else f"{timestamp}+00:00"
+    return {
+        "timestamp_utc": timestamp_text,
+        "symbol": "XAUUSD",
+        "timeframe": timeframe,
+        "open": row["open"],
+        "high": row["high"],
+        "low": row["low"],
+        "close": row["close"],
+        "tick_volume": row.get("volume", ""),
+        "spread": "0",
+        "source": f"local_readonly_csv:{path.name}",
+    }
+
+
+def _infer_timeframe_from_path(path: Path) -> str | None:
+    stem = path.stem.lower()
+    if "_m5_" in f"_{stem}_":
+        return "M5"
+    if "_m10_" in f"_{stem}_":
+        return "M10"
+    return None
+
+
+def _is_forward_row(row: dict[str, Any]) -> bool:
+    timestamp = _parse_timestamp(row.get("timestamp_utc"))
+    if timestamp is None:
+        return False
+    return timestamp.date().isoformat() >= FORWARD_DATA_START
+
+
+def _neutral_observation_summary(
+    *,
+    observation_status: str,
+    journal_records: list[dict[str, Any]],
+    blockers: list[str],
+    timeframes_used: list[str],
+) -> dict[str, Any]:
+    if observation_status != "journal_pass_completed":
+        return {
+            "status": "blocked",
+            "summary": "Forward observation journal pass blocked because required read-only M5/M10 data was unavailable or insufficient.",
+            "blocker_count": len(blockers),
+        }
+
+    counts_by_timeframe: dict[str, int] = {}
+    for record in journal_records:
+        notes = str(record.get("notes", ""))
+        for timeframe in ALLOWED_TIMEFRAMES:
+            if f"timeframe={timeframe}" in notes:
+                counts_by_timeframe[timeframe] = counts_by_timeframe.get(timeframe, 0) + 1
+
+    return {
+        "status": "completed",
+        "summary": "Neutral journal records were generated from read-only M5/M10 observation rows.",
+        "timeframes_used": timeframes_used,
+        "journal_record_count": len(journal_records),
+        "records_by_timeframe": counts_by_timeframe,
+    }
 
 
 def _fixed_rules(candidate_report: dict[str, Any] | None) -> dict[str, Any]:

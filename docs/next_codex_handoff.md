@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_33 read-only forward observation runner framework
+- Last completed checkpoint: v0_34 read-only forward observation journal pass
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 373 passed
+- Current test baseline: 385 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -19,10 +19,11 @@
 - Latest paper-shadow journal protocol: `reports/xauusd_paper_shadow_journal_protocol_v0_31.json`
 - Latest forward observation export plan: `reports/xauusd_forward_observation_export_plan_v0_32.json`
 - Latest forward observation runner protocol: `reports/xauusd_forward_observation_runner_protocol_v0_33.json`
-- Latest context pack: `reports/codex_context_v0_33.json`
-- Latest health report: `reports/project_health_v0_33.json`
-- Latest decision: `framework_ready_not_started`
-- Next safe task: v0_34 run one read-only local forward observation export and journal pass, no execution
+- Latest forward observation journal report: `reports/xauusd_forward_observation_journal_v0_34.json`
+- Latest context pack: `reports/codex_context_v0_34.json`
+- Latest health report: `reports/project_health_v0_34.json`
+- Latest decision: `blocked_need_forward_observation_data`
+- Next safe task: v0_35 forward observation quality gate, no execution
 
 ## v0_31 Journal Framework Result
 
@@ -135,4 +136,27 @@ v0_33 built the read-only forward observation exporter wrapper and journal runne
 
 v0_33 did not call MT5, did not export real market data, did not start real observation, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
 
-Future v0_34 may run one read-only local forward observation export and journal pass, still no execution. It must remain journal-only and must use only the locked candidate rules.
+v0_34 ran one read-only local forward observation journal pass, still no execution. It remained journal-only and used only the locked candidate rules.
+
+## v0_34 Forward Observation Journal Result
+
+- Journal module: `src/research/xauusd_forward_observation_runner.py`
+- Journal script: `scripts/run_xauusd_forward_observation_journal_v0_34.py`
+- Journal checkpoint: `docs/checkpoints/v0_34_forward_observation_journal_result.md`
+- Journal report: `reports/xauusd_forward_observation_journal_v0_34.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Observation status: `blocked_need_forward_observation_data`
+- Journal record count: `0`
+- Real market observation started: `false`
+- MT5 export used: `false`
+- Data files used: none
+- Blocking reason: forward M5 data was unavailable; forward M10 was inspected but no journal pass was completed
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+
+v0_34 ran exactly one local read-only pass and blocked cleanly before creating journal records because required forward observation data was incomplete. It did not call MT5, did not export market data, did not start real observation, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
