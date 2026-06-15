@@ -1,0 +1,137 @@
+{
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "candidate_rules_modified": false,
+  "demo_allowed": false,
+  "demo_preflight_allowed": false,
+  "execution_allowed": false,
+  "expansion_observed_count": 0,
+  "generated_at": "2026-06-15T17:48:39.242212+00:00",
+  "independent_observation_session_count": 1,
+  "input_consolidated_reports": [
+    "reports\\xauusd_forward_observation_consolidated_v0_34_2.json"
+  ],
+  "journal_record_count_by_timeframe": {
+    "M10": 1,
+    "M5": 1
+  },
+  "ledger_records": [
+    {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "compression_label": "lowest range reference block",
+      "expansion_observed": false,
+      "notes": "local read-only forward observation journal record; timeframe=M10; data_quality=local normalized csv; risk_note=observation only",
+      "observation_status": "no expansion observed",
+      "observed_reference_block": "block_12_18",
+      "observed_response_block": "block_18_24",
+      "rule_match_status": "rule match",
+      "source_consolidated_report": "reports\\xauusd_forward_observation_consolidated_v0_34_2.json",
+      "timeframe": "M10",
+      "timestamp": "2026-06-12T00:00:00+00:00"
+    },
+    {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "compression_label": "lowest range reference block",
+      "expansion_observed": false,
+      "notes": "local read-only forward observation journal record; timeframe=M5; data_quality=local normalized csv; risk_note=observation only",
+      "observation_status": "no expansion observed",
+      "observed_reference_block": "block_12_18",
+      "observed_response_block": "block_18_24",
+      "rule_match_status": "rule match",
+      "source_consolidated_report": "reports\\xauusd_forward_observation_consolidated_v0_34_2.json",
+      "timeframe": "M5",
+      "timestamp": "2026-06-12T00:00:00+00:00"
+    }
+  ],
+  "ledger_status": "completed",
+  "ledger_version": "v0_35",
+  "live_allowed": false,
+  "minimum_demo_preflight_review_requirements": {
+    "both_m5_and_m10_covered": {
+      "current_timeframes": [
+        "M10",
+        "M5"
+      ],
+      "required": true,
+      "required_timeframes": [
+        "M5",
+        "M10"
+      ]
+    },
+    "minimum_unique_records_per_timeframe": {
+      "current_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "minimum_count": 3,
+      "required": true
+    },
+    "multiple_independent_observation_sessions": {
+      "current_count": 1,
+      "minimum_count": 3,
+      "required": true
+    },
+    "no_execution_path_introduced": true,
+    "no_oos_repeat": true,
+    "no_rule_changes": true,
+    "no_schema_or_data_blockers": true
+  },
+  "next_recommended_step": "v0_36 collect additional read-only forward observation samples, no execution",
+  "no_expansion_observed_count": 2,
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "repeated_oos_review": false
+  },
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "quality_gate_status": "insufficient_samples",
+  "quality_gate_status_options": [
+    "insufficient_samples",
+    "continue_forward_observation",
+    "ready_for_demo_preflight_review",
+    "forward_behavior_failed_review"
+  ],
+  "raw_market_data_embedded": false,
+  "repeated_oos_review": false,
+  "safety_state": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "local_read_only": true,
+    "market_data_exported": false,
+    "martingale_allowed": false,
+    "mt5_called": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "raw_market_data_embedded": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "timeframes_observed": [
+    "M10",
+    "M5"
+  ],
+  "total_unique_journal_records": 2
+}

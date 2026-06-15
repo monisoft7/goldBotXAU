@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_34_2"
+    assert context["context_version"] == "v0_35"
     json.dumps(context)
 
 
@@ -54,7 +54,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 6000
+    assert len(context_text) < 7000
 
 
 def test_context_cli_json_works() -> None:
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_34_2"
+    assert context["context_version"] == "v0_35"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_34_2.json"
+    output_path = tmp_path / "codex_context_v0_35.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_34_2"
+    assert context["context_version"] == "v0_35"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -250,3 +250,32 @@ def test_context_includes_v0_34_2_forward_observation_consolidated_summary() -> 
     assert consolidated["order_check_allowed"] is False
     assert consolidated["repeated_oos_review"] is False
     assert consolidated["candidate_rules_modified"] is False
+
+
+def test_context_includes_v0_35_forward_observation_ledger_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    ledger = context["latest_forward_observation_ledger"]
+    assert ledger is not None
+    assert ledger["ledger_version"] == "v0_35"
+    assert ledger["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert ledger["ledger_status"] == "completed"
+    assert ledger["raw_market_data_embedded"] is False
+    assert ledger["input_consolidated_reports"] == [
+        "reports\\xauusd_forward_observation_consolidated_v0_34_2.json"
+    ]
+    assert ledger["total_unique_journal_records"] == 2
+    assert ledger["timeframes_observed"] == ["M10", "M5"]
+    assert ledger["journal_record_count_by_timeframe"] == {"M10": 1, "M5": 1}
+    assert ledger["independent_observation_session_count"] == 1
+    assert ledger["expansion_observed_count"] == 0
+    assert ledger["no_expansion_observed_count"] == 2
+    assert ledger["quality_gate_status"] == "insufficient_samples"
+    assert ledger["demo_preflight_allowed"] is False
+    assert ledger["execution_allowed"] is False
+    assert ledger["demo_allowed"] is False
+    assert ledger["live_allowed"] is False
+    assert ledger["order_send_allowed"] is False
+    assert ledger["order_check_allowed"] is False
+    assert ledger["repeated_oos_review"] is False
+    assert ledger["candidate_rules_modified"] is False

@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_34_2 forward observation journal consolidation
+- Last completed checkpoint: v0_35 forward observation sample ledger
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 406 passed
+- Current test baseline: 419 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -22,10 +22,11 @@
 - Latest forward observation journal report: `reports/xauusd_forward_observation_journal_v0_34.json`
 - Latest forward observation schema adapter protocol: `reports/xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json`
 - Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
-- Latest context pack: `reports/codex_context_v0_34_2.json`
-- Latest health report: `reports/project_health_v0_34_2.json`
+- Latest forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
+- Latest context pack: `reports/codex_context_v0_35.json`
+- Latest health report: `reports/project_health_v0_35.json`
 - Latest decision: `completed`
-- Next safe task: v0_35 collect more read-only forward observation samples over multiple sessions, no execution
+- Next safe task: v0_36 collect additional read-only forward observation samples, no execution
 
 ## v0_31 Journal Framework Result
 
@@ -225,4 +226,33 @@ v0_34_1 did not call MT5, did not export market data, did not run the journal ov
 
 v0_34_2 consolidated the existing local M5/M10 journal runner JSON reports as read-only forward observation artifacts. It did not embed raw OHLC rows, did not call MT5, did not export market data, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
 
-Next safe step: `v0_35 collect more read-only forward observation samples over multiple sessions, no execution`.
+## v0_35 Forward Observation Ledger Result
+
+- Ledger module: `src/research/xauusd_forward_observation_ledger.py`
+- Ledger script: `scripts/build_xauusd_forward_observation_ledger_v0_35.py`
+- Ledger checkpoint: `docs/checkpoints/v0_35_forward_observation_ledger_result.md`
+- Ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Ledger status: `completed`
+- Raw market data embedded: `false`
+- Input consolidated reports: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
+- Independent observation sessions: `1`
+- Timeframes observed: `M10`, `M5`
+- Total unique journal records: `2`
+- Expansion observed count: `0`
+- No expansion observed count: `2`
+- Quality gate status: `insufficient_samples`
+- Demo preflight allowed: `false`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+
+v0_35 aggregated only consolidated read-only forward observation summaries. It deduplicated records by candidate id, timestamp, timeframe, reference block, and response block. It did not embed raw OHLC rows, did not call MT5, did not export market data, did not repeat OOS, did not retune, did not change candidate rules, did not create execution paths, and did not generate recommendations or directional instructions.
+
+The quality gate did not approve demo preflight. Minimum future requirements before demo preflight review include multiple independent observation sessions, both `M5` and `M10` covered, no schema/data blockers, no rule changes, no OOS repeat, and no execution path introduced.
+
+Next safe step: `v0_36 collect additional read-only forward observation samples, no execution`.
