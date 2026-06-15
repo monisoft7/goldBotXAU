@@ -103,7 +103,7 @@ def run_xauusd_oos_review_v0_29(
             protocol=protocol,
         )
 
-    candidate_path = Path(protocol["source_reports"]["candidate_report"])
+    candidate_path = _protocol_path(protocol["source_reports"]["candidate_report"])
     candidate_report, candidate_errors = _load_json(candidate_path, "candidate_report")
     if candidate_errors:
         return _blocked_report(
@@ -114,7 +114,7 @@ def run_xauusd_oos_review_v0_29(
             protocol=protocol,
         )
 
-    manifest_path = Path(protocol["source_reports"]["dataset_manifest"])
+    manifest_path = _protocol_path(protocol["source_reports"]["dataset_manifest"])
     manifest, manifest_errors = _load_json(manifest_path, "dataset_manifest")
     if manifest_errors:
         return _blocked_report(
@@ -147,14 +147,14 @@ def run_xauusd_oos_review_v0_29(
         "review_version": REVIEW_VERSION,
         "decision": decision,
         "candidate_id": CANDIDATE_ID,
-        "protocol_path": str(protocol_file),
+        "protocol_path": _report_path(protocol_file),
         "approval": {
             "approval_token_required": APPROVAL_TOKEN,
             "approval_token_accepted": True,
         },
         "one_time_review": {
-            "marker_path": str(marker_file),
-            "output_path": str(output_file),
+            "marker_path": _report_path(marker_file),
+            "output_path": _report_path(output_file),
             "repeat_review_allowed": False,
         },
         "fixed_rules_verification": {
@@ -203,7 +203,7 @@ def save_xauusd_oos_review_result(report: dict[str, Any], output_path: str | Pat
             "review_version": REVIEW_VERSION,
             "candidate_id": CANDIDATE_ID,
             "decision": report["decision"],
-            "output_path": str(output_file),
+            "output_path": _report_path(output_file),
             "repeat_review_allowed": False,
         }
         _marker_path(output_file).write_text(json.dumps(marker, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -237,9 +237,9 @@ def _protocol_blockers(protocol: dict[str, Any], protocol_path: Path, output_pat
     allowed = protocol.get("allowed_future_oos_review", {})
     if allowed.get("approval_token_required") != APPROVAL_TOKEN:
         blockers.append("protocol_approval_token_mismatch")
-    if Path(str(allowed.get("script", ""))).as_posix() != "scripts/run_xauusd_oos_review_v0_29.py":
+    if _logical_path(allowed.get("script", "")) != "scripts/run_xauusd_oos_review_v0_29.py":
         blockers.append("protocol_future_script_unexpected")
-    if Path(str(allowed.get("result_path", ""))) != Path("reports") / "xauusd_oos_review_v0_29.json":
+    if _logical_path(allowed.get("result_path", "")) != "reports/xauusd_oos_review_v0_29.json":
         blockers.append("protocol_future_result_path_unexpected")
     if protocol_path != DEFAULT_PROTOCOL:
         expected_command = (
@@ -536,8 +536,8 @@ def _blocked_report(
         "review_version": REVIEW_VERSION,
         "decision": decision,
         "candidate_id": CANDIDATE_ID,
-        "protocol_path": str(protocol_path),
-        "output_path": str(output_path),
+        "protocol_path": _report_path(protocol_path),
+        "output_path": _report_path(output_path),
         "blockers": blockers,
         "protocol_version": protocol.get("protocol_version") if protocol else None,
         "oos_result": None,
@@ -564,6 +564,18 @@ def _check(name: str, passed: bool, *, observed: Any, required: Any | None = Non
 
 def _marker_path(output_path: Path) -> Path:
     return output_path.with_name(f"{output_path.stem}.marker.json")
+
+
+def _logical_path(value: object) -> str:
+    return str(value).replace("\\", "/")
+
+
+def _protocol_path(value: object) -> Path:
+    return Path(_logical_path(value))
+
+
+def _report_path(path: Path) -> str:
+    return path.as_posix()
 
 
 def _stable_hash(payload: dict[str, Any]) -> str:

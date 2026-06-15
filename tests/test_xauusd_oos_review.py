@@ -8,6 +8,8 @@ import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+import pytest
+
 from scripts.project_health_check import build_project_health_report
 from src.research.xauusd_oos_review import (
     APPROVAL_TOKEN,
@@ -89,6 +91,32 @@ def _protocol_copy(tmp_path: Path) -> Path:
     return path
 
 
+def _protocol_copy_with_separator(tmp_path: Path, separator: str) -> Path:
+    protocol = json.loads(ACTUAL_PROTOCOL.read_text(encoding="utf-8"))
+
+    def styled(path: str) -> str:
+        return path.replace("\\", "/").replace("/", separator)
+
+    protocol["allowed_future_oos_review"]["script"] = styled("scripts/run_xauusd_oos_review_v0_29.py")
+    protocol["allowed_future_oos_review"]["result_path"] = styled("reports/xauusd_oos_review_v0_29.json")
+    protocol["one_time_review_policy"]["future_result_path"] = styled("reports/xauusd_oos_review_v0_29.json")
+    protocol["fixed_rules_source"]["report"] = styled(
+        "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json"
+    )
+    protocol["oos_split_boundaries"]["source_manifest"] = styled("reports/xauusd_dataset_manifest_v0_5.json")
+    protocol["source_reports"]["candidate_report"] = styled(
+        "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json"
+    )
+    protocol["source_reports"]["dataset_manifest"] = styled("reports/xauusd_dataset_manifest_v0_5.json")
+    protocol["source_reports"]["promotion_gate_report"] = styled(
+        "reports/xauusd_compression_expansion_promotion_gate_v0_27.json"
+    )
+
+    path = tmp_path / f"protocol_{ord(separator)}.json"
+    path.write_text(json.dumps(protocol), encoding="utf-8")
+    return path
+
+
 def test_wrong_approval_token_blocks(tmp_path: Path) -> None:
     result = run_xauusd_oos_review_v0_29(
         protocol_path=ACTUAL_PROTOCOL,
@@ -132,6 +160,29 @@ def test_valid_approval_token_allows_one_time_oos_review(tmp_path: Path) -> None
     assert result["approval"]["approval_token_accepted"] is True
     assert result["fixed_rules_verification"]["hash_match"] is True
     assert result["safety"]["oos_evaluated"] is True
+
+
+@pytest.mark.parametrize("separator", ["/", "\\"])
+def test_protocol_accepts_equivalent_repo_relative_path_separators(tmp_path: Path, separator: str) -> None:
+    data_dir = tmp_path / "data"
+    _write_oos_m1_fixture(data_dir)
+    protocol_path = _protocol_copy_with_separator(tmp_path, separator)
+
+    result = run_xauusd_oos_review_v0_29(
+        protocol_path=protocol_path,
+        approval_token=APPROVAL_TOKEN,
+        output_path=tmp_path / "oos.json",
+        data_dir=data_dir,
+    )
+
+    assert result["decision"] in {
+        "oos_passed_research_validation",
+        "oos_failed_research_validation",
+        "oos_inconclusive_research_validation",
+    }
+    assert result["fixed_rules_verification"]["hash_match"] is True
+    assert "\\" not in result["protocol_path"]
+    assert "\\" not in result["one_time_review"]["output_path"]
 
 
 def test_repeated_oos_review_blocks(tmp_path: Path) -> None:

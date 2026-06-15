@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_36 read-only forward observation cycle orchestrator
+- Last completed checkpoint: v0_36_1 CI path normalization fix
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 434 passed
+- Current test baseline: 436 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -24,9 +24,10 @@
 - Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
 - Latest forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
 - Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
-- Latest context pack: `reports/codex_context_v0_36.json`
-- Latest health report: `reports/project_health_v0_36.json`
-- Latest decision: `orchestrator_ready_for_approved_read_only_cycle`
+- Latest CI portability checkpoint: `docs/checkpoints/v0_36_1_ci_path_normalization_result.md`
+- Latest context pack: `reports/codex_context_v0_36_1.json`
+- Latest health report: `reports/project_health_v0_36_1.json`
+- Latest decision: `ci_path_normalization_complete`
 - Next safe task: run approved v0_36 read-only forward observation cycles for new date ranges, no execution
 
 ## v0_31 Journal Framework Result
@@ -292,3 +293,18 @@ py -3 scripts/run_xauusd_forward_observation_cycle_v0_36.py --json --from-date 2
 ```
 
 Use `--m5-csv data/<local_m5_file>.csv` instead of `--export-m5-from-mt5` when the M5 file already exists locally.
+
+## v0_36_1 CI Path Normalization Result
+
+- OOS review module: `src/research/xauusd_oos_review.py`
+- OOS review tests: `tests/test_xauusd_oos_review.py`
+- CI checkpoint: `docs/checkpoints/v0_36_1_ci_path_normalization_result.md`
+- Health report: `reports/project_health_v0_36_1.json`
+- Context pack: `reports/codex_context_v0_36_1.json`
+- Decision: `ci_path_normalization_complete`
+- Targeted OOS tests: `15 passed`
+- Full tests: `436 passed`
+
+v0_36_1 fixed Linux CI portability for OOS protocol/report path validation only. The root cause was Windows-style backslashes in locked protocol path strings being interpreted differently on Linux. Protocol path strings now normalize `\` and `/` as equivalent repo-relative separators for validation and source report loading, while report path strings are emitted in stable forward-slash form.
+
+v0_36_1 did not rerun the real locked OOS review, did not change candidate rules, did not alter strategy logic, did not retune, did not change thresholds, did not modify market data, did not embed raw CSV data, did not change forward observation results, and did not add demo, live, order, or execution paths.
