@@ -1,0 +1,160 @@
+{
+  "approval_token_required": true,
+  "artifacts": {
+    "consolidated_report": "reports\\xauusd_forward_observation_consolidated_cycle_2026_06_15_2026_06_16_v0_36.json",
+    "ledger_input": "reports\\xauusd_forward_observation_ledger_v0_35.json",
+    "m10_journal_report": "reports\\xauusd_forward_observation_m10_cycle_2026_06_15_2026_06_16_v0_36.json",
+    "m10_normalized_csv": "data\\xauusd_forward_obs_m10_normalized_2026_06_15_2026_06_16_v0_36.csv",
+    "m10_resampled_csv": "data\\xauusd_m10_xauusd_m5_xauusd_2026_06_15_2026_06_16_2026-06-15_2026-06-15.csv",
+    "m5_journal_report": "reports\\xauusd_forward_observation_m5_cycle_2026_06_15_2026_06_16_v0_36.json",
+    "m5_normalized_csv": "data\\xauusd_forward_obs_m5_normalized_2026_06_15_2026_06_16_v0_36.csv",
+    "m5_source_csv": "data\\xauusd_m5_xauusd_2026-06-15_2026-06-16.csv",
+    "protocol_report": "reports\\xauusd_forward_observation_cycle_2026-06-15_v0_36.json",
+    "updated_ledger_report": "reports\\xauusd_forward_observation_ledger_v0_36_cycle_2026-06-15.json"
+  },
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_modified": false,
+  "cycle_protocol_version": "v0_36",
+  "demo_allowed": false,
+  "demo_preflight_allowed": false,
+  "execution_allowed": false,
+  "from_date": "2026-06-15",
+  "generated_at": "2026-06-15T18:25:45.277306+00:00",
+  "live_allowed": false,
+  "neutral_observation_summary": {
+    "ledger": {
+      "blockers": [],
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "demo_preflight_allowed": false,
+      "independent_observation_session_count": 2,
+      "journal_record_count_by_timeframe": {
+        "M10": 2,
+        "M5": 2
+      },
+      "ledger_status": "completed",
+      "quality_gate_status": "insufficient_samples",
+      "raw_market_data_embedded": false,
+      "total_unique_journal_records": 4
+    },
+    "status": "completed",
+    "timeframes": [
+      "M5",
+      "M10"
+    ]
+  },
+  "next_recommended_step": "run approved read-only forward observation cycles until v0_35/v0_36 ledger reaches demo preflight review requirements",
+  "orchestrator_status": "completed",
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "raw_market_data_embedded": false,
+  "read_only_forward_observation_allowed": true,
+  "repeated_oos_review": false,
+  "safety_state": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "local_read_only": true,
+    "martingale_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "raw_market_data_embedded": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "synthetic_replacement_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "step_reports": {
+    "consolidation": {
+      "blockers": [],
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "consolidation_status": "completed",
+      "journal_record_count_by_timeframe": {
+        "M10": 1,
+        "M5": 1
+      },
+      "raw_market_data_embedded": false,
+      "total_journal_record_count": 2
+    },
+    "ledger": {
+      "blockers": [],
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "demo_preflight_allowed": false,
+      "independent_observation_session_count": 2,
+      "journal_record_count_by_timeframe": {
+        "M10": 2,
+        "M5": 2
+      },
+      "ledger_status": "completed",
+      "quality_gate_status": "insufficient_samples",
+      "raw_market_data_embedded": false,
+      "total_unique_journal_records": 4
+    },
+    "m10_journal": {
+      "blockers": [],
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "journal_record_count": 1,
+      "raw_market_data_embedded": false,
+      "runner_status": "framework_ready_not_started"
+    },
+    "m10_normalize": {
+      "adapter_status": "framework_ready",
+      "errors": [],
+      "input_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_m10_xauusd_m5_xauusd_2026_06_15_2026_06_16_2026-06-15_2026-06-15.csv",
+      "input_row_count": 123,
+      "output_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_forward_obs_m10_normalized_2026_06_15_2026_06_16_v0_36.csv",
+      "output_row_count": 123,
+      "warnings": [
+        "spread_unavailable_from_exporter_set_to_0"
+      ]
+    },
+    "m10_resample": {
+      "errors": [],
+      "input_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_m5_xauusd_2026-06-15_2026-06-16.csv",
+      "input_row_count": 246,
+      "output_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_m10_xauusd_m5_xauusd_2026_06_15_2026_06_16_2026-06-15_2026-06-15.csv",
+      "output_row_count": 123,
+      "status": "resampled",
+      "warnings": []
+    },
+    "m5_export": {
+      "errors": [],
+      "output_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_m5_xauusd_2026-06-15_2026-06-16.csv",
+      "row_count": 246,
+      "status": "exported",
+      "warnings": []
+    },
+    "m5_journal": {
+      "blockers": [],
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "journal_record_count": 1,
+      "raw_market_data_embedded": false,
+      "runner_status": "framework_ready_not_started"
+    },
+    "m5_normalize": {
+      "adapter_status": "framework_ready",
+      "errors": [],
+      "input_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_m5_xauusd_2026-06-15_2026-06-16.csv",
+      "input_row_count": 246,
+      "output_file": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\data\\xauusd_forward_obs_m5_normalized_2026_06_15_2026_06_16_v0_36.csv",
+      "output_row_count": 246,
+      "warnings": [
+        "spread_unavailable_from_exporter_set_to_0"
+      ]
+    }
+  },
+  "supported_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "to_date": "2026-06-16"
+}

@@ -1,0 +1,111 @@
+{
+  "allowed_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "fixed_rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "fixed_rules_source": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "candidate_rules_modified": false,
+  "data_source_status": "synthetic_fixtures_only",
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "expected_csv_schema": [
+    "timestamp_utc",
+    "symbol",
+    "timeframe",
+    "open",
+    "high",
+    "low",
+    "close",
+    "tick_volume",
+    "spread",
+    "source"
+  ],
+  "future_mode": "journal_only",
+  "generated_at": "2026-06-15T18:25:45.237923+00:00",
+  "journal_runner": {
+    "fixture_group_count": 1,
+    "generated_record_count": 1,
+    "journal_framework_source": "src/research/xauusd_paper_shadow_journal.py",
+    "journal_protocol_source": "reports\\xauusd_paper_shadow_journal_protocol_v0_31.json",
+    "name": "xauusd_forward_observation_journal_runner_v0_33",
+    "record_schema_source": "reports/xauusd_paper_shadow_journal_protocol_v0_31.json"
+  },
+  "live_allowed": false,
+  "mt5_called_in_tests": false,
+  "next_recommended_step": "v0_34 run one read-only local forward observation export and journal pass, no execution",
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "real_observation_run": false,
+    "repeated_oos_review": false
+  },
+  "readonly_exporter_wrapper": {
+    "input_mode": "local_csv_fixture_rows_only",
+    "mt5_called": false,
+    "name": "xauusd_forward_observation_readonly_csv_exporter_v0_33",
+    "output_mode": "csv_rows_for_neutral_journal_records",
+    "real_market_observation_started": false,
+    "requires_future_explicit_run_approval": true,
+    "status": "framework_ready_not_started"
+  },
+  "real_market_observation_started": false,
+  "repeated_oos_review": false,
+  "runner_status": "framework_ready_not_started",
+  "runner_version": "v0_33",
+  "safety": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "martingale_allowed": false,
+    "new_backtest_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_path_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "forward_observation_plan": "reports\\xauusd_forward_observation_export_plan_v0_32.json",
+    "paper_shadow_journal_protocol": "reports\\xauusd_paper_shadow_journal_protocol_v0_31.json"
+  },
+  "synthetic_fixture_csv_row_count": 123,
+  "synthetic_fixture_journal_record_count": 1,
+  "synthetic_fixture_journal_records": [
+    {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "compression_label": "lowest range reference block",
+      "expansion_observed": true,
+      "notes": "synthetic fixture journal record; timeframe=M10; data_quality=local fixture csv; risk_note=observation only",
+      "observation_status": "expansion observed",
+      "observed_reference_block": "block_06_12",
+      "observed_response_block": "block_12_18",
+      "rule_match_status": "rule match",
+      "timestamp": "2026-06-15T00:00:00+00:00"
+    }
+  ]
+}
