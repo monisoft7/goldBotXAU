@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_36_2 CI parity fix
+- Last completed checkpoint: v0_36_3 CI promotion gate fix
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 439 passed
+- Current test baseline: 441 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -24,11 +24,23 @@
 - Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
 - Latest forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
 - Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
-- Latest CI portability checkpoint: `docs/checkpoints/v0_36_2_ci_parity_result.md`
-- Latest context pack: `reports/codex_context_v0_36_2.json`
-- Latest health report: `reports/project_health_v0_36_2.json`
-- Latest decision: `ci_parity_fix_complete`
+- Latest CI portability checkpoint: `docs/checkpoints/v0_36_3_ci_promotion_gate_result.md`
+- Latest context pack: `reports/codex_context_v0_36_3.json`
+- Latest health report: `reports/project_health_v0_36_3.json`
+- Latest decision: `ci_promotion_gate_fix_complete`
 - Next safe task: run approved v0_36 read-only forward observation cycles for new date ranges, no execution
+
+## v0_36_3 CI Promotion Gate Result
+
+- Checkpoint: `docs/checkpoints/v0_36_3_ci_promotion_gate_result.md`
+- Root cause: the v0_26 decision report stores `candidate_report_path` with Windows backslashes, and the promotion gate compared that metadata path as a raw string. Linux treated the backslash as a literal character and blocked otherwise valid v0_26 report content.
+- Fix scope: compression-expansion promotion gate report loading and validation only.
+- Path behavior: relative report and output paths resolve repo-relative; clean cwd shadow files are ignored.
+- Validation behavior: temp reports are accepted or rejected based on report content and fixed evidence checks, not solely on whether the embedded candidate report path is the default reports path.
+- Targeted tests: `16 passed`
+- Full tests: `441 passed`
+- Health: warnings only, no failures
+- Safety: no strategy logic, candidate rules, thresholds, OOS decision, OOS repeat, forward observation logic, execution path, directional output, or raw market data embedding changed.
 
 ## v0_36_2 CI Parity Result
 

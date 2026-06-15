@@ -43,6 +43,18 @@ def _write_pair(tmp_path: Path, candidate: dict[str, object]) -> tuple[Path, Pat
     return candidate_path, decision_path
 
 
+def _write_custom_pair(
+    tmp_path: Path,
+    candidate: dict[str, object],
+    decision: dict[str, object],
+) -> tuple[Path, Path]:
+    candidate_path = tmp_path / "candidate.json"
+    decision_path = tmp_path / "decision.json"
+    _write_report(candidate_path, candidate)
+    _write_report(decision_path, decision)
+    return candidate_path, decision_path
+
+
 def _set_payload_rates(payload: dict[str, object], train_rate: float, validation_rate: float) -> None:
     train = payload["train_result"]
     validation = payload["validation_result"]
@@ -291,3 +303,32 @@ def test_gate_resolves_repo_relative_report_paths_from_clean_cwd(tmp_path: Path,
     )
 
     assert result["decision"] == PROMOTE_DECISION
+
+
+def test_gate_ignores_clean_cwd_shadow_reports_for_repo_relative_paths(tmp_path: Path, monkeypatch) -> None:
+    shadow_reports = tmp_path / "reports"
+    shadow_reports.mkdir()
+    _write_report(
+        shadow_reports / "xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+        {"report_version": "v0_26", "candidate_id": SOURCE_CANDIDATE_ID},
+    )
+    monkeypatch.chdir(tmp_path)
+
+    result = decide_compression_expansion_promotion_gate_v0_27(
+        "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+        "reports/xauusd_compression_expansion_decision_v0_26.json",
+    )
+
+    assert result["decision"] == PROMOTE_DECISION
+
+
+def test_temp_reports_are_validated_by_content_not_default_candidate_path(tmp_path: Path) -> None:
+    candidate = _actual_candidate_report()
+    decision = _actual_decision_report()
+    decision["candidate_report_path"] = str(tmp_path / "candidate.json")
+    candidate_path, decision_path = _write_custom_pair(tmp_path, candidate, decision)
+
+    result = decide_compression_expansion_promotion_gate_v0_27(candidate_path, decision_path)
+
+    assert result["decision"] == PROMOTE_DECISION
+    assert "decision_report_candidate_path_unexpected" not in result["reasons"]

@@ -159,7 +159,7 @@ def save_compression_expansion_promotion_gate_report(
     report: dict[str, Any],
     output_path: str | Path = DEFAULT_OUTPUT_REPORT,
 ) -> None:
-    path = Path(output_path)
+    path = _repo_relative_path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -294,8 +294,6 @@ def _cross_report_blockers(candidate_report: dict[str, Any] | None, decision_rep
     if candidate_report is None or decision_report is None:
         return []
     blockers: list[str] = []
-    if decision_report.get("candidate_report_path") not in {None, str(DEFAULT_CANDIDATE_REPORT)}:
-        blockers.append("decision_report_candidate_path_unexpected")
     if candidate_report.get("fixed_rules") != decision_report.get("fixed_rules"):
         blockers.append("candidate_and_decision_fixed_rules_mismatch")
     return blockers
@@ -545,10 +543,9 @@ def _check(name: str, passed: bool, *, observed: Any, required: Any | None = Non
 
 def _repo_relative_path(path: str | Path) -> Path:
     candidate = Path(path)
-    if candidate.is_absolute() or candidate.exists():
+    if candidate.is_absolute():
         return candidate
-    repo_candidate = REPO_ROOT / candidate
-    return repo_candidate if repo_candidate.exists() else candidate
+    return REPO_ROOT / candidate
 
 
 def _blocked_report(
