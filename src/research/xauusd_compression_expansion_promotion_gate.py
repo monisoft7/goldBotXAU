@@ -13,6 +13,7 @@ SOURCE_DECISION = "create_fixed_compression_expansion_candidate"
 DEFAULT_CANDIDATE_REPORT = Path("reports") / "xauusd_compression_expansion_candidate_v0_26_train_validation.json"
 DEFAULT_DECISION_REPORT = Path("reports") / "xauusd_compression_expansion_decision_v0_26.json"
 DEFAULT_OUTPUT_REPORT = Path("reports") / "xauusd_compression_expansion_promotion_gate_v0_27.json"
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
 PROMOTE_DECISION = "promote_to_oos_review_candidate_pending_human_approval"
 REJECT_DECISION = "reject_train_validation_candidate"
@@ -63,8 +64,8 @@ def decide_compression_expansion_promotion_gate_v0_27(
     candidate_report_path: str | Path = DEFAULT_CANDIDATE_REPORT,
     decision_report_path: str | Path = DEFAULT_DECISION_REPORT,
 ) -> dict[str, Any]:
-    candidate_path = Path(candidate_report_path)
-    decision_path = Path(decision_report_path)
+    candidate_path = _repo_relative_path(candidate_report_path)
+    decision_path = _repo_relative_path(decision_report_path)
 
     candidate_report, candidate_load_errors = _load_json(candidate_path, "v0_26_candidate_report")
     if candidate_load_errors:
@@ -540,6 +541,14 @@ def _check(name: str, passed: bool, *, observed: Any, required: Any | None = Non
     if required is not None:
         check["required"] = required
     return check
+
+
+def _repo_relative_path(path: str | Path) -> Path:
+    candidate = Path(path)
+    if candidate.is_absolute() or candidate.exists():
+        return candidate
+    repo_candidate = REPO_ROOT / candidate
+    return repo_candidate if repo_candidate.exists() else candidate
 
 
 def _blocked_report(

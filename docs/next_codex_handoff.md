@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_36_1 CI path normalization fix
+- Last completed checkpoint: v0_36_2 CI parity fix
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 436 passed
+- Current test baseline: 439 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -24,11 +24,22 @@
 - Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
 - Latest forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
 - Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
-- Latest CI portability checkpoint: `docs/checkpoints/v0_36_1_ci_path_normalization_result.md`
-- Latest context pack: `reports/codex_context_v0_36_1.json`
-- Latest health report: `reports/project_health_v0_36_1.json`
-- Latest decision: `ci_path_normalization_complete`
+- Latest CI portability checkpoint: `docs/checkpoints/v0_36_2_ci_parity_result.md`
+- Latest context pack: `reports/codex_context_v0_36_2.json`
+- Latest health report: `reports/project_health_v0_36_2.json`
+- Latest decision: `ci_parity_fix_complete`
 - Next safe task: run approved v0_36 read-only forward observation cycles for new date ranges, no execution
+
+## v0_36_2 CI Parity Result
+
+- Checkpoint: `docs/checkpoints/v0_36_2_ci_parity_result.md`
+- Promotion gate root cause: v0_27 CLI defaults were cwd-relative, so clean Linux CI could block before loading the committed v0_26 candidate report.
+- Orchestrator root cause: the test fixture constructed `T24:00:00` for the `block_18_24` end boundary, which is not a valid Python datetime hour.
+- Fix scope: repo-rooted/default report path resolution and fixture-safe next-day-midnight block end handling.
+- Targeted tests: `29 passed`
+- Full tests: `439 passed`
+- Health: warnings only, no failures
+- Safety: no strategy logic, candidate rules, thresholds, OOS decision, OOS repeat, execution path, or raw market data embedding changed.
 
 ## v0_31 Journal Framework Result
 

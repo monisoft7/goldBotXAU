@@ -20,9 +20,9 @@ from src.research.xauusd_compression_expansion_promotion_gate import (
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the v0_27 XAUUSD compression-expansion promotion gate.")
-    parser.add_argument("--candidate-report", default=str(DEFAULT_CANDIDATE_REPORT))
-    parser.add_argument("--decision-report", default=str(DEFAULT_DECISION_REPORT))
-    parser.add_argument("--output", default=str(DEFAULT_OUTPUT_REPORT))
+    parser.add_argument("--candidate-report", default=str(ROOT / DEFAULT_CANDIDATE_REPORT))
+    parser.add_argument("--decision-report", default=str(ROOT / DEFAULT_DECISION_REPORT))
+    parser.add_argument("--output", default=str(ROOT / DEFAULT_OUTPUT_REPORT))
     parser.add_argument("--json", action="store_true", dest="as_json")
     args = parser.parse_args()
 

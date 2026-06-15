@@ -30,8 +30,8 @@ def _write_m5_csv(path: Path, date_text: str = "2026-06-15") -> Path:
         writer = csv.DictWriter(handle, fieldnames=["timestamp", "open", "high", "low", "close", "volume"])
         writer.writeheader()
         for start_hour, end_hour, low, high in specs:
-            cursor = datetime.fromisoformat(f"{date_text}T{start_hour:02d}:00:00")
-            end = datetime.fromisoformat(f"{date_text}T{end_hour:02d}:00:00")
+            cursor = _block_boundary_datetime(date_text, start_hour)
+            end = _block_boundary_datetime(date_text, end_hour)
             while cursor < end:
                 writer.writerow(
                     {
@@ -45,6 +45,20 @@ def _write_m5_csv(path: Path, date_text: str = "2026-06-15") -> Path:
                 )
                 cursor += timedelta(minutes=5)
     return path
+
+
+def _block_boundary_datetime(date_text: str, hour: int) -> datetime:
+    base = datetime.fromisoformat(f"{date_text}T00:00:00")
+    return base + timedelta(hours=hour)
+
+
+def test_m5_fixture_supports_block_range_ending_at_24(tmp_path: Path) -> None:
+    m5_csv = _write_m5_csv(tmp_path / "data" / "xauusd_m5_xauusd_2026-06-15_2026-06-15.csv")
+    with m5_csv.open(encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    assert rows[-1]["timestamp"] == "2026-06-15T23:55:00"
+    assert not any("T24:" in row["timestamp"] for row in rows)
 
 
 def test_protocol_confirms_v0_35_gate_and_v0_36_safety() -> None:

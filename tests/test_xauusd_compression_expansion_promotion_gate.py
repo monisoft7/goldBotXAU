@@ -259,3 +259,35 @@ def test_cli_writes_v0_27_gate_report(tmp_path: Path) -> None:
 
     assert json.loads(completed.stdout)["decision"] == PROMOTE_DECISION
     assert json.loads(output_path.read_text(encoding="utf-8"))["gate_version"] == "v0_27"
+
+
+def test_cli_resolves_default_reports_from_clean_cwd(tmp_path: Path) -> None:
+    output_path = tmp_path / "gate.json"
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "decide_compression_expansion_promotion_gate_v0_27.py"),
+            "--output",
+            str(output_path),
+            "--json",
+        ],
+        cwd=tmp_path,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    assert json.loads(completed.stdout)["decision"] == PROMOTE_DECISION
+    assert json.loads(output_path.read_text(encoding="utf-8"))["decision"] == PROMOTE_DECISION
+
+
+def test_gate_resolves_repo_relative_report_paths_from_clean_cwd(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.chdir(tmp_path)
+
+    result = decide_compression_expansion_promotion_gate_v0_27(
+        "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+        "reports/xauusd_compression_expansion_decision_v0_26.json",
+    )
+
+    assert result["decision"] == PROMOTE_DECISION
