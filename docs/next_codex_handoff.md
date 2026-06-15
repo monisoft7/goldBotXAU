@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_35 forward observation sample ledger
+- Last completed checkpoint: v0_36 read-only forward observation cycle orchestrator
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 419 passed
+- Current test baseline: 434 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -23,10 +23,11 @@
 - Latest forward observation schema adapter protocol: `reports/xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json`
 - Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
 - Latest forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
-- Latest context pack: `reports/codex_context_v0_35.json`
-- Latest health report: `reports/project_health_v0_35.json`
-- Latest decision: `completed`
-- Next safe task: v0_36 collect additional read-only forward observation samples, no execution
+- Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
+- Latest context pack: `reports/codex_context_v0_36.json`
+- Latest health report: `reports/project_health_v0_36.json`
+- Latest decision: `orchestrator_ready_for_approved_read_only_cycle`
+- Next safe task: run approved v0_36 read-only forward observation cycles for new date ranges, no execution
 
 ## v0_31 Journal Framework Result
 
@@ -255,4 +256,39 @@ v0_35 aggregated only consolidated read-only forward observation summaries. It d
 
 The quality gate did not approve demo preflight. Minimum future requirements before demo preflight review include multiple independent observation sessions, both `M5` and `M10` covered, no schema/data blockers, no rule changes, no OOS repeat, and no execution path introduced.
 
-Next safe step: `v0_36 collect additional read-only forward observation samples, no execution`.
+Next safe step: run approved v0_36 read-only forward observation cycles for new date ranges, no execution.
+
+## v0_36 Forward Observation Cycle Orchestrator Result
+
+- Orchestrator module: `src/research/xauusd_forward_observation_orchestrator.py`
+- Cycle script: `scripts/run_xauusd_forward_observation_cycle_v0_36.py`
+- Cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
+- Cycle checkpoint: `docs/checkpoints/v0_36_forward_observation_cycle_result.md`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Orchestrator status: `ready_for_approved_read_only_cycle`
+- Approval token required: `true`
+- Required token: `HUMAN_APPROVED_READONLY_FORWARD_OBSERVATION_V0_36`
+- Required date arguments: `--from-date`, `--to-date`
+- Supported timeframes: `M5`, `M10`
+- Read-only forward observation allowed: `true`
+- Demo preflight allowed: `false`
+- Execution allowed: `false`
+- Demo allowed: `false`
+- Live allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+- Repeated OOS review: `false`
+- Candidate rules modified: `false`
+- Raw market data embedded: `false`
+
+v0_36 created a single approved local command that can collect one additional read-only forward observation cycle: use an existing local M5 CSV or explicitly request the read-only MT5 M5 export, resample to M10, normalize both timeframes, build neutral journal reports, consolidate the session, and rebuild the ledger from prior and new consolidated summaries.
+
+The orchestrator blocks cleanly without the exact token, without explicit dates, or when local/exported data is unavailable. It does not synthesize replacement market data and keeps raw CSV files under `data/` as local-only artifacts.
+
+Example approved command for a new date range:
+
+```powershell
+py -3 scripts/run_xauusd_forward_observation_cycle_v0_36.py --json --from-date 2026-06-16 --to-date 2026-06-16 --approval-token HUMAN_APPROVED_READONLY_FORWARD_OBSERVATION_V0_36 --export-m5-from-mt5
+```
+
+Use `--m5-csv data/<local_m5_file>.csv` instead of `--export-m5-from-mt5` when the M5 file already exists locally.

@@ -1,0 +1,66 @@
+{
+  "approval_token_required": true,
+  "approval_token_value": "HUMAN_APPROVED_READONLY_FORWARD_OBSERVATION_V0_36",
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_modified": false,
+  "cycle_protocol_version": "v0_36",
+  "demo_allowed": false,
+  "demo_preflight_allowed": false,
+  "execution_allowed": false,
+  "generated_at": "2026-06-15T18:02:46.278231+00:00",
+  "live_allowed": false,
+  "next_recommended_step": "run approved read-only forward observation cycles until v0_35/v0_36 ledger reaches demo preflight review requirements",
+  "optional_arguments": [
+    "--export-m5-from-mt5",
+    "--m5-csv",
+    "--symbol"
+  ],
+  "orchestrator_status": "ready_for_approved_read_only_cycle",
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "raw_market_data_embedded": false,
+  "read_only_forward_observation_allowed": true,
+  "repeated_oos_review": false,
+  "required_arguments": [
+    "--from-date",
+    "--to-date",
+    "--approval-token"
+  ],
+  "safety_state": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "local_read_only": true,
+    "martingale_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "raw_market_data_embedded": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "synthetic_replacement_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "supported_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "workflow": [
+    "confirm v0_35 ledger safety gate",
+    "obtain M5 local read-only data only from an explicit local path or approved export",
+    "resample M5 to M10 locally",
+    "normalize M5 and M10 through v0_34_1 adapter",
+    "build neutral M5 and M10 journal reports",
+    "consolidate the new session summary",
+    "rebuild the v0_35 ledger from prior and new consolidated summaries"
+  ]
+}

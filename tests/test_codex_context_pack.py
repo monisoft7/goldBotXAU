@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_35"
+    assert context["context_version"] == "v0_36"
     json.dumps(context)
 
 
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_35"
+    assert context["context_version"] == "v0_36"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_35.json"
+    output_path = tmp_path / "codex_context_v0_36.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_35"
+    assert context["context_version"] == "v0_36"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -279,3 +279,25 @@ def test_context_includes_v0_35_forward_observation_ledger_summary() -> None:
     assert ledger["order_check_allowed"] is False
     assert ledger["repeated_oos_review"] is False
     assert ledger["candidate_rules_modified"] is False
+
+
+def test_context_includes_v0_36_forward_observation_cycle_protocol_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    protocol = context["latest_forward_observation_cycle_protocol"]
+    assert protocol is not None
+    assert protocol["cycle_protocol_version"] == "v0_36"
+    assert protocol["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert protocol["orchestrator_status"] == "ready_for_approved_read_only_cycle"
+    assert protocol["approval_token_required"] is True
+    assert protocol["read_only_forward_observation_allowed"] is True
+    assert protocol["demo_preflight_allowed"] is False
+    assert protocol["execution_allowed"] is False
+    assert protocol["demo_allowed"] is False
+    assert protocol["live_allowed"] is False
+    assert protocol["order_send_allowed"] is False
+    assert protocol["order_check_allowed"] is False
+    assert protocol["repeated_oos_review"] is False
+    assert protocol["candidate_rules_modified"] is False
+    assert protocol["raw_market_data_embedded"] is False
+    assert protocol["supported_timeframes"] == ["M5", "M10"]

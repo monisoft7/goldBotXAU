@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_35"
+CONTEXT_VERSION = "v0_36"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -81,7 +81,6 @@ def _post_oos_governance_summary(root: Path) -> dict[str, Any] | None:
         "execution_allowed": report.get("execution_allowed"),
         "demo_allowed": report.get("demo_allowed"),
         "live_allowed": report.get("live_allowed"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -101,7 +100,6 @@ def _paper_shadow_journal_summary(root: Path) -> dict[str, Any] | None:
         "live_allowed": report.get("live_allowed"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "candidate_rules_modified": report.get("candidate_rules_modified"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -125,7 +123,6 @@ def _forward_observation_plan_summary(root: Path) -> dict[str, Any] | None:
         "candidate_rules_modified": report.get("candidate_rules_modified"),
         "allowed_future_timeframes": report.get("allowed_future_timeframes"),
         "future_observation_mode": report.get("future_observation_mode"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -148,7 +145,6 @@ def _forward_observation_runner_summary(root: Path) -> dict[str, Any] | None:
         "candidate_rules_modified": report.get("candidate_rules_modified"),
         "allowed_timeframes": report.get("allowed_timeframes"),
         "future_mode": report.get("future_mode"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -172,7 +168,6 @@ def _forward_observation_journal_summary(root: Path) -> dict[str, Any] | None:
         "order_check_allowed": report.get("order_check_allowed"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "candidate_rules_modified": report.get("candidate_rules_modified"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -196,7 +191,6 @@ def _forward_observation_schema_adapter_summary(root: Path) -> dict[str, Any] | 
         "expected_output_schema": report.get("expected_output_schema"),
         "supported_timeframes": report.get("supported_timeframes"),
         "spread_warning": spread_policy.get("warning") if isinstance(spread_policy, dict) else None,
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -224,7 +218,6 @@ def _forward_observation_consolidated_summary(root: Path) -> dict[str, Any] | No
         "order_check_allowed": report.get("order_check_allowed"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "candidate_rules_modified": report.get("candidate_rules_modified"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -254,7 +247,30 @@ def _forward_observation_ledger_summary(root: Path) -> dict[str, Any] | None:
         "order_check_allowed": report.get("order_check_allowed"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "candidate_rules_modified": report.get("candidate_rules_modified"),
-        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
+def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
+    protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
+    if not protocol_path.exists():
+        return None
+    report = json.loads(protocol_path.read_text(encoding="utf-8"))
+    return {
+        "cycle_protocol_version": report.get("cycle_protocol_version"),
+        "candidate_id": report.get("candidate_id"),
+        "orchestrator_status": report.get("orchestrator_status"),
+        "approval_token_required": report.get("approval_token_required"),
+        "read_only_forward_observation_allowed": report.get("read_only_forward_observation_allowed"),
+        "demo_preflight_allowed": report.get("demo_preflight_allowed"),
+        "execution_allowed": report.get("execution_allowed"),
+        "demo_allowed": report.get("demo_allowed"),
+        "live_allowed": report.get("live_allowed"),
+        "order_send_allowed": report.get("order_send_allowed"),
+        "order_check_allowed": report.get("order_check_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "candidate_rules_modified": report.get("candidate_rules_modified"),
+        "raw_market_data_embedded": report.get("raw_market_data_embedded"),
+        "supported_timeframes": report.get("supported_timeframes"),
     }
 
 
@@ -284,6 +300,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_forward_observation_schema_adapter": _forward_observation_schema_adapter_summary(root),
         "latest_forward_observation_consolidated": _forward_observation_consolidated_summary(root),
         "latest_forward_observation_ledger": _forward_observation_ledger_summary(root),
+        "latest_forward_observation_cycle_protocol": _forward_observation_cycle_protocol_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,
