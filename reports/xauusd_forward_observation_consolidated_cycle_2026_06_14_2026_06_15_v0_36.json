@@ -1,0 +1,106 @@
+{
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "candidate_rules_modified": false,
+  "consolidation_status": "completed",
+  "consolidation_version": "v0_34_2",
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "expansion_observed_count": 2,
+  "generated_at": "2026-06-15T18:30:45.670779+00:00",
+  "input_artifact_interpretation": "local_read_only_forward_observation_artifacts_not_synthetic_strategy_proof",
+  "journal_record_count_by_timeframe": {
+    "M10": 1,
+    "M5": 1
+  },
+  "live_allowed": false,
+  "market_data_exported": false,
+  "missing_input_reports": [],
+  "mt5_called": false,
+  "neutral_journal_records": [
+    {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "compression_label": "lowest range reference block",
+      "expansion_observed": true,
+      "notes": "local read-only forward observation journal record; timeframe=M5; data_quality=local normalized csv; risk_note=observation only",
+      "observation_status": "expansion observed",
+      "observed_reference_block": "block_06_12",
+      "observed_response_block": "block_12_18",
+      "rule_match_status": "rule match",
+      "timestamp": "2026-06-15T00:00:00+00:00"
+    },
+    {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "compression_label": "lowest range reference block",
+      "expansion_observed": true,
+      "notes": "local read-only forward observation journal record; timeframe=M10; data_quality=local normalized csv; risk_note=observation only",
+      "observation_status": "expansion observed",
+      "observed_reference_block": "block_06_12",
+      "observed_response_block": "block_12_18",
+      "rule_match_status": "rule match",
+      "timestamp": "2026-06-15T00:00:00+00:00"
+    }
+  ],
+  "next_recommended_step": "v0_35 collect more read-only forward observation samples over multiple sessions, no execution",
+  "no_expansion_observed_count": 0,
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "repeated_oos_review": false
+  },
+  "observation_mode": "local_read_only_forward_journal",
+  "observation_quality_status": "insufficient_sample_for_quality_gate",
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "raw_market_data_embedded": false,
+  "repeated_oos_review": false,
+  "safety_state": {
+    "averaging_into_loss_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "local_read_only": true,
+    "market_data_exported": false,
+    "martingale_allowed": false,
+    "mt5_called": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "raw_market_data_embedded": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_reports": {
+    "adapter_protocol": "reports\\xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json",
+    "local_forward_journal_reports": [
+      "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\reports\\xauusd_forward_observation_m5_cycle_2026_06_14_2026_06_15_v0_36.json",
+      "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\reports\\xauusd_forward_observation_m10_cycle_2026_06_14_2026_06_15_v0_36.json"
+    ],
+    "runner_protocol": "reports\\xauusd_forward_observation_runner_protocol_v0_33.json"
+  },
+  "timeframes_observed": [
+    "M10",
+    "M5"
+  ],
+  "total_input_reports": 2,
+  "total_journal_record_count": 2
+}
