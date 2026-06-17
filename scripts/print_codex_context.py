@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_36"
+CONTEXT_VERSION = "v0_37"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -222,7 +222,9 @@ def _forward_observation_consolidated_summary(root: Path) -> dict[str, Any] | No
 
 
 def _forward_observation_ledger_summary(root: Path) -> dict[str, Any] | None:
-    ledger_path = root / "reports" / "xauusd_forward_observation_ledger_v0_35.json"
+    ledger_path = root / "reports" / "xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json"
+    if not ledger_path.exists():
+        ledger_path = root / "reports" / "xauusd_forward_observation_ledger_v0_35.json"
     if not ledger_path.exists():
         return None
     report = json.loads(ledger_path.read_text(encoding="utf-8"))
@@ -247,6 +249,41 @@ def _forward_observation_ledger_summary(root: Path) -> dict[str, Any] | None:
         "order_check_allowed": report.get("order_check_allowed"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "candidate_rules_modified": report.get("candidate_rules_modified"),
+    }
+
+
+def _demo_preflight_review_summary(root: Path) -> dict[str, Any] | None:
+    review_path = root / "reports" / "xauusd_demo_preflight_review_v0_37.json"
+    if not review_path.exists():
+        return None
+    report = json.loads(review_path.read_text(encoding="utf-8"))
+    confirmations = report.get("input_confirmations", {})
+    return {
+        "review_version": report.get("review_version"),
+        "candidate_id": report.get("candidate_id"),
+        "review_status": report.get("review_status"),
+        "decision": report.get("decision"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "journal_record_count_by_timeframe": confirmations.get("journal_record_count_by_timeframe")
+        if isinstance(confirmations, dict)
+        else None,
+        "independent_observation_session_count": confirmations.get("independent_observation_session_count")
+        if isinstance(confirmations, dict)
+        else None,
+        "integrity_blockers": report.get("integrity_blockers"),
+        "insufficient_forward_observation_blockers": report.get("insufficient_forward_observation_blockers"),
+        "demo_allowed": report.get("safety_state", {}).get("demo_allowed")
+        if isinstance(report.get("safety_state"), dict)
+        else None,
+        "execution_allowed": report.get("safety_state", {}).get("execution_allowed")
+        if isinstance(report.get("safety_state"), dict)
+        else None,
+        "order_send_allowed": report.get("safety_state", {}).get("order_send_allowed")
+        if isinstance(report.get("safety_state"), dict)
+        else None,
+        "order_check_allowed": report.get("safety_state", {}).get("order_check_allowed")
+        if isinstance(report.get("safety_state"), dict)
+        else None,
     }
 
 
@@ -301,6 +338,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_forward_observation_consolidated": _forward_observation_consolidated_summary(root),
         "latest_forward_observation_ledger": _forward_observation_ledger_summary(root),
         "latest_forward_observation_cycle_protocol": _forward_observation_cycle_protocol_summary(root),
+        "latest_demo_preflight_review": _demo_preflight_review_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,

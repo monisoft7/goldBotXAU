@@ -1,0 +1,158 @@
+{
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_preserved": true,
+  "candidate_rules_snapshot": {
+    "compression_definition": "select the available fixed six-hour reference block with the lowest average bar range",
+    "forward_behavior_label": "next_block_expansion",
+    "hypothetical_event_outcome": "response block range is greater than selected compressed reference block range",
+    "parameter_grid_used": false,
+    "reference_blocks": [
+      "block_00_06",
+      "block_06_12",
+      "block_12_18"
+    ],
+    "response_blocks": [
+      "block_06_12",
+      "block_12_18",
+      "block_18_24"
+    ],
+    "retuning_used": false,
+    "threshold_search_used": false,
+    "tie_break": "earliest fixed reference block",
+    "time_basis": "dataset_timestamp_hour_buckets_only"
+  },
+  "decision": "ready_for_demo_preflight_design",
+  "decision_options": [
+    "blocked_insufficient_forward_observation",
+    "blocked_forward_observation_integrity_issue",
+    "ready_for_demo_preflight_design"
+  ],
+  "demo_preflight_design_scope": {
+    "broker_execution_path_created": false,
+    "candidate_rules_altered": false,
+    "demo_execution_created": false,
+    "design_only": true,
+    "v0_26_rules_remain_locked": true
+  },
+  "future_audit_placeholders": [
+    {
+      "alters_v0_26_rules": false,
+      "audit": "spread/slippage realism audit",
+      "creates_broker_execution_path": false,
+      "creates_demo_execution": false,
+      "status": "future_design_placeholder_only"
+    },
+    {
+      "alters_v0_26_rules": false,
+      "audit": "static macro blackout sensitivity audit",
+      "creates_broker_execution_path": false,
+      "creates_demo_execution": false,
+      "status": "future_design_placeholder_only"
+    },
+    {
+      "alters_v0_26_rules": false,
+      "audit": "broker connection safety audit",
+      "creates_broker_execution_path": false,
+      "creates_demo_execution": false,
+      "status": "future_design_placeholder_only"
+    }
+  ],
+  "generated_at": "2026-06-17T12:44:02.223936+00:00",
+  "input_confirmations": {
+    "candidate_id_is_locked_v0_26": true,
+    "candidate_rules_modified": false,
+    "independent_observation_session_count": 4,
+    "journal_record_count_by_timeframe": {
+      "M10": 3,
+      "M5": 3
+    },
+    "ledger_blockers": [],
+    "ledger_quality_gate_status": "ready_for_demo_preflight_review",
+    "one_time_oos_review_completed": true,
+    "raw_market_data_embedded": false,
+    "repeat_oos_review_allowed": false
+  },
+  "insufficient_forward_observation_blockers": [],
+  "integrity_blockers": [],
+  "minimum_demo_preflight_review_requirements": {
+    "ledger_blockers_empty": {
+      "observed": [],
+      "passed": true
+    },
+    "minimum_independent_observation_sessions": {
+      "minimum_count": 3,
+      "observed": 4,
+      "passed": true
+    },
+    "minimum_records_per_timeframe": {
+      "minimum_count": 3,
+      "observed": {
+        "M10": 3,
+        "M5": 3
+      },
+      "passed": true,
+      "required_timeframes": [
+        "M5",
+        "M10"
+      ]
+    },
+    "raw_market_data_not_embedded": {
+      "observed": false,
+      "passed": true
+    }
+  },
+  "next_recommended_step": "draft v0_38 demo preflight safety checklist design only; no broker or order execution",
+  "non_actions_performed": {
+    "broker_execution_path_created": false,
+    "candidate_rules_changed": false,
+    "demo_execution_created": false,
+    "execution_queue_created": false,
+    "live_trading_created": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "order_check_created": false,
+    "order_send_created": false,
+    "parameter_grid_performed": false,
+    "parameter_optimization_performed": false,
+    "raw_market_csv_embedded": false,
+    "repeated_oos_review": false,
+    "retune_performed": false,
+    "threshold_search_performed": false
+  },
+  "review_status": "completed",
+  "review_version": "v0_37",
+  "safety_state": {
+    "averaging_into_loss_allowed": false,
+    "broker_execution_path_allowed": false,
+    "buy_sell_output_allowed": false,
+    "candidate_rules_modified": false,
+    "demo_allowed": false,
+    "demo_preflight_execution_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "local_read_only": true,
+    "martingale_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_check_created": false,
+    "order_send_allowed": false,
+    "order_send_created": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "raw_market_data_embedded": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "forward_observation_ledger": "reports\\xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json",
+    "oos_repair_report": "reports\\xauusd_oos_review_repair_v0_29_1.json"
+  }
+}

@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_36_3 CI promotion gate fix
+- Last completed checkpoint: v0_37 demo preflight review
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 441 passed
+- Current test baseline: 455 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -23,12 +23,46 @@
 - Latest forward observation schema adapter protocol: `reports/xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json`
 - Latest forward observation consolidated report: `reports/xauusd_forward_observation_consolidated_v0_34_2.json`
 - Latest forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_35.json`
+- Latest ready forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json`
 - Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
-- Latest CI portability checkpoint: `docs/checkpoints/v0_36_3_ci_promotion_gate_result.md`
-- Latest context pack: `reports/codex_context_v0_36_3.json`
-- Latest health report: `reports/project_health_v0_36_3.json`
-- Latest decision: `ci_promotion_gate_fix_complete`
-- Next safe task: run approved v0_36 read-only forward observation cycles for new date ranges, no execution
+- Latest demo preflight review: `reports/xauusd_demo_preflight_review_v0_37.json`
+- Latest checkpoint: `docs/checkpoints/v0_37_demo_preflight_review_result.md`
+- Latest context pack: `reports/codex_context_v0_37.json`
+- Latest health report: `reports/project_health_v0_37.json`
+- Latest decision: `ready_for_demo_preflight_design`
+- Next safe task: draft v0_38 demo preflight safety checklist design only; no broker connection, no orders, no execution path
+
+## v0_37 Demo Preflight Review Result
+
+- Review module: `src/research/xauusd_demo_preflight_review.py`
+- Review script: `scripts/build_xauusd_demo_preflight_review_v0_37.py`
+- Review checkpoint: `docs/checkpoints/v0_37_demo_preflight_review_result.md`
+- Review report: `reports/xauusd_demo_preflight_review_v0_37.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Decision: `ready_for_demo_preflight_design`
+- Candidate rules preserved: `true`
+- OOS completed once: `true`
+- Repeat OOS review allowed: `false`
+- Ledger quality gate: `ready_for_demo_preflight_review`
+- Independent observation sessions: `4`
+- Journal record count by timeframe: `M5=3`, `M10=3`
+- Ledger blockers: none
+- Raw market data embedded: `false`
+- Demo allowed: `false`
+- Execution allowed: `false`
+- Live allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+
+v0_37 reviewed the locked v0_26 candidate and accumulated read-only forward observation evidence only. It did not create demo execution, live trading, order sending, order checking, an execution queue, broker execution, directional output, recommendation output, a new strategy variant, a retune, threshold search, parameter grid, parameter optimization, repeated OOS, or raw market CSV embedding.
+
+Future audit placeholders added for v0_38 design only:
+
+- spread/slippage realism audit
+- static macro blackout sensitivity audit
+- broker connection safety audit
+
+These placeholders must not alter v0_26 rules and must not create broker or order execution.
 
 ## v0_36_3 CI Promotion Gate Result
 

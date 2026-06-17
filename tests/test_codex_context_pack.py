@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_36"
+    assert context["context_version"] == "v0_37"
     json.dumps(context)
 
 
@@ -54,7 +54,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 7000
+    assert len(context_text) < 7500
 
 
 def test_context_cli_json_works() -> None:
@@ -72,11 +72,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_36"
+    assert context["context_version"] == "v0_37"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_36.json"
+    output_path = tmp_path / "codex_context_v0_37.json"
 
     subprocess.run(
         [
@@ -93,7 +93,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_36"
+    assert context["context_version"] == "v0_37"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -252,7 +252,7 @@ def test_context_includes_v0_34_2_forward_observation_consolidated_summary() -> 
     assert consolidated["candidate_rules_modified"] is False
 
 
-def test_context_includes_v0_35_forward_observation_ledger_summary() -> None:
+def test_context_includes_latest_forward_observation_ledger_summary() -> None:
     context = build_codex_context(ROOT)
 
     ledger = context["latest_forward_observation_ledger"]
@@ -262,15 +262,18 @@ def test_context_includes_v0_35_forward_observation_ledger_summary() -> None:
     assert ledger["ledger_status"] == "completed"
     assert ledger["raw_market_data_embedded"] is False
     assert ledger["input_consolidated_reports"] == [
-        "reports\\xauusd_forward_observation_consolidated_v0_34_2.json"
+        "reports\\xauusd_forward_observation_consolidated_v0_34_2.json",
+        "reports\\xauusd_forward_observation_consolidated_cycle_2026_06_15_2026_06_16_v0_36.json",
+        "reports\\xauusd_forward_observation_consolidated_cycle_2026_06_14_2026_06_15_v0_36.json",
+        "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\reports\\xauusd_forward_observation_consolidated_cycle_2026_06_16_2026_06_17_v0_36.json",
     ]
-    assert ledger["total_unique_journal_records"] == 2
+    assert ledger["total_unique_journal_records"] == 6
     assert ledger["timeframes_observed"] == ["M10", "M5"]
-    assert ledger["journal_record_count_by_timeframe"] == {"M10": 1, "M5": 1}
-    assert ledger["independent_observation_session_count"] == 1
-    assert ledger["expansion_observed_count"] == 0
+    assert ledger["journal_record_count_by_timeframe"] == {"M10": 3, "M5": 3}
+    assert ledger["independent_observation_session_count"] == 4
+    assert ledger["expansion_observed_count"] == 4
     assert ledger["no_expansion_observed_count"] == 2
-    assert ledger["quality_gate_status"] == "insufficient_samples"
+    assert ledger["quality_gate_status"] == "ready_for_demo_preflight_review"
     assert ledger["demo_preflight_allowed"] is False
     assert ledger["execution_allowed"] is False
     assert ledger["demo_allowed"] is False
@@ -301,3 +304,23 @@ def test_context_includes_v0_36_forward_observation_cycle_protocol_summary() -> 
     assert protocol["candidate_rules_modified"] is False
     assert protocol["raw_market_data_embedded"] is False
     assert protocol["supported_timeframes"] == ["M5", "M10"]
+
+
+def test_context_includes_v0_37_demo_preflight_review_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    review = context["latest_demo_preflight_review"]
+    assert review is not None
+    assert review["review_version"] == "v0_37"
+    assert review["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert review["review_status"] == "completed"
+    assert review["decision"] == "ready_for_demo_preflight_design"
+    assert review["candidate_rules_preserved"] is True
+    assert review["journal_record_count_by_timeframe"] == {"M10": 3, "M5": 3}
+    assert review["independent_observation_session_count"] == 4
+    assert review["integrity_blockers"] == []
+    assert review["insufficient_forward_observation_blockers"] == []
+    assert review["demo_allowed"] is False
+    assert review["execution_allowed"] is False
+    assert review["order_send_allowed"] is False
+    assert review["order_check_allowed"] is False
