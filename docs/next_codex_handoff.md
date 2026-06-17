@@ -1,7 +1,7 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_40 fixed demo risk envelope design
+- Last completed checkpoint: v0_41 final demo readiness gate
 - OOS: evaluated once, marker locked, repeated review disallowed
 - Current test baseline: 467 passed
 - Health status: warnings only due to documented safety mentions
@@ -29,11 +29,61 @@
 - Latest demo broker safety preflight: `reports/xauusd_demo_broker_safety_preflight_v0_38.json`
 - Latest broker facts audit: `reports/xauusd_broker_facts_audit_v0_39.json`
 - Latest fixed demo risk envelope: `reports/xauusd_demo_risk_envelope_v0_40.json`
-- Latest checkpoint: `docs/checkpoints/v0_40_demo_risk_envelope_result.md`
-- Latest context pack: `reports/codex_context_v0_40.json`
-- Latest health report: `reports/project_health_v0_40.json`
-- Latest decision: `demo_risk_envelope_design_ready`
-- Next safe task: human review of v0_40 fixed demo risk envelope before any separate future demo preflight decision
+- Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
+- Latest checkpoint: `docs/checkpoints/v0_41_final_demo_readiness_gate_result.md`
+- Latest context pack: `reports/codex_context_v0_41.json`
+- Latest health report: `reports/project_health_v0_41.json`
+- Latest decision: `final_demo_readiness_gate_passed_pending_human_authorization`
+- Next safe task: human authorization may consider a separate limited demo execution design; this gate does not permit execution
+
+## v0_41 Final Demo Readiness Gate Result
+
+- Gate module: `src/research/xauusd_final_demo_readiness_gate.py`
+- Gate script: `scripts/build_xauusd_final_demo_readiness_gate_v0_41.py`
+- Gate checkpoint: `docs/checkpoints/v0_41_final_demo_readiness_gate_result.md`
+- Gate report: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
+- Source reports: v0_37 demo preflight review, v0_38 safety preflight design, v0_39 broker facts audit, v0_40 fixed risk envelope
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Decision: `final_demo_readiness_gate_passed_pending_human_authorization`
+- Gate status: `completed`
+- Candidate rules preserved: `true`
+- Final blockers: none
+- Accepted warnings: `tick_value_contract_size_mismatch`
+- Human authorization required: `true`
+- Future separate limited demo execution design may be considered: `true`
+- Demo allowed: `false`
+- Execution allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+- Broker execution path allowed: `false`
+- Buy/sell output allowed: `false`
+- Trade recommendation output allowed: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Repeated OOS review: `false`
+
+v0_41 is a final governance gate only. It validates v0_37, v0_38, v0_39, and v0_40 together and did not create demo execution, live execution, broker adapters, order sending, order checking, execution queues, directional output, recommendation output, candidate rule changes, retunes, threshold searches, parameter grids, repeated OOS review, or any `data/*.csv`.
+
+Accepted tick warning:
+
+- Reported tick value `0.1`
+- Derived tick value `1.0`
+- Conservative tick value `1.0`
+
+Fixed demo risk summary:
+
+- Starting demo lot `0.01`
+- Max demo lot `0.01`
+- Max positions `1`
+- Stop after `2` consecutive losses
+- Max daily demo loss `2.0R`
+- Max session demo loss `1.0R`
+- No martingale, no averaging into loss, no position scaling
+
+Targeted tests: `40 passed`
+
+Next safe step: human authorization may consider a separate limited demo execution design; this gate does not permit execution.
 
 ## v0_40 Fixed Demo Risk Envelope Result
 

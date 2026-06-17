@@ -1,0 +1,108 @@
+{
+  "accepted_warnings": [
+    {
+      "conservative_tick_value": 1.0,
+      "derived_tick_value": 1.0,
+      "reported_tick_value": 0.1,
+      "warning": "tick_value_contract_size_mismatch"
+    }
+  ],
+  "broker_execution_path_allowed": false,
+  "buy_sell_output_allowed": false,
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_preserved": true,
+  "decision": "final_demo_readiness_gate_passed_pending_human_authorization",
+  "decision_options": [
+    "blocked_missing_required_report",
+    "blocked_candidate_integrity_issue",
+    "blocked_oos_or_rule_lock_issue",
+    "blocked_forward_or_preflight_issue",
+    "blocked_broker_facts_issue",
+    "blocked_risk_envelope_issue",
+    "final_demo_readiness_gate_passed_pending_human_authorization"
+  ],
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "explicit_non_actions": {
+    "broker_adapter_created": false,
+    "candidate_rules_changed": false,
+    "demo_execution_created": false,
+    "execution_queue_created": false,
+    "live_execution_created": false,
+    "mt5_connection_created": false,
+    "mt5_imported": false,
+    "mt5_initialized": false,
+    "oos_review_repeated": false,
+    "order_check_called_or_wrapped": false,
+    "order_send_called_or_wrapped": false,
+    "parameter_grid_performed": false,
+    "retune_performed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_created": false
+  },
+  "final_blockers": [],
+  "fixed_demo_risk_summary": {
+    "max_consecutive_losses_before_stop": 2,
+    "max_daily_demo_loss_R": 2.0,
+    "max_demo_lot": 0.01,
+    "max_positions": 1,
+    "max_session_demo_loss_R": 1.0,
+    "no_averaging_into_loss": true,
+    "no_martingale": true,
+    "no_position_scaling": true,
+    "starting_demo_lot": 0.01
+  },
+  "future_demo_execution_design_allowed_to_be_considered": true,
+  "gate_status": "completed",
+  "gate_version": "v0_41",
+  "generated_at": "2026-06-17T14:49:17.755278+00:00",
+  "human_authorization_required": true,
+  "next_recommended_step": "human authorization may consider a separate limited demo execution design; this gate does not permit execution",
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "required_report_statuses": {
+    "v0_37": {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "candidate_rules_preserved": true,
+      "decision": "ready_for_demo_preflight_design",
+      "expected_decision": "ready_for_demo_preflight_design",
+      "present": true,
+      "status": "completed"
+    },
+    "v0_38": {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "candidate_rules_preserved": true,
+      "decision": "demo_preflight_safety_design_ready",
+      "expected_decision": "demo_preflight_safety_design_ready",
+      "present": true,
+      "status": "completed"
+    },
+    "v0_39": {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "candidate_rules_preserved": true,
+      "decision": "broker_facts_audit_ready_for_risk_envelope_design",
+      "expected_decision": "broker_facts_audit_ready_for_risk_envelope_design",
+      "present": true,
+      "status": "completed"
+    },
+    "v0_40": {
+      "candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "candidate_rules_preserved": true,
+      "decision": "demo_risk_envelope_design_ready",
+      "expected_decision": "demo_risk_envelope_design_ready",
+      "present": true,
+      "status": "completed"
+    }
+  },
+  "retune_performed": false,
+  "source_reports": {
+    "v0_37": "reports\\xauusd_demo_preflight_review_v0_37.json",
+    "v0_38": "reports\\xauusd_demo_broker_safety_preflight_v0_38.json",
+    "v0_39": "reports\\xauusd_broker_facts_audit_v0_39.json",
+    "v0_40": "reports\\xauusd_demo_risk_envelope_v0_40.json"
+  },
+  "threshold_search_performed": false,
+  "trade_recommendation_output_allowed": false
+}

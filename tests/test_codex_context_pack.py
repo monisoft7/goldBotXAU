@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_40"
+    assert context["context_version"] == "v0_41"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_40"
+    assert context["context_version"] == "v0_41"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_40.json"
+    output_path = tmp_path / "codex_context_v0_41.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_40"
+    assert context["context_version"] == "v0_41"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -394,3 +394,18 @@ def test_context_includes_v0_40_demo_risk_envelope_summary() -> None:
     assert envelope["lot"] == 0.01
     assert envelope["warnings"] == 1
     assert envelope["blockers"] == 0
+
+
+def test_context_includes_v0_41_final_demo_readiness_gate_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    gate = context["latest_final_demo_readiness_gate"]
+    assert gate is not None
+    assert gate["gate_version"] == "v0_41"
+    assert gate["decision"] == "final_demo_readiness_gate_passed_pending_human_authorization"
+    assert gate["gate_status"] == "completed"
+    assert gate["final_blockers"] == 0
+    assert gate["accepted_warnings"] == 1
+    assert gate["human_auth_required"] is True
+    assert gate["future_design_consideration"] is True
+    assert gate["safety_locked"] is True

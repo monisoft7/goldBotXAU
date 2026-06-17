@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_40"
+CONTEXT_VERSION = "v0_41"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -377,6 +377,35 @@ def _demo_risk_envelope_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _final_demo_readiness_gate_summary(root: Path) -> dict[str, Any] | None:
+    gate_path = root / "reports" / "xauusd_final_demo_readiness_gate_v0_41.json"
+    if not gate_path.exists():
+        return None
+    report = json.loads(gate_path.read_text(encoding="utf-8"))
+    blockers = report.get("final_blockers", [])
+    warnings = report.get("accepted_warnings", [])
+    return {
+        "gate_version": report.get("gate_version"),
+        "decision": report.get("decision"),
+        "gate_status": report.get("gate_status"),
+        "final_blockers": len(blockers) if isinstance(blockers, list) else None,
+        "accepted_warnings": len(warnings) if isinstance(warnings, list) else None,
+        "human_auth_required": report.get("human_authorization_required"),
+        "future_design_consideration": report.get("future_demo_execution_design_allowed_to_be_considered"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "demo_allowed",
+                "execution_allowed",
+                "order_send_allowed",
+                "order_check_allowed",
+                "broker_execution_path_allowed",
+                "repeated_oos_review",
+            )
+        ),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -409,7 +438,6 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
     return {
         "context_version": CONTEXT_VERSION,
         "project": "goldBotXAU",
-        "path": str(root),
         "current_tests": _latest_known_test_count(root),
         "health": {
             "status": health["status"],
@@ -432,6 +460,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_demo_broker_safety_preflight": _demo_broker_safety_preflight_summary(root),
         "latest_broker_facts_audit": _broker_facts_audit_summary(root),
         "latest_demo_risk_envelope": _demo_risk_envelope_summary(root),
+        "latest_final_demo_readiness_gate": _final_demo_readiness_gate_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,
