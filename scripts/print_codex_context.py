@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_41"
+CONTEXT_VERSION = "v0_42"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -233,7 +233,9 @@ def _forward_observation_ledger_summary(root: Path) -> dict[str, Any] | None:
         "candidate_id": report.get("candidate_id"),
         "ledger_status": report.get("ledger_status"),
         "raw_market_data_embedded": report.get("raw_market_data_embedded"),
-        "input_consolidated_reports": report.get("input_consolidated_reports"),
+        "input_consolidated_report_count": len(report.get("input_consolidated_reports", []))
+        if isinstance(report.get("input_consolidated_reports"), list)
+        else None,
         "total_unique_journal_records": report.get("total_unique_journal_records"),
         "timeframes_observed": report.get("timeframes_observed"),
         "journal_record_count_by_timeframe": report.get("journal_record_count_by_timeframe"),
@@ -406,6 +408,27 @@ def _final_demo_readiness_gate_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _limited_demo_execution_summary(root: Path) -> dict[str, Any] | None:
+    execution_path = root / "reports" / "xauusd_limited_demo_execution_v0_42.json"
+    if not execution_path.exists():
+        return None
+    report = json.loads(execution_path.read_text(encoding="utf-8"))
+    return {
+        "executor_version": report.get("executor_version"),
+        "executor_status": report.get("executor_status"),
+        "candidate_id": report.get("candidate_id"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "demo_only": report.get("demo_only"),
+        "live_allowed": report.get("live_allowed"),
+        "order_send_default_allowed": report.get("order_send_default_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "macro_event_lock_enabled": report.get("macro_event_lock_enabled"),
+        "macro_event_lock_status": report.get("macro_event_lock_status"),
+        "approval_token_required": report.get("approval_token_required"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -461,23 +484,18 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_broker_facts_audit": _broker_facts_audit_summary(root),
         "latest_demo_risk_envelope": _demo_risk_envelope_summary(root),
         "latest_final_demo_readiness_gate": _final_demo_readiness_gate_summary(root),
+        "latest_limited_demo_execution": _limited_demo_execution_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
-            "no_demo": True,
+            "demo_only_scaffold": True,
             "no_live": True,
-            "no_order_send": True,
+            "no_order_send_by_default": True,
             "no_order_check": True,
             "no_execution_queue": True,
             "no_buy_sell_output": True,
             "no_trade_recommendation_output": True,
             "oos_locked": True,
         },
-        "next_task_protocol": [
-            "read task protocol",
-            "run targeted tests",
-            "run project health check",
-            "return files, tests, safety",
-        ],
         "recommended_next_step": _recommended_next_step(root),
     }
 

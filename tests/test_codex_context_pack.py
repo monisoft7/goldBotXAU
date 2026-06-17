@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_41"
+    assert context["context_version"] == "v0_42"
     json.dumps(context)
 
 
@@ -21,9 +21,9 @@ def test_context_includes_safety_rules() -> None:
     context = build_codex_context(ROOT)
 
     assert context["current_safety_rules"] == {
-        "no_demo": True,
+        "demo_only_scaffold": True,
         "no_live": True,
-        "no_order_send": True,
+        "no_order_send_by_default": True,
         "no_order_check": True,
         "no_execution_queue": True,
         "no_buy_sell_output": True,
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_41"
+    assert context["context_version"] == "v0_42"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_41.json"
+    output_path = tmp_path / "codex_context_v0_42.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_41"
+    assert context["context_version"] == "v0_42"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -262,12 +262,7 @@ def test_context_includes_latest_forward_observation_ledger_summary() -> None:
     assert ledger["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
     assert ledger["ledger_status"] == "completed"
     assert ledger["raw_market_data_embedded"] is False
-    assert ledger["input_consolidated_reports"] == [
-        "reports\\xauusd_forward_observation_consolidated_v0_34_2.json",
-        "reports\\xauusd_forward_observation_consolidated_cycle_2026_06_15_2026_06_16_v0_36.json",
-        "reports\\xauusd_forward_observation_consolidated_cycle_2026_06_14_2026_06_15_v0_36.json",
-        "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\reports\\xauusd_forward_observation_consolidated_cycle_2026_06_16_2026_06_17_v0_36.json",
-    ]
+    assert ledger["input_consolidated_report_count"] == 4
     assert ledger["total_unique_journal_records"] == 6
     assert ledger["timeframes_observed"] == ["M10", "M5"]
     assert ledger["journal_record_count_by_timeframe"] == {"M10": 3, "M5": 3}
@@ -409,3 +404,21 @@ def test_context_includes_v0_41_final_demo_readiness_gate_summary() -> None:
     assert gate["human_auth_required"] is True
     assert gate["future_design_consideration"] is True
     assert gate["safety_locked"] is True
+
+
+def test_context_includes_v0_42_limited_demo_execution_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    execution = context["latest_limited_demo_execution"]
+    assert execution is not None
+    assert execution["executor_version"] == "v0_42"
+    assert execution["executor_status"] in {"dry_run_ready_no_order_sent", "blocked_macro_event_window"}
+    assert execution["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert execution["candidate_rules_preserved"] is True
+    assert execution["demo_only"] is True
+    assert execution["live_allowed"] is False
+    assert execution["order_send_default_allowed"] is False
+    assert execution["order_send_called"] is False
+    assert execution["order_check_called"] is False
+    assert execution["macro_event_lock_enabled"] is True
+    assert execution["approval_token_required"] is True
