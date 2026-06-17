@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_37"
+CONTEXT_VERSION = "v0_38"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -287,6 +287,34 @@ def _demo_preflight_review_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _demo_broker_safety_preflight_summary(root: Path) -> dict[str, Any] | None:
+    preflight_path = root / "reports" / "xauusd_demo_broker_safety_preflight_v0_38.json"
+    if not preflight_path.exists():
+        return None
+    report = json.loads(preflight_path.read_text(encoding="utf-8"))
+    return {
+        "preflight_version": report.get("preflight_version"),
+        "candidate_id": report.get("candidate_id"),
+        "preflight_status": report.get("preflight_status"),
+        "decision": report.get("decision"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "design_only": report.get("design_only"),
+        "blocking_conditions": report.get("blocking_conditions"),
+        "demo_execution_created": report.get("demo_execution_created"),
+        "broker_execution_path_created": report.get("broker_execution_path_created"),
+        "mt5_connection_created": report.get("mt5_connection_created"),
+        "order_send_created": report.get("order_send_created"),
+        "order_check_created": report.get("order_check_created"),
+        "execution_queue_created": report.get("execution_queue_created"),
+        "buy_sell_output_allowed": report.get("buy_sell_output_allowed"),
+        "trade_recommendation_output_allowed": report.get("trade_recommendation_output_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -339,6 +367,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_forward_observation_ledger": _forward_observation_ledger_summary(root),
         "latest_forward_observation_cycle_protocol": _forward_observation_cycle_protocol_summary(root),
         "latest_demo_preflight_review": _demo_preflight_review_summary(root),
+        "latest_demo_broker_safety_preflight": _demo_broker_safety_preflight_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,
@@ -347,6 +376,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
             "no_order_check": True,
             "no_execution_queue": True,
             "no_buy_sell_output": True,
+            "no_trade_recommendation_output": True,
             "oos_locked": True,
         },
         "next_task_protocol": [

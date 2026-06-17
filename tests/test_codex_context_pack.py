@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_37"
+    assert context["context_version"] == "v0_38"
     json.dumps(context)
 
 
@@ -27,6 +27,7 @@ def test_context_includes_safety_rules() -> None:
         "no_order_check": True,
         "no_execution_queue": True,
         "no_buy_sell_output": True,
+        "no_trade_recommendation_output": True,
         "oos_locked": True,
     }
 
@@ -54,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 7500
+    assert len(context_text) < 8500
 
 
 def test_context_cli_json_works() -> None:
@@ -72,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_37"
+    assert context["context_version"] == "v0_38"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_37.json"
+    output_path = tmp_path / "codex_context_v0_38.json"
 
     subprocess.run(
         [
@@ -93,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_37"
+    assert context["context_version"] == "v0_38"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -324,3 +325,29 @@ def test_context_includes_v0_37_demo_preflight_review_summary() -> None:
     assert review["execution_allowed"] is False
     assert review["order_send_allowed"] is False
     assert review["order_check_allowed"] is False
+
+
+def test_context_includes_v0_38_demo_broker_safety_preflight_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    preflight = context["latest_demo_broker_safety_preflight"]
+    assert preflight is not None
+    assert preflight["preflight_version"] == "v0_38"
+    assert preflight["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert preflight["preflight_status"] == "completed"
+    assert preflight["decision"] == "demo_preflight_safety_design_ready"
+    assert preflight["candidate_rules_preserved"] is True
+    assert preflight["design_only"] is True
+    assert preflight["blocking_conditions"] == []
+    assert preflight["demo_execution_created"] is False
+    assert preflight["broker_execution_path_created"] is False
+    assert preflight["mt5_connection_created"] is False
+    assert preflight["order_send_created"] is False
+    assert preflight["order_check_created"] is False
+    assert preflight["execution_queue_created"] is False
+    assert preflight["buy_sell_output_allowed"] is False
+    assert preflight["trade_recommendation_output_allowed"] is False
+    assert preflight["repeated_oos_review"] is False
+    assert preflight["retune_performed"] is False
+    assert preflight["threshold_search_performed"] is False
+    assert preflight["parameter_grid_performed"] is False

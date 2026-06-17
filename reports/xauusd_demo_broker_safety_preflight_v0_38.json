@@ -1,0 +1,117 @@
+{
+  "blocking_conditions": [],
+  "broker_execution_path_created": false,
+  "buy_sell_output_allowed": false,
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_preserved": true,
+  "decision": "demo_preflight_safety_design_ready",
+  "decision_options": [
+    "blocked_preflight_integrity_issue",
+    "demo_preflight_safety_design_ready"
+  ],
+  "demo_execution_created": false,
+  "design_only": true,
+  "execution_queue_created": false,
+  "explicit_non_actions": {
+    "broker_adapter_created": false,
+    "candidate_rules_changed": false,
+    "demo_execution_created": false,
+    "execution_queue_created": false,
+    "live_execution_created": false,
+    "mt5_imported": false,
+    "mt5_initialized": false,
+    "oos_review_repeated": false,
+    "order_check_called_or_wrapped": false,
+    "order_send_called_or_wrapped": false,
+    "parameter_grid_performed": false,
+    "retune_performed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_created": false
+  },
+  "generated_at": "2026-06-17T13:09:17.237690+00:00",
+  "mt5_connection_created": false,
+  "next_recommended_step": "human review of v0_38 safety checklist, then design a separate read-only broker facts audit only",
+  "order_check_created": false,
+  "order_send_created": false,
+  "parameter_grid_performed": false,
+  "preflight_status": "completed",
+  "preflight_version": "v0_38",
+  "repeated_oos_review": false,
+  "required_confirmations_before_future_demo_consideration": {
+    "candidate_id_locked": true,
+    "candidate_rules_preserved": true,
+    "one_time_oos_review_completed": true,
+    "prior_review_demo_allowed": false,
+    "prior_review_execution_allowed": false,
+    "prior_review_order_check_allowed": false,
+    "prior_review_order_send_allowed": false,
+    "prior_review_ready_for_design": true,
+    "repeat_oos_review_allowed": false
+  },
+  "required_future_demo_preflight_checks": [
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "candidate id mismatch, rule mismatch, retune, threshold search, or parameter grid detected",
+      "check_id": "candidate_lock",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "confirm v0_26 candidate id and fixed rules match committed v0_26 report exactly"
+    },
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "missing locked OOS marker, repeat review allowed, or any attempt to recreate OOS metrics",
+      "check_id": "oos_lock",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "confirm OOS was reviewed once only and repeat review remains disallowed"
+    },
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "any execution path, broker adapter, account connection, order function wrapper, or queue is present",
+      "check_id": "execution_absence",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "confirm no demo/live execution surface, broker path, account connection, order functions, or queue exists"
+    },
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "any directional instruction or recommendation-style trading output is present",
+      "check_id": "output_language",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "confirm outputs remain non-directional and contain no trading instructions or recommendations"
+    },
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "broker facts are missing, manually unverifiable, or would require execution code in this version",
+      "check_id": "broker_facts_design",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "define a future read-only broker facts audit covering symbol contract, digits, tick size, lot step, min/max lot, margin mode, session hours, swaps, commission, spread source, and slippage assumptions"
+    },
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "risk constraints are absent, ambiguous, or allow discretionary escalation",
+      "check_id": "risk_controls_design",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "define future human-approved risk constraints before any demo consideration: account type, max loss, max lots, one-position cap, emergency stop, and no averaging into loss"
+    },
+    {
+      "alters_candidate_rules": false,
+      "blocking_condition": "approval token, approver, timestamp, or reviewed artifact list is missing",
+      "check_id": "operator_approval",
+      "creates_execution": false,
+      "required_before_demo_execution_can_be_considered": true,
+      "required_confirmation": "require explicit human approval after reviewing this checklist and a separate future read-only facts audit"
+    }
+  ],
+  "retune_performed": false,
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "demo_preflight_review": "reports\\xauusd_demo_preflight_review_v0_37.json",
+    "oos_repair_report": "reports\\xauusd_oos_review_repair_v0_29_1.json"
+  },
+  "threshold_search_performed": false,
+  "trade_recommendation_output_allowed": false
+}

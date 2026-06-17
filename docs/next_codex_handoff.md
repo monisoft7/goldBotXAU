@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_37 demo preflight review
+- Last completed checkpoint: v0_38 demo broker safety preflight design
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 455 passed
+- Current test baseline: 467 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -26,11 +26,49 @@
 - Latest ready forward observation ledger report: `reports/xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json`
 - Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
 - Latest demo preflight review: `reports/xauusd_demo_preflight_review_v0_37.json`
-- Latest checkpoint: `docs/checkpoints/v0_37_demo_preflight_review_result.md`
-- Latest context pack: `reports/codex_context_v0_37.json`
-- Latest health report: `reports/project_health_v0_37.json`
-- Latest decision: `ready_for_demo_preflight_design`
-- Next safe task: draft v0_38 demo preflight safety checklist design only; no broker connection, no orders, no execution path
+- Latest demo broker safety preflight: `reports/xauusd_demo_broker_safety_preflight_v0_38.json`
+- Latest checkpoint: `docs/checkpoints/v0_38_demo_broker_safety_preflight_result.md`
+- Latest context pack: `reports/codex_context_v0_38.json`
+- Latest health report: `reports/project_health_v0_38.json`
+- Latest decision: `demo_preflight_safety_design_ready`
+- Next safe task: human review of v0_38 safety checklist, then design a separate read-only broker facts audit only; no broker connection, no orders, no execution path
+
+## v0_38 Demo Broker Safety Preflight Result
+
+- Preflight module: `src/research/xauusd_demo_broker_safety_preflight.py`
+- Preflight script: `scripts/build_xauusd_demo_broker_safety_preflight_v0_38.py`
+- Preflight checkpoint: `docs/checkpoints/v0_38_demo_broker_safety_preflight_result.md`
+- Preflight report: `reports/xauusd_demo_broker_safety_preflight_v0_38.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Decision: `demo_preflight_safety_design_ready`
+- Preflight status: `completed`
+- Candidate rules preserved: `true`
+- Blocking conditions: none
+- Design only: `true`
+- Demo execution created: `false`
+- Broker execution path created: `false`
+- MT5 connection created: `false`
+- Order send created: `false`
+- Order check created: `false`
+- Execution queue created: `false`
+- Buy/sell output allowed: `false`
+- Trade recommendation output allowed: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Repeated OOS review: `false`
+
+v0_38 created only a safety checklist/report for future demo preflight. It defines required confirmations and blocking conditions before any future demo execution can even be considered. It did not connect to MT5, create broker adapters, call or wrap order sending, call or wrap order checking, create execution queues, output directional instructions, output trade recommendations, alter v0_26, retune, optimize, grid search, threshold search, repeat OOS, or add any `data/*.csv` to git.
+
+Required future checks before any future demo consideration:
+
+- candidate lock
+- OOS lock
+- execution absence
+- output language
+- broker facts design
+- risk controls design
+- operator approval
 
 ## v0_37 Demo Preflight Review Result
 
