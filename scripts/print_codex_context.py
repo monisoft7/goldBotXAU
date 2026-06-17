@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_43"
+CONTEXT_VERSION = "v0_44"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -458,6 +458,30 @@ def _signal_order_request_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _bounded_signal_watch_summary(root: Path) -> dict[str, Any] | None:
+    watch_path = root / "reports" / "xauusd_bounded_signal_watch_v0_44.json"
+    if not watch_path.exists():
+        return None
+    report = json.loads(watch_path.read_text(encoding="utf-8"))
+    return {
+        "watch_version": report.get("watch_version"),
+        "watch_status": report.get("watch_status"),
+        "candidate_id": report.get("candidate_id"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "dry_run": report.get("dry_run"),
+        "max_cycles": report.get("max_cycles"),
+        "interval_seconds": report.get("interval_seconds"),
+        "cycles_completed": report.get("cycles_completed"),
+        "stopped_early": report.get("stopped_early"),
+        "latest_signal_qualified": report.get("latest_signal_qualified"),
+        "latest_order_request_complete": report.get("latest_order_request_complete"),
+        "macro_event_lock_status": report.get("macro_event_lock_status"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -515,6 +539,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_final_demo_readiness_gate": _final_demo_readiness_gate_summary(root),
         "latest_limited_demo_execution": _limited_demo_execution_summary(root),
         "latest_signal_order_request": _signal_order_request_summary(root),
+        "latest_bounded_signal_watch": _bounded_signal_watch_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

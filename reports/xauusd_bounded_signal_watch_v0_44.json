@@ -1,0 +1,70 @@
+{
+  "blockers": [
+    "macro_event_lock_active"
+  ],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_preserved": true,
+  "cycle_records": [
+    {
+      "builder_status": "blocked_macro_event_window",
+      "cycle_number": 1,
+      "live_allowed": false,
+      "macro_event_lock_status": "blocked_macro_event_window",
+      "order_check_called": false,
+      "order_request_complete": false,
+      "order_request_present": false,
+      "order_send_called": false,
+      "signal_qualified": false
+    }
+  ],
+  "cycles_completed": 1,
+  "dry_run": true,
+  "explicit_non_actions": {
+    "auto_execute_order_created": false,
+    "background_scheduler_created": false,
+    "candidate_rules_changed": false,
+    "execution_queue_created": false,
+    "live_execution_created": false,
+    "new_strategy_added": false,
+    "oos_review_repeated": false,
+    "order_check_called_or_wrapped": false,
+    "order_send_called_or_wrapped": false,
+    "parameter_grid_performed": false,
+    "retune_performed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_created": false,
+    "unbounded_loop_created": false
+  },
+  "generated_at": "2026-06-17T18:43:57.503903+00:00",
+  "interval_seconds": 300,
+  "latest_builder_status": "blocked_macro_event_window",
+  "latest_order_request": null,
+  "latest_order_request_complete": false,
+  "latest_order_request_present": false,
+  "latest_signal_qualified": false,
+  "live_allowed": false,
+  "lot": 0.01,
+  "macro_event_lock_enabled": true,
+  "macro_event_lock_status": "blocked_macro_event_window",
+  "max_cycles": 6,
+  "next_recommended_step": "wait until the configured macro event window clears before another bounded dry-run watch",
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "status_options": [
+    "blocked_macro_event_window",
+    "blocked_invalid_watch_parameters",
+    "completed_no_qualified_signal",
+    "stopped_order_request_ready_for_human_review",
+    "failed_builder_error"
+  ],
+  "stop_reason": "blocked_macro_event_window",
+  "stopped_early": true,
+  "symbol": "XAUUSD",
+  "threshold_search_performed": false,
+  "warnings": [],
+  "watch_status": "blocked_macro_event_window",
+  "watch_version": "v0_44"
+}

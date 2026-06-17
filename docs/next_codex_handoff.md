@@ -1,25 +1,50 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_43 signal-to-order-request builder
+- Last completed checkpoint: v0_44 bounded signal watch runner
 - OOS: evaluated once, marker locked, repeated review disallowed
 - Current test baseline: 524 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: locked candidate only, no retune
-- Execution status: dry-run only; v0_43 builds internal order request only when a locked signal is qualified
+- Execution status: dry-run only; v0_44 bounded watch calls the v0_43 builder and stops before any execution path
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
 - Latest fixed demo risk envelope: `reports/xauusd_demo_risk_envelope_v0_40.json`
 - Latest limited demo execution scaffold: `reports/xauusd_limited_demo_execution_v0_42.json`
 - Latest signal order request builder: `reports/xauusd_signal_order_request_v0_43.json`
-- Latest checkpoint: `docs/checkpoints/v0_43_signal_to_order_request_builder_result.md`
-- Latest context pack: `reports/codex_context_v0_43.json`
-- Latest health report: `reports/project_health_v0_43.json`
-- Latest decision: `no_qualified_signal_now`
-- Next safe task: review the dry-run v0_43 builder report before any separate explicit demo action
+- Latest bounded signal watch: `reports/xauusd_bounded_signal_watch_v0_44.json`
+- Latest checkpoint: `docs/checkpoints/v0_44_bounded_signal_watch_runner_result.md`
+- Latest context pack: `reports/codex_context_v0_44.json`
+- Latest health report: `reports/project_health_v0_44.json`
+- Latest decision: `blocked_macro_event_window`
+- Next safe task: wait until the macro event window clears, then rerun the bounded dry-run watch if a fresh signal-to-order-request check is still desired
+
+## v0_44 Bounded Signal Watch Runner Result
+
+- Watch module: `src/execution/xauusd_bounded_signal_watch_runner.py`
+- Watch script: `scripts/run_xauusd_bounded_signal_watch_v0_44.py`
+- Watch report: `reports/xauusd_bounded_signal_watch_v0_44.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Watch status: `blocked_macro_event_window`
+- Max cycles: `6`
+- Interval seconds: `300`
+- Cycles completed: `1`
+- Stopped early: `true`
+- Stop reason: `blocked_macro_event_window`
+- Latest signal qualified: `false`
+- Latest order request present: `false`
+- Latest order request complete: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Targeted tests: `36 passed`
+
+v0_44 is a foreground, bounded, dry-run-only watch runner. It calls the v0_43 builder for at most the configured cycle count and stops early when the macro lock is active or a complete internal order request is ready for human review.
+
+The default v0_44 report stopped on the active macro event window. No order request was built, and no execution path was called.
 
 ## v0_43 Signal-to-Order-Request Builder Result
 
