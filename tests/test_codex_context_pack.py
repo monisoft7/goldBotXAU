@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_38"
+    assert context["context_version"] == "v0_39"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_38"
+    assert context["context_version"] == "v0_39"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_38.json"
+    output_path = tmp_path / "codex_context_v0_39.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_38"
+    assert context["context_version"] == "v0_39"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -351,3 +351,33 @@ def test_context_includes_v0_38_demo_broker_safety_preflight_summary() -> None:
     assert preflight["retune_performed"] is False
     assert preflight["threshold_search_performed"] is False
     assert preflight["parameter_grid_performed"] is False
+
+
+def test_context_includes_v0_39_broker_facts_audit_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_broker_facts_audit"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_39"
+    assert audit["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert audit["decision"] in {
+        "blocked_mt5_unavailable",
+        "blocked_symbol_unavailable",
+        "blocked_missing_critical_broker_facts",
+        "broker_facts_audit_ready_for_risk_envelope_design",
+    }
+    assert audit["candidate_rules_preserved"] is True
+    assert audit["design_or_read_only"] is True
+    assert audit["mt5_read_only_metadata_access"] is True
+    assert audit["order_send_created"] is False
+    assert audit["order_send_called"] is False
+    assert audit["order_check_created"] is False
+    assert audit["order_check_called"] is False
+    assert audit["execution_queue_created"] is False
+    assert audit["broker_execution_path_created"] is False
+    assert audit["buy_sell_output_allowed"] is False
+    assert audit["trade_recommendation_output_allowed"] is False
+    assert audit["repeated_oos_review"] is False
+    assert audit["retune_performed"] is False
+    assert audit["threshold_search_performed"] is False
+    assert audit["parameter_grid_performed"] is False

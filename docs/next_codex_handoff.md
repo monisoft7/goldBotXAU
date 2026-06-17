@@ -1,7 +1,7 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_38 demo broker safety preflight design
+- Last completed checkpoint: v0_39 read-only broker facts audit
 - OOS: evaluated once, marker locked, repeated review disallowed
 - Current test baseline: 467 passed
 - Health status: warnings only due to documented safety mentions
@@ -27,11 +27,53 @@
 - Latest forward observation cycle protocol: `reports/xauusd_forward_observation_cycle_protocol_v0_36.json`
 - Latest demo preflight review: `reports/xauusd_demo_preflight_review_v0_37.json`
 - Latest demo broker safety preflight: `reports/xauusd_demo_broker_safety_preflight_v0_38.json`
-- Latest checkpoint: `docs/checkpoints/v0_38_demo_broker_safety_preflight_result.md`
+- Latest broker facts audit: `reports/xauusd_broker_facts_audit_v0_39.json`
+- Latest checkpoint: `docs/checkpoints/v0_39_broker_facts_audit_result.md`
 - Latest context pack: `reports/codex_context_v0_38.json`
 - Latest health report: `reports/project_health_v0_38.json`
-- Latest decision: `demo_preflight_safety_design_ready`
-- Next safe task: human review of v0_38 safety checklist, then design a separate read-only broker facts audit only; no broker connection, no orders, no execution path
+- Latest decision: `broker_facts_audit_ready_for_risk_envelope_design`
+- Next safe task: v0_39 risk envelope design
+
+## v0_39 Broker Facts Audit Result
+
+- Audit module: `src/research/xauusd_broker_facts_audit.py`
+- Audit script: `scripts/build_xauusd_broker_facts_audit_v0_39.py`
+- Audit checkpoint: `docs/checkpoints/v0_39_broker_facts_audit_result.md`
+- Audit report: `reports/xauusd_broker_facts_audit_v0_39.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Decision: `broker_facts_audit_ready_for_risk_envelope_design`
+- Audit status: `completed`
+- Candidate rules preserved: `true`
+- Design or read-only: `true`
+- MT5 read-only metadata access: `true`
+- MT5 initialized: `true`
+- MT5 shutdown called: `true`
+- Missing facts: none
+- Broker fact blockers: none
+- Order send created: `false`
+- Order send called: `false`
+- Order check created: `false`
+- Order check called: `false`
+- Execution queue created: `false`
+- Broker execution path created: `false`
+- Buy/sell output allowed: `false`
+- Trade recommendation output allowed: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Repeated OOS review: `false`
+
+v0_39 collected read-only symbol/account metadata only. It did not create demo or live execution, a broker execution adapter, a trade request, order sending, order checking, an execution queue, directional output, trade recommendations, a strategy variant, a retune, threshold search, parameter grid, repeated OOS review, or any `data/*.csv`.
+
+Collected broker facts:
+
+- XAUUSD exists and is visible.
+- Digits `2`, point `0.01`, contract size `100.0`, tick size `0.01`, tick value `0.1`.
+- Volume min `0.01`, max `100.0`, step `0.01`.
+- Spread `15`, spread float `true`.
+- Trade mode `4`, trade execution mode `2`, filling mode `3`, order mode `127`.
+- Stops level `0`, freeze level `0`, swap long `-12.6`, swap short `-4.6`.
+- Account server `MetaQuotes-Demo`, account currency `USD`, account trade mode `0`.
 
 ## v0_38 Demo Broker Safety Preflight Result
 
