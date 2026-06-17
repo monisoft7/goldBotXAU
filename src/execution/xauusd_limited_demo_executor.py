@@ -27,6 +27,7 @@ BLOCKED_INVALID_SYMBOL = "blocked_invalid_symbol"
 BLOCKED_INVALID_LOT = "blocked_invalid_lot"
 BLOCKED_MACRO_EVENT_WINDOW = "blocked_macro_event_window"
 BLOCKED_MISSING_APPROVAL_TOKEN = "blocked_missing_approval_token"
+BLOCKED_MISSING_COMPLETE_ORDER_REQUEST = "blocked_missing_complete_order_request"
 DRY_RUN_READY_NO_ORDER_SENT = "dry_run_ready_no_order_sent"
 DEMO_ORDER_SEND_ALLOWED_BUT_NOT_CALLED = "demo_order_send_allowed_but_not_called"
 DEMO_ORDER_SEND_ATTEMPTED = "demo_order_send_attempted"
@@ -38,6 +39,7 @@ DECISION_OPTIONS = [
     BLOCKED_INVALID_LOT,
     BLOCKED_MACRO_EVENT_WINDOW,
     BLOCKED_MISSING_APPROVAL_TOKEN,
+    BLOCKED_MISSING_COMPLETE_ORDER_REQUEST,
     DRY_RUN_READY_NO_ORDER_SENT,
     DEMO_ORDER_SEND_ALLOWED_BUT_NOT_CALLED,
     DEMO_ORDER_SEND_ATTEMPTED,
@@ -147,6 +149,10 @@ def build_xauusd_limited_demo_execution_v0_42(
     if explicit_send_requested and not approval_token_valid:
         blockers.append("approval_token_missing_or_invalid")
 
+    order_request_validation = _order_request_validation(order_request)
+    if explicit_send_requested and approval_token_valid and not order_request_validation["complete"]:
+        blockers.append("order_request_missing_complete_fields")
+
     execution_intent = ExecutionIntent(
         candidate_id=CANDIDATE_ID,
         symbol=symbol,
@@ -164,7 +170,7 @@ def build_xauusd_limited_demo_execution_v0_42(
         dry_run=dry_run,
         allow_demo_order_send=allow_demo_order_send,
         approval_token_valid=approval_token_valid,
-        order_request=order_request,
+        order_request_complete=bool(order_request_validation["complete"]),
     )
 
     order_send_attempted = executor_status == DEMO_ORDER_SEND_ATTEMPTED
@@ -217,6 +223,10 @@ def build_xauusd_limited_demo_execution_v0_42(
         "order_send_attempted": order_send_attempted,
         "order_send_called": order_send_called,
         "order_check_called": False,
+        "order_request_present": order_request_validation["present"],
+        "order_request_complete": order_request_validation["complete"],
+        "order_request_missing_fields": order_request_validation["missing_fields"],
+        "order_request_validation_status": order_request_validation["status"],
         "macro_event_lock_enabled": macro_event_lock_enabled,
         "macro_event_lock_status": macro_status,
         "macro_event_window_used": macro_window_used,
@@ -381,7 +391,7 @@ def _executor_status(
     dry_run: bool,
     allow_demo_order_send: bool,
     approval_token_valid: bool,
-    order_request: dict[str, Any] | None,
+    order_request_complete: bool,
 ) -> str:
     if any(blocker.startswith("readiness_gate") or blocker.startswith("v0_41") for blocker in blockers):
         return BLOCKED_READINESS_GATE_MISSING_OR_FAILED
@@ -400,9 +410,11 @@ def _executor_status(
         return BLOCKED_MACRO_EVENT_WINDOW
     if "approval_token_missing_or_invalid" in blockers:
         return BLOCKED_MISSING_APPROVAL_TOKEN
+    if "order_request_missing_complete_fields" in blockers:
+        return BLOCKED_MISSING_COMPLETE_ORDER_REQUEST
     if dry_run:
         return DRY_RUN_READY_NO_ORDER_SENT
-    if allow_demo_order_send and approval_token_valid and order_request is not None:
+    if allow_demo_order_send and approval_token_valid and order_request_complete:
         return DEMO_ORDER_SEND_ATTEMPTED
     return DEMO_ORDER_SEND_ALLOWED_BUT_NOT_CALLED
 
@@ -415,6 +427,7 @@ def _execution_reason(status: str) -> str:
         BLOCKED_INVALID_LOT: "lot and risk envelope must stay fixed at 0.01",
         BLOCKED_MACRO_EVENT_WINDOW: "static high-impact macro event window is active",
         BLOCKED_MISSING_APPROVAL_TOKEN: "explicit demo order send requires the exact human approval token",
+        BLOCKED_MISSING_COMPLETE_ORDER_REQUEST: "explicit demo order send requires a complete demo-only order request",
         DRY_RUN_READY_NO_ORDER_SENT: "dry-run default completed without order send",
         DEMO_ORDER_SEND_ALLOWED_BUT_NOT_CALLED: "all gates passed but no order request was supplied",
         DEMO_ORDER_SEND_ATTEMPTED: "explicit demo order send attempted after all gates passed",
@@ -448,7 +461,49 @@ def _next_recommended_step(status: str) -> str:
         return "wait until the configured static macro event window has ended, then rerun dry-run only"
     if status == BLOCKED_MISSING_APPROVAL_TOKEN:
         return "do not continue without exact human approval token and dry-run review"
+    if status == BLOCKED_MISSING_COMPLETE_ORDER_REQUEST:
+        return "do not continue without a complete explicit demo-only order request reviewed by a human"
     return "repair blocker and rerun limited demo scaffold in dry-run mode"
+
+
+def _order_request_validation(order_request: dict[str, Any] | None) -> dict[str, Any]:
+    missing_fields: list[str] = []
+    if not isinstance(order_request, dict):
+        return {
+            "present": False,
+            "complete": False,
+            "missing_fields": ["order_request", "symbol", "lot", "demo_only", "side", "order_type", "action"],
+            "status": "missing_order_request",
+        }
+
+    if order_request.get("symbol") != SYMBOL:
+        missing_fields.append("symbol")
+
+    lot = order_request.get("lot", order_request.get("volume"))
+    if _number(lot) != LOT:
+        missing_fields.append("lot")
+
+    if order_request.get("demo_only") is not True:
+        missing_fields.append("demo_only")
+
+    if not _has_value(order_request, ("side", "order_side")):
+        missing_fields.append("side")
+    if not _has_value(order_request, ("order_type", "type")):
+        missing_fields.append("order_type")
+    if not _has_value(order_request, ("action",)):
+        missing_fields.append("action")
+
+    missing_fields = _dedupe(missing_fields)
+    return {
+        "present": True,
+        "complete": not missing_fields,
+        "missing_fields": missing_fields,
+        "status": "complete" if not missing_fields else "incomplete",
+    }
+
+
+def _has_value(values: dict[str, Any], keys: tuple[str, ...]) -> bool:
+    return any(values.get(key) not in (None, "") for key in keys)
 
 
 def _number(value: Any) -> float | None:

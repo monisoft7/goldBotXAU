@@ -13,6 +13,7 @@ from src.execution.xauusd_limited_demo_executor import (
     BLOCKED_INVALID_LOT,
     BLOCKED_INVALID_SYMBOL,
     BLOCKED_MACRO_EVENT_WINDOW,
+    BLOCKED_MISSING_COMPLETE_ORDER_REQUEST,
     BLOCKED_MISSING_APPROVAL_TOKEN,
     BLOCKED_NOT_DEMO_ACCOUNT,
     BLOCKED_READINESS_GATE_MISSING_OR_FAILED,
@@ -119,6 +120,9 @@ def test_default_dry_run_does_not_call_order_send(tmp_path: Path) -> None:
     assert report["dry_run"] is True
     assert report["order_send_attempted"] is False
     assert report["order_send_called"] is False
+    assert report["order_request_present"] is False
+    assert report["order_request_complete"] is False
+    assert report["order_request_validation_status"] == "missing_order_request"
     assert mt5.order_send_calls == []
 
 
@@ -163,6 +167,52 @@ def test_missing_approval_token_blocks_when_allow_order_send_is_used(tmp_path: P
     assert report["executor_status"] == BLOCKED_MISSING_APPROVAL_TOKEN
     assert report["approval_token_required"] is True
     assert report["approval_token_valid"] is False
+    assert report["order_send_called"] is False
+    assert mt5.order_send_calls == []
+
+
+def test_explicit_send_with_valid_token_blocks_without_order_request(tmp_path: Path) -> None:
+    mt5 = MockMT5()
+
+    report = _build(
+        tmp_path,
+        mt5=mt5,
+        dry_run=False,
+        allow_demo_order_send=True,
+        approval_token=REQUIRED_APPROVAL_TOKEN,
+    )
+
+    assert report["executor_status"] == BLOCKED_MISSING_COMPLETE_ORDER_REQUEST
+    assert report["order_request_present"] is False
+    assert report["order_request_complete"] is False
+    assert report["order_request_validation_status"] == "missing_order_request"
+    assert "order_request" in report["order_request_missing_fields"]
+    assert "order_request_missing_complete_fields" in report["blockers"]
+    assert report["order_send_attempted"] is False
+    assert report["order_send_called"] is False
+    assert report["order_check_called"] is False
+    assert mt5.order_send_calls == []
+    assert mt5.order_check_calls == []
+
+
+def test_explicit_send_with_missing_side_type_action_blocks_as_incomplete(tmp_path: Path) -> None:
+    mt5 = MockMT5()
+
+    report = _build(
+        tmp_path,
+        mt5=mt5,
+        dry_run=False,
+        allow_demo_order_send=True,
+        approval_token=REQUIRED_APPROVAL_TOKEN,
+        order_request={"symbol": "XAUUSD", "lot": 0.01, "demo_only": True},
+    )
+
+    assert report["executor_status"] == BLOCKED_MISSING_COMPLETE_ORDER_REQUEST
+    assert report["order_request_present"] is True
+    assert report["order_request_complete"] is False
+    assert report["order_request_validation_status"] == "incomplete"
+    assert report["order_request_missing_fields"] == ["side", "order_type", "action"]
+    assert report["order_send_attempted"] is False
     assert report["order_send_called"] is False
     assert mt5.order_send_calls == []
 

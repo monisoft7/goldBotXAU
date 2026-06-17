@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_42"
+CONTEXT_VERSION = "v0_42_1"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -423,6 +423,10 @@ def _limited_demo_execution_summary(root: Path) -> dict[str, Any] | None:
         "order_send_default_allowed": report.get("order_send_default_allowed"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
+        "order_request_present": report.get("order_request_present", False),
+        "order_request_complete": report.get("order_request_complete", False),
+        "order_request_missing_fields": report.get("order_request_missing_fields", []),
+        "order_request_validation_status": report.get("order_request_validation_status", "missing_order_request"),
         "macro_event_lock_enabled": report.get("macro_event_lock_enabled"),
         "macro_event_lock_status": report.get("macro_event_lock_status"),
         "approval_token_required": report.get("approval_token_required"),

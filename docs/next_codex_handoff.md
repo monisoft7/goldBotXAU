@@ -1,9 +1,9 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_42 limited demo execution scaffold
+- Last completed checkpoint: v0_42_1 order request completeness guard
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 507 passed
+- Current test baseline: 522 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
@@ -14,11 +14,34 @@
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
 - Latest fixed demo risk envelope: `reports/xauusd_demo_risk_envelope_v0_40.json`
 - Latest limited demo execution scaffold: `reports/xauusd_limited_demo_execution_v0_42.json`
-- Latest checkpoint: `docs/checkpoints/v0_42_limited_demo_execution_scaffold_result.md`
-- Latest context pack: `reports/codex_context_v0_42.json`
-- Latest health report: `reports/project_health_v0_42.json`
+- Latest checkpoint: `docs/checkpoints/v0_42_1_order_request_completeness_guard_result.md`
+- Latest context pack: `reports/codex_context_v0_42_1.json`
+- Latest health report: `reports/project_health_v0_42_1.json`
 - Latest decision: `dry_run_ready_no_order_sent`
-- Next safe task: human review of the v0_42 dry-run scaffold report before any separate explicit demo action
+- Next safe task: review the v0_42_1 order request completeness guard before any separate explicit demo action
+
+## v0_42_1 Order Request Completeness Guard Result
+
+- Executor module: `src/execution/xauusd_limited_demo_executor.py`
+- Executor report: `reports/xauusd_limited_demo_execution_v0_42.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Executor status in regenerated default report: `dry_run_ready_no_order_sent`
+- Explicit-send missing-request status: `blocked_missing_complete_order_request`
+- Candidate rules preserved: `true`
+- Demo only: `true`
+- Live allowed: `false`
+- Order request present in default report: `false`
+- Order request complete in default report: `false`
+- Order request validation status: `missing_order_request`
+- Missing order request fields: `order_request`, `symbol`, `lot`, `demo_only`, `side`, `order_type`, `action`
+- Order send attempted: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Targeted tests: `40 passed`
+
+v0_42_1 hard-blocks the protected explicit demo order send path when `--allow-demo-order-send`, `--no-dry-run`, and the exact approval token are supplied without a complete explicit demo-only order request. Missing or incomplete request status is now `blocked_missing_complete_order_request`, not `demo_order_send_allowed_but_not_called`.
+
+Required complete order request fields are symbol `XAUUSD`, fixed lot `0.01`, `demo_only=true`, explicit side field, explicit order type field, and explicit action field.
 
 ## v0_42 Limited Demo Execution Scaffold Result
 

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_42"
+    assert context["context_version"] == "v0_42_1"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 9000
+    assert len(context_text) < 9500
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_42"
+    assert context["context_version"] == "v0_42_1"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_42.json"
+    output_path = tmp_path / "codex_context_v0_42_1.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_42"
+    assert context["context_version"] == "v0_42_1"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -412,7 +412,11 @@ def test_context_includes_v0_42_limited_demo_execution_summary() -> None:
     execution = context["latest_limited_demo_execution"]
     assert execution is not None
     assert execution["executor_version"] == "v0_42"
-    assert execution["executor_status"] in {"dry_run_ready_no_order_sent", "blocked_macro_event_window"}
+    assert execution["executor_status"] in {
+        "dry_run_ready_no_order_sent",
+        "blocked_macro_event_window",
+        "blocked_missing_complete_order_request",
+    }
     assert execution["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
     assert execution["candidate_rules_preserved"] is True
     assert execution["demo_only"] is True
@@ -420,5 +424,8 @@ def test_context_includes_v0_42_limited_demo_execution_summary() -> None:
     assert execution["order_send_default_allowed"] is False
     assert execution["order_send_called"] is False
     assert execution["order_check_called"] is False
+    assert execution["order_request_present"] is False
+    assert execution["order_request_complete"] is False
+    assert execution["order_request_validation_status"] == "missing_order_request"
     assert execution["macro_event_lock_enabled"] is True
     assert execution["approval_token_required"] is True

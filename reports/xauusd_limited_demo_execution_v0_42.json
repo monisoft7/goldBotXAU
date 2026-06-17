@@ -16,6 +16,7 @@
     "blocked_invalid_lot",
     "blocked_macro_event_window",
     "blocked_missing_approval_token",
+    "blocked_missing_complete_order_request",
     "dry_run_ready_no_order_sent",
     "demo_order_send_allowed_but_not_called",
     "demo_order_send_attempted"
@@ -56,7 +57,7 @@
     "threshold_search_performed": false,
     "trade_recommendation_output_created": false
   },
-  "generated_at": "2026-06-17T15:23:01.244893+00:00",
+  "generated_at": "2026-06-17T16:07:02.720656+00:00",
   "journal_record": {
     "candidate_id": "xauusd_compression_then_expansion_v0_26",
     "dry_run": true,
@@ -66,7 +67,7 @@
     "notes": "limited_demo_execution_scaffold_no_default_order",
     "order_send_attempted": false,
     "order_send_called": false,
-    "timestamp": "2026-06-17T15:23:01.244882+00:00"
+    "timestamp": "2026-06-17T16:07:02.720644+00:00"
   },
   "live_allowed": false,
   "lot_verified": true,
@@ -76,6 +77,18 @@
   "mode": "dry_run",
   "next_recommended_step": "human review of v0_42 dry-run scaffold report before any separate explicit demo action",
   "order_check_called": false,
+  "order_request_complete": false,
+  "order_request_missing_fields": [
+    "order_request",
+    "symbol",
+    "lot",
+    "demo_only",
+    "side",
+    "order_type",
+    "action"
+  ],
+  "order_request_present": false,
+  "order_request_validation_status": "missing_order_request",
   "order_send_attempted": false,
   "order_send_called": false,
   "order_send_default_allowed": false,
