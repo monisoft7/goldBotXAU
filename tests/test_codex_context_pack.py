@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_42_1"
+    assert context["context_version"] == "v0_43"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 9500
+    assert len(context_text) < 10200
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_42_1"
+    assert context["context_version"] == "v0_43"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_42_1.json"
+    output_path = tmp_path / "codex_context_v0_43.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_42_1"
+    assert context["context_version"] == "v0_43"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -429,3 +429,22 @@ def test_context_includes_v0_42_limited_demo_execution_summary() -> None:
     assert execution["order_request_validation_status"] == "missing_order_request"
     assert execution["macro_event_lock_enabled"] is True
     assert execution["approval_token_required"] is True
+
+
+def test_context_includes_v0_43_signal_order_request_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    builder = context["latest_signal_order_request"]
+    assert builder is not None
+    assert builder["builder_version"] == "v0_43"
+    assert builder["builder_status"] in {
+        "no_qualified_signal_now",
+        "blocked_macro_event_window",
+        "order_request_built_dry_run_only",
+    }
+    assert builder["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert builder["candidate_rules_preserved"] is True
+    assert builder["dry_run"] is True
+    assert builder["order_send_called"] is False
+    assert builder["order_check_called"] is False
+    assert builder["live_allowed"] is False

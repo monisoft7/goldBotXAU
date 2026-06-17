@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_42_1"
+CONTEXT_VERSION = "v0_43"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -433,6 +433,31 @@ def _limited_demo_execution_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _signal_order_request_summary(root: Path) -> dict[str, Any] | None:
+    request_path = root / "reports" / "xauusd_signal_order_request_v0_43.json"
+    if not request_path.exists():
+        return None
+    report = json.loads(request_path.read_text(encoding="utf-8"))
+    return {
+        "builder_version": report.get("builder_version"),
+        "builder_status": report.get("builder_status"),
+        "candidate_id": report.get("candidate_id"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "dry_run": report.get("dry_run"),
+        "signal_evaluated": report.get("signal_evaluated"),
+        "signal_qualified": report.get("signal_qualified"),
+        "signal_reason": report.get("signal_reason"),
+        "order_request_present": report.get("order_request_present"),
+        "order_request_complete": report.get("order_request_complete"),
+        "order_request_missing_fields": report.get("order_request_missing_fields"),
+        "order_request_validation_status": report.get("order_request_validation_status"),
+        "macro_event_lock_status": report.get("macro_event_lock_status"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -489,6 +514,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_demo_risk_envelope": _demo_risk_envelope_summary(root),
         "latest_final_demo_readiness_gate": _final_demo_readiness_gate_summary(root),
         "latest_limited_demo_execution": _limited_demo_execution_summary(root),
+        "latest_signal_order_request": _signal_order_request_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

@@ -1,24 +1,48 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_42_1 order request completeness guard
+- Last completed checkpoint: v0_43 signal-to-order-request builder
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 522 passed
+- Current test baseline: 524 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: locked candidate only, no retune
-- Execution status: limited demo scaffold dry-run only by default
+- Execution status: dry-run only; v0_43 builds internal order request only when a locked signal is qualified
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
 - Latest fixed demo risk envelope: `reports/xauusd_demo_risk_envelope_v0_40.json`
 - Latest limited demo execution scaffold: `reports/xauusd_limited_demo_execution_v0_42.json`
-- Latest checkpoint: `docs/checkpoints/v0_42_1_order_request_completeness_guard_result.md`
-- Latest context pack: `reports/codex_context_v0_42_1.json`
-- Latest health report: `reports/project_health_v0_42_1.json`
-- Latest decision: `dry_run_ready_no_order_sent`
-- Next safe task: review the v0_42_1 order request completeness guard before any separate explicit demo action
+- Latest signal order request builder: `reports/xauusd_signal_order_request_v0_43.json`
+- Latest checkpoint: `docs/checkpoints/v0_43_signal_to_order_request_builder_result.md`
+- Latest context pack: `reports/codex_context_v0_43.json`
+- Latest health report: `reports/project_health_v0_43.json`
+- Latest decision: `no_qualified_signal_now`
+- Next safe task: review the dry-run v0_43 builder report before any separate explicit demo action
+
+## v0_43 Signal-to-Order-Request Builder Result
+
+- Builder module: `src/execution/xauusd_signal_to_order_request_builder.py`
+- Builder script: `scripts/build_xauusd_signal_order_request_v0_43.py`
+- Builder report: `reports/xauusd_signal_order_request_v0_43.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Builder status: `no_qualified_signal_now`
+- Signal evaluated: `true`
+- Signal qualified: `false`
+- Signal reason: `no_current_signal_snapshot_supplied`
+- Order request present: `false`
+- Order request complete: `false`
+- Order request validation status: `missing_order_request`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Macro event lock status: `clear_static_manual_windows`
+- Targeted tests: `35 passed`
+
+v0_43 is a dry-run-only internal builder. It converts a qualified locked v0_26 signal snapshot into a complete demo-only order request for review, or returns `no_qualified_signal_now`. The default report has no qualified signal and no order request.
+
+The internal order request contract requires `symbol=XAUUSD`, `lot=0.01`, `demo_only=true`, side, order type, action, risk reference, stop loss or stop distance, take profit or exit rule, and candidate id `xauusd_compression_then_expansion_v0_26`.
 
 ## v0_42_1 Order Request Completeness Guard Result
 
