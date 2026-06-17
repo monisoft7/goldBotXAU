@@ -1,7 +1,7 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_39 read-only broker facts audit
+- Last completed checkpoint: v0_40 fixed demo risk envelope design
 - OOS: evaluated once, marker locked, repeated review disallowed
 - Current test baseline: 467 passed
 - Health status: warnings only due to documented safety mentions
@@ -28,11 +28,59 @@
 - Latest demo preflight review: `reports/xauusd_demo_preflight_review_v0_37.json`
 - Latest demo broker safety preflight: `reports/xauusd_demo_broker_safety_preflight_v0_38.json`
 - Latest broker facts audit: `reports/xauusd_broker_facts_audit_v0_39.json`
-- Latest checkpoint: `docs/checkpoints/v0_39_broker_facts_audit_result.md`
-- Latest context pack: `reports/codex_context_v0_38.json`
-- Latest health report: `reports/project_health_v0_38.json`
-- Latest decision: `broker_facts_audit_ready_for_risk_envelope_design`
-- Next safe task: v0_39 risk envelope design
+- Latest fixed demo risk envelope: `reports/xauusd_demo_risk_envelope_v0_40.json`
+- Latest checkpoint: `docs/checkpoints/v0_40_demo_risk_envelope_result.md`
+- Latest context pack: `reports/codex_context_v0_40.json`
+- Latest health report: `reports/project_health_v0_40.json`
+- Latest decision: `demo_risk_envelope_design_ready`
+- Next safe task: human review of v0_40 fixed demo risk envelope before any separate future demo preflight decision
+
+## v0_40 Fixed Demo Risk Envelope Result
+
+- Envelope module: `src/research/xauusd_demo_risk_envelope.py`
+- Envelope script: `scripts/build_xauusd_demo_risk_envelope_v0_40.py`
+- Envelope checkpoint: `docs/checkpoints/v0_40_demo_risk_envelope_result.md`
+- Envelope report: `reports/xauusd_demo_risk_envelope_v0_40.json`
+- Source broker facts report: `reports/xauusd_broker_facts_audit_v0_39.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Decision: `demo_risk_envelope_design_ready`
+- Envelope status: `completed`
+- Candidate rules preserved: `true`
+- Design only: `true`
+- Demo execution allowed: `false`
+- Order send allowed: `false`
+- Order check allowed: `false`
+- Broker execution path created: `false`
+- Execution queue created: `false`
+- Buy/sell output allowed: `false`
+- Trade recommendation output allowed: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Repeated OOS review: `false`
+
+v0_40 converted the v0_39 read-only broker facts into a conservative fixed demo risk envelope only. It did not connect to MT5, create demo/live execution, create a broker execution adapter, create a trade request, call or wrap order sending, call or wrap order checking, create an execution queue, emit directional output, emit trade recommendations, alter v0_26 candidate rules, retune, search thresholds, run a parameter grid, repeat OOS, or add any `data/*.csv`.
+
+Fixed risk envelope:
+
+- Max positions `1`
+- No martingale, no averaging into loss, no position scaling, no discretionary lot increase
+- Emergency stop required
+- Stop after `2` consecutive losses
+- Max daily demo loss `2.0R`
+- Max session demo loss `1.0R`
+- Max trade risk `1.0R`
+- Starting demo lot `0.01`
+- Max demo lot `0.01`
+- Lot step, symbol, and broker facts must match v0_39
+
+Tick value handling:
+
+- Reported tick value: `0.1`
+- Derived tick value: `1.0`
+- Conservative tick value used for design: `1.0`
+- Warning: `tick_value_contract_size_mismatch`
+- Blockers: none
 
 ## v0_39 Broker Facts Audit Result
 

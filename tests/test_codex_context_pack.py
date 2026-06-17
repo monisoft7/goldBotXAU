@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_39"
+    assert context["context_version"] == "v0_40"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 8500
+    assert len(context_text) < 9000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_39"
+    assert context["context_version"] == "v0_40"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_39.json"
+    output_path = tmp_path / "codex_context_v0_40.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_39"
+    assert context["context_version"] == "v0_40"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -381,3 +381,16 @@ def test_context_includes_v0_39_broker_facts_audit_summary() -> None:
     assert audit["retune_performed"] is False
     assert audit["threshold_search_performed"] is False
     assert audit["parameter_grid_performed"] is False
+
+
+def test_context_includes_v0_40_demo_risk_envelope_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    envelope = context["latest_demo_risk_envelope"]
+    assert envelope is not None
+    assert envelope["version"] == "v0_40"
+    assert envelope["decision"] == "demo_risk_envelope_design_ready"
+    assert envelope["safety_locked"] is True
+    assert envelope["lot"] == 0.01
+    assert envelope["warnings"] == 1
+    assert envelope["blockers"] == 0

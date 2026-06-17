@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_39"
+CONTEXT_VERSION = "v0_40"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -345,6 +345,38 @@ def _broker_facts_audit_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _demo_risk_envelope_summary(root: Path) -> dict[str, Any] | None:
+    envelope_path = root / "reports" / "xauusd_demo_risk_envelope_v0_40.json"
+    if not envelope_path.exists():
+        return None
+    report = json.loads(envelope_path.read_text(encoding="utf-8"))
+    envelope = report.get("fixed_risk_envelope", {})
+    execution_disabled = all(
+        report.get(key) is False
+        for key in (
+            "demo_execution_allowed",
+            "order_send_allowed",
+            "order_check_allowed",
+            "broker_execution_path_created",
+            "execution_queue_created",
+            "buy_sell_output_allowed",
+            "trade_recommendation_output_allowed",
+            "repeated_oos_review",
+            "retune_performed",
+            "threshold_search_performed",
+            "parameter_grid_performed",
+        )
+    )
+    return {
+        "version": report.get("envelope_version"),
+        "decision": report.get("decision"),
+        "safety_locked": execution_disabled,
+        "lot": envelope.get("starting_demo_lot") if isinstance(envelope, dict) else None,
+        "warnings": len(report.get("warnings", [])) if isinstance(report.get("warnings"), list) else None,
+        "blockers": len(report.get("blockers", [])) if isinstance(report.get("blockers"), list) else None,
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -399,6 +431,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_demo_preflight_review": _demo_preflight_review_summary(root),
         "latest_demo_broker_safety_preflight": _demo_broker_safety_preflight_summary(root),
         "latest_broker_facts_audit": _broker_facts_audit_summary(root),
+        "latest_demo_risk_envelope": _demo_risk_envelope_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "no_demo": True,
