@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_45_1"
+    assert context["context_version"] == "v0_46"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 12000
+    assert len(context_text) < 13000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_45_1"
+    assert context["context_version"] == "v0_46"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_45_1.json"
+    output_path = tmp_path / "codex_context_v0_46.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_45_1"
+    assert context["context_version"] == "v0_46"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -514,3 +514,31 @@ def test_context_includes_v0_45_live_signal_snapshot_summary() -> None:
     assert snapshot["threshold_search_performed"] is False
     assert snapshot["parameter_grid_performed"] is False
     assert snapshot["repeated_oos_review"] is False
+
+
+def test_context_includes_v0_46_candidate_direction_provenance_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_candidate_direction_provenance_audit"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_46"
+    assert audit["audit_status"] in {
+        "direction_rule_verified_from_locked_candidate",
+        "no_direction_rule_found_execution_blocked",
+        "ambiguous_direction_rule_execution_blocked",
+        "audit_failed_missing_candidate_artifacts",
+    }
+    assert audit["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert audit["candidate_rules_preserved"] is True
+    assert audit["direction_rule_found"] in {True, False}
+    assert audit["executable_side_mapping_found"] in {True, False}
+    assert audit["demo_execution_direction_ready"] in {True, False}
+    assert isinstance(audit["blockers"], int)
+    assert isinstance(audit["warnings"], int)
+    assert audit["order_send_called"] is False
+    assert audit["order_check_called"] is False
+    assert audit["live_allowed"] is False
+    assert audit["retune_performed"] is False
+    assert audit["threshold_search_performed"] is False
+    assert audit["parameter_grid_performed"] is False
+    assert audit["repeated_oos_review"] is False

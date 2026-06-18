@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_45_1 direction validity guard
+- Last completed checkpoint: v0_46 candidate direction provenance audit
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 559 passed before v0_45_1; v0_45_1 targeted tests: 67 passed
+- Current test baseline: 559 passed before v0_45_1; v0_46 targeted tests: 37 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: locked candidate only, no retune
-- Execution status: dry-run only; v0_45_1 rejects review-only or unassigned directions as non-executable before any execution path
+- Execution status: dry-run only; v0_46 blocks demo execution direction readiness because no locked-candidate executable side rule was found
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -17,11 +17,34 @@
 - Latest signal order request builder: `reports/xauusd_signal_order_request_v0_43.json`
 - Latest bounded signal watch: `reports/xauusd_bounded_signal_watch_v0_44.json`
 - Latest live signal snapshot: `reports/xauusd_live_signal_snapshot_v0_45.json`
-- Latest checkpoint: `docs/checkpoints/v0_45_1_direction_validity_guard_result.md`
-- Latest context pack: `reports/codex_context_v0_45_1.json`
-- Latest health report: `reports/project_health_v0_45_1.json`
-- Latest decision: `snapshot_ready_signal_confirmed_direction_unassigned`
-- Next safe task: define/verify locked candidate direction logic before demo execution
+- Latest direction provenance audit: `reports/xauusd_candidate_direction_provenance_v0_46.json`
+- Latest checkpoint: `docs/checkpoints/v0_46_candidate_direction_provenance_audit_result.md`
+- Latest context pack: `reports/codex_context_v0_46.json`
+- Latest health report: `reports/project_health_v0_46.json`
+- Latest decision: `no_direction_rule_found_execution_blocked`
+- Next safe task: keep demo execution blocked unless a separate human-approved scope change defines executable direction outside this provenance audit
+
+## v0_46 Candidate Direction Provenance Audit Result
+
+- Audit module: `src/research/xauusd_candidate_direction_provenance_audit.py`
+- Audit script: `scripts/audit_xauusd_candidate_direction_v0_46.py`
+- Audit report: `reports/xauusd_candidate_direction_provenance_v0_46.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Audit status: `no_direction_rule_found_execution_blocked`
+- Direction rule found: `false`
+- Executable side mapping found: `false`
+- Direction provenance confidence: `none`
+- Demo execution direction ready: `false`
+- Blockers: `locked_candidate_has_no_executable_side_mapping`, `locked_candidate_has_no_explicit_direction_rule`
+- Warning: `next_block_expansion_behavior_found_but_not_executable_direction_rule`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Candidate rules preserved: `true`
+
+v0_46 audited the existing locked v0_26 candidate artifacts and registry record. The artifacts contain fixed compression-then-expansion behavior provenance, but no deterministic executable internal side rule or side mapping. Demo execution direction readiness remains blocked.
+
+No side was invented or inferred. No order sending, order checking, live trading, scheduler, execution queue, candidate-rule change, retune, threshold search, parameter grid, repeated OOS, or `data/*.csv` addition was introduced.
 
 ## v0_45_1 Direction Validity Guard Result
 

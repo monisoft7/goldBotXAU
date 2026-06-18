@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_45_1"
+CONTEXT_VERSION = "v0_46"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -528,6 +528,36 @@ def _live_signal_snapshot_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _candidate_direction_provenance_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = root / "reports" / "xauusd_candidate_direction_provenance_v0_46.json"
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    blockers = report.get("blockers", [])
+    warnings = report.get("warnings", [])
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "candidate_id": report.get("candidate_id"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "direction_rule_found": report.get("direction_rule_found"),
+        "direction_rule_source_files": report.get("direction_rule_source_files"),
+        "direction_rule_source_fields": report.get("direction_rule_source_fields"),
+        "executable_side_mapping_found": report.get("executable_side_mapping_found"),
+        "direction_provenance_confidence": report.get("direction_provenance_confidence"),
+        "demo_execution_direction_ready": report.get("demo_execution_direction_ready"),
+        "blockers": len(blockers) if isinstance(blockers, list) else None,
+        "warnings": len(warnings) if isinstance(warnings, list) else None,
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -587,6 +617,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_signal_order_request": _signal_order_request_summary(root),
         "latest_bounded_signal_watch": _bounded_signal_watch_summary(root),
         "latest_live_signal_snapshot": _live_signal_snapshot_summary(root),
+        "latest_candidate_direction_provenance_audit": _candidate_direction_provenance_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

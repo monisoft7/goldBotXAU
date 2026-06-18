@@ -1,0 +1,181 @@
+{
+  "audit_status": "no_direction_rule_found_execution_blocked",
+  "audit_version": "v0_46",
+  "audited_artifacts": [
+    "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "reports/xauusd_compression_expansion_decision_v0_26.json",
+    "src/research/candidate_registry.py"
+  ],
+  "blockers": [
+    "locked_candidate_has_no_executable_side_mapping",
+    "locked_candidate_has_no_explicit_direction_rule"
+  ],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_preserved": true,
+  "demo_execution_direction_ready": false,
+  "direction_provenance_confidence": "none",
+  "direction_rule_found": false,
+  "direction_rule_source_fields": [],
+  "direction_rule_source_files": [],
+  "direction_rule_text": null,
+  "executable_side_mapping": {},
+  "executable_side_mapping_found": false,
+  "live_allowed": false,
+  "next_recommended_step": "keep demo execution blocked until an explicit locked-candidate executable direction rule exists",
+  "non_directional_behavior_fields": [
+    {
+      "source_field": "candidate.fixed_rules.forward_behavior_label",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "candidate.fixed_rules.hypothetical_event_outcome",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "response block range is greater than selected compressed reference block range"
+    },
+    {
+      "source_field": "candidate.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "candidate.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "fixed_rules.forward_behavior_label",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "fixed_rules.hypothetical_event_outcome",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "response block range is greater than selected compressed reference block range"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M10.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M10.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M5.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M5.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.combined.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.combined.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "atlas_family_result.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "atlas_family_result.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "candidate.fixed_rules.forward_behavior_label",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "candidate.fixed_rules.hypothetical_event_outcome",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "response block range is greater than selected compressed reference block range"
+    },
+    {
+      "source_field": "candidate.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "candidate.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "fixed_rules.forward_behavior_label",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "fixed_rules.hypothetical_event_outcome",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "response block range is greater than selected compressed reference block range"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M10.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M10.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M5.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.by_timeframe.M5.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.combined.train_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "timeframe_evidence.combined.validation_result.dominant_behavior",
+      "source_file": "reports/xauusd_compression_expansion_decision_v0_26.json",
+      "value": "next_block_expansion"
+    },
+    {
+      "source_field": "fixed_rules.forward_behavior_label",
+      "source_file": "src/research/candidate_registry.py",
+      "value": "next_block_expansion"
+    }
+  ],
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "threshold_search_performed": false,
+  "warnings": [
+    "next_block_expansion_behavior_found_but_not_executable_direction_rule"
+  ]
+}
