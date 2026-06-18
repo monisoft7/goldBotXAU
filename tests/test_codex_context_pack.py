@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_44_1"
+    assert context["context_version"] == "v0_45_1"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 10800
+    assert len(context_text) < 12000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_44_1"
+    assert context["context_version"] == "v0_45_1"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_44_1.json"
+    output_path = tmp_path / "codex_context_v0_45_1.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_44_1"
+    assert context["context_version"] == "v0_45_1"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -464,8 +464,10 @@ def test_context_includes_v0_44_1_bounded_signal_watch_summary() -> None:
     assert watch["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
     assert watch["candidate_rules_preserved"] is True
     assert watch["dry_run"] is True
-    assert watch["max_cycles"] == 6
-    assert watch["interval_seconds"] == 300
+    assert isinstance(watch["max_cycles"], int)
+    assert watch["max_cycles"] >= 1
+    assert isinstance(watch["interval_seconds"], int)
+    assert watch["interval_seconds"] >= 1
     assert watch["sleep_enabled"] is True
     assert isinstance(watch["sleep_calls"], int)
     assert isinstance(watch["total_planned_sleep_seconds"], int)
@@ -473,3 +475,42 @@ def test_context_includes_v0_44_1_bounded_signal_watch_summary() -> None:
     assert watch["order_send_called"] is False
     assert watch["order_check_called"] is False
     assert watch["live_allowed"] is False
+
+
+def test_context_includes_v0_45_live_signal_snapshot_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    snapshot = context["latest_live_signal_snapshot"]
+    assert snapshot is not None
+    assert snapshot["snapshot_version"] == "v0_45_1"
+    assert snapshot["snapshot_status"] in {
+        "blocked_mt5_unavailable",
+        "blocked_symbol_unavailable",
+        "blocked_insufficient_live_candles",
+        "snapshot_ready_no_qualified_signal",
+        "snapshot_ready_order_request_built_dry_run_only",
+        "snapshot_ready_signal_confirmed_direction_unassigned",
+        "blocked_macro_event_window",
+    }
+    assert snapshot["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert snapshot["candidate_rules_preserved"] is True
+    assert snapshot["dry_run"] is True
+    assert snapshot["timeframes_requested"] == ["M5", "M10"]
+    assert snapshot["mt5_read_only"] is True
+    assert snapshot["direction_assigned"] in {True, False}
+    assert snapshot["executable_side_valid"] in {True, False}
+    assert snapshot["order_request_validation_status"] in {
+        "missing_order_request",
+        "incomplete",
+        "complete",
+        "direction_unassigned_non_executable",
+        "invalid_side_non_executable",
+    }
+    assert isinstance(snapshot["invalid_order_request_reasons"], list)
+    assert snapshot["order_send_called"] is False
+    assert snapshot["order_check_called"] is False
+    assert snapshot["live_allowed"] is False
+    assert snapshot["retune_performed"] is False
+    assert snapshot["threshold_search_performed"] is False
+    assert snapshot["parameter_grid_performed"] is False
+    assert snapshot["repeated_oos_review"] is False

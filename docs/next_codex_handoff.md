@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_44_1 real interval enforcement
+- Last completed checkpoint: v0_45_1 direction validity guard
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 524 passed
+- Current test baseline: 559 passed before v0_45_1; v0_45_1 targeted tests: 67 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: locked candidate only, no retune
-- Execution status: dry-run only; v0_44_1 bounded watch calls the v0_43 builder, honors real intervals in foreground runs, and stops before any execution path
+- Execution status: dry-run only; v0_45_1 rejects review-only or unassigned directions as non-executable before any execution path
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -16,11 +16,66 @@
 - Latest limited demo execution scaffold: `reports/xauusd_limited_demo_execution_v0_42.json`
 - Latest signal order request builder: `reports/xauusd_signal_order_request_v0_43.json`
 - Latest bounded signal watch: `reports/xauusd_bounded_signal_watch_v0_44.json`
-- Latest checkpoint: `docs/checkpoints/v0_44_1_real_interval_enforcement_result.md`
-- Latest context pack: `reports/codex_context_v0_44_1.json`
-- Latest health report: `reports/project_health_v0_44_1.json`
-- Latest decision: `blocked_macro_event_window`
-- Next safe task: wait until the macro event window clears, then rerun the bounded dry-run watch if a fresh signal-to-order-request check is still desired
+- Latest live signal snapshot: `reports/xauusd_live_signal_snapshot_v0_45.json`
+- Latest checkpoint: `docs/checkpoints/v0_45_1_direction_validity_guard_result.md`
+- Latest context pack: `reports/codex_context_v0_45_1.json`
+- Latest health report: `reports/project_health_v0_45_1.json`
+- Latest decision: `snapshot_ready_signal_confirmed_direction_unassigned`
+- Next safe task: define/verify locked candidate direction logic before demo execution
+
+## v0_45_1 Direction Validity Guard Result
+
+- Snapshot module: `src/execution/xauusd_live_signal_snapshot_provider.py`
+- Builder module: `src/execution/xauusd_signal_to_order_request_builder.py`
+- Executor module: `src/execution/xauusd_limited_demo_executor.py`
+- Snapshot report: `reports/xauusd_live_signal_snapshot_v0_45.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Snapshot version: `v0_45_1`
+- Snapshot status: `snapshot_ready_signal_confirmed_direction_unassigned`
+- Signal qualified: `true`
+- Signal reason: `locked_candidate_current_snapshot_expansion_confirmed_across_m5_m10`
+- Direction assigned: `false`
+- Direction source: `locked_candidate_no_deterministic_direction_rule`
+- Executable side valid: `false`
+- Order request present: `false`
+- Order request complete: `false`
+- Order request validation status: `direction_unassigned_non_executable`
+- Invalid order request reasons: `direction_unassigned_non_executable`
+- Review request present: `true`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+
+v0_45_1 makes `direction_unassigned_review_only`, missing side values, empty side values, and unknown side values non-executable. The latest live snapshot still qualifies the locked v0_26 compression-expansion signal, but it does not report a complete order request because no deterministic executable internal side is assigned.
+
+No order sending, order checking, live trading, scheduler, execution queue, candidate-rule change, retune, threshold search, parameter grid, repeated OOS, or `data/*.csv` addition was introduced.
+
+## v0_45 Live Signal Snapshot Provider Result
+
+- Snapshot module: `src/execution/xauusd_live_signal_snapshot_provider.py`
+- Snapshot script: `scripts/build_xauusd_live_signal_snapshot_v0_45.py`
+- Snapshot report: `reports/xauusd_live_signal_snapshot_v0_45.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Snapshot status: `snapshot_ready_order_request_built_dry_run_only`
+- Timeframes requested: `M5`, `M10`
+- Candles loaded: `M5=288`, `M10=144`
+- Current signal snapshot present: `true`
+- Signal evaluated: `true`
+- Signal qualified: `true`
+- Signal reason: `locked_candidate_current_snapshot_expansion_confirmed_across_m5_m10`
+- Order request present: `true`
+- Order request complete: `true`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- MT5 read-only: `true`
+- MT5 initialized: `true`
+- MT5 shutdown called: `true`
+- Targeted tests: `45 passed`
+
+v0_45 is read-only market data access only. It fetches the latest required M5/M10 candles, builds a structured `current_signal_snapshot`, and wires that snapshot into the v0_43 dry-run builder.
+
+The latest report contains a complete internal dry-run order request for human review only. It did not call order sending, did not call order checking, did not enable live trading, did not create a scheduler, did not create an execution queue, did not change v0_26 candidate rules, did not retune, did not search thresholds, did not run a parameter grid, did not repeat OOS, did not output a user-facing trade recommendation, and did not add `data/*.csv`.
 
 ## v0_44_1 Real Interval Enforcement Result
 

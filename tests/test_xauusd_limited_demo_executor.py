@@ -210,11 +210,76 @@ def test_explicit_send_with_missing_side_type_action_blocks_as_incomplete(tmp_pa
     assert report["executor_status"] == BLOCKED_MISSING_COMPLETE_ORDER_REQUEST
     assert report["order_request_present"] is True
     assert report["order_request_complete"] is False
-    assert report["order_request_validation_status"] == "incomplete"
+    assert report["order_request_validation_status"] == "direction_unassigned_non_executable"
+    assert report["invalid_order_request_reasons"] == ["direction_unassigned_non_executable"]
     assert report["order_request_missing_fields"] == ["side", "order_type", "action"]
     assert report["order_send_attempted"] is False
     assert report["order_send_called"] is False
     assert mt5.order_send_calls == []
+
+
+def test_direction_unassigned_review_only_order_request_blocks_as_non_executable(tmp_path: Path) -> None:
+    mt5 = MockMT5()
+
+    report = _build(
+        tmp_path,
+        mt5=mt5,
+        dry_run=False,
+        allow_demo_order_send=True,
+        approval_token=REQUIRED_APPROVAL_TOKEN,
+        order_request={
+            "symbol": "XAUUSD",
+            "lot": 0.01,
+            "demo_only": True,
+            "side": "direction_unassigned_review_only",
+            "order_type": "market",
+            "action": "prepare_demo_order",
+        },
+    )
+
+    assert report["executor_status"] == BLOCKED_MISSING_COMPLETE_ORDER_REQUEST
+    assert report["direction_assigned"] is False
+    assert report["executable_side_valid"] is False
+    assert report["order_request_present"] is True
+    assert report["order_request_complete"] is False
+    assert report["order_request_validation_status"] == "direction_unassigned_non_executable"
+    assert report["invalid_order_request_reasons"] == ["direction_unassigned_non_executable"]
+    assert "side" in report["order_request_missing_fields"]
+    assert report["order_send_attempted"] is False
+    assert report["order_send_called"] is False
+    assert report["order_check_called"] is False
+    assert mt5.order_send_calls == []
+    assert mt5.order_check_calls == []
+
+
+def test_valid_internal_side_order_request_can_be_complete_without_sending(tmp_path: Path) -> None:
+    mt5 = MockMT5()
+
+    report = _build(
+        tmp_path,
+        mt5=mt5,
+        order_request={
+            "symbol": "XAUUSD",
+            "lot": 0.01,
+            "demo_only": True,
+            "side": "long",
+            "order_type": "market",
+            "action": "prepare_demo_order",
+        },
+    )
+
+    assert report["executor_status"] == DRY_RUN_READY_NO_ORDER_SENT
+    assert report["direction_assigned"] is True
+    assert report["executable_side_valid"] is True
+    assert report["order_request_present"] is True
+    assert report["order_request_complete"] is True
+    assert report["order_request_validation_status"] == "complete"
+    assert report["invalid_order_request_reasons"] == []
+    assert report["order_send_attempted"] is False
+    assert report["order_send_called"] is False
+    assert report["order_check_called"] is False
+    assert mt5.order_send_calls == []
+    assert mt5.order_check_calls == []
 
 
 def test_macro_event_window_blocks_order_send(tmp_path: Path) -> None:

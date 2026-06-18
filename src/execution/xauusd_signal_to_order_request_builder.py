@@ -23,6 +23,9 @@ BUILDER_VERSION = "v0_43"
 DEFAULT_OUTPUT = Path("reports") / "xauusd_signal_order_request_v0_43.json"
 DEFAULT_CANDIDATE_REPORT = Path("reports") / "xauusd_compression_expansion_candidate_v0_26_train_validation.json"
 DEFAULT_LIMITED_DEMO_EXECUTOR_REPORT = Path("reports") / "xauusd_limited_demo_execution_v0_42.json"
+ALLOWED_EXECUTABLE_INTERNAL_SIDES = frozenset({"long", "short"})
+REVIEW_ONLY_UNASSIGNED_SIDE = "direction_unassigned_review_only"
+DIRECTION_UNASSIGNED_NON_EXECUTABLE = "direction_unassigned_non_executable"
 
 BLOCKED_READINESS_OR_RISK_REPORT_MISSING = "blocked_readiness_or_risk_report_missing"
 BLOCKED_MACRO_EVENT_WINDOW = "blocked_macro_event_window"
@@ -56,6 +59,7 @@ def build_xauusd_signal_order_request_v0_43(
     risk_envelope_report_path: str | Path = DEFAULT_RISK_ENVELOPE_REPORT,
     limited_demo_executor_report_path: str | Path = DEFAULT_LIMITED_DEMO_EXECUTOR_REPORT,
     signal_snapshot: dict[str, Any] | None = None,
+    current_signal_snapshot: dict[str, Any] | None = None,
     signal_provider: SignalProvider | None = None,
     macro_event_lock_enabled: bool = True,
     macro_event_windows: list[MacroEventWindow | dict[str, Any]] | None = None,
@@ -116,7 +120,11 @@ def build_xauusd_signal_order_request_v0_43(
     pre_signal_status = _pre_signal_status(blockers)
     if pre_signal_status is None:
         signal_evaluated = True
-        signal = _resolve_signal(signal_snapshot=signal_snapshot, signal_provider=signal_provider)
+        signal = _resolve_signal(
+            signal_snapshot=signal_snapshot,
+            current_signal_snapshot=current_signal_snapshot,
+            signal_provider=signal_provider,
+        )
         signal_qualified = bool(signal.get("qualified"))
         signal_reason = str(signal.get("reason") or ("qualified_signal" if signal_qualified else "no_qualified_signal_now"))
         if signal_qualified:
@@ -157,10 +165,15 @@ def build_xauusd_signal_order_request_v0_43(
         "signal_evaluated": signal_evaluated,
         "signal_qualified": signal_qualified,
         "signal_reason": signal_reason,
+        "signal_diagnostics": signal.get("diagnostics", {}) if signal_evaluated and isinstance(signal, dict) else {},
+        "direction_assigned": order_validation["direction_assigned"],
+        "direction_source": order_validation["direction_source"],
+        "executable_side_valid": order_validation["executable_side_valid"],
         "order_request_present": order_validation["present"],
         "order_request_complete": order_validation["complete"],
         "order_request_missing_fields": order_validation["missing_fields"],
         "order_request_validation_status": order_validation["status"],
+        "invalid_order_request_reasons": order_validation["invalid_reasons"],
         "order_request": order_request,
         "macro_event_lock_enabled": macro_event_lock_enabled,
         "macro_event_lock_status": macro_status,
@@ -272,9 +285,22 @@ def _pre_signal_status(blockers: list[str]) -> str | None:
     return None
 
 
-def _resolve_signal(*, signal_snapshot: dict[str, Any] | None, signal_provider: SignalProvider | None) -> dict[str, Any]:
+def _resolve_signal(
+    *,
+    signal_snapshot: dict[str, Any] | None,
+    current_signal_snapshot: dict[str, Any] | None,
+    signal_provider: SignalProvider | None,
+) -> dict[str, Any]:
+    if signal_snapshot is not None and current_signal_snapshot is not None:
+        signal = dict(signal_snapshot)
+        diagnostics = dict(signal.get("diagnostics", {})) if isinstance(signal.get("diagnostics"), dict) else {}
+        diagnostics["current_signal_snapshot_ignored"] = True
+        signal["diagnostics"] = diagnostics
+        return signal
     if signal_snapshot is not None:
         return dict(signal_snapshot)
+    if current_signal_snapshot is not None:
+        return dict(current_signal_snapshot)
     if signal_provider is None:
         return {"qualified": False, "reason": "no_current_signal_snapshot_supplied"}
     try:
@@ -293,6 +319,7 @@ def _build_order_request(*, symbol: str, lot: float, signal: dict[str, Any]) -> 
         "demo_only": True,
         "candidate_id": CANDIDATE_ID,
         "side": signal.get("side"),
+        "direction_source": signal.get("direction_source"),
         "order_type": signal.get("order_type", "market"),
         "action": signal.get("action", "prepare_demo_order"),
         "risk_reference": signal.get("risk_reference"),
@@ -322,16 +349,29 @@ def _order_request_validation(order_request: dict[str, Any] | None) -> dict[str,
                 "candidate_id",
             ],
             "status": "missing_order_request",
+            "invalid_reasons": [],
+            "direction_assigned": False,
+            "direction_source": "order_request_missing",
+            "executable_side_valid": False,
         }
 
     missing_fields: list[str] = []
+    invalid_reasons: list[str] = []
     if order_request.get("symbol") != SYMBOL:
         missing_fields.append("symbol")
     if _number(order_request.get("lot")) != LOT:
         missing_fields.append("lot")
     if order_request.get("demo_only") is not True:
         missing_fields.append("demo_only")
-    for key in ("side", "order_type", "action", "risk_reference", "candidate_id"):
+    side = order_request.get("side")
+    executable_side_valid = _is_executable_internal_side(side)
+    if side in (None, "", REVIEW_ONLY_UNASSIGNED_SIDE):
+        invalid_reasons.append(DIRECTION_UNASSIGNED_NON_EXECUTABLE)
+    elif not executable_side_valid:
+        invalid_reasons.append("side_not_allowed_internal_executable_side")
+    if not executable_side_valid:
+        missing_fields.append("side")
+    for key in ("order_type", "action", "risk_reference", "candidate_id"):
         if order_request.get(key) in (None, ""):
             missing_fields.append(key)
     if "stop_loss" not in order_request and "stop_distance" not in order_request:
@@ -342,11 +382,22 @@ def _order_request_validation(order_request: dict[str, Any] | None) -> dict[str,
         missing_fields.append("candidate_id")
 
     missing_fields = _dedupe(missing_fields)
+    invalid_reasons = _dedupe(invalid_reasons)
+    if invalid_reasons and DIRECTION_UNASSIGNED_NON_EXECUTABLE in invalid_reasons:
+        status = DIRECTION_UNASSIGNED_NON_EXECUTABLE
+    elif invalid_reasons:
+        status = "invalid_side_non_executable"
+    else:
+        status = "complete" if not missing_fields else "incomplete"
     return {
         "present": True,
-        "complete": not missing_fields,
+        "complete": not missing_fields and not invalid_reasons,
         "missing_fields": missing_fields,
-        "status": "complete" if not missing_fields else "incomplete",
+        "status": status,
+        "invalid_reasons": invalid_reasons,
+        "direction_assigned": executable_side_valid,
+        "direction_source": _direction_source(order_request),
+        "executable_side_valid": executable_side_valid,
     }
 
 
@@ -406,6 +457,20 @@ def _next_recommended_step(status: str) -> str:
 
 def _dedupe(values: list[str]) -> list[str]:
     return list(dict.fromkeys(values))
+
+
+def _is_executable_internal_side(side: Any) -> bool:
+    return isinstance(side, str) and side in ALLOWED_EXECUTABLE_INTERNAL_SIDES
+
+
+def _direction_source(order_request: dict[str, Any]) -> str:
+    if isinstance(order_request.get("direction_source"), str) and order_request["direction_source"]:
+        return str(order_request["direction_source"])
+    if order_request.get("side") == REVIEW_ONLY_UNASSIGNED_SIDE:
+        return "locked_candidate_no_deterministic_direction_rule"
+    if _is_executable_internal_side(order_request.get("side")):
+        return "signal_snapshot_side"
+    return "order_request_side"
 
 
 def _nested_flag(report: dict[str, Any], candidate: dict[str, Any], key: str) -> Any:

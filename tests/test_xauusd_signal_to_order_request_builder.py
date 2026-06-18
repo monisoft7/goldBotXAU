@@ -126,6 +126,9 @@ def test_qualified_mocked_signal_builds_complete_internal_order_request(tmp_path
     assert report["signal_qualified"] is True
     assert report["order_request_present"] is True
     assert report["order_request_complete"] is True
+    assert report["direction_assigned"] is True
+    assert report["direction_source"] == "signal_snapshot_side"
+    assert report["executable_side_valid"] is True
     assert report["order_request_missing_fields"] == []
     assert report["order_request_validation_status"] == "complete"
     request = report["order_request"]
@@ -162,6 +165,40 @@ def test_incomplete_order_request_blocks(tmp_path: Path) -> None:
     assert "stop_loss_or_stop_distance" in report["order_request_missing_fields"]
     assert "take_profit_or_exit_rule" in report["order_request_missing_fields"]
     assert report["order_send_called"] is False
+
+
+def test_direction_unassigned_review_only_is_not_complete(tmp_path: Path) -> None:
+    signal = _qualified_signal()
+    signal["side"] = "direction_unassigned_review_only"
+    signal["direction_source"] = "locked_candidate_no_deterministic_direction_rule"
+
+    report = _build(tmp_path, signal_snapshot=signal)
+
+    assert report["builder_status"] == BLOCKED_INCOMPLETE_ORDER_REQUEST
+    assert report["signal_qualified"] is True
+    assert report["direction_assigned"] is False
+    assert report["direction_source"] == "locked_candidate_no_deterministic_direction_rule"
+    assert report["executable_side_valid"] is False
+    assert report["order_request_present"] is True
+    assert report["order_request_complete"] is False
+    assert report["order_request_validation_status"] == "direction_unassigned_non_executable"
+    assert report["invalid_order_request_reasons"] == ["direction_unassigned_non_executable"]
+    assert "side" in report["order_request_missing_fields"]
+    assert report["order_send_called"] is False
+    assert report["order_check_called"] is False
+
+
+def test_unknown_side_is_not_complete(tmp_path: Path) -> None:
+    signal = _qualified_signal()
+    signal["side"] = "review_later"
+
+    report = _build(tmp_path, signal_snapshot=signal)
+
+    assert report["builder_status"] == BLOCKED_INCOMPLETE_ORDER_REQUEST
+    assert report["executable_side_valid"] is False
+    assert report["order_request_complete"] is False
+    assert report["order_request_validation_status"] == "invalid_side_non_executable"
+    assert report["invalid_order_request_reasons"] == ["side_not_allowed_internal_executable_side"]
 
 
 def test_macro_event_window_blocks_before_signal_request(tmp_path: Path) -> None:

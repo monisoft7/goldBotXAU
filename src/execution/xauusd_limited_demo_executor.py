@@ -15,6 +15,9 @@ EXECUTOR_VERSION = "v0_42"
 SYMBOL = "XAUUSD"
 LOT = 0.01
 MAX_POSITIONS = 1
+ALLOWED_EXECUTABLE_INTERNAL_SIDES = frozenset({"long", "short"})
+REVIEW_ONLY_UNASSIGNED_SIDE = "direction_unassigned_review_only"
+DIRECTION_UNASSIGNED_NON_EXECUTABLE = "direction_unassigned_non_executable"
 REQUIRED_APPROVAL_TOKEN = "HUMAN_APPROVED_LIMITED_DEMO_EXECUTION_V0_42"
 DEFAULT_OUTPUT = Path("reports") / "xauusd_limited_demo_execution_v0_42.json"
 DEFAULT_READINESS_GATE_REPORT = Path("reports") / "xauusd_final_demo_readiness_gate_v0_41.json"
@@ -227,6 +230,10 @@ def build_xauusd_limited_demo_execution_v0_42(
         "order_request_complete": order_request_validation["complete"],
         "order_request_missing_fields": order_request_validation["missing_fields"],
         "order_request_validation_status": order_request_validation["status"],
+        "invalid_order_request_reasons": order_request_validation["invalid_reasons"],
+        "direction_assigned": order_request_validation["direction_assigned"],
+        "direction_source": order_request_validation["direction_source"],
+        "executable_side_valid": order_request_validation["executable_side_valid"],
         "macro_event_lock_enabled": macro_event_lock_enabled,
         "macro_event_lock_status": macro_status,
         "macro_event_window_used": macro_window_used,
@@ -474,6 +481,10 @@ def _order_request_validation(order_request: dict[str, Any] | None) -> dict[str,
             "complete": False,
             "missing_fields": ["order_request", "symbol", "lot", "demo_only", "side", "order_type", "action"],
             "status": "missing_order_request",
+            "invalid_reasons": [],
+            "direction_assigned": False,
+            "direction_source": "order_request_missing",
+            "executable_side_valid": False,
         }
 
     if order_request.get("symbol") != SYMBOL:
@@ -486,7 +497,14 @@ def _order_request_validation(order_request: dict[str, Any] | None) -> dict[str,
     if order_request.get("demo_only") is not True:
         missing_fields.append("demo_only")
 
-    if not _has_value(order_request, ("side", "order_side")):
+    side = order_request.get("side", order_request.get("order_side"))
+    executable_side_valid = _is_executable_internal_side(side)
+    invalid_reasons: list[str] = []
+    if side in (None, "", REVIEW_ONLY_UNASSIGNED_SIDE):
+        invalid_reasons.append(DIRECTION_UNASSIGNED_NON_EXECUTABLE)
+    elif not executable_side_valid:
+        invalid_reasons.append("side_not_allowed_internal_executable_side")
+    if not executable_side_valid:
         missing_fields.append("side")
     if not _has_value(order_request, ("order_type", "type")):
         missing_fields.append("order_type")
@@ -494,16 +512,42 @@ def _order_request_validation(order_request: dict[str, Any] | None) -> dict[str,
         missing_fields.append("action")
 
     missing_fields = _dedupe(missing_fields)
+    invalid_reasons = _dedupe(invalid_reasons)
+    if invalid_reasons and DIRECTION_UNASSIGNED_NON_EXECUTABLE in invalid_reasons:
+        status = DIRECTION_UNASSIGNED_NON_EXECUTABLE
+    elif invalid_reasons:
+        status = "invalid_side_non_executable"
+    else:
+        status = "complete" if not missing_fields else "incomplete"
     return {
         "present": True,
-        "complete": not missing_fields,
+        "complete": not missing_fields and not invalid_reasons,
         "missing_fields": missing_fields,
-        "status": "complete" if not missing_fields else "incomplete",
+        "status": status,
+        "invalid_reasons": invalid_reasons,
+        "direction_assigned": executable_side_valid,
+        "direction_source": _direction_source(order_request),
+        "executable_side_valid": executable_side_valid,
     }
 
 
 def _has_value(values: dict[str, Any], keys: tuple[str, ...]) -> bool:
     return any(values.get(key) not in (None, "") for key in keys)
+
+
+def _is_executable_internal_side(side: Any) -> bool:
+    return isinstance(side, str) and side in ALLOWED_EXECUTABLE_INTERNAL_SIDES
+
+
+def _direction_source(order_request: dict[str, Any]) -> str:
+    if isinstance(order_request.get("direction_source"), str) and order_request["direction_source"]:
+        return str(order_request["direction_source"])
+    side = order_request.get("side", order_request.get("order_side"))
+    if side == REVIEW_ONLY_UNASSIGNED_SIDE:
+        return "locked_candidate_no_deterministic_direction_rule"
+    if _is_executable_internal_side(side):
+        return "order_request_side"
+    return "order_request_side_invalid"
 
 
 def _number(value: Any) -> float | None:

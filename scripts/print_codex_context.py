@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_44_1"
+CONTEXT_VERSION = "v0_45_1"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -487,6 +487,47 @@ def _bounded_signal_watch_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _live_signal_snapshot_summary(root: Path) -> dict[str, Any] | None:
+    snapshot_path = root / "reports" / "xauusd_live_signal_snapshot_v0_45.json"
+    if not snapshot_path.exists():
+        return None
+    report = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    return {
+        "snapshot_version": report.get("snapshot_version"),
+        "snapshot_status": report.get("snapshot_status"),
+        "candidate_id": report.get("candidate_id"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "dry_run": report.get("dry_run"),
+        "symbol": report.get("symbol"),
+        "timeframes_requested": report.get("timeframes_requested"),
+        "mt5_read_only": report.get("mt5_read_only"),
+        "mt5_initialized": report.get("mt5_initialized"),
+        "mt5_shutdown_called": report.get("mt5_shutdown_called"),
+        "candles_loaded_by_timeframe": report.get("candles_loaded_by_timeframe"),
+        "latest_candle_time_by_timeframe": report.get("latest_candle_time_by_timeframe"),
+        "current_signal_snapshot_present": report.get("current_signal_snapshot_present"),
+        "signal_evaluated": report.get("signal_evaluated"),
+        "signal_qualified": report.get("signal_qualified"),
+        "signal_reason": report.get("signal_reason"),
+        "direction_assigned": report.get("direction_assigned"),
+        "direction_source": report.get("direction_source"),
+        "executable_side_valid": report.get("executable_side_valid"),
+        "order_request_present": report.get("order_request_present"),
+        "order_request_complete": report.get("order_request_complete"),
+        "order_request_validation_status": report.get("order_request_validation_status"),
+        "invalid_order_request_reasons": report.get("invalid_order_request_reasons"),
+        "review_request_present": report.get("review_request_present"),
+        "macro_event_lock_status": report.get("macro_event_lock_status"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -545,6 +586,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_limited_demo_execution": _limited_demo_execution_summary(root),
         "latest_signal_order_request": _signal_order_request_summary(root),
         "latest_bounded_signal_watch": _bounded_signal_watch_summary(root),
+        "latest_live_signal_snapshot": _live_signal_snapshot_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,
