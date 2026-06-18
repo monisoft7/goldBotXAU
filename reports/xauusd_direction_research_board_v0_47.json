@@ -1,0 +1,362 @@
+{
+  "best_candidate_id": "expansion_fade_direction",
+  "best_candidate_metrics": {
+    "train": {
+      "expectancy_r": -0.02935974061341059,
+      "gross_loss_r": 409.78267884988765,
+      "gross_profit_r": 390.2584513419696,
+      "losses": 300,
+      "max_consecutive_losses": 7,
+      "profit_factor": 0.95235467842927,
+      "timeframe_counts": {
+        "M10": 337,
+        "M5": 328
+      },
+      "trades": 665,
+      "win_rate": 0.5488721804511278,
+      "wins": 365
+    },
+    "validation": {
+      "expectancy_r": 0.0739936548925565,
+      "gross_loss_r": 55.37303085711115,
+      "gross_profit_r": 65.6581488871765,
+      "losses": 72,
+      "max_consecutive_losses": 6,
+      "profit_factor": 1.1857423708051282,
+      "timeframe_counts": {
+        "M10": 68,
+        "M5": 71
+      },
+      "trades": 139,
+      "win_rate": 0.48201438848920863,
+      "wins": 67
+    }
+  },
+  "best_candidate_passed_gate": false,
+  "blockers": [],
+  "board_status": "no_direction_candidate_passed",
+  "board_version": "v0_47",
+  "candidate_results": [
+    {
+      "candidate_id": "expansion_continuation_close_direction",
+      "combined_trade_count": 804,
+      "fixed_before_evaluation": true,
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "validation_expectancy_not_positive"
+      ],
+      "hypothesis_description": "Internal long if the response block closes above the compression high; internal short if it closes below the compression low.",
+      "hypothesis_name": "expansion_continuation_close_direction",
+      "metric_horizon": "next_fixed_six_hour_block_after_response_close",
+      "passed_gate": false,
+      "safety": {
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false
+      },
+      "skipped_event_count": 382,
+      "source_filter_candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "train_metrics": {
+        "expectancy_r": 0.02935974061341059,
+        "gross_loss_r": 390.2584513419696,
+        "gross_profit_r": 409.78267884988765,
+        "losses": 365,
+        "max_consecutive_losses": 7,
+        "profit_factor": 1.050028967830884,
+        "timeframe_counts": {
+          "M10": 337,
+          "M5": 328
+        },
+        "trades": 665,
+        "win_rate": 0.45112781954887216,
+        "wins": 300
+      },
+      "validation_metrics": {
+        "expectancy_r": -0.0739936548925565,
+        "gross_loss_r": 65.6581488871765,
+        "gross_profit_r": 55.37303085711115,
+        "losses": 67,
+        "max_consecutive_losses": 6,
+        "profit_factor": 0.84335351811793,
+        "timeframe_counts": {
+          "M10": 68,
+          "M5": 71
+        },
+        "trades": 139,
+        "win_rate": 0.5179856115107914,
+        "wins": 72
+      }
+    },
+    {
+      "candidate_id": "first_breakout_m5_confirmed_by_m10",
+      "combined_trade_count": 314,
+      "fixed_before_evaluation": true,
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "validation_expectancy_not_positive"
+      ],
+      "hypothesis_description": "Internal long if the first M5 break is above the compression high and the paired M10 response closes above its compression high; internal short on the mirrored downside condition.",
+      "hypothesis_name": "first_breakout_m5_confirmed_by_m10",
+      "metric_horizon": "next_fixed_six_hour_block_after_response_close",
+      "passed_gate": false,
+      "safety": {
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false
+      },
+      "skipped_event_count": 872,
+      "source_filter_candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "train_metrics": {
+        "expectancy_r": 0.0006483411950674822,
+        "gross_loss_r": 164.21660892455526,
+        "gross_profit_r": 164.38647431766296,
+        "losses": 146,
+        "max_consecutive_losses": 5,
+        "profit_factor": 1.001034398373101,
+        "timeframe_counts": {
+          "M5": 262
+        },
+        "trades": 262,
+        "win_rate": 0.44274809160305345,
+        "wins": 116
+      },
+      "validation_metrics": {
+        "expectancy_r": -0.1398966236970949,
+        "gross_loss_r": 25.71495744622132,
+        "gross_profit_r": 18.440333013972385,
+        "losses": 26,
+        "max_consecutive_losses": 3,
+        "profit_factor": 0.7171053287775164,
+        "timeframe_counts": {
+          "M5": 52
+        },
+        "trades": 52,
+        "win_rate": 0.5,
+        "wins": 26
+      }
+    },
+    {
+      "candidate_id": "response_block_body_direction",
+      "combined_trade_count": 1182,
+      "fixed_before_evaluation": true,
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "train_expectancy_not_positive",
+        "validation_expectancy_not_positive",
+        "train_max_consecutive_losses_above_fixed_gate"
+      ],
+      "hypothesis_description": "Internal long if the response block closes above its open; internal short if it closes below its open.",
+      "hypothesis_name": "response_block_body_direction",
+      "metric_horizon": "next_fixed_six_hour_block_after_response_close",
+      "passed_gate": false,
+      "safety": {
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false
+      },
+      "skipped_event_count": 4,
+      "source_filter_candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "train_metrics": {
+        "expectancy_r": -0.08456913139877402,
+        "gross_loss_r": 630.97135626362,
+        "gross_profit_r": 546.6559322590424,
+        "losses": 560,
+        "max_consecutive_losses": 12,
+        "profit_factor": 0.8663720259761671,
+        "timeframe_counts": {
+          "M10": 502,
+          "M5": 495
+        },
+        "trades": 997,
+        "win_rate": 0.4383149448345035,
+        "wins": 437
+      },
+      "validation_metrics": {
+        "expectancy_r": -0.02176965716507691,
+        "gross_loss_r": 74.21170599961737,
+        "gross_profit_r": 70.18431942407814,
+        "losses": 93,
+        "max_consecutive_losses": 7,
+        "profit_factor": 0.9457311145015317,
+        "timeframe_counts": {
+          "M10": 92,
+          "M5": 93
+        },
+        "trades": 185,
+        "win_rate": 0.4972972972972973,
+        "wins": 92
+      }
+    },
+    {
+      "candidate_id": "expansion_fade_direction",
+      "combined_trade_count": 804,
+      "fixed_before_evaluation": true,
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "train_expectancy_not_positive"
+      ],
+      "hypothesis_description": "Internal short after an upside response expansion; internal long after a downside response expansion.",
+      "hypothesis_name": "expansion_fade_direction",
+      "metric_horizon": "next_fixed_six_hour_block_after_response_close",
+      "passed_gate": false,
+      "safety": {
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false
+      },
+      "skipped_event_count": 382,
+      "source_filter_candidate_id": "xauusd_compression_then_expansion_v0_26",
+      "train_metrics": {
+        "expectancy_r": -0.02935974061341059,
+        "gross_loss_r": 409.78267884988765,
+        "gross_profit_r": 390.2584513419696,
+        "losses": 300,
+        "max_consecutive_losses": 7,
+        "profit_factor": 0.95235467842927,
+        "timeframe_counts": {
+          "M10": 337,
+          "M5": 328
+        },
+        "trades": 665,
+        "win_rate": 0.5488721804511278,
+        "wins": 365
+      },
+      "validation_metrics": {
+        "expectancy_r": 0.0739936548925565,
+        "gross_loss_r": 55.37303085711115,
+        "gross_profit_r": 65.6581488871765,
+        "losses": 72,
+        "max_consecutive_losses": 6,
+        "profit_factor": 1.1857423708051282,
+        "timeframe_counts": {
+          "M10": 68,
+          "M5": 71
+        },
+        "trades": 139,
+        "win_rate": 0.48201438848920863,
+        "wins": 67
+      }
+    }
+  ],
+  "data_csv_added": false,
+  "data_files_used": [
+    "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+    "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+  ],
+  "demo_execution_allowed": false,
+  "direction_hypotheses_evaluated": [
+    "expansion_continuation_close_direction",
+    "first_breakout_m5_confirmed_by_m10",
+    "response_block_body_direction",
+    "expansion_fade_direction"
+  ],
+  "fixed_gate": {
+    "max_consecutive_losses_max": 8,
+    "oos_used": false,
+    "train_expectancy_min_exclusive": 0.0,
+    "train_profit_factor_min": 1.15,
+    "validation_expectancy_min_exclusive": 0.0,
+    "validation_profit_factor_min": 1.1,
+    "validation_trades_min": 25
+  },
+  "live_allowed": false,
+  "next_recommended_step": "stop this path or design a new non-OOS research candidate",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false
+  },
+  "source_filter_candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "source_filter_preserved": true,
+  "source_filter_report_path": "C:\\Users\\THE BLU WALF\\Desktop\\goldBotXAU\\reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+  "source_filter_rules_modified": false,
+  "source_filter_summary": {
+    "candidate_id": "xauusd_compression_then_expansion_v0_26",
+    "fixed_rules": {
+      "compression_definition": "select the available fixed six-hour reference block with the lowest average bar range",
+      "forward_behavior_label": "next_block_expansion",
+      "hypothetical_event_outcome": "response block range is greater than selected compressed reference block range",
+      "parameter_grid_used": false,
+      "reference_blocks": [
+        "block_00_06",
+        "block_06_12",
+        "block_12_18"
+      ],
+      "response_blocks": [
+        "block_06_12",
+        "block_12_18",
+        "block_18_24"
+      ],
+      "retuning_used": false,
+      "threshold_search_used": false,
+      "tie_break": "earliest fixed reference block",
+      "time_basis": "dataset_timestamp_hour_buckets_only"
+    },
+    "oos_rows_used": 0,
+    "splits_used": [
+      "train",
+      "validation"
+    ],
+    "status": "train_validation_research_candidate_only"
+  },
+  "threshold_search_performed": false,
+  "train_validation_only": true,
+  "warnings": [
+    "research_only_direction_board_not_demo_execution",
+    "combined_m5_m10_counts_are_not_treated_as_independent_oos_evidence"
+  ]
+}

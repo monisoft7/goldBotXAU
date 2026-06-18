@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_46"
+    assert context["context_version"] == "v0_47"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 13000
+    assert len(context_text) < 14000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_46"
+    assert context["context_version"] == "v0_47"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_46.json"
+    output_path = tmp_path / "codex_context_v0_47.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_46"
+    assert context["context_version"] == "v0_47"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -542,3 +542,42 @@ def test_context_includes_v0_46_candidate_direction_provenance_summary() -> None
     assert audit["threshold_search_performed"] is False
     assert audit["parameter_grid_performed"] is False
     assert audit["repeated_oos_review"] is False
+
+
+def test_context_includes_v0_47_direction_research_board_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    board = context["latest_direction_research_board"]
+    assert board is not None
+    assert board["board_version"] == "v0_47"
+    assert board["board_status"] in {
+        "no_direction_candidate_passed",
+        "direction_candidate_passed_train_validation",
+        "blocked_missing_required_data",
+        "board_failed",
+    }
+    assert board["source_filter_candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert board["source_filter_preserved"] is True
+    assert board["train_validation_only"] is True
+    assert board["oos_used"] is False
+    assert board["direction_hypotheses_evaluated"] == [
+        "expansion_continuation_close_direction",
+        "first_breakout_m5_confirmed_by_m10",
+        "response_block_body_direction",
+        "expansion_fade_direction",
+    ]
+    assert board["best_candidate_id"] in {
+        "expansion_continuation_close_direction",
+        "first_breakout_m5_confirmed_by_m10",
+        "response_block_body_direction",
+        "expansion_fade_direction",
+        None,
+    }
+    assert board["best_candidate_passed_gate"] in {True, False}
+    assert board["demo_execution_allowed"] is False
+    assert board["order_send_called"] is False
+    assert board["order_check_called"] is False
+    assert board["live_allowed"] is False
+    assert board["retune_performed"] is False
+    assert board["threshold_search_performed"] is False
+    assert board["parameter_grid_performed"] is False

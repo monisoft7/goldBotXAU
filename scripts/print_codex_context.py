@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_46"
+CONTEXT_VERSION = "v0_47"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -558,6 +558,37 @@ def _candidate_direction_provenance_summary(root: Path) -> dict[str, Any] | None
     }
 
 
+def _direction_research_board_summary(root: Path) -> dict[str, Any] | None:
+    board_path = root / "reports" / "xauusd_direction_research_board_v0_47.json"
+    if not board_path.exists():
+        return None
+    report = json.loads(board_path.read_text(encoding="utf-8"))
+    best_metrics = report.get("best_candidate_metrics", {})
+    validation = best_metrics.get("validation", {}) if isinstance(best_metrics, dict) else {}
+    return {
+        "board_version": report.get("board_version"),
+        "board_status": report.get("board_status"),
+        "source_filter_candidate_id": report.get("source_filter_candidate_id"),
+        "source_filter_preserved": report.get("source_filter_preserved"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "direction_hypotheses_evaluated": report.get("direction_hypotheses_evaluated"),
+        "best_candidate_id": report.get("best_candidate_id"),
+        "best_candidate_passed_gate": report.get("best_candidate_passed_gate"),
+        "best_validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
+        "best_validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "blockers": len(report.get("blockers", [])) if isinstance(report.get("blockers"), list) else None,
+        "warnings": len(report.get("warnings", [])) if isinstance(report.get("warnings"), list) else None,
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -618,6 +649,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_bounded_signal_watch": _bounded_signal_watch_summary(root),
         "latest_live_signal_snapshot": _live_signal_snapshot_summary(root),
         "latest_candidate_direction_provenance_audit": _candidate_direction_provenance_summary(root),
+        "latest_direction_research_board": _direction_research_board_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

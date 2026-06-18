@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_46 candidate direction provenance audit
+- Last completed checkpoint: v0_47 executable direction research board
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 559 passed before v0_45_1; v0_46 targeted tests: 37 passed
+- Current test baseline: 574 passed before v0_47; v0_47 targeted tests: 37 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: locked candidate only, no retune
-- Execution status: dry-run only; v0_46 blocks demo execution direction readiness because no locked-candidate executable side rule was found
+- Execution status: dry-run only; v0_47 found no fixed train/validation direction candidate that passed the research board gate
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -18,11 +18,41 @@
 - Latest bounded signal watch: `reports/xauusd_bounded_signal_watch_v0_44.json`
 - Latest live signal snapshot: `reports/xauusd_live_signal_snapshot_v0_45.json`
 - Latest direction provenance audit: `reports/xauusd_candidate_direction_provenance_v0_46.json`
-- Latest checkpoint: `docs/checkpoints/v0_46_candidate_direction_provenance_audit_result.md`
-- Latest context pack: `reports/codex_context_v0_46.json`
-- Latest health report: `reports/project_health_v0_46.json`
-- Latest decision: `no_direction_rule_found_execution_blocked`
-- Next safe task: keep demo execution blocked unless a separate human-approved scope change defines executable direction outside this provenance audit
+- Latest direction research board: `reports/xauusd_direction_research_board_v0_47.json`
+- Latest checkpoint: `docs/checkpoints/v0_47_executable_direction_research_board_result.md`
+- Latest context pack: `reports/codex_context_v0_47.json`
+- Latest health report: `reports/project_health_v0_47.json`
+- Latest decision: `no_direction_candidate_passed`
+- Next safe task: stop this path or design a new non-OOS research candidate; do not promote to demo
+
+## v0_47 Executable Direction Research Board Result
+
+- Board module: `src/research/xauusd_executable_direction_research_board.py`
+- Board script: `scripts/run_xauusd_direction_research_board_v0_47.py`
+- Board report: `reports/xauusd_direction_research_board_v0_47.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Board status: `no_direction_candidate_passed`
+- Source filter preserved: `true`
+- Train/validation only: `true`
+- OOS used: `false`
+- Direction hypotheses evaluated: `expansion_continuation_close_direction`, `first_breakout_m5_confirmed_by_m10`, `response_block_body_direction`, `expansion_fade_direction`
+- Best candidate id: `expansion_fade_direction`
+- Best candidate passed gate: `false`
+- Best train profit factor: `0.95235467842927`
+- Best train expectancy: `-0.02935974061341059`
+- Best validation profit factor: `1.1857423708051282`
+- Best validation trades: `139`
+- Best validation expectancy: `0.0739936548925565`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Targeted tests: `37 passed`
+- Next recommended step: `stop this path or design a new non-OOS research candidate`
+
+v0_47 treated the locked v0_26 candidate as a non-executable market-state filter and evaluated only four fixed direction hypotheses on train/validation rows. No hypothesis passed the predeclared gate, so no locked directional candidate was created and demo execution remains blocked.
+
+No order sending, order checking, live trading, scheduler, execution queue, v0_26 candidate-rule change, retune, threshold search, parameter grid, repeated OOS, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_46 Candidate Direction Provenance Audit Result
 
