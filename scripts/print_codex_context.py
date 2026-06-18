@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_44"
+CONTEXT_VERSION = "v0_44_1"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -471,6 +471,11 @@ def _bounded_signal_watch_summary(root: Path) -> dict[str, Any] | None:
         "dry_run": report.get("dry_run"),
         "max_cycles": report.get("max_cycles"),
         "interval_seconds": report.get("interval_seconds"),
+        "sleep_enabled": report.get("sleep_enabled"),
+        "sleep_calls": report.get("sleep_calls"),
+        "total_planned_sleep_seconds": report.get("total_planned_sleep_seconds"),
+        "interval_seconds_honored": report.get("interval_seconds_honored"),
+        "no_sleep_reason": report.get("no_sleep_reason"),
         "cycles_completed": report.get("cycles_completed"),
         "stopped_early": report.get("stopped_early"),
         "latest_signal_qualified": report.get("latest_signal_qualified"),

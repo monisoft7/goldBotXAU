@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_44"
+    assert context["context_version"] == "v0_44_1"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_44"
+    assert context["context_version"] == "v0_44_1"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_44.json"
+    output_path = tmp_path / "codex_context_v0_44_1.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_44"
+    assert context["context_version"] == "v0_44_1"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -450,12 +450,12 @@ def test_context_includes_v0_43_signal_order_request_summary() -> None:
     assert builder["live_allowed"] is False
 
 
-def test_context_includes_v0_44_bounded_signal_watch_summary() -> None:
+def test_context_includes_v0_44_1_bounded_signal_watch_summary() -> None:
     context = build_codex_context(ROOT)
 
     watch = context["latest_bounded_signal_watch"]
     assert watch is not None
-    assert watch["watch_version"] == "v0_44"
+    assert watch["watch_version"] == "v0_44_1"
     assert watch["watch_status"] in {
         "completed_no_qualified_signal",
         "blocked_macro_event_window",
@@ -466,6 +466,10 @@ def test_context_includes_v0_44_bounded_signal_watch_summary() -> None:
     assert watch["dry_run"] is True
     assert watch["max_cycles"] == 6
     assert watch["interval_seconds"] == 300
+    assert watch["sleep_enabled"] is True
+    assert isinstance(watch["sleep_calls"], int)
+    assert isinstance(watch["total_planned_sleep_seconds"], int)
+    assert watch["interval_seconds_honored"] is True
     assert watch["order_send_called"] is False
     assert watch["order_check_called"] is False
     assert watch["live_allowed"] is False

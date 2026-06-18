@@ -26,9 +26,9 @@ def main() -> int:
     parser.add_argument("--json", action="store_true", required=True, dest="as_json")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument(
-        "--sleep-between-cycles",
+        "--no-sleep",
         action="store_true",
-        help="Actually sleep between bounded foreground dry-run cycles.",
+        help="Test/dev only: skip waiting between bounded foreground dry-run cycles.",
     )
     args = parser.parse_args()
 
@@ -38,7 +38,7 @@ def main() -> int:
         max_cycles=args.max_cycles,
         interval_seconds=args.interval_seconds,
         dry_run=args.dry_run,
-        sleep_between_cycles=args.sleep_between_cycles,
+        no_sleep=args.no_sleep,
     )
     save_xauusd_bounded_signal_watch(report, args.output)
 

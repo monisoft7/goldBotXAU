@@ -15,7 +15,7 @@ from src.execution.xauusd_signal_to_order_request_builder import (
 )
 from src.research.xauusd_forward_observation_runner import CANDIDATE_ID
 
-WATCH_VERSION = "v0_44"
+WATCH_VERSION = "v0_44_1"
 DEFAULT_OUTPUT = Path("reports") / "xauusd_bounded_signal_watch_v0_44.json"
 
 BLOCKED_INVALID_WATCH_PARAMETERS = "blocked_invalid_watch_parameters"
@@ -43,7 +43,7 @@ def run_xauusd_bounded_signal_watch_v0_44(
     interval_seconds: int = 300,
     dry_run: bool = True,
     builder: BuilderCallable = build_xauusd_signal_order_request_v0_43,
-    sleep_between_cycles: bool = False,
+    no_sleep: bool = False,
     sleeper: SleepCallable = time.sleep,
     builder_kwargs: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -53,6 +53,8 @@ def run_xauusd_bounded_signal_watch_v0_44(
     warnings: list[str] = []
     cycle_records: list[dict[str, Any]] = []
     latest_report: dict[str, Any] | None = None
+    sleep_enabled = no_sleep is not True
+    sleep_calls = 0
 
     if max_cycles < 1:
         blockers.append("max_cycles_must_be_at_least_1")
@@ -75,6 +77,9 @@ def run_xauusd_bounded_signal_watch_v0_44(
             cycle_records=cycle_records,
             blockers=blockers,
             warnings=warnings,
+            sleep_enabled=sleep_enabled,
+            sleep_calls=sleep_calls,
+            no_sleep_reason=_no_sleep_reason(no_sleep),
         )
 
     kwargs = dict(builder_kwargs or {})
@@ -102,6 +107,9 @@ def run_xauusd_bounded_signal_watch_v0_44(
                 cycle_records=cycle_records,
                 blockers=blockers,
                 warnings=warnings,
+                sleep_enabled=sleep_enabled,
+                sleep_calls=sleep_calls,
+                no_sleep_reason=_no_sleep_reason(no_sleep),
             )
 
         cycle_records.append(_cycle_record(cycle_number, latest_report))
@@ -120,6 +128,9 @@ def run_xauusd_bounded_signal_watch_v0_44(
                 cycle_records=cycle_records,
                 blockers=_dedupe([*blockers, "macro_event_lock_active"]),
                 warnings=warnings,
+                sleep_enabled=sleep_enabled,
+                sleep_calls=sleep_calls,
+                no_sleep_reason=_no_sleep_reason(no_sleep),
             )
 
         if latest_report.get("order_request_complete") is True:
@@ -136,9 +147,13 @@ def run_xauusd_bounded_signal_watch_v0_44(
                 cycle_records=cycle_records,
                 blockers=blockers,
                 warnings=warnings,
+                sleep_enabled=sleep_enabled,
+                sleep_calls=sleep_calls,
+                no_sleep_reason=_no_sleep_reason(no_sleep),
             )
 
-        if sleep_between_cycles and cycle_number < max_cycles:
+        if sleep_enabled and cycle_number < max_cycles:
+            sleep_calls += 1
             sleeper(float(interval_seconds))
 
     return _watch_report(
@@ -154,6 +169,9 @@ def run_xauusd_bounded_signal_watch_v0_44(
         cycle_records=cycle_records,
         blockers=blockers,
         warnings=warnings,
+        sleep_enabled=sleep_enabled,
+        sleep_calls=sleep_calls,
+        no_sleep_reason=_no_sleep_reason(no_sleep),
     )
 
 
@@ -177,9 +195,19 @@ def _watch_report(
     cycle_records: list[dict[str, Any]],
     blockers: list[str],
     warnings: list[str],
+    sleep_enabled: bool,
+    sleep_calls: int,
+    no_sleep_reason: str | None,
 ) -> dict[str, Any]:
     macro_status = _latest_value(latest_report, "macro_event_lock_status", "not_evaluated")
-    return {
+    total_planned_sleep_seconds = sleep_calls * interval_seconds
+    interval_seconds_honored = (
+        sleep_enabled
+        and max_cycles >= 1
+        and interval_seconds >= 1
+        and watch_status != BLOCKED_INVALID_WATCH_PARAMETERS
+    )
+    report = {
         "watch_version": WATCH_VERSION,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "watch_status": watch_status,
@@ -191,6 +219,10 @@ def _watch_report(
         "lot": lot,
         "max_cycles": max_cycles,
         "interval_seconds": interval_seconds,
+        "sleep_enabled": sleep_enabled,
+        "sleep_calls": sleep_calls,
+        "total_planned_sleep_seconds": total_planned_sleep_seconds,
+        "interval_seconds_honored": interval_seconds_honored,
         "cycles_completed": cycles_completed,
         "stopped_early": stopped_early,
         "stop_reason": stop_reason,
@@ -214,6 +246,9 @@ def _watch_report(
         "explicit_non_actions": _explicit_non_actions(),
         "next_recommended_step": _next_recommended_step(watch_status),
     }
+    if no_sleep_reason is not None:
+        report["no_sleep_reason"] = no_sleep_reason
+    return report
 
 
 def _cycle_record(cycle_number: int, builder_report: dict[str, Any]) -> dict[str, Any]:
@@ -268,6 +303,12 @@ def _explicit_non_actions() -> dict[str, bool]:
         "parameter_grid_performed": False,
         "oos_review_repeated": False,
     }
+
+
+def _no_sleep_reason(no_sleep: bool) -> str | None:
+    if no_sleep:
+        return "explicit_no_sleep_flag"
+    return None
 
 
 def _next_recommended_step(status: str) -> str:

@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_44 bounded signal watch runner
+- Last completed checkpoint: v0_44_1 real interval enforcement
 - OOS: evaluated once, marker locked, repeated review disallowed
 - Current test baseline: 524 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: locked candidate only, no retune
-- Execution status: dry-run only; v0_44 bounded watch calls the v0_43 builder and stops before any execution path
+- Execution status: dry-run only; v0_44_1 bounded watch calls the v0_43 builder, honors real intervals in foreground runs, and stops before any execution path
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -16,11 +16,37 @@
 - Latest limited demo execution scaffold: `reports/xauusd_limited_demo_execution_v0_42.json`
 - Latest signal order request builder: `reports/xauusd_signal_order_request_v0_43.json`
 - Latest bounded signal watch: `reports/xauusd_bounded_signal_watch_v0_44.json`
-- Latest checkpoint: `docs/checkpoints/v0_44_bounded_signal_watch_runner_result.md`
-- Latest context pack: `reports/codex_context_v0_44.json`
-- Latest health report: `reports/project_health_v0_44.json`
+- Latest checkpoint: `docs/checkpoints/v0_44_1_real_interval_enforcement_result.md`
+- Latest context pack: `reports/codex_context_v0_44_1.json`
+- Latest health report: `reports/project_health_v0_44_1.json`
 - Latest decision: `blocked_macro_event_window`
 - Next safe task: wait until the macro event window clears, then rerun the bounded dry-run watch if a fresh signal-to-order-request check is still desired
+
+## v0_44_1 Real Interval Enforcement Result
+
+- Watch module: `src/execution/xauusd_bounded_signal_watch_runner.py`
+- Watch script: `scripts/run_xauusd_bounded_signal_watch_v0_44.py`
+- Watch report: `reports/xauusd_bounded_signal_watch_v0_44.json`
+- Candidate id: `xauusd_compression_then_expansion_v0_26`
+- Watch version: `v0_44_1`
+- Watch status: `blocked_macro_event_window`
+- Max cycles: `6`
+- Interval seconds: `300`
+- Cycles completed: `1`
+- Stopped early: `true`
+- Stop reason: `blocked_macro_event_window`
+- Sleep enabled: `true`
+- Sleep calls: `0`
+- Total planned sleep seconds: `0`
+- Interval seconds honored: `true`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Targeted tests: `39 passed`
+
+v0_44_1 enforces real foreground intervals by default. Normal CLI runs sleep for `--interval-seconds` between non-final cycles; `--no-sleep` is now the explicit test/dev bypass and reports `no_sleep_reason=explicit_no_sleep_flag`.
+
+The latest report stopped on the active macro event window before any inter-cycle wait point, so `sleep_calls` is `0` while `sleep_enabled` and `interval_seconds_honored` remain `true`.
 
 ## v0_44 Bounded Signal Watch Runner Result
 

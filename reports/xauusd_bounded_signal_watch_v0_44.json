@@ -1,15 +1,24 @@
 {
-  "blockers": [
-    "macro_event_lock_active"
-  ],
+  "blockers": [],
   "candidate_id": "xauusd_compression_then_expansion_v0_26",
   "candidate_rules_preserved": true,
   "cycle_records": [
     {
-      "builder_status": "blocked_macro_event_window",
+      "builder_status": "no_qualified_signal_now",
       "cycle_number": 1,
       "live_allowed": false,
-      "macro_event_lock_status": "blocked_macro_event_window",
+      "macro_event_lock_status": "clear_static_manual_windows",
+      "order_check_called": false,
+      "order_request_complete": false,
+      "order_request_present": false,
+      "order_send_called": false,
+      "signal_qualified": false
+    },
+    {
+      "builder_status": "no_qualified_signal_now",
+      "cycle_number": 2,
+      "live_allowed": false,
+      "macro_event_lock_status": "clear_static_manual_windows",
       "order_check_called": false,
       "order_request_complete": false,
       "order_request_present": false,
@@ -17,7 +26,7 @@
       "signal_qualified": false
     }
   ],
-  "cycles_completed": 1,
+  "cycles_completed": 2,
   "dry_run": true,
   "explicit_non_actions": {
     "auto_execute_order_created": false,
@@ -35,9 +44,10 @@
     "trade_recommendation_output_created": false,
     "unbounded_loop_created": false
   },
-  "generated_at": "2026-06-17T18:43:57.503903+00:00",
-  "interval_seconds": 300,
-  "latest_builder_status": "blocked_macro_event_window",
+  "generated_at": "2026-06-18T08:26:17.939159+00:00",
+  "interval_seconds": 10,
+  "interval_seconds_honored": true,
+  "latest_builder_status": "no_qualified_signal_now",
   "latest_order_request": null,
   "latest_order_request_complete": false,
   "latest_order_request_present": false,
@@ -45,14 +55,16 @@
   "live_allowed": false,
   "lot": 0.01,
   "macro_event_lock_enabled": true,
-  "macro_event_lock_status": "blocked_macro_event_window",
-  "max_cycles": 6,
-  "next_recommended_step": "wait until the configured macro event window clears before another bounded dry-run watch",
+  "macro_event_lock_status": "clear_static_manual_windows",
+  "max_cycles": 2,
+  "next_recommended_step": "keep bounded dry-run watch only; no internal order request exists for review",
   "order_check_called": false,
   "order_send_called": false,
   "parameter_grid_performed": false,
   "repeated_oos_review": false,
   "retune_performed": false,
+  "sleep_calls": 1,
+  "sleep_enabled": true,
   "status_options": [
     "blocked_macro_event_window",
     "blocked_invalid_watch_parameters",
@@ -60,11 +72,12 @@
     "stopped_order_request_ready_for_human_review",
     "failed_builder_error"
   ],
-  "stop_reason": "blocked_macro_event_window",
-  "stopped_early": true,
+  "stop_reason": "completed_no_qualified_signal",
+  "stopped_early": false,
   "symbol": "XAUUSD",
   "threshold_search_performed": false,
+  "total_planned_sleep_seconds": 10,
   "warnings": [],
-  "watch_status": "blocked_macro_event_window",
-  "watch_version": "v0_44"
+  "watch_status": "completed_no_qualified_signal",
+  "watch_version": "v0_44_1"
 }
