@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_47 executable direction research board
+- Last completed checkpoint: v0_48 new directional strategy discovery board
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 574 passed before v0_47; v0_47 targeted tests: 37 passed
+- Current test baseline: 574 passed before v0_47; v0_48 targeted tests: 39 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
-- Strategy status: locked candidate only, no retune
-- Execution status: dry-run only; v0_47 found no fixed train/validation direction candidate that passed the research board gate
+- Strategy status: v0_26 compression/expansion closed as execution path; no retune
+- Execution status: research only; v0_48 found no new train/validation directional candidate that passed the fixed gate
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -19,11 +19,43 @@
 - Latest live signal snapshot: `reports/xauusd_live_signal_snapshot_v0_45.json`
 - Latest direction provenance audit: `reports/xauusd_candidate_direction_provenance_v0_46.json`
 - Latest direction research board: `reports/xauusd_direction_research_board_v0_47.json`
-- Latest checkpoint: `docs/checkpoints/v0_47_executable_direction_research_board_result.md`
-- Latest context pack: `reports/codex_context_v0_47.json`
-- Latest health report: `reports/project_health_v0_47.json`
-- Latest decision: `no_direction_candidate_passed`
-- Next safe task: stop this path or design a new non-OOS research candidate; do not promote to demo
+- Latest new directional discovery board: `reports/xauusd_new_directional_discovery_v0_48.json`
+- Latest checkpoint: `docs/checkpoints/v0_48_new_directional_strategy_discovery_result.md`
+- Latest context pack: `reports/codex_context_v0_48.json`
+- Latest health report: `reports/project_health_v0_48.json`
+- Latest decision: `no_new_directional_candidate_passed`
+- Next safe task: stop current research branch or create a broader non-OOS research plan; do not promote to demo
+
+## v0_48 New Directional Strategy Discovery Result
+
+- Board module: `src/research/xauusd_new_directional_strategy_discovery_board.py`
+- Board script: `scripts/run_xauusd_new_directional_discovery_v0_48.py`
+- Board report: `reports/xauusd_new_directional_discovery_v0_48.json`
+- Prior path closed: `xauusd_compression_then_expansion_v0_26`
+- Prior path closure reason: `no_executable_direction_rule_and_v0_47_direction_board_failed`
+- Board status: `no_new_directional_candidate_passed`
+- Train/validation only: `true`
+- OOS used: `false`
+- Directional families evaluated: `session_open_range_breakout_directional`, `prior_block_breakout_continuation_directional`, `failed_breakout_reversal_directional`, `trend_pullback_continuation_directional`
+- Best candidate id: `trend_pullback_continuation_directional`
+- Best candidate passed gate: `false`
+- Best train profit factor: `1.8816690460357557`
+- Best train expectancy: `0.2045491371207446`
+- Best validation profit factor: `4.1448723516886234`
+- Best validation trades: `16`
+- Best validation expectancy: `0.4564440182058163`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Targeted tests: `39 passed`
+- Next recommended step: `stop current research branch or create a broader non-OOS research plan`
+
+v0_48 evaluated four fixed inherently directional families on existing train/validation data only. No OOS rows were used, no thresholds or parameter grids were searched, and no retune was performed.
+
+No new family passed the fixed board gate. The strongest failed family, `trend_pullback_continuation_directional`, failed only on validation trade count: `16` trades versus the required `25`. All rejected candidates remain `rejected_do_not_retune`.
+
+No order sending, order checking, live trading, scheduler, execution queue, v0_26 candidate-rule change, retune, threshold search, parameter grid, OOS run, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_47 Executable Direction Research Board Result
 

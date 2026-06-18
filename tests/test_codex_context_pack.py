@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_47"
+    assert context["context_version"] == "v0_48"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 14000
+    assert len(context_text) < 15000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_47"
+    assert context["context_version"] == "v0_48"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_47.json"
+    output_path = tmp_path / "codex_context_v0_48.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_47"
+    assert context["context_version"] == "v0_48"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -571,6 +571,46 @@ def test_context_includes_v0_47_direction_research_board_summary() -> None:
         "first_breakout_m5_confirmed_by_m10",
         "response_block_body_direction",
         "expansion_fade_direction",
+        None,
+    }
+    assert board["best_candidate_passed_gate"] in {True, False}
+    assert board["demo_execution_allowed"] is False
+    assert board["order_send_called"] is False
+    assert board["order_check_called"] is False
+    assert board["live_allowed"] is False
+    assert board["retune_performed"] is False
+    assert board["threshold_search_performed"] is False
+    assert board["parameter_grid_performed"] is False
+
+
+def test_context_includes_v0_48_new_directional_discovery_board_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    board = context["latest_new_directional_discovery_board"]
+    assert board is not None
+    assert board["board_version"] == "v0_48"
+    assert board["board_status"] in {
+        "no_new_directional_candidate_passed",
+        "new_directional_candidate_passed_train_validation",
+        "blocked_missing_required_data",
+        "board_failed",
+    }
+    assert board["prior_path_closed"] == "xauusd_compression_then_expansion_v0_26"
+    assert board["prior_path_closure_reason"] == "no_executable_direction_rule_and_v0_47_direction_board_failed"
+    assert board["train_validation_only"] is True
+    assert board["oos_used"] is False
+    assert board["repeated_oos_review"] is False
+    assert board["directional_families_evaluated"] == [
+        "session_open_range_breakout_directional",
+        "prior_block_breakout_continuation_directional",
+        "failed_breakout_reversal_directional",
+        "trend_pullback_continuation_directional",
+    ]
+    assert board["best_candidate_id"] in {
+        "session_open_range_breakout_directional",
+        "prior_block_breakout_continuation_directional",
+        "failed_breakout_reversal_directional",
+        "trend_pullback_continuation_directional",
         None,
     }
     assert board["best_candidate_passed_gate"] in {True, False}
