@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_48 new directional strategy discovery board
+- Last completed checkpoint: v0_49 trend pullback sample stability audit
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 574 passed before v0_47; v0_48 targeted tests: 39 passed
+- Current test baseline: 574 passed before v0_47; v0_49 targeted tests: 38 passed
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_48 found no new train/validation directional candidate that passed the fixed gate
+- Execution status: research only; v0_49 audited the v0_48 best candidate and kept locking/demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -20,11 +20,52 @@
 - Latest direction provenance audit: `reports/xauusd_candidate_direction_provenance_v0_46.json`
 - Latest direction research board: `reports/xauusd_direction_research_board_v0_47.json`
 - Latest new directional discovery board: `reports/xauusd_new_directional_discovery_v0_48.json`
-- Latest checkpoint: `docs/checkpoints/v0_48_new_directional_strategy_discovery_result.md`
-- Latest context pack: `reports/codex_context_v0_48.json`
-- Latest health report: `reports/project_health_v0_48.json`
-- Latest decision: `no_new_directional_candidate_passed`
-- Next safe task: stop current research branch or create a broader non-OOS research plan; do not promote to demo
+- Latest trend pullback stability audit: `reports/xauusd_trend_pullback_stability_audit_v0_49.json`
+- Latest checkpoint: `docs/checkpoints/v0_49_trend_pullback_sample_stability_audit_result.md`
+- Latest context pack: `reports/codex_context_v0_49.json`
+- Latest health report: `reports/project_health_v0_49.json`
+- Latest decision: `promising_but_insufficient_validation_sample`
+- Next safe task: collect more train/validation-equivalent evidence or stop; do not lock candidate, run OOS, or promote to demo
+
+## v0_49 Trend Pullback Sample Stability Audit Result
+
+- Audit module: `src/research/xauusd_trend_pullback_sample_stability_audit.py`
+- Audit script: `scripts/audit_xauusd_trend_pullback_stability_v0_49.py`
+- Audit report: `reports/xauusd_trend_pullback_stability_audit_v0_49.json`
+- Source board version: `v0_48`
+- Candidate id: `trend_pullback_continuation_directional`
+- Candidate rules preserved: `true`
+- Audit status: `completed`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Train profit factor: `1.8816690460357557`
+- Train expectancy: `0.2045491371207446`
+- Train trades: `164`
+- Validation profit factor: `4.1448723516886234`
+- Validation expectancy: `0.4564440182058163`
+- Validation trades: `16`
+- Validation trade minimum: `25`
+- Validation trade count passed: `false`
+- Sample concentration risk: `high`
+- Fixed 0.05R cost edge broken: `false`
+- Stability decision: `promising_but_insufficient_validation_sample`
+- Candidate locking allowed pre-OOS: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Targeted tests: `38 passed`
+- Next recommended step: `collect more train/validation-equivalent evidence or stop; do not lock candidate or run OOS`
+
+v0_49 reconstructed the v0_48 fixed trend-pullback candidate on existing train/validation data only. It matched the v0_48 source metrics and did not modify candidate rules.
+
+The candidate remains promising but insufficient: validation PF and expectancy are strong, and fixed cost sensitivity does not break the edge, but validation has only `16` trades versus the fixed `25` minimum. Candidate locking, OOS, demo execution, and live execution remain blocked.
+
+No order sending, order checking, live trading, scheduler, execution queue, candidate-rule change, retune, threshold search, parameter grid, OOS run, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_48 New Directional Strategy Discovery Result
 

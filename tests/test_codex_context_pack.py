@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_48"
+    assert context["context_version"] == "v0_49"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 15000
+    assert len(context_text) < 16000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_48"
+    assert context["context_version"] == "v0_49"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_48.json"
+    output_path = tmp_path / "codex_context_v0_49.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_48"
+    assert context["context_version"] == "v0_49"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -621,3 +621,36 @@ def test_context_includes_v0_48_new_directional_discovery_board_summary() -> Non
     assert board["retune_performed"] is False
     assert board["threshold_search_performed"] is False
     assert board["parameter_grid_performed"] is False
+
+
+def test_context_includes_v0_49_trend_pullback_stability_audit_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_trend_pullback_stability_audit"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_49"
+    assert audit["audit_status"] in {"completed", "audit_failed_missing_required_data"}
+    assert audit["source_board_version"] == "v0_48"
+    assert audit["candidate_id"] == "trend_pullback_continuation_directional"
+    assert audit["candidate_rules_preserved"] in {True, False}
+    assert audit["train_validation_only"] is True
+    assert audit["oos_used"] is False
+    assert audit["repeated_oos_review"] is False
+    assert isinstance(audit["validation_trade_count"], int)
+    assert audit["validation_trade_minimum"] == 25
+    assert audit["validation_trade_count_passed"] in {True, False}
+    assert audit["sample_concentration_risk"] in {"low", "high", "unknown"}
+    assert audit["stability_decision"] in {
+        "promising_but_insufficient_validation_sample",
+        "unstable_reject",
+        "stable_enough_for_candidate_locking_pre_oos_review",
+        "audit_failed_missing_required_data",
+    }
+    assert audit["candidate_locking_allowed_pre_oos"] in {True, False}
+    assert audit["demo_execution_allowed"] is False
+    assert audit["order_send_called"] is False
+    assert audit["order_check_called"] is False
+    assert audit["live_allowed"] is False
+    assert audit["retune_performed"] is False
+    assert audit["threshold_search_performed"] is False
+    assert audit["parameter_grid_performed"] is False

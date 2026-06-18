@@ -1,0 +1,235 @@
+{
+  "audit_status": "completed",
+  "audit_version": "v0_49",
+  "blockers": [
+    "validation_trade_count_below_fixed_minimum_blocks_candidate_locking"
+  ],
+  "candidate_id": "trend_pullback_continuation_directional",
+  "candidate_locking_allowed_pre_oos": false,
+  "candidate_rules_preserved": true,
+  "cost_sensitivity_if_available": {
+    "available": true,
+    "cost_r_per_trade": 0.05,
+    "edge_broken_by_fixed_cost": false,
+    "method": "fixed_existing_framework_cost_r_per_trade_deduction",
+    "train_edge_ok_after_cost": true,
+    "train_metrics_after_cost": {
+      "expectancy_r": 0.1545491371207446,
+      "gross_loss_r": 41.16116704522008,
+      "gross_profit_r": 66.5072255330222,
+      "losses": 64,
+      "max_consecutive_losses": 3,
+      "profit_factor": 1.6157759924531943,
+      "timeframe_counts": {
+        "M10": 82,
+        "M5": 82
+      },
+      "trades": 164,
+      "win_rate": 0.6097560975609756,
+      "wins": 100
+    },
+    "validation_edge_ok_after_cost": true,
+    "validation_metrics_after_cost": {
+      "expectancy_r": 0.40644401820581627,
+      "gross_loss_r": 2.7137274003792875,
+      "gross_profit_r": 9.216831691672347,
+      "losses": 8,
+      "max_consecutive_losses": 3,
+      "profit_factor": 3.3963734494423226,
+      "timeframe_counts": {
+        "M10": 8,
+        "M5": 8
+      },
+      "trades": 16,
+      "win_rate": 0.5,
+      "wins": 8
+    }
+  },
+  "data_csv_added": false,
+  "data_files_used": [
+    "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+    "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+  ],
+  "demo_execution_allowed": false,
+  "execution_queue_created": false,
+  "live_allowed": false,
+  "next_recommended_step": "collect more train/validation-equivalent evidence or stop; do not lock candidate or run OOS",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false
+  },
+  "sample_concentration_risk": {
+    "reasons": [
+      "validation_trade_count_below_fixed_minimum",
+      "validation_trades_concentrated_in_single_session_or_block"
+    ],
+    "risk_level": "high",
+    "risk_present": true,
+    "validation_month_max_share": 0.375,
+    "validation_session_or_block_max_share": 1.0,
+    "validation_side_max_share": 0.625,
+    "validation_trade_count": 16,
+    "warnings": [
+      "sample_concentration_risk:validation_trade_count_below_fixed_minimum",
+      "sample_concentration_risk:validation_trades_concentrated_in_single_session_or_block"
+    ]
+  },
+  "scheduler_created": false,
+  "side_distribution": {
+    "train": {
+      "long": 88,
+      "short": 76
+    },
+    "validation": {
+      "long": 10,
+      "short": 6
+    }
+  },
+  "source_board_status": "no_new_directional_candidate_passed",
+  "source_board_version": "v0_48",
+  "stability_decision": "promising_but_insufficient_validation_sample",
+  "threshold_search_performed": false,
+  "trade_distribution_by_month": {
+    "train": {
+      "2023-01": 2,
+      "2023-03": 2,
+      "2023-04": 4,
+      "2023-05": 10,
+      "2023-06": 8,
+      "2023-07": 4,
+      "2023-08": 14,
+      "2023-09": 4,
+      "2023-10": 2,
+      "2023-11": 6,
+      "2023-12": 2,
+      "2024-01": 4,
+      "2024-02": 10,
+      "2024-03": 6,
+      "2024-04": 2,
+      "2024-05": 10,
+      "2024-06": 8,
+      "2024-07": 4,
+      "2024-08": 8,
+      "2024-09": 4,
+      "2024-10": 12,
+      "2024-11": 6,
+      "2024-12": 8,
+      "2025-01": 8,
+      "2025-02": 6,
+      "2025-03": 2,
+      "2025-04": 4,
+      "2025-06": 4
+    },
+    "validation": {
+      "2025-07": 4,
+      "2025-09": 4,
+      "2025-10": 6,
+      "2025-11": 2
+    }
+  },
+  "trade_distribution_by_session_or_block": {
+    "train": {
+      "block_12_18->block_18_24": 164
+    },
+    "validation": {
+      "block_12_18->block_18_24": 16
+    }
+  },
+  "trade_distribution_by_split": {
+    "train": {
+      "losses": 62,
+      "trades": 164,
+      "wins": 102
+    },
+    "validation": {
+      "losses": 6,
+      "trades": 16,
+      "wins": 10
+    }
+  },
+  "trade_distribution_by_year": {
+    "train": {
+      "2023": 58,
+      "2024": 82,
+      "2025": 24
+    },
+    "validation": {
+      "2025": 16
+    }
+  },
+  "trade_recommendation_output_present": false,
+  "train_metrics": {
+    "expectancy_r": 0.2045491371207446,
+    "gross_loss_r": 38.04835685071976,
+    "gross_profit_r": 71.59441533852187,
+    "losses": 62,
+    "max_consecutive_losses": 3,
+    "profit_factor": 1.8816690460357557,
+    "timeframe_counts": {
+      "M10": 82,
+      "M5": 82
+    },
+    "trades": 164,
+    "win_rate": 0.6219512195121951,
+    "wins": 102
+  },
+  "train_validation_degradation": {
+    "expectancy_delta_validation_minus_train": 0.25189488108507174,
+    "profit_factor_delta_validation_minus_train": 2.2632033056528678,
+    "validation_expectancy_improved_vs_train": true,
+    "validation_pf_improved_vs_train": true
+  },
+  "train_validation_only": true,
+  "validation_metrics": {
+    "expectancy_r": 0.4564440182058163,
+    "gross_loss_r": 2.3222259839486634,
+    "gross_profit_r": 9.625330275241724,
+    "losses": 6,
+    "max_consecutive_losses": 3,
+    "profit_factor": 4.1448723516886234,
+    "timeframe_counts": {
+      "M10": 8,
+      "M5": 8
+    },
+    "trades": 16,
+    "win_rate": 0.625,
+    "wins": 10
+  },
+  "validation_trade_count": 16,
+  "validation_trade_count_passed": false,
+  "validation_trade_minimum": 25,
+  "warnings": [
+    "audit_only_no_oos_no_demo_promotion",
+    "candidate_rules_reconstructed_from_v0_48_fixed_family_rule",
+    "sample_concentration_risk:validation_trade_count_below_fixed_minimum",
+    "sample_concentration_risk:validation_trades_concentrated_in_single_session_or_block"
+  ],
+  "win_loss_streaks": {
+    "train": {
+      "max_consecutive_losses": 6,
+      "max_consecutive_wins": 12
+    },
+    "validation": {
+      "max_consecutive_losses": 6,
+      "max_consecutive_wins": 6
+    }
+  }
+}
