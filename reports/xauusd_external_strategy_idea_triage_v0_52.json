@@ -1,0 +1,395 @@
+{
+  "blockers": [],
+  "data_csv_added_to_git": false,
+  "deduplicated_idea_count": 8,
+  "demo_execution_allowed": false,
+  "external_sources_considered": [
+    "Claude",
+    "DeepSeek",
+    "Gemini",
+    "GLM",
+    "Perplexity",
+    "Qwen/QwinMax"
+  ],
+  "idea_records": [
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "Sweep previous day high or low, close back inside the prior-day range, then study a fixed reversal response.",
+      "family_id": "liquidity_sweep_reversal",
+      "idea_id": "prior_day_liquidity_sweep_reversal",
+      "penalty_notes": [],
+      "profitability_claimed": false,
+      "rank_score": 38,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 5,
+        "low_parameterization": 5,
+        "mechanical_rule_clarity": 5,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 5
+      },
+      "source_model_notes": [
+        "prior_day_reference",
+        "close_back_inside_required",
+        "mechanical_reversal_template"
+      ],
+      "sufficiently_mechanical_for_v0_53": true,
+      "total_score": 38
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "Use the London 07:00 UTC first 15m/30m candle or opening range as a fixed directional setup.",
+      "family_id": "london_opening_range_direction",
+      "idea_id": "london_opening_range_breakout_or_first_candle_direction",
+      "penalty_notes": [],
+      "profitability_claimed": false,
+      "rank_score": 37,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 5,
+        "implementation_simplicity": 4,
+        "low_parameterization": 5,
+        "mechanical_rule_clarity": 5,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source_model_notes": [
+        "london_open_reference",
+        "fixed_time_window",
+        "range_or_first_candle_variant"
+      ],
+      "sufficiently_mechanical_for_v0_53": true,
+      "total_score": 37
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "Build the Asian high/low range, then require a London M15 close outside that range.",
+      "family_id": "asian_range_london_breakout",
+      "idea_id": "asian_range_london_breakout_confirmation",
+      "penalty_notes": [],
+      "profitability_claimed": false,
+      "rank_score": 36,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 4,
+        "mechanical_rule_clarity": 5,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 5
+      },
+      "source_model_notes": [
+        "asian_range_reference",
+        "london_close_confirmation",
+        "mechanical_range_breakout"
+      ],
+      "sufficiently_mechanical_for_v0_53": true,
+      "total_score": 36
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "Study stretch from session VWAP followed by a close back inside a fixed band.",
+      "family_id": "vwap_mean_reversion",
+      "idea_id": "vwap_mean_reversion",
+      "penalty_notes": [
+        "penalized_needs_vwap_and_volume_quality_validation",
+        "penalized_band_definition_can_become_arbitrary_threshold"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 27,
+      "scorecard": {
+        "available_data_compatibility": 2,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 2,
+        "low_parameterization": 2,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source_model_notes": [
+        "session_vwap",
+        "band_reentry",
+        "volume_quality_dependency"
+      ],
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 27
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "Unusually large M15 candle followed by an opposite confirmation candle.",
+      "family_id": "atr_exhaustion_reversal",
+      "idea_id": "atr_exhaustion_reversal",
+      "penalty_notes": [
+        "penalized_resembles_failed_exhaustion_reversal_branches",
+        "penalized_large_candle_definition_requires_threshold_discipline"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 26,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 1,
+        "expected_trade_frequency": 3,
+        "implementation_simplicity": 4,
+        "low_parameterization": 2,
+        "mechanical_rule_clarity": 3,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 3
+      },
+      "source_model_notes": [
+        "large_m15_candle",
+        "opposite_confirmation",
+        "threshold_sensitive"
+      ],
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 26
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "NR7 or inside-day breakout with fixed direction logic.",
+      "family_id": "nr7_inside_day_expansion",
+      "idea_id": "nr7_inside_day_expansion",
+      "penalty_notes": [
+        "penalized_low_trade_frequency"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 28,
+      "scorecard": {
+        "available_data_compatibility": 4,
+        "difference_from_failed_candidates": 3,
+        "expected_trade_frequency": 2,
+        "implementation_simplicity": 3,
+        "low_parameterization": 4,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 3
+      },
+      "source_model_notes": [
+        "daily_compression",
+        "fixed_breakout",
+        "low_frequency"
+      ],
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 28
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "NY break of the London range with fixed range and confirmation definitions.",
+      "family_id": "london_ny_range_extension",
+      "idea_id": "london_ny_range_extension",
+      "penalty_notes": [
+        "penalized_overlap_with_range_expansion_failed_branches"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 33,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 3,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 4,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source_model_notes": [
+        "london_range_reference",
+        "ny_extension_window"
+      ],
+      "sufficiently_mechanical_for_v0_53": true,
+      "total_score": 33
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "deduplication_status": "primary_unique_strategy_family",
+      "description": "Weekend gap reversion toward the prior Friday close.",
+      "family_id": "weekend_gap_fill",
+      "idea_id": "weekend_gap_fill",
+      "penalty_notes": [
+        "penalized_too_low_trade_frequency"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 29,
+      "scorecard": {
+        "available_data_compatibility": 3,
+        "difference_from_failed_candidates": 5,
+        "expected_trade_frequency": 1,
+        "implementation_simplicity": 3,
+        "low_parameterization": 4,
+        "mechanical_rule_clarity": 5,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 3
+      },
+      "source_model_notes": [
+        "friday_close_reference",
+        "monday_gap",
+        "low_frequency"
+      ],
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 29
+    }
+  ],
+  "live_allowed": false,
+  "next_recommended_step": "design v0_53 fixed-rule train/validation-only board for the shortlisted ideas; no OOS, retune, threshold search, parameter grid, or execution",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "prior_failed_branches_considered": [
+    {
+      "branch_id": "xauusd_atr_impulse_reversion_v0_7",
+      "status": "rejected_do_not_retune",
+      "triage_note": "ATR impulse/exhaustion reversal ideas are penalized for resemblance and threshold risk."
+    },
+    {
+      "branch_id": "xauusd_multi_bar_exhaustion_reversion_v0_8",
+      "status": "rejected_do_not_retune",
+      "triage_note": "Exhaustion reversal variants are not treated as fresh evidence."
+    },
+    {
+      "branch_id": "session_volatility_expansion_v0_11",
+      "status": "rejected_do_not_retune",
+      "triage_note": "Session expansion concepts must avoid retuning this failed branch."
+    },
+    {
+      "branch_id": "low_atr_range_expansion_followthrough_v0_14",
+      "status": "rejected_do_not_retune",
+      "triage_note": "Range expansion ideas are penalized if they require threshold search."
+    },
+    {
+      "branch_id": "low_atr_x_hour_16_v0_17",
+      "status": "rejected_do_not_retune",
+      "triage_note": "Single-hour or low-ATR variants are not retuned."
+    },
+    {
+      "branch_id": "xauusd_spike_fixed_candidate_v0_23",
+      "status": "rejected_do_not_retune",
+      "triage_note": "Spike/exhaustion reversal concepts are treated cautiously."
+    },
+    {
+      "branch_id": "xauusd_compression_then_expansion_v0_26",
+      "status": "closed_as_execution_path_do_not_retune",
+      "triage_note": "Locked compression-expansion evidence remains historical and is not modified."
+    },
+    {
+      "branch_id": "trend_pullback_continuation_directional_v0_51",
+      "status": "expanded_evidence_failed_do_not_promote",
+      "triage_note": "Trend-pullback continuation is preserved as failed expanded evidence."
+    }
+  ],
+  "raw_idea_ids": [
+    "prior_day_liquidity_sweep_reversal",
+    "london_opening_range_breakout_or_first_candle_direction",
+    "asian_range_london_breakout_confirmation",
+    "ny_liquidity_sweep_reversal",
+    "m15_failed_swing_breakout_reversal",
+    "vwap_mean_reversion",
+    "atr_exhaustion_reversal",
+    "nr7_inside_day_expansion",
+    "london_ny_range_extension",
+    "weekend_gap_fill"
+  ],
+  "rejected_ideas": [
+    {
+      "backtest_implemented": false,
+      "duplicate_of": "prior_day_liquidity_sweep_reversal",
+      "family_id": "liquidity_sweep_reversal",
+      "idea_id": "ny_liquidity_sweep_reversal",
+      "profitability_claimed": false,
+      "reason": "same sweep-and-close-back-inside reversal family; time window can be a future variant after primary family testing",
+      "rejection_status": "deduplicated_variant_not_shortlisted"
+    },
+    {
+      "backtest_implemented": false,
+      "duplicate_of": "prior_day_liquidity_sweep_reversal",
+      "family_id": "liquidity_sweep_reversal",
+      "idea_id": "m15_failed_swing_breakout_reversal",
+      "profitability_claimed": false,
+      "reason": "same failed breakout/liquidity sweep reversal family with a more discretionary swing definition",
+      "rejection_status": "deduplicated_variant_not_shortlisted"
+    }
+  ],
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "backtest_implemented": false,
+    "candidate_created": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_evaluation": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "scoring_method": {
+    "backtests_run": false,
+    "dimensions": [
+      "mechanical_rule_clarity",
+      "expected_trade_frequency",
+      "xauusd_structural_logic",
+      "available_data_compatibility",
+      "low_parameterization",
+      "difference_from_failed_candidates",
+      "oos_safety",
+      "implementation_simplicity"
+    ],
+    "penalties_applied_for": [
+      "needs_vwap_if_volume_quality_unreliable",
+      "too_low_trade_frequency",
+      "resembles_failed_branch_too_closely",
+      "requires_arbitrary_thresholds",
+      "requires_external_news_calendar",
+      "relies_on_vague_discretionary_smc_language"
+    ],
+    "profitability_evidence_used": false,
+    "score_range": "0_to_5_each_dimension",
+    "sufficiently_mechanical_rule": "mechanical_rule_clarity>=4, available_data_compatibility>=4, low_parameterization>=4, and total_score>=32",
+    "total_score_max": 40
+  },
+  "shortlist_for_v0_53": [
+    "prior_day_liquidity_sweep_reversal",
+    "london_opening_range_breakout_or_first_candle_direction",
+    "asian_range_london_breakout_confirmation"
+  ],
+  "threshold_search_performed": false,
+  "top_ranked_idea_id": "prior_day_liquidity_sweep_reversal",
+  "total_raw_ideas": 10,
+  "train_validation_only": true,
+  "triage_status": "shortlist_ready_for_v0_53_non_oos_board",
+  "triage_version": "v0_52",
+  "warnings": [
+    "external_model_ideas_are_hypotheses_not_profitability_evidence",
+    "shortlist_is_for_future_train_validation_board_design_only",
+    "deduplicated_sweep_variants_require_one_primary_family_test_before_variants"
+  ]
+}

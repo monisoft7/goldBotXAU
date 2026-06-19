@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_51"
+CONTEXT_VERSION = "v0_52"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -679,7 +679,6 @@ def _historical_data_expansion_feasibility_summary(root: Path) -> dict[str, Any]
         "retune_performed": report.get("retune_performed"),
         "threshold_search_performed": report.get("threshold_search_performed"),
         "parameter_grid_performed": report.get("parameter_grid_performed"),
-        "next_recommended_step": report.get("next_recommended_step"),
     }
 
 
@@ -718,7 +717,32 @@ def _trend_pullback_expanded_retest_summary(root: Path) -> dict[str, Any] | None
         "order_check_called": report.get("order_check_called"),
         "live_allowed": report.get("live_allowed"),
         "data_csv_added_to_git": report.get("data_csv_added_to_git"),
-        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
+def _external_strategy_idea_triage_summary(root: Path) -> dict[str, Any] | None:
+    triage_path = root / "reports" / "xauusd_external_strategy_idea_triage_v0_52.json"
+    if not triage_path.exists():
+        return None
+    report = json.loads(triage_path.read_text(encoding="utf-8"))
+    return {
+        "triage_version": report.get("triage_version"),
+        "triage_status": report.get("triage_status"),
+        "total_raw_ideas": report.get("total_raw_ideas"),
+        "deduplicated_idea_count": report.get("deduplicated_idea_count"),
+        "shortlist_for_v0_53": report.get("shortlist_for_v0_53"),
+        "top_ranked_idea_id": report.get("top_ranked_idea_id"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
     }
 
 
@@ -787,6 +811,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_trend_pullback_stability_audit": _trend_pullback_stability_audit_summary(root),
         "latest_historical_data_expansion_feasibility": _historical_data_expansion_feasibility_summary(root),
         "latest_trend_pullback_expanded_retest": _trend_pullback_expanded_retest_summary(root),
+        "latest_external_strategy_idea_triage": _external_strategy_idea_triage_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,
@@ -798,7 +823,6 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
             "no_trade_recommendation_output": True,
             "oos_locked": True,
         },
-        "recommended_next_step": _recommended_next_step(root),
     }
 
 

@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_51 fixed-rule expanded train/validation retest
+- Last completed checkpoint: v0_52 external strategy idea intake triage
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 41 passed for v0_51 targeted tests; prior broad baseline 574 passed before v0_47
+- Current test baseline: 43 passed for v0_52 targeted tests; prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_51 retested older read-only MT5 low-timeframe data and kept demo/OOS blocked
+- Execution status: research only; v0_52 recorded and ranked external ideas only, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -23,11 +23,40 @@
 - Latest trend pullback stability audit: `reports/xauusd_trend_pullback_stability_audit_v0_49.json`
 - Latest historical data expansion feasibility audit: `reports/xauusd_historical_data_expansion_feasibility_v0_50.json`
 - Latest trend pullback expanded retest: `reports/xauusd_trend_pullback_expanded_retest_v0_51.json`
-- Latest checkpoint: `docs/checkpoints/v0_51_trend_pullback_expanded_retest_result.md`
-- Latest context pack: `reports/codex_context_v0_51.json`
-- Latest health report: `reports/project_health_v0_51.json`
-- Latest decision: `expanded_evidence_failed`
-- Next safe task: stop `trend_pullback_continuation_directional` branch or broaden non-OOS research; do not run OOS, retune, threshold search, parameter grid, or promote to demo
+- Latest external strategy idea triage: `reports/xauusd_external_strategy_idea_triage_v0_52.json`
+- Latest checkpoint: `docs/checkpoints/v0_52_external_strategy_idea_triage_result.md`
+- Latest context pack: `reports/codex_context_v0_52.json`
+- Latest health report: `reports/project_health_v0_52.json`
+- Latest decision: `shortlist_ready_for_v0_53_non_oos_board`
+- Next safe task: design v0_53 fixed-rule train/validation-only board for the shortlisted ideas; do not run OOS, retune, threshold search, parameter grid, backtests beyond the board scope, or demo/live execution
+
+## v0_52 External Strategy Idea Intake Triage Result
+
+- Triage module: `src/research/xauusd_external_strategy_idea_triage.py`
+- Triage script: `scripts/run_xauusd_external_strategy_idea_triage_v0_52.py`
+- Triage report: `reports/xauusd_external_strategy_idea_triage_v0_52.json`
+- Triage status: `shortlist_ready_for_v0_53_non_oos_board`
+- Total raw ideas: `10`
+- Deduplicated idea count: `8`
+- Top ranked idea id: `prior_day_liquidity_sweep_reversal`
+- Shortlist for v0_53: `prior_day_liquidity_sweep_reversal`, `london_opening_range_breakout_or_first_candle_direction`, `asian_range_london_breakout_confirmation`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `43 passed`
+- Next recommended step: `design v0_53 fixed-rule train/validation-only board for the shortlisted ideas; no OOS, retune, threshold search, parameter grid, or execution`
+
+v0_52 is intake and triage only. It did not evaluate profitability, did not create a strategy candidate, did not implement a backtest, and did not promote any branch.
+
+No order sending, order checking, live trading, scheduler, execution queue, strategy evaluation, backtest implementation, candidate creation, retune, threshold search, parameter grid, OOS run, repeated OOS review, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_51 Trend Pullback Expanded Retest Result
 

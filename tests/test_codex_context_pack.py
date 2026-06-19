@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_51"
+    assert context["context_version"] == "v0_52"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_51"
+    assert context["context_version"] == "v0_52"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_51.json"
+    output_path = tmp_path / "codex_context_v0_52.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_51"
+    assert context["context_version"] == "v0_52"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -726,3 +726,34 @@ def test_context_includes_v0_51_trend_pullback_expanded_retest_summary() -> None
     assert retest["order_check_called"] is False
     assert retest["live_allowed"] is False
     assert retest["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_52_external_strategy_idea_triage_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    triage = context["latest_external_strategy_idea_triage"]
+    assert triage is not None
+    assert triage["triage_version"] == "v0_52"
+    assert triage["triage_status"] in {
+        "shortlist_ready_for_v0_53_non_oos_board",
+        "insufficient_external_ideas_after_triage",
+    }
+    assert triage["total_raw_ideas"] == 10
+    assert triage["deduplicated_idea_count"] == 8
+    assert triage["top_ranked_idea_id"] == "prior_day_liquidity_sweep_reversal"
+    assert triage["shortlist_for_v0_53"] == [
+        "prior_day_liquidity_sweep_reversal",
+        "london_opening_range_breakout_or_first_candle_direction",
+        "asian_range_london_breakout_confirmation",
+    ]
+    assert triage["train_validation_only"] is True
+    assert triage["oos_used"] is False
+    assert triage["repeated_oos_review"] is False
+    assert triage["retune_performed"] is False
+    assert triage["threshold_search_performed"] is False
+    assert triage["parameter_grid_performed"] is False
+    assert triage["demo_execution_allowed"] is False
+    assert triage["order_send_called"] is False
+    assert triage["order_check_called"] is False
+    assert triage["live_allowed"] is False
+    assert triage["data_csv_added_to_git"] is False
