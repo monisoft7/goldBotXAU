@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_56"
+CONTEXT_VERSION = "v0_58"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -810,11 +810,7 @@ def _session_block_bias_eval_summary(root: Path) -> dict[str, Any] | None:
         "retune_performed": report.get("retune_performed"),
         "threshold_search_performed": report.get("threshold_search_performed"),
         "parameter_grid_performed": report.get("parameter_grid_performed"),
-        "train_profit_factor": train.get("profit_factor") if isinstance(train, dict) else None,
-        "train_expectancy_r": train.get("expectancy_r") if isinstance(train, dict) else None,
         "train_trades": train.get("trades") if isinstance(train, dict) else None,
-        "validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
-        "validation_expectancy_r": validation.get("expectancy_r") if isinstance(validation, dict) else None,
         "validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
         "candidate_passed_train_validation_gate": report.get("candidate_passed_train_validation_gate"),
         "candidate_locking_allowed_pre_oos": report.get("candidate_locking_allowed_pre_oos"),
@@ -824,9 +820,68 @@ def _session_block_bias_eval_summary(root: Path) -> dict[str, Any] | None:
         "order_check_called": report.get("order_check_called"),
         "live_allowed": report.get("live_allowed"),
         "data_csv_added_to_git": report.get("data_csv_added_to_git"),
-        "blockers": len(report.get("blockers", [])) if isinstance(report.get("blockers"), list) else None,
+    }
+
+
+def _volatility_regime_lead_viability_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = root / "reports" / "xauusd_volatility_regime_lead_viability_v0_57.json"
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    sufficiency = report.get("validation_sample_sufficiency", {})
+    feasibility = report.get("candidate_design_feasibility", {})
+    concentration = report.get("sample_concentration_risk", {})
+    recommended = report.get("recommended_v0_58_candidate_design", {})
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "lead_id": report.get("lead_id"),
+        "session_block_branch_rejected": report.get("session_block_branch_rejected"),
+        "volatility_lead_viability_decision": report.get("volatility_lead_viability_decision"),
+        "candidate_design_feasible_for_v0_58": feasibility.get("candidate_design_feasible_for_v0_58")
+        if isinstance(feasibility, dict)
+        else None,
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+    }
+
+
+def _research_lab_integrity_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = root / "reports" / "xauusd_research_lab_integrity_audit_v0_58.json"
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    data = report.get("data_integrity", {})
+    split = report.get("split_integrity", {})
+    accounting = report.get("trade_accounting_integrity", {})
+    prior = report.get("prior_report_consistency", {})
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "purpose": report.get("purpose"),
+        "lab_integrity_decision": report.get("lab_integrity_decision"),
+        "critical_findings": len(report.get("critical_findings", [])) if isinstance(report.get("critical_findings"), list) else None,
         "warnings": len(report.get("warnings", [])) if isinstance(report.get("warnings"), list) else None,
-        "next_recommended_step": report.get("next_recommended_step"),
+        "data_timeframes": sorted(data.get("timeframes", {}).keys()) if isinstance(data, dict) and isinstance(data.get("timeframes"), dict) else [],
+        "split_boundaries_valid": split.get("chronological_boundaries_valid") if isinstance(split, dict) else None,
+        "oos_rows_excluded": split.get("oos_rows_excluded_from_train_validation_tools") if isinstance(split, dict) else None,
+        "trade_accounting_passed": not accounting.get("critical_findings") if isinstance(accounting, dict) else None,
+        "prior_reports_consistent": prior.get("safety_flags_valid") if isinstance(prior, dict) else None,
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "executable_candidate_created": report.get("executable_candidate_created"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
     }
 
 
@@ -901,6 +956,8 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_edge_profiler": _edge_profiler_summary(root),
         "latest_session_volatility_design": _session_volatility_design_summary(root),
         "latest_session_block_bias_eval": _session_block_bias_eval_summary(root),
+        "latest_volatility_regime_lead_viability": _volatility_regime_lead_viability_summary(root),
+        "latest_research_lab_integrity_audit": _research_lab_integrity_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

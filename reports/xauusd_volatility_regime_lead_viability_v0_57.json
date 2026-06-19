@@ -1,0 +1,252 @@
+{
+  "audit_status": "volatility_lead_viability_completed",
+  "audit_version": "v0_57",
+  "blockers": [],
+  "candidate_design_feasibility": {
+    "arbitrary_threshold_required": false,
+    "can_produce_at_least_50_validation_trades_under_fixed_rules": true,
+    "candidate_design_feasible_for_v0_58": false,
+    "differs_materially_from_failed_session_block_candidate": true,
+    "fixed_structure_under_review": "upper_half_existing_v0_54_volatility_quartile_labels",
+    "reasons": [
+      "fixed_rule_sample_concentration_risk_high"
+    ],
+    "simple_mechanical_candidate_possible": true,
+    "uses_only_existing_v0_54_regime_labels": true
+  },
+  "data_csv_added_to_git": false,
+  "data_files_used": [
+    "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+  ],
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "lead_id": "volatility_regime_profile",
+  "live_allowed": false,
+  "next_recommended_step": "stop profiler-lead branch or broaden non-OOS research.",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "recommended_v0_58_candidate_design": {},
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true,
+    "viability_audit_only": true
+  },
+  "sample_concentration_risk": {
+    "month_share_limit": 0.35,
+    "reasons": [
+      "validation_fixed_elevated_regime_observations_concentrated_in_single_year"
+    ],
+    "risk_level": "high",
+    "risk_present": true,
+    "validation_fixed_elevated_observations": 116,
+    "validation_month_max_share": 0.19827586206896552,
+    "validation_year_max_share": 1.0,
+    "year_share_limit": 0.75
+  },
+  "session_block_branch_rejected": true,
+  "source_design_status": "session_volatility_design_completed_with_v0_56_candidate",
+  "source_design_version": "v0_55",
+  "source_profiler_status": "edge_profile_completed_with_research_leads",
+  "source_profiler_version": "v0_54",
+  "source_rejected_eval_status": "session_block_candidate_rejected",
+  "source_rejected_eval_version": "v0_56",
+  "split_candle_counts": {
+    "excluded_oos": 10180,
+    "other": 0,
+    "train": 58922,
+    "validation": 11922
+  },
+  "threshold_search_performed": false,
+  "train_validation_consistency": {
+    "consistency_status": "consistent",
+    "dominant_regime_matches": false,
+    "fixed_elevated_group_positive_rate_supportive": true,
+    "fixed_elevated_group_same_sign": true,
+    "fixed_elevated_group_train_sign": "positive_same_day_bias",
+    "fixed_elevated_group_validation_sign": "positive_same_day_bias",
+    "notes": [
+      "dominant_regime_differs_train_validation",
+      "fixed_elevated_group_mean_return_same_sign"
+    ],
+    "train_dominant_regime": "medium_high_volatility_quartile",
+    "validation_dominant_regime": "high_volatility_quartile"
+  },
+  "train_validation_only": true,
+  "validation_sample_sufficiency": {
+    "blockers": [],
+    "can_produce_at_least_50_validation_trades_under_fixed_rules": true,
+    "fixed_elevated_regime_validation_observations": 116,
+    "minimum_validation_observations": 50,
+    "sufficiency_status": "sufficient",
+    "validation_total_regime_observations": 131
+  },
+  "volatility_lead_viability_decision": "volatility_lead_unstable_or_too_weak_reject",
+  "volatility_regime_behavior_summary": {
+    "high_volatility_quartile": {
+      "tendency": "unstable_between_train_validation",
+      "train": {
+        "behavior_sign": "negative_same_day_bias",
+        "event_count": 106,
+        "mean_same_day_close_open_points": -2.1746226415094423,
+        "positive_rate": 0.41509433962264153
+      },
+      "validation": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 87,
+        "mean_same_day_close_open_points": 9.232068965517222,
+        "positive_rate": 0.5862068965517241
+      }
+    },
+    "low_volatility_quartile": {
+      "tendency": "same_sign_but_rate_mixed",
+      "train": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 190,
+        "mean_same_day_close_open_points": 0.30352631578945494,
+        "positive_rate": 0.4789473684210526
+      },
+      "validation": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 4,
+        "mean_same_day_close_open_points": 4.489999999999895,
+        "positive_rate": 0.5
+      }
+    },
+    "medium_high_volatility_quartile": {
+      "tendency": "positive_same_day_bias_stable",
+      "train": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 163,
+        "mean_same_day_close_open_points": 6.899938650306738,
+        "positive_rate": 0.6134969325153374
+      },
+      "validation": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 29,
+        "mean_same_day_close_open_points": 4.8120689655172635,
+        "positive_rate": 0.5862068965517241
+      }
+    },
+    "medium_low_volatility_quartile": {
+      "tendency": "positive_same_day_bias_stable",
+      "train": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 184,
+        "mean_same_day_close_open_points": 2.4362500000000047,
+        "positive_rate": 0.5652173913043478
+      },
+      "validation": {
+        "behavior_sign": "positive_same_day_bias",
+        "event_count": 11,
+        "mean_same_day_close_open_points": 0.3945454545454678,
+        "positive_rate": 0.6363636363636364
+      }
+    }
+  },
+  "volatility_regime_counts": {
+    "by_month": {
+      "train": {
+        "2023-01": 21,
+        "2023-02": 20,
+        "2023-03": 23,
+        "2023-04": 19,
+        "2023-05": 23,
+        "2023-06": 22,
+        "2023-07": 21,
+        "2023-08": 23,
+        "2023-09": 21,
+        "2023-10": 22,
+        "2023-11": 22,
+        "2023-12": 20,
+        "2024-01": 22,
+        "2024-02": 21,
+        "2024-03": 20,
+        "2024-04": 22,
+        "2024-05": 23,
+        "2024-06": 20,
+        "2024-07": 23,
+        "2024-08": 22,
+        "2024-09": 21,
+        "2024-10": 23,
+        "2024-11": 21,
+        "2024-12": 21,
+        "2025-01": 22,
+        "2025-02": 20,
+        "2025-03": 21,
+        "2025-04": 21,
+        "2025-05": 22,
+        "2025-06": 21
+      },
+      "validation": {
+        "2025-07": 23,
+        "2025-08": 21,
+        "2025-09": 22,
+        "2025-10": 23,
+        "2025-11": 20,
+        "2025-12": 22
+      }
+    },
+    "by_regime": {
+      "high_volatility_quartile": {
+        "total": 193,
+        "train": 106,
+        "validation": 87
+      },
+      "low_volatility_quartile": {
+        "total": 194,
+        "train": 190,
+        "validation": 4
+      },
+      "medium_high_volatility_quartile": {
+        "total": 192,
+        "train": 163,
+        "validation": 29
+      },
+      "medium_low_volatility_quartile": {
+        "total": 195,
+        "train": 184,
+        "validation": 11
+      }
+    },
+    "by_year": {
+      "train": {
+        "2023": 257,
+        "2024": 259,
+        "2025": 127
+      },
+      "validation": {
+        "2025": 131
+      }
+    },
+    "distribution_source": "local_m15_reconstruction",
+    "total": 774,
+    "train_total": 643,
+    "validation_total": 131
+  },
+  "warnings": [
+    "no_profitability_claim_made",
+    "oos_rows_explicitly_excluded",
+    "sample_concentration_risk:validation_fixed_elevated_regime_observations_concentrated_in_single_year",
+    "viability_audit_only_not_backtest_candidate",
+    "volatility_regime_train_validation_dominant_bucket_differs"
+  ]
+}

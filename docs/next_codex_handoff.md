@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_56 fixed-rule train/validation evaluation for session_block_directional_bias_candidate
+- Last completed checkpoint: v0_58 research lab integrity audit
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 47 passed for v0_56 targeted tests; prior v0_55 targeted baseline 45 passed and prior broad baseline 574 passed before v0_47
+- Current test baseline: 54 passed for v0_58 targeted tests; prior v0_57 targeted baseline 48 passed and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_56 rejected the fixed v0_55 session_block_directional_bias_candidate on train/validation gates, with demo/OOS blocked
+- Execution status: research only; v0_58 passed the lab integrity audit with warnings only, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -29,11 +29,87 @@
 - Latest edge profiler: `reports/xauusd_edge_profiler_v0_54.json`
 - Latest session/volatility design board: `reports/xauusd_session_volatility_design_v0_55.json`
 - Latest session block bias evaluation: `reports/xauusd_session_block_bias_eval_v0_56.json`
-- Latest checkpoint: `docs/checkpoints/v0_56_session_block_directional_bias_eval_result.md`
-- Latest context pack: `reports/codex_context_v0_56.json`
-- Latest health report: `reports/project_health_v0_56.json`
-- Latest decision: `session_block_candidate_rejected`
-- Next safe task: stop session_block branch or return to profiler leads; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+- Latest volatility regime lead viability audit: `reports/xauusd_volatility_regime_lead_viability_v0_57.json`
+- Latest research lab integrity audit: `reports/xauusd_research_lab_integrity_audit_v0_58.json`
+- Latest checkpoint: `docs/checkpoints/v0_58_research_lab_integrity_audit_result.md`
+- Latest context pack: `reports/codex_context_v0_58.json`
+- Latest health report: `reports/project_health_v0_58.json`
+- Latest decision: `lab_integrity_passed_with_warnings`
+- Next safe task: address v0_58 lab-integrity warnings or continue non-OOS research with caution; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+
+## v0_58 Research Lab Integrity Audit Result
+
+- Audit module: `src/research/xauusd_research_lab_integrity_audit.py`
+- Audit script: `scripts/audit_xauusd_research_lab_integrity_v0_58.py`
+- Audit report: `reports/xauusd_research_lab_integrity_audit_v0_58.json`
+- Audit status: `lab_integrity_completed`
+- Purpose: `research_lab_integrity_diagnostic_not_strategy`
+- Lab integrity decision: `lab_integrity_passed_with_warnings`
+- Critical findings: none
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Primary data counts: `M5=212368`, `M10=106117`, `M15=81024`
+- Duplicate timestamps: `0` on all primary datasets
+- Invalid OHLC rows: `0` on all primary datasets
+- Split boundaries chronological: `true`
+- OOS rows excluded from train/validation tools: `true`
+- Trade accounting synthetic fixtures: all passed
+- Same-candle stop/target handling: conservative stop-first
+- Prior report safety flags: valid for v0_53, v0_56, and v0_57
+- Targeted tests: `54 passed`
+- Next recommended step: `address warnings or continue research with caution.`
+
+Warnings remain for reported M5/M10/M15 candle gaps and zero/negative ranges, missing explicit broker timestamp basis, inconsistent cost/slippage application across tools, and potential false-negative risk from applying the fixed validation trade-count floor to low-frequency families.
+
+No OOS run, repeated OOS review, retune, threshold search, parameter grid, executable candidate creation, demo/live execution, order sending, order checking, scheduler, execution queue, user-facing trade recommendation, profitability claim, or `data/*.csv` addition was introduced.
+
+## v0_57 Volatility Regime Lead Viability Result
+
+- Audit module: `src/research/xauusd_volatility_regime_lead_viability_audit.py`
+- Audit script: `scripts/audit_xauusd_volatility_regime_lead_v0_57.py`
+- Audit report: `reports/xauusd_volatility_regime_lead_viability_v0_57.json`
+- Audit status: `volatility_lead_viability_completed`
+- Source profiler version: `v0_54`
+- Source design version: `v0_55`
+- Source rejected eval version: `v0_56`
+- Lead id: `volatility_regime_profile`
+- Session block branch rejected: `true`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Validation sample sufficiency: `sufficient`
+- Fixed elevated-regime validation observations: `116`
+- Can produce at least 50 validation trades under fixed rules: `true`
+- Candidate design feasibility: `false`
+- Volatility lead viability decision: `volatility_lead_unstable_or_too_weak_reject`
+- Recommended v0_58 candidate design: `{}`
+- Sample concentration risk: `high`
+- Concentration warning: `validation_fixed_elevated_regime_observations_concentrated_in_single_year`
+- Targeted tests: `48 passed`
+- Next recommended step: `stop profiler-lead branch or broaden non-OOS research.`
+
+v0_57 is a viability audit only. The v0_54 volatility-regime lead had enough fixed elevated-regime validation observations and same-sign train/validation behavior, but the validation sample is concentrated in a single year and train/validation dominant regimes differ. No v0_58 fixed-rule candidate was recommended.
+
+No OOS run, repeated OOS review, retune, threshold search, parameter grid, executable candidate creation, demo/live execution, order sending, order checking, scheduler, execution queue, user-facing trade recommendation, profitability claim, or `data/*.csv` addition was introduced.
 
 ## v0_56 Session Block Directional Bias Evaluation Result
 

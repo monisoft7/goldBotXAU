@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_56"
+    assert context["context_version"] == "v0_58"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_56"
+    assert context["context_version"] == "v0_58"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_56.json"
+    output_path = tmp_path / "codex_context_v0_58.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_56"
+    assert context["context_version"] == "v0_58"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -896,3 +896,70 @@ def test_context_includes_v0_56_session_block_bias_eval_summary() -> None:
     assert evaluation["order_check_called"] is False
     assert evaluation["live_allowed"] is False
     assert evaluation["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_57_volatility_regime_lead_viability_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_volatility_regime_lead_viability"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_57"
+    assert audit["audit_status"] in {
+        "volatility_lead_viability_completed",
+        "blocked_missing_v0_54_profiler_report",
+        "audit_failed",
+    }
+    assert audit["lead_id"] == "volatility_regime_profile"
+    assert audit["session_block_branch_rejected"] is True
+    assert audit["volatility_lead_viability_decision"] in {
+        "volatility_lead_sample_viable_for_candidate_design",
+        "volatility_lead_promising_but_insufficient_sample",
+        "volatility_lead_unstable_or_too_weak_reject",
+        "blocked_missing_v0_54_profiler_report",
+        "audit_failed",
+    }
+    assert audit["candidate_design_feasible_for_v0_58"] in {True, False}
+    assert audit["demo_execution_allowed"] is False
+    assert audit["order_send_called"] is False
+    assert audit["order_check_called"] is False
+    assert audit["live_allowed"] is False
+    assert audit["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_58_research_lab_integrity_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_research_lab_integrity_audit"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_58"
+    assert audit["audit_status"] in {
+        "lab_integrity_completed",
+        "lab_integrity_failed_fix_required",
+        "audit_failed",
+    }
+    assert audit["purpose"] == "research_lab_integrity_diagnostic_not_strategy"
+    assert audit["lab_integrity_decision"] in {
+        "lab_integrity_passed_continue_research",
+        "lab_integrity_passed_with_warnings",
+        "lab_integrity_failed_fix_required",
+        "audit_failed",
+    }
+    assert isinstance(audit["critical_findings"], int)
+    assert isinstance(audit["warnings"], int)
+    assert audit["data_timeframes"] == ["M10", "M15", "M5"]
+    assert audit["split_boundaries_valid"] in {True, False}
+    assert audit["oos_rows_excluded"] is True
+    assert audit["trade_accounting_passed"] is True
+    assert audit["prior_reports_consistent"] is True
+    assert audit["train_validation_only"] is True
+    assert audit["oos_used"] is False
+    assert audit["repeated_oos_review"] is False
+    assert audit["retune_performed"] is False
+    assert audit["threshold_search_performed"] is False
+    assert audit["parameter_grid_performed"] is False
+    assert audit["executable_candidate_created"] is False
+    assert audit["demo_execution_allowed"] is False
+    assert audit["order_send_called"] is False
+    assert audit["order_check_called"] is False
+    assert audit["live_allowed"] is False
+    assert audit["data_csv_added_to_git"] is False

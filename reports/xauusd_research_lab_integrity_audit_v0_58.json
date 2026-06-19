@@ -1,0 +1,463 @@
+{
+  "audit_status": "lab_integrity_completed",
+  "audit_version": "v0_58",
+  "cost_slippage_integrity": {
+    "application_locations": [
+      "some fixed candidate reports include median_return_after_costs or cost-sensitivity language",
+      "forward observation schema records spread when available"
+    ],
+    "costs_changed_in_v0_58": false,
+    "critical_findings": [],
+    "globally_consistent_cost_model_detected": false,
+    "spread_or_cost_terms_found": true,
+    "warnings": [
+      "costs_not_applied_consistently_across_all_train_validation_tools"
+    ]
+  },
+  "critical_findings": [],
+  "data_csv_added_to_git": false,
+  "data_integrity": {
+    "critical_findings": [],
+    "primary_dataset_patterns": {
+      "M10": "xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv",
+      "M15": "xauusd_m15_xauusd_2023-01-01_2026-06-11.csv",
+      "M5": "xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+    },
+    "timeframes": {
+      "M10": {
+        "candle_count": 106117,
+        "duplicate_timestamp_count": 0,
+        "duplicate_timestamps_sample": [],
+        "file_count": 1,
+        "file_errors": [],
+        "files_used": [
+          "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv"
+        ],
+        "first_timestamp": "2023-01-03T01:00:00",
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2025-12-31T23:50:00",
+        "missing_candle_gap_count": 797,
+        "missing_candle_gap_sample": [
+          {
+            "expected_minutes": 10,
+            "from": "2023-01-03T23:50:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 70,
+            "to": "2023-01-04T01:00:00"
+          },
+          {
+            "expected_minutes": 10,
+            "from": "2023-01-04T23:50:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 70,
+            "to": "2023-01-05T01:00:00"
+          },
+          {
+            "expected_minutes": 10,
+            "from": "2023-01-05T23:50:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 70,
+            "to": "2023-01-06T01:00:00"
+          },
+          {
+            "expected_minutes": 10,
+            "from": "2023-01-06T23:50:00",
+            "is_weekend_or_session_gap": true,
+            "minutes": 2950,
+            "to": "2023-01-09T01:00:00"
+          },
+          {
+            "expected_minutes": 10,
+            "from": "2023-01-09T23:50:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 70,
+            "to": "2023-01-10T01:00:00"
+          }
+        ],
+        "timestamp_monotonic": true,
+        "weekend_or_session_gap_count": 168,
+        "zero_or_negative_range_count": 6
+      },
+      "M15": {
+        "candle_count": 81024,
+        "duplicate_timestamp_count": 0,
+        "duplicate_timestamps_sample": [],
+        "file_count": 1,
+        "file_errors": [],
+        "files_used": [
+          "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+        ],
+        "first_timestamp": "2023-01-03T01:00:00",
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-11T11:45:00",
+        "missing_candle_gap_count": 906,
+        "missing_candle_gap_sample": [
+          {
+            "expected_minutes": 15,
+            "from": "2023-01-03T23:45:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 75,
+            "to": "2023-01-04T01:00:00"
+          },
+          {
+            "expected_minutes": 15,
+            "from": "2023-01-04T23:45:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 75,
+            "to": "2023-01-05T01:00:00"
+          },
+          {
+            "expected_minutes": 15,
+            "from": "2023-01-05T23:45:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 75,
+            "to": "2023-01-06T01:00:00"
+          },
+          {
+            "expected_minutes": 15,
+            "from": "2023-01-06T23:45:00",
+            "is_weekend_or_session_gap": true,
+            "minutes": 2955,
+            "to": "2023-01-09T01:00:00"
+          },
+          {
+            "expected_minutes": 15,
+            "from": "2023-01-09T23:45:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 75,
+            "to": "2023-01-10T01:00:00"
+          }
+        ],
+        "timestamp_monotonic": true,
+        "weekend_or_session_gap_count": 189,
+        "zero_or_negative_range_count": 17
+      },
+      "M5": {
+        "candle_count": 212368,
+        "duplicate_timestamp_count": 0,
+        "duplicate_timestamps_sample": [],
+        "file_count": 1,
+        "file_errors": [],
+        "files_used": [
+          "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+        ],
+        "first_timestamp": "2023-01-03T01:00:00",
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2025-12-31T23:55:00",
+        "missing_candle_gap_count": 817,
+        "missing_candle_gap_sample": [
+          {
+            "expected_minutes": 5,
+            "from": "2023-01-03T23:55:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 65,
+            "to": "2023-01-04T01:00:00"
+          },
+          {
+            "expected_minutes": 5,
+            "from": "2023-01-04T23:55:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 65,
+            "to": "2023-01-05T01:00:00"
+          },
+          {
+            "expected_minutes": 5,
+            "from": "2023-01-05T23:55:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 65,
+            "to": "2023-01-06T01:00:00"
+          },
+          {
+            "expected_minutes": 5,
+            "from": "2023-01-06T23:55:00",
+            "is_weekend_or_session_gap": true,
+            "minutes": 2945,
+            "to": "2023-01-09T01:00:00"
+          },
+          {
+            "expected_minutes": 5,
+            "from": "2023-01-09T23:55:00",
+            "is_weekend_or_session_gap": false,
+            "minutes": 65,
+            "to": "2023-01-10T01:00:00"
+          }
+        ],
+        "timestamp_monotonic": true,
+        "weekend_or_session_gap_count": 172,
+        "zero_or_negative_range_count": 55
+      }
+    },
+    "warnings": [
+      "m5_zero_or_negative_ranges_detected",
+      "m5_missing_candle_gaps_detected",
+      "m5_weekend_or_session_gaps_reported",
+      "m10_zero_or_negative_ranges_detected",
+      "m10_missing_candle_gaps_detected",
+      "m10_weekend_or_session_gaps_reported",
+      "m15_zero_or_negative_ranges_detected",
+      "m15_missing_candle_gaps_detected",
+      "m15_weekend_or_session_gaps_reported"
+    ]
+  },
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "gate_sanity": {
+    "critical_findings": [],
+    "false_negative_risk_categories": [
+      "low_frequency_session_or_daily_rules_may_fail_validation_trades_min",
+      "single_validation_year_can_concentrate_otherwise_sufficient_samples",
+      "cost_model_absence_can_overstate_or_understate marginal branches"
+    ],
+    "fixed_gates_reviewed": {
+      "expectancy_min_exclusive": 0.0,
+      "max_consecutive_losses_max": 8,
+      "train_profit_factor_min": 1.2,
+      "validation_profit_factor_min": 1.15,
+      "validation_trades_min": 50
+    },
+    "gates_lowered": false,
+    "globally_consistent": true,
+    "mismatched_to_low_frequency_families": true,
+    "warnings": [
+      "fixed_validation_trade_floor_may_be_mismatched_to_low_frequency_strategy_families"
+    ]
+  },
+  "lab_integrity_decision": "lab_integrity_passed_with_warnings",
+  "live_allowed": false,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "prior_report_consistency": {
+    "all_present": true,
+    "critical_findings": [],
+    "rejected_branches_not_eligible_for_promotion": true,
+    "reports": {
+      "v0_53_external_shortlist": {
+        "decision": null,
+        "path": "reports/xauusd_external_shortlist_board_v0_53.json",
+        "present": true,
+        "promotion_blocked": true,
+        "safety_flags": {
+          "demo_execution_allowed": false,
+          "oos_used": false,
+          "order_check_called": false,
+          "order_send_called": false,
+          "parameter_grid_performed": false,
+          "retune_performed": false,
+          "threshold_search_performed": false
+        },
+        "status": "no_external_shortlist_candidate_passed"
+      },
+      "v0_56_session_block": {
+        "decision": null,
+        "path": "reports/xauusd_session_block_bias_eval_v0_56.json",
+        "present": true,
+        "promotion_blocked": true,
+        "safety_flags": {
+          "demo_execution_allowed": false,
+          "oos_used": false,
+          "order_check_called": false,
+          "order_send_called": false,
+          "parameter_grid_performed": false,
+          "retune_performed": false,
+          "threshold_search_performed": false
+        },
+        "status": "session_block_candidate_rejected"
+      },
+      "v0_57_volatility_viability": {
+        "decision": "volatility_lead_unstable_or_too_weak_reject",
+        "path": "reports/xauusd_volatility_regime_lead_viability_v0_57.json",
+        "present": true,
+        "promotion_blocked": true,
+        "safety_flags": {
+          "demo_execution_allowed": false,
+          "oos_used": false,
+          "order_check_called": false,
+          "order_send_called": false,
+          "parameter_grid_performed": false,
+          "retune_performed": false,
+          "threshold_search_performed": false
+        },
+        "status": "volatility_lead_viability_completed"
+      }
+    },
+    "safety_flags_valid": true,
+    "warnings": []
+  },
+  "purpose": "research_lab_integrity_diagnostic_not_strategy",
+  "recommended_fixes": [
+    "document or standardize cost/slippage assumptions before comparing marginal candidates",
+    "document false-negative risk for low-frequency families without lowering fixed gates",
+    "review reported candle gaps and classify expected weekend/session gaps before new evaluations"
+  ],
+  "recommended_next_step": "address warnings or continue research with caution.",
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "diagnostic_integrity_audit_only": true,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "session_timezone_integrity": {
+    "broker_timestamp_basis": "undetected_local_csv_timestamp_no_timezone_column",
+    "critical_findings": [],
+    "fixed_utc_session_windows": {
+      "asian": "00:00-06:59",
+      "late_us": "17:00-20:59",
+      "london": "07:00-11:59",
+      "ny_core": "12:00-16:59"
+    },
+    "m15_candle_counts_by_session": {
+      "asian_00_06": 21516,
+      "late_us_17_20": 14180,
+      "london_07_11": 17724,
+      "ny_core_12_16": 17734,
+      "outside_fixed_windows": 9870
+    },
+    "session_boundaries_suspicious": false,
+    "warnings": [
+      "broker_timestamp_basis_not_explicitly_encoded_in_csv"
+    ]
+  },
+  "split_integrity": {
+    "chronological_boundaries_valid": true,
+    "critical_findings": [],
+    "oos_rows_excluded_from_train_validation_tools": true,
+    "split_counts": {
+      "M10": {
+        "excluded_oos": 0,
+        "other": 0,
+        "train": 88366,
+        "validation": 17751
+      },
+      "M15": {
+        "excluded_oos": 10180,
+        "other": 0,
+        "train": 58922,
+        "validation": 11922
+      },
+      "M5": {
+        "excluded_oos": 0,
+        "other": 0,
+        "train": 176746,
+        "validation": 35622
+      }
+    },
+    "split_policy": {
+      "leakage_prevention": "chronological_only_no_shuffle",
+      "method": "fixed_chronological_split",
+      "oos_start": "2026-01-01T00:00:00",
+      "train_end": "2025-06-30T23:59:59",
+      "validation_end": "2025-12-31T23:59:59",
+      "validation_start": "2025-07-01T00:00:00"
+    },
+    "split_policy_present": true,
+    "validation_window_has_enough_opportunity": true,
+    "warnings": []
+  },
+  "threshold_search_performed": false,
+  "trade_accounting_integrity": {
+    "conservative_same_candle_stop_target_handling": true,
+    "critical_findings": [],
+    "expected_metrics": {
+      "expectancy": -0.15,
+      "losses": 3,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.6666666666666666,
+      "trade_count": 5,
+      "wins": 2
+    },
+    "metric_passes": {
+      "expectancy": true,
+      "losses": true,
+      "max_consecutive_losses": true,
+      "profit_factor": true,
+      "trade_count": true,
+      "wins": true
+    },
+    "metrics": {
+      "expectancy": -0.15,
+      "losses": 3,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.6666666666666666,
+      "trade_count": 5,
+      "wins": 2
+    },
+    "synthetic_cases": [
+      {
+        "actual_outcome_r": 1.0,
+        "case_id": "target_hit_only",
+        "exit_reason": "target_hit",
+        "expected_outcome_r": 1.0,
+        "passed": true
+      },
+      {
+        "actual_outcome_r": -1.0,
+        "case_id": "stop_hit_only",
+        "exit_reason": "stop_hit",
+        "expected_outcome_r": -1.0,
+        "passed": true
+      },
+      {
+        "actual_outcome_r": -1.0,
+        "case_id": "both_stop_and_target_inside_same_candle",
+        "exit_reason": "same_candle_stop_target_stop_first",
+        "expected_outcome_r": -1.0,
+        "passed": true
+      },
+      {
+        "actual_outcome_r": 0.5,
+        "case_id": "time_exit",
+        "exit_reason": "time_exit",
+        "expected_outcome_r": 0.5,
+        "passed": true
+      },
+      {
+        "actual_outcome_r": -0.25,
+        "case_id": "invalidation_exit",
+        "exit_reason": "invalidation_exit",
+        "expected_outcome_r": -0.25,
+        "passed": true
+      },
+      {
+        "actual_outcome_r": null,
+        "case_id": "no_entry_day",
+        "exit_reason": "no_entry",
+        "expected_outcome_r": null,
+        "passed": true
+      }
+    ],
+    "warnings": []
+  },
+  "train_validation_only": true,
+  "warnings": [
+    "m5_zero_or_negative_ranges_detected",
+    "m5_missing_candle_gaps_detected",
+    "m5_weekend_or_session_gaps_reported",
+    "m10_zero_or_negative_ranges_detected",
+    "m10_missing_candle_gaps_detected",
+    "m10_weekend_or_session_gaps_reported",
+    "m15_zero_or_negative_ranges_detected",
+    "m15_missing_candle_gaps_detected",
+    "m15_weekend_or_session_gaps_reported",
+    "broker_timestamp_basis_not_explicitly_encoded_in_csv",
+    "costs_not_applied_consistently_across_all_train_validation_tools",
+    "fixed_validation_trade_floor_may_be_mismatched_to_low_frequency_strategy_families"
+  ]
+}
