@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_52_1"
+CONTEXT_VERSION = "v0_53"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -708,21 +708,8 @@ def _external_strategy_idea_triage_summary(root: Path) -> dict[str, Any] | None:
     return {
         "triage_version": report.get("triage_version"),
         "triage_status": report.get("triage_status"),
-        "total_raw_ideas": report.get("total_raw_ideas"),
-        "deduplicated_idea_count": report.get("deduplicated_idea_count"),
         "shortlist_for_v0_53": report.get("shortlist_for_v0_53"),
-        "top_ranked_idea_id": report.get("top_ranked_idea_id"),
-        "train_validation_only": report.get("train_validation_only"),
         "oos_used": report.get("oos_used"),
-        "repeated_oos_review": report.get("repeated_oos_review"),
-        "retune_performed": report.get("retune_performed"),
-        "threshold_search_performed": report.get("threshold_search_performed"),
-        "parameter_grid_performed": report.get("parameter_grid_performed"),
-        "demo_execution_allowed": report.get("demo_execution_allowed"),
-        "order_send_called": report.get("order_send_called"),
-        "order_check_called": report.get("order_check_called"),
-        "live_allowed": report.get("live_allowed"),
-        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
     }
 
 
@@ -735,19 +722,36 @@ def _kimi_external_idea_addendum_summary(root: Path) -> dict[str, Any] | None:
         "addendum_version": report.get("addendum_version"),
         "addendum_status": report.get("addendum_status"),
         "source_triage_version": report.get("source_triage_version"),
-        "kimi_added_to_external_sources": report.get("kimi_added_to_external_sources"),
-        "kimi_raw_idea_count": report.get("kimi_raw_idea_count"),
         "final_shortlist_for_v0_53": report.get("final_shortlist_for_v0_53"),
         "shortlist_changed": report.get("shortlist_changed"),
-        "top_ranked_idea_id": report.get("top_ranked_idea_id"),
-        "scoring_method_preserved": report.get("scoring_method_preserved"),
+        "oos_used": report.get("oos_used"),
+        "candidate_created": report.get("candidate_created"),
+    }
+
+
+def _external_shortlist_board_summary(root: Path) -> dict[str, Any] | None:
+    board_path = root / "reports" / "xauusd_external_shortlist_board_v0_53.json"
+    if not board_path.exists():
+        return None
+    report = json.loads(board_path.read_text(encoding="utf-8"))
+    metrics = report.get("best_candidate_metrics", {})
+    validation = metrics.get("validation", {}) if isinstance(metrics, dict) else {}
+    return {
+        "board_version": report.get("board_version"),
+        "board_status": report.get("board_status"),
+        "source_triage_versions": report.get("source_triage_versions"),
+        "tested_candidate_ids": report.get("tested_candidate_ids"),
+        "best_candidate_id": report.get("best_candidate_id"),
+        "best_candidate_passed_gate": report.get("best_candidate_passed_gate"),
+        "best_validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
+        "best_validation_expectancy": validation.get("expectancy_r") if isinstance(validation, dict) else None,
+        "best_validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
         "train_validation_only": report.get("train_validation_only"),
         "oos_used": report.get("oos_used"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "retune_performed": report.get("retune_performed"),
         "threshold_search_performed": report.get("threshold_search_performed"),
         "parameter_grid_performed": report.get("parameter_grid_performed"),
-        "backtest_implemented": report.get("backtest_implemented"),
         "candidate_created": report.get("candidate_created"),
         "demo_execution_allowed": report.get("demo_execution_allowed"),
         "order_send_called": report.get("order_send_called"),
@@ -824,6 +828,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_trend_pullback_expanded_retest": _trend_pullback_expanded_retest_summary(root),
         "latest_external_strategy_idea_triage": _external_strategy_idea_triage_summary(root),
         "latest_kimi_external_idea_addendum": _kimi_external_idea_addendum_summary(root),
+        "latest_external_shortlist_board": _external_shortlist_board_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

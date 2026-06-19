@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_52_1 Kimi external idea addendum
+- Last completed checkpoint: v0_53 external shortlist train/validation board
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 48 passed for v0_52_1 targeted tests; prior broad baseline 574 passed before v0_47
+- Current test baseline: 45 passed for v0_53 targeted tests; prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_52_1 added Kimi idea triage only, with demo/OOS blocked
+- Execution status: research only; v0_53 evaluated fixed external shortlist rules on train/validation only, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -25,11 +25,48 @@
 - Latest trend pullback expanded retest: `reports/xauusd_trend_pullback_expanded_retest_v0_51.json`
 - Latest external strategy idea triage: `reports/xauusd_external_strategy_idea_triage_v0_52.json`
 - Latest Kimi external idea addendum: `reports/xauusd_kimi_external_idea_addendum_v0_52_1.json`
-- Latest checkpoint: `docs/checkpoints/v0_52_1_kimi_external_idea_addendum_result.md`
-- Latest context pack: `reports/codex_context_v0_52_1.json`
-- Latest health report: `reports/project_health_v0_52_1.json`
-- Latest decision: `kimi_addendum_completed_shortlist_unchanged`
-- Next safe task: design v0_53 fixed-rule train/validation-only board for the unchanged shortlist; do not run OOS, retune, threshold search, parameter grid, create executable candidates, or demo/live execution
+- Latest external shortlist board: `reports/xauusd_external_shortlist_board_v0_53.json`
+- Latest checkpoint: `docs/checkpoints/v0_53_external_shortlist_train_validation_board_result.md`
+- Latest context pack: `reports/codex_context_v0_53.json`
+- Latest health report: `reports/project_health_v0_53.json`
+- Latest decision: `no_external_shortlist_candidate_passed`
+- Next safe task: broaden non-OOS research or stop current branch; do not run OOS, retune, threshold search, parameter grid, create executable candidates, or demo/live execution
+
+## v0_53 External Shortlist Train/Validation Board Result
+
+- Board module: `src/research/xauusd_external_shortlist_train_validation_board.py`
+- Board script: `scripts/run_xauusd_external_shortlist_board_v0_53.py`
+- Board report: `reports/xauusd_external_shortlist_board_v0_53.json`
+- Board status: `no_external_shortlist_candidate_passed`
+- Source triage versions: `v0_52`, `v0_52_1`
+- Tested candidate ids: `prior_day_liquidity_sweep_reversal`, `london_opening_range_breakout_or_first_candle_direction`, `asian_range_london_breakout_confirmation`
+- Best candidate id: `asian_range_london_breakout_confirmation`
+- Best candidate passed gate: `false`
+- Best train profit factor: `1.0107152929889043`
+- Best train expectancy: `0.005028872470589754`
+- Best train trades: `497`
+- Best validation profit factor: `1.1330238648738264`
+- Best validation expectancy: `0.053786897553678714`
+- Best validation trades: `94`
+- Rejected do-not-retune candidates: `prior_day_liquidity_sweep_reversal`, `london_opening_range_breakout_or_first_candle_direction`, `asian_range_london_breakout_confirmation`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `45 passed`
+- Next recommended step: `broaden non-OOS research or stop current branch`
+
+v0_53 implemented fixed M15 train/validation-only tests for the finalized external shortlist. The strongest fixed result was `asian_range_london_breakout_confirmation`, but no candidate passed the full fixed gate.
+
+No OOS run, repeated OOS review, retune, threshold search, parameter grid, executable candidate creation, demo/live execution, order sending, order checking, scheduler, execution queue, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_52_1 Kimi External Idea Addendum Result
 

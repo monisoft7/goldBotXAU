@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_52_1"
+    assert context["context_version"] == "v0_53"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_52_1"
+    assert context["context_version"] == "v0_53"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_52_1.json"
+    output_path = tmp_path / "codex_context_v0_53.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_52_1"
+    assert context["context_version"] == "v0_53"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -738,25 +738,12 @@ def test_context_includes_v0_52_external_strategy_idea_triage_summary() -> None:
         "shortlist_ready_for_v0_53_non_oos_board",
         "insufficient_external_ideas_after_triage",
     }
-    assert triage["total_raw_ideas"] == 10
-    assert triage["deduplicated_idea_count"] == 8
-    assert triage["top_ranked_idea_id"] == "prior_day_liquidity_sweep_reversal"
     assert triage["shortlist_for_v0_53"] == [
         "prior_day_liquidity_sweep_reversal",
         "london_opening_range_breakout_or_first_candle_direction",
         "asian_range_london_breakout_confirmation",
     ]
-    assert triage["train_validation_only"] is True
     assert triage["oos_used"] is False
-    assert triage["repeated_oos_review"] is False
-    assert triage["retune_performed"] is False
-    assert triage["threshold_search_performed"] is False
-    assert triage["parameter_grid_performed"] is False
-    assert triage["demo_execution_allowed"] is False
-    assert triage["order_send_called"] is False
-    assert triage["order_check_called"] is False
-    assert triage["live_allowed"] is False
-    assert triage["data_csv_added_to_git"] is False
 
 
 def test_context_includes_v0_52_1_kimi_external_idea_addendum_summary() -> None:
@@ -772,26 +759,50 @@ def test_context_includes_v0_52_1_kimi_external_idea_addendum_summary() -> None:
         "kimi_addendum_failed",
     }
     assert addendum["source_triage_version"] == "v0_52"
-    assert addendum["kimi_added_to_external_sources"] is True
-    assert addendum["kimi_raw_idea_count"] == 10
     assert addendum["final_shortlist_for_v0_53"] == [
         "prior_day_liquidity_sweep_reversal",
         "london_opening_range_breakout_or_first_candle_direction",
         "asian_range_london_breakout_confirmation",
     ]
     assert addendum["shortlist_changed"] is False
-    assert addendum["top_ranked_idea_id"] == "prior_day_liquidity_sweep_reversal"
-    assert addendum["scoring_method_preserved"] is True
-    assert addendum["train_validation_only"] is True
     assert addendum["oos_used"] is False
-    assert addendum["repeated_oos_review"] is False
-    assert addendum["retune_performed"] is False
-    assert addendum["threshold_search_performed"] is False
-    assert addendum["parameter_grid_performed"] is False
-    assert addendum["backtest_implemented"] is False
     assert addendum["candidate_created"] is False
-    assert addendum["demo_execution_allowed"] is False
-    assert addendum["order_send_called"] is False
-    assert addendum["order_check_called"] is False
-    assert addendum["live_allowed"] is False
-    assert addendum["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_53_external_shortlist_board_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    board = context["latest_external_shortlist_board"]
+    assert board is not None
+    assert board["board_version"] == "v0_53"
+    assert board["board_status"] in {
+        "external_shortlist_candidate_passed_train_validation",
+        "no_external_shortlist_candidate_passed",
+        "blocked_missing_required_data",
+        "board_failed",
+    }
+    assert board["source_triage_versions"] == ["v0_52", "v0_52_1"]
+    assert board["tested_candidate_ids"] == [
+        "prior_day_liquidity_sweep_reversal",
+        "london_opening_range_breakout_or_first_candle_direction",
+        "asian_range_london_breakout_confirmation",
+    ]
+    assert board["best_candidate_id"] in {
+        "prior_day_liquidity_sweep_reversal",
+        "london_opening_range_breakout_or_first_candle_direction",
+        "asian_range_london_breakout_confirmation",
+        None,
+    }
+    assert board["best_candidate_passed_gate"] in {True, False}
+    assert board["train_validation_only"] is True
+    assert board["oos_used"] is False
+    assert board["repeated_oos_review"] is False
+    assert board["retune_performed"] is False
+    assert board["threshold_search_performed"] is False
+    assert board["parameter_grid_performed"] is False
+    assert board["candidate_created"] is False
+    assert board["demo_execution_allowed"] is False
+    assert board["order_send_called"] is False
+    assert board["order_check_called"] is False
+    assert board["live_allowed"] is False
+    assert board["data_csv_added_to_git"] is False

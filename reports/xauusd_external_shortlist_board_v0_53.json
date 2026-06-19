@@ -1,0 +1,618 @@
+{
+  "best_candidate_id": "asian_range_london_breakout_confirmation",
+  "best_candidate_metrics": {
+    "train": {
+      "exit_reason_counts": {
+        "invalidated_next_candle_close_back_inside_asian_range": 148,
+        "stop": 186,
+        "target_1_0_asian_range": 139,
+        "time_exit_20_00_utc": 24
+      },
+      "expectancy_r": 0.005028872470589754,
+      "gross_loss_r": 233.25070256792802,
+      "gross_profit_r": 235.75005218581111,
+      "losses": 337,
+      "max_consecutive_losses": 10,
+      "profit_factor": 1.0107152929889043,
+      "side_counts": {
+        "long": 273,
+        "short": 224
+      },
+      "trades": 497,
+      "win_rate": 0.32193158953722334,
+      "wins": 160
+    },
+    "validation": {
+      "exit_reason_counts": {
+        "invalidated_next_candle_close_back_inside_asian_range": 31,
+        "stop": 30,
+        "target_1_0_asian_range": 21,
+        "time_exit_20_00_utc": 12
+      },
+      "expectancy_r": 0.053786897553678714,
+      "gross_loss_r": 38.00797980754362,
+      "gross_profit_r": 43.063948177589424,
+      "losses": 65,
+      "max_consecutive_losses": 9,
+      "profit_factor": 1.1330238648738264,
+      "side_counts": {
+        "long": 54,
+        "short": 40
+      },
+      "trades": 94,
+      "win_rate": 0.30851063829787234,
+      "wins": 29
+    }
+  },
+  "best_candidate_passed_gate": false,
+  "blockers": [],
+  "board_status": "no_external_shortlist_candidate_passed",
+  "board_version": "v0_53",
+  "candidate_created": false,
+  "candidate_results": [
+    {
+      "candidate_created": false,
+      "candidate_disposition": "rejected_do_not_retune",
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "combined_trade_count": 519,
+      "do_not_retune": true,
+      "fixed_before_evaluation": true,
+      "fixed_rules": {
+        "entry": "close_back_inside_previous_day_range_after_sweep",
+        "invalidation": "next_m15_close_beyond_sweep_extreme_in_breakout_direction",
+        "per_day_limit": "one_long_sweep_and_one_short_sweep",
+        "reference": "previous_completed_trading_day_high_low",
+        "session_filter_utc": "07:00-20:00",
+        "stop": "sweep_candle_extreme",
+        "target": "midpoint_of_previous_day_range",
+        "time_exit_utc": "20:00",
+        "timeframe": "M15"
+      },
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "train_expectancy_not_positive",
+        "validation_expectancy_not_positive",
+        "train_max_consecutive_losses_above_fixed_gate",
+        "validation_max_consecutive_losses_above_fixed_gate"
+      ],
+      "passed_gate": false,
+      "safety": {
+        "auto_execute_order": false,
+        "candidate_created": false,
+        "data_csv_added_to_git": false,
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "scheduler_created": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false,
+        "train_validation_only": true
+      },
+      "split_trade_counts": {
+        "train": 431,
+        "validation": 88
+      },
+      "timeframe": "M15",
+      "trade_sample": [
+        {
+          "candidate_id": "prior_day_liquidity_sweep_reversal",
+          "entry_price": 1836.2,
+          "entry_timestamp": "2023-01-05T16:00:00",
+          "exit_price": 1831.4,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-05T17:15:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1831.4,
+          "target_price": 1850.65,
+          "won": false
+        },
+        {
+          "candidate_id": "prior_day_liquidity_sweep_reversal",
+          "entry_price": 1858.85,
+          "entry_timestamp": "2023-01-06T17:00:00",
+          "exit_price": 1861.16,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-06T17:15:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1861.16,
+          "target_price": 1842.07,
+          "won": false
+        },
+        {
+          "candidate_id": "prior_day_liquidity_sweep_reversal",
+          "entry_price": 1879.35,
+          "entry_timestamp": "2023-01-11T14:00:00",
+          "exit_price": 1874.245,
+          "exit_reason": "target_midpoint_previous_day_range",
+          "exit_timestamp": "2023-01-11T16:30:00",
+          "return_r": 1.2858942065491141,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1883.32,
+          "target_price": 1874.245,
+          "won": true
+        },
+        {
+          "candidate_id": "prior_day_liquidity_sweep_reversal",
+          "entry_price": 1869.82,
+          "entry_timestamp": "2023-01-11T18:15:00",
+          "exit_price": 1874.245,
+          "exit_reason": "target_midpoint_previous_day_range",
+          "exit_timestamp": "2023-01-11T18:45:00",
+          "return_r": 1.6573033707865958,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1867.15,
+          "target_price": 1874.245,
+          "won": true
+        },
+        {
+          "candidate_id": "prior_day_liquidity_sweep_reversal",
+          "entry_price": 1885.44,
+          "entry_timestamp": "2023-01-12T16:30:00",
+          "exit_price": 1894.65,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-12T19:15:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1894.65,
+          "target_price": 1876.89,
+          "won": false
+        }
+      ],
+      "train_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle": 56,
+          "stop": 240,
+          "target_midpoint_previous_day_range": 86,
+          "time_exit_20_00_utc": 49
+        },
+        "expectancy_r": -0.21894358456723,
+        "gross_loss_r": 374.549333798499,
+        "gross_profit_r": 280.1846488500228,
+        "losses": 310,
+        "max_consecutive_losses": 15,
+        "profit_factor": 0.7480580622278113,
+        "side_counts": {
+          "long": 198,
+          "short": 233
+        },
+        "trades": 431,
+        "win_rate": 0.28074245939675174,
+        "wins": 121
+      },
+      "validation_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle": 14,
+          "stop": 52,
+          "target_midpoint_previous_day_range": 13,
+          "time_exit_20_00_utc": 9
+        },
+        "expectancy_r": -0.31609433092277556,
+        "gross_loss_r": 83.19346003147142,
+        "gross_profit_r": 55.37715891026717,
+        "losses": 68,
+        "max_consecutive_losses": 15,
+        "profit_factor": 0.6656431754289152,
+        "side_counts": {
+          "long": 38,
+          "short": 50
+        },
+        "trades": 88,
+        "win_rate": 0.22727272727272727,
+        "wins": 20
+      }
+    },
+    {
+      "candidate_created": false,
+      "candidate_disposition": "rejected_do_not_retune",
+      "candidate_id": "london_opening_range_breakout_or_first_candle_direction",
+      "combined_trade_count": 601,
+      "do_not_retune": true,
+      "fixed_before_evaluation": true,
+      "fixed_rules": {
+        "direction": "first_candle_body_direction_with_body_at_least_20pct_range",
+        "entry": "close_of_07_00_utc_candle",
+        "first_candle_utc": "07:00-07:15",
+        "invalidation": "skip_zero_or_invalid_stop_distance",
+        "london_anchor_utc": "07:00",
+        "stop": "first_candle_opposite_extreme",
+        "target": "1.5R",
+        "time_exit_utc": "12:00",
+        "timeframe": "M15"
+      },
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "train_max_consecutive_losses_above_fixed_gate",
+        "validation_max_consecutive_losses_above_fixed_gate"
+      ],
+      "passed_gate": false,
+      "safety": {
+        "auto_execute_order": false,
+        "candidate_created": false,
+        "data_csv_added_to_git": false,
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "scheduler_created": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false,
+        "train_validation_only": true
+      },
+      "split_trade_counts": {
+        "train": 503,
+        "validation": 98
+      },
+      "timeframe": "M15",
+      "trade_sample": [
+        {
+          "candidate_id": "london_opening_range_breakout_or_first_candle_direction",
+          "entry_price": 1840.05,
+          "entry_timestamp": "2023-01-03T07:00:00",
+          "exit_price": 1838.3999999999996,
+          "exit_reason": "target_1_5r",
+          "exit_timestamp": "2023-01-03T07:15:00",
+          "return_r": 1.5000000000001033,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1841.15,
+          "target_price": 1838.3999999999996,
+          "won": true
+        },
+        {
+          "candidate_id": "london_opening_range_breakout_or_first_candle_direction",
+          "entry_price": 1845.97,
+          "entry_timestamp": "2023-01-04T07:00:00",
+          "exit_price": 1847.1,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-04T08:00:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1847.1,
+          "target_price": 1844.275,
+          "won": false
+        },
+        {
+          "candidate_id": "london_opening_range_breakout_or_first_candle_direction",
+          "entry_price": 1852.5,
+          "entry_timestamp": "2023-01-05T07:00:00",
+          "exit_price": 1851.42,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-05T07:15:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1851.42,
+          "target_price": 1854.12,
+          "won": false
+        },
+        {
+          "candidate_id": "london_opening_range_breakout_or_first_candle_direction",
+          "entry_price": 1837.01,
+          "entry_timestamp": "2023-01-06T07:00:00",
+          "exit_price": 1838.27,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-06T08:00:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1838.27,
+          "target_price": 1835.12,
+          "won": false
+        },
+        {
+          "candidate_id": "london_opening_range_breakout_or_first_candle_direction",
+          "entry_price": 1875.93,
+          "entry_timestamp": "2023-01-09T07:00:00",
+          "exit_price": 1877.1,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-09T07:15:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1877.1,
+          "target_price": 1874.1750000000002,
+          "won": false
+        }
+      ],
+      "train_metrics": {
+        "exit_reason_counts": {
+          "stop": 291,
+          "target_1_5r": 210,
+          "time_exit_12_00_utc": 2
+        },
+        "expectancy_r": 0.051798036022513275,
+        "gross_loss_r": 291.0,
+        "gross_profit_r": 317.0544121193242,
+        "losses": 291,
+        "max_consecutive_losses": 9,
+        "profit_factor": 1.0895340622657188,
+        "side_counts": {
+          "long": 238,
+          "short": 265
+        },
+        "trades": 503,
+        "win_rate": 0.42147117296222664,
+        "wins": 212
+      },
+      "validation_metrics": {
+        "exit_reason_counts": {
+          "stop": 57,
+          "target_1_5r": 40,
+          "time_exit_12_00_utc": 1
+        },
+        "expectancy_r": 0.0264960565899745,
+        "gross_loss_r": 57.4033864541832,
+        "gross_profit_r": 60.000000000000696,
+        "losses": 58,
+        "max_consecutive_losses": 9,
+        "profit_factor": 1.0452345010671102,
+        "side_counts": {
+          "long": 52,
+          "short": 46
+        },
+        "trades": 98,
+        "win_rate": 0.40816326530612246,
+        "wins": 40
+      }
+    },
+    {
+      "candidate_created": false,
+      "candidate_disposition": "rejected_do_not_retune",
+      "candidate_id": "asian_range_london_breakout_confirmation",
+      "combined_trade_count": 591,
+      "do_not_retune": true,
+      "fixed_before_evaluation": true,
+      "fixed_rules": {
+        "asian_range_utc": "00:00-06:59",
+        "direction": "first_m15_close_outside_asian_range",
+        "entry_window_utc": "07:00-11:00",
+        "invalidation": "next_m15_close_back_inside_asian_range",
+        "per_day_limit": "first_valid_breakout_per_direction",
+        "stop": "asian_midpoint",
+        "target": "1.0_asian_range_from_entry",
+        "time_exit_utc": "20:00",
+        "timeframe": "M15"
+      },
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "train_max_consecutive_losses_above_fixed_gate",
+        "validation_max_consecutive_losses_above_fixed_gate"
+      ],
+      "passed_gate": false,
+      "safety": {
+        "auto_execute_order": false,
+        "candidate_created": false,
+        "data_csv_added_to_git": false,
+        "demo_execution_allowed": false,
+        "execution_queue_created": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "scheduler_created": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false,
+        "train_validation_only": true
+      },
+      "split_trade_counts": {
+        "train": 497,
+        "validation": 94
+      },
+      "timeframe": "M15",
+      "trade_sample": [
+        {
+          "candidate_id": "asian_range_london_breakout_confirmation",
+          "entry_price": 1847.27,
+          "entry_timestamp": "2023-01-03T09:15:00",
+          "exit_price": 1833.33,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-03T13:00:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1833.33,
+          "target_price": 1866.89,
+          "won": false
+        },
+        {
+          "candidate_id": "asian_range_london_breakout_confirmation",
+          "entry_price": 1847.44,
+          "entry_timestamp": "2023-01-04T08:00:00",
+          "exit_price": 1858.44,
+          "exit_reason": "target_1_0_asian_range",
+          "exit_timestamp": "2023-01-04T09:45:00",
+          "return_r": 1.9097222222222252,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1841.68,
+          "target_price": 1858.44,
+          "won": true
+        },
+        {
+          "candidate_id": "asian_range_london_breakout_confirmation",
+          "entry_price": 1849.36,
+          "entry_timestamp": "2023-01-05T09:45:00",
+          "exit_price": 1840.54,
+          "exit_reason": "target_1_0_asian_range",
+          "exit_timestamp": "2023-01-05T15:45:00",
+          "return_r": 1.6768060836501808,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1854.62,
+          "target_price": 1840.54,
+          "won": true
+        },
+        {
+          "candidate_id": "asian_range_london_breakout_confirmation",
+          "entry_price": 1880.32,
+          "entry_timestamp": "2023-01-11T07:00:00",
+          "exit_price": 1875.295,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-11T16:30:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1875.295,
+          "target_price": 1886.69,
+          "won": false
+        },
+        {
+          "candidate_id": "asian_range_london_breakout_confirmation",
+          "entry_price": 1894.46,
+          "entry_timestamp": "2023-01-13T07:15:00",
+          "exit_price": 1898.2,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-13T09:45:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1898.2,
+          "target_price": 1889.04,
+          "won": false
+        }
+      ],
+      "train_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle_close_back_inside_asian_range": 148,
+          "stop": 186,
+          "target_1_0_asian_range": 139,
+          "time_exit_20_00_utc": 24
+        },
+        "expectancy_r": 0.005028872470589754,
+        "gross_loss_r": 233.25070256792802,
+        "gross_profit_r": 235.75005218581111,
+        "losses": 337,
+        "max_consecutive_losses": 10,
+        "profit_factor": 1.0107152929889043,
+        "side_counts": {
+          "long": 273,
+          "short": 224
+        },
+        "trades": 497,
+        "win_rate": 0.32193158953722334,
+        "wins": 160
+      },
+      "validation_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle_close_back_inside_asian_range": 31,
+          "stop": 30,
+          "target_1_0_asian_range": 21,
+          "time_exit_20_00_utc": 12
+        },
+        "expectancy_r": 0.053786897553678714,
+        "gross_loss_r": 38.00797980754362,
+        "gross_profit_r": 43.063948177589424,
+        "losses": 65,
+        "max_consecutive_losses": 9,
+        "profit_factor": 1.1330238648738264,
+        "side_counts": {
+          "long": 54,
+          "short": 40
+        },
+        "trades": 94,
+        "win_rate": 0.30851063829787234,
+        "wins": 29
+      }
+    }
+  ],
+  "data_csv_added_to_git": false,
+  "data_files_used": [
+    "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+  ],
+  "demo_execution_allowed": false,
+  "fixed_gate": {
+    "max_consecutive_losses_max": 8,
+    "oos_used": false,
+    "train_expectancy_min_exclusive": 0.0,
+    "train_profit_factor_min": 1.2,
+    "validation_expectancy_min_exclusive": 0.0,
+    "validation_pf_min_train_pf_ratio": 0.75,
+    "validation_profit_factor_min": 1.15,
+    "validation_trades_min": 50
+  },
+  "live_allowed": false,
+  "next_recommended_step": "broaden non-OOS research or stop current branch",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "rejected_do_not_retune_candidates": [
+    "prior_day_liquidity_sweep_reversal",
+    "london_opening_range_breakout_or_first_candle_direction",
+    "asian_range_london_breakout_confirmation"
+  ],
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "candidate_created": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "source_triage_versions": [
+    "v0_52",
+    "v0_52_1"
+  ],
+  "split_candle_counts": {
+    "excluded_oos": 10180,
+    "other": 0,
+    "train": 58922,
+    "validation": 11922
+  },
+  "tested_candidate_ids": [
+    "prior_day_liquidity_sweep_reversal",
+    "london_opening_range_breakout_or_first_candle_direction",
+    "asian_range_london_breakout_confirmation"
+  ],
+  "threshold_search_performed": false,
+  "timeframe": "M15",
+  "train_validation_only": true,
+  "warnings": [
+    "research_only_external_shortlist_board_not_execution",
+    "fixed_rules_only_no_retune_no_threshold_search_no_parameter_grid",
+    "oos_candles_on_disk_excluded_from_evaluation",
+    "same_candle_stop_and_target_resolution_is_conservative_stop_first",
+    "excluded_oos_candle_count:10180"
+  ]
+}
