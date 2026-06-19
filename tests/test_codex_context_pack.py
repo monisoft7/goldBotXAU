@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_53"
+    assert context["context_version"] == "v0_54"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_53"
+    assert context["context_version"] == "v0_54"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_53.json"
+    output_path = tmp_path / "codex_context_v0_54.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_53"
+    assert context["context_version"] == "v0_54"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -806,3 +806,39 @@ def test_context_includes_v0_53_external_shortlist_board_summary() -> None:
     assert board["order_check_called"] is False
     assert board["live_allowed"] is False
     assert board["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_54_edge_profiler_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    profiler = context["latest_edge_profiler"]
+    assert profiler is not None
+    assert profiler["profiler_version"] == "v0_54"
+    assert profiler["profiler_status"] in {
+        "edge_profile_completed_with_research_leads",
+        "edge_profile_completed_no_clear_leads",
+        "blocked_missing_required_data",
+        "profiler_failed",
+    }
+    assert profiler["source_previous_board_version"] == "v0_53"
+    assert profiler["purpose"] == "empirical_edge_mapping_not_strategy_backtest"
+    assert profiler["train_validation_only"] is True
+    assert profiler["oos_used"] is False
+    assert profiler["event_families_profiled"] == [
+        "session_return_profile",
+        "prior_day_high_low_sweep_profile",
+        "asian_range_breakout_profile",
+        "london_opening_candle_profile",
+        "ny_first_hour_profile",
+        "failed_m15_swing_breakout_profile",
+        "sequential_m5_move_profile",
+        "volatility_regime_profile",
+    ]
+    assert isinstance(profiler["strongest_empirical_leads"], list)
+    assert isinstance(profiler["recommended_v0_55_research_plan"], list)
+    assert profiler["candidate_created"] is False
+    assert profiler["demo_execution_allowed"] is False
+    assert profiler["order_send_called"] is False
+    assert profiler["order_check_called"] is False
+    assert profiler["live_allowed"] is False
+    assert profiler["data_csv_added_to_git"] is False

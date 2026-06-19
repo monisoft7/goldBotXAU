@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_53"
+CONTEXT_VERSION = "v0_54"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -425,10 +425,8 @@ def _limited_demo_execution_summary(root: Path) -> dict[str, Any] | None:
         "order_check_called": report.get("order_check_called"),
         "order_request_present": report.get("order_request_present", False),
         "order_request_complete": report.get("order_request_complete", False),
-        "order_request_missing_fields": report.get("order_request_missing_fields", []),
         "order_request_validation_status": report.get("order_request_validation_status", "missing_order_request"),
         "macro_event_lock_enabled": report.get("macro_event_lock_enabled"),
-        "macro_event_lock_status": report.get("macro_event_lock_status"),
         "approval_token_required": report.get("approval_token_required"),
     }
 
@@ -444,14 +442,9 @@ def _signal_order_request_summary(root: Path) -> dict[str, Any] | None:
         "candidate_id": report.get("candidate_id"),
         "candidate_rules_preserved": report.get("candidate_rules_preserved"),
         "dry_run": report.get("dry_run"),
-        "signal_evaluated": report.get("signal_evaluated"),
-        "signal_qualified": report.get("signal_qualified"),
-        "signal_reason": report.get("signal_reason"),
         "order_request_present": report.get("order_request_present"),
         "order_request_complete": report.get("order_request_complete"),
-        "order_request_missing_fields": report.get("order_request_missing_fields"),
         "order_request_validation_status": report.get("order_request_validation_status"),
-        "macro_event_lock_status": report.get("macro_event_lock_status"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
         "live_allowed": report.get("live_allowed"),
@@ -475,12 +468,6 @@ def _bounded_signal_watch_summary(root: Path) -> dict[str, Any] | None:
         "sleep_calls": report.get("sleep_calls"),
         "total_planned_sleep_seconds": report.get("total_planned_sleep_seconds"),
         "interval_seconds_honored": report.get("interval_seconds_honored"),
-        "no_sleep_reason": report.get("no_sleep_reason"),
-        "cycles_completed": report.get("cycles_completed"),
-        "stopped_early": report.get("stopped_early"),
-        "latest_signal_qualified": report.get("latest_signal_qualified"),
-        "latest_order_request_complete": report.get("latest_order_request_complete"),
-        "macro_event_lock_status": report.get("macro_event_lock_status"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
         "live_allowed": report.get("live_allowed"),
@@ -528,10 +515,7 @@ def _candidate_direction_provenance_summary(root: Path) -> dict[str, Any] | None
         "candidate_id": report.get("candidate_id"),
         "candidate_rules_preserved": report.get("candidate_rules_preserved"),
         "direction_rule_found": report.get("direction_rule_found"),
-        "direction_rule_source_files": report.get("direction_rule_source_files"),
-        "direction_rule_source_fields": report.get("direction_rule_source_fields"),
         "executable_side_mapping_found": report.get("executable_side_mapping_found"),
-        "direction_provenance_confidence": report.get("direction_provenance_confidence"),
         "demo_execution_direction_ready": report.get("demo_execution_direction_ready"),
         "blockers": len(blockers) if isinstance(blockers, list) else None,
         "warnings": len(warnings) if isinstance(warnings, list) else None,
@@ -562,8 +546,6 @@ def _direction_research_board_summary(root: Path) -> dict[str, Any] | None:
         "direction_hypotheses_evaluated": report.get("direction_hypotheses_evaluated"),
         "best_candidate_id": report.get("best_candidate_id"),
         "best_candidate_passed_gate": report.get("best_candidate_passed_gate"),
-        "best_validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
-        "best_validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
         "demo_execution_allowed": report.get("demo_execution_allowed"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
@@ -743,15 +725,42 @@ def _external_shortlist_board_summary(root: Path) -> dict[str, Any] | None:
         "tested_candidate_ids": report.get("tested_candidate_ids"),
         "best_candidate_id": report.get("best_candidate_id"),
         "best_candidate_passed_gate": report.get("best_candidate_passed_gate"),
-        "best_validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
-        "best_validation_expectancy": validation.get("expectancy_r") if isinstance(validation, dict) else None,
-        "best_validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
         "train_validation_only": report.get("train_validation_only"),
         "oos_used": report.get("oos_used"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "retune_performed": report.get("retune_performed"),
         "threshold_search_performed": report.get("threshold_search_performed"),
         "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "candidate_created": report.get("candidate_created"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+    }
+
+
+def _edge_profiler_summary(root: Path) -> dict[str, Any] | None:
+    profiler_path = root / "reports" / "xauusd_edge_profiler_v0_54.json"
+    if not profiler_path.exists():
+        return None
+    report = json.loads(profiler_path.read_text(encoding="utf-8"))
+    leads = report.get("strongest_empirical_leads", [])
+    lead_ids = [
+        lead.get("event_family_id")
+        for lead in leads
+        if isinstance(lead, dict) and lead.get("event_family_id") is not None
+    ]
+    return {
+        "profiler_version": report.get("profiler_version"),
+        "profiler_status": report.get("profiler_status"),
+        "source_previous_board_version": report.get("source_previous_board_version"),
+        "purpose": report.get("purpose"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "event_families_profiled": report.get("event_families_profiled"),
+        "strongest_empirical_leads": lead_ids,
+        "recommended_v0_55_research_plan": report.get("recommended_v0_55_research_plan"),
         "candidate_created": report.get("candidate_created"),
         "demo_execution_allowed": report.get("demo_execution_allowed"),
         "order_send_called": report.get("order_send_called"),
@@ -829,6 +838,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_external_strategy_idea_triage": _external_strategy_idea_triage_summary(root),
         "latest_kimi_external_idea_addendum": _kimi_external_idea_addendum_summary(root),
         "latest_external_shortlist_board": _external_shortlist_board_summary(root),
+        "latest_edge_profiler": _edge_profiler_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

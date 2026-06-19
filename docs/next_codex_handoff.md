@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_53 external shortlist train/validation board
+- Last completed checkpoint: v0_54 XAUUSD edge profiler
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 45 passed for v0_53 targeted tests; prior broad baseline 574 passed before v0_47
+- Current test baseline: 47 passed for v0_54 targeted tests; prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_53 evaluated fixed external shortlist rules on train/validation only, with demo/OOS blocked
+- Execution status: research only; v0_54 profiled XAUUSD train/validation event behavior, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -26,11 +26,42 @@
 - Latest external strategy idea triage: `reports/xauusd_external_strategy_idea_triage_v0_52.json`
 - Latest Kimi external idea addendum: `reports/xauusd_kimi_external_idea_addendum_v0_52_1.json`
 - Latest external shortlist board: `reports/xauusd_external_shortlist_board_v0_53.json`
-- Latest checkpoint: `docs/checkpoints/v0_53_external_shortlist_train_validation_board_result.md`
-- Latest context pack: `reports/codex_context_v0_53.json`
-- Latest health report: `reports/project_health_v0_53.json`
-- Latest decision: `no_external_shortlist_candidate_passed`
-- Next safe task: broaden non-OOS research or stop current branch; do not run OOS, retune, threshold search, parameter grid, create executable candidates, or demo/live execution
+- Latest edge profiler: `reports/xauusd_edge_profiler_v0_54.json`
+- Latest checkpoint: `docs/checkpoints/v0_54_xauusd_edge_profiler_result.md`
+- Latest context pack: `reports/codex_context_v0_54.json`
+- Latest health report: `reports/project_health_v0_54.json`
+- Latest decision: `edge_profile_completed_with_research_leads`
+- Next safe task: v0_55 fixed-rule candidate design for top 1-2 leads, no OOS; do not run OOS, retune, threshold search, parameter grid, create executable candidates, or demo/live execution
+
+## v0_54 XAUUSD Edge Profiler Result
+
+- Profiler module: `src/research/xauusd_edge_profiler.py`
+- Profiler script: `scripts/run_xauusd_edge_profiler_v0_54.py`
+- Profiler report: `reports/xauusd_edge_profiler_v0_54.json`
+- Profiler status: `edge_profile_completed_with_research_leads`
+- Source previous board version: `v0_53`
+- Purpose: `empirical_edge_mapping_not_strategy_backtest`
+- Event families profiled: `session_return_profile`, `prior_day_high_low_sweep_profile`, `asian_range_breakout_profile`, `london_opening_candle_profile`, `ny_first_hour_profile`, `failed_m15_swing_breakout_profile`, `sequential_m5_move_profile`, `volatility_regime_profile`
+- Strongest empirical leads: `session_return_profile`, `volatility_regime_profile`
+- Recommended v0_55 research plan: `v0_55 fixed-rule candidate design for session_return_profile using predeclared train/validation-only rules; no OOS`; `v0_55 fixed-rule candidate design for volatility_regime_profile using predeclared train/validation-only rules; no OOS`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `47 passed`
+- Next recommended step: `v0_55 fixed-rule candidate design for top 1-2 leads, no OOS`
+
+v0_54 is an empirical profiler only. It maps descriptive train/validation event-family behavior and does not create an executable strategy candidate, run OOS, retune, search thresholds, search parameter grids, make a profitability claim, or emit a user-facing trade recommendation.
+
+No demo/live execution, order sending, order checking, scheduler, execution queue, or `data/*.csv` addition was introduced.
 
 ## v0_53 External Shortlist Train/Validation Board Result
 
