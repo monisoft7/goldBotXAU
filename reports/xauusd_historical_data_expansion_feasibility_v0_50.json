@@ -1,0 +1,882 @@
+{
+  "audit_status": "expansion_data_partially_available",
+  "audit_version": "v0_50",
+  "available_newest_candle_time": "2022-12-30T23:55:00",
+  "available_oldest_candle_time": "2019-01-02T06:00:00",
+  "blockers": [],
+  "candidate_rules_preserved": true,
+  "candidate_to_retest_later": "trend_pullback_continuation_directional",
+  "candle_count_by_timeframe": {
+    "M10": 141476,
+    "M5": 281176
+  },
+  "data_csv_added_to_git": false,
+  "data_expansion_feasible": true,
+  "demo_execution_allowed": false,
+  "execution_queue_created": false,
+  "live_allowed": false,
+  "missing_range_gap_count": 2086,
+  "missing_range_gaps": [
+    {
+      "gap_end": "2019-01-02T06:00:00",
+      "gap_start": "2019-01-01T00:00:00",
+      "gap_type": "missing_start_of_requested_range",
+      "timeframe": "M5"
+    },
+    {
+      "gap_end": "2022-12-31T23:59:59",
+      "gap_start": "2022-12-30T23:55:00",
+      "gap_type": "missing_end_of_requested_range",
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-03T01:05:00",
+      "gap_start": "2019-01-02T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-04T01:05:00",
+      "gap_start": "2019-01-03T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-07T01:05:00",
+      "gap_start": "2019-01-04T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-08T01:05:00",
+      "gap_start": "2019-01-07T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-09T01:05:00",
+      "gap_start": "2019-01-08T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-10T01:05:00",
+      "gap_start": "2019-01-09T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-11T01:05:00",
+      "gap_start": "2019-01-10T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-14T01:05:00",
+      "gap_start": "2019-01-11T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-15T01:05:00",
+      "gap_start": "2019-01-14T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-16T01:05:00",
+      "gap_start": "2019-01-15T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-17T01:05:00",
+      "gap_start": "2019-01-16T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-18T01:05:00",
+      "gap_start": "2019-01-17T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-21T01:05:00",
+      "gap_start": "2019-01-18T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-22T01:05:00",
+      "gap_start": "2019-01-21T19:55:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 18600,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-23T01:05:00",
+      "gap_start": "2019-01-22T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-24T01:05:00",
+      "gap_start": "2019-01-23T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-25T01:05:00",
+      "gap_start": "2019-01-24T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-28T01:05:00",
+      "gap_start": "2019-01-25T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-29T01:05:00",
+      "gap_start": "2019-01-28T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-30T01:05:00",
+      "gap_start": "2019-01-29T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-01-31T01:05:00",
+      "gap_start": "2019-01-30T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-01T01:05:00",
+      "gap_start": "2019-01-31T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-04T01:05:00",
+      "gap_start": "2019-02-01T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-05T01:05:00",
+      "gap_start": "2019-02-04T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-06T01:05:00",
+      "gap_start": "2019-02-05T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-07T01:05:00",
+      "gap_start": "2019-02-06T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-08T01:05:00",
+      "gap_start": "2019-02-07T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-11T01:05:00",
+      "gap_start": "2019-02-08T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-12T01:05:00",
+      "gap_start": "2019-02-11T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-13T01:05:00",
+      "gap_start": "2019-02-12T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-14T01:05:00",
+      "gap_start": "2019-02-13T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-15T01:05:00",
+      "gap_start": "2019-02-14T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-18T01:05:00",
+      "gap_start": "2019-02-15T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-19T01:05:00",
+      "gap_start": "2019-02-18T19:55:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 18600,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-20T01:05:00",
+      "gap_start": "2019-02-19T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-21T01:05:00",
+      "gap_start": "2019-02-20T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-22T01:05:00",
+      "gap_start": "2019-02-21T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-25T01:05:00",
+      "gap_start": "2019-02-22T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-26T01:05:00",
+      "gap_start": "2019-02-25T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-27T01:05:00",
+      "gap_start": "2019-02-26T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-27T03:40:00",
+      "gap_start": "2019-02-27T03:05:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 2100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-27T05:45:00",
+      "gap_start": "2019-02-27T04:25:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4800,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-02-28T01:05:00",
+      "gap_start": "2019-02-27T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-01T01:05:00",
+      "gap_start": "2019-02-28T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-04T01:05:00",
+      "gap_start": "2019-03-01T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-05T01:05:00",
+      "gap_start": "2019-03-04T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-06T01:05:00",
+      "gap_start": "2019-03-05T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-07T01:05:00",
+      "gap_start": "2019-03-06T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-08T01:05:00",
+      "gap_start": "2019-03-07T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-11T01:05:00",
+      "gap_start": "2019-03-08T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-12T01:05:00",
+      "gap_start": "2019-03-11T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-13T01:05:00",
+      "gap_start": "2019-03-12T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-14T01:05:00",
+      "gap_start": "2019-03-13T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-15T01:05:00",
+      "gap_start": "2019-03-14T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-18T01:05:00",
+      "gap_start": "2019-03-15T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 180900,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-19T01:05:00",
+      "gap_start": "2019-03-18T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-20T01:05:00",
+      "gap_start": "2019-03-19T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-21T01:05:00",
+      "gap_start": "2019-03-20T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-22T01:05:00",
+      "gap_start": "2019-03-21T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-25T01:05:00",
+      "gap_start": "2019-03-22T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 180900,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-26T01:05:00",
+      "gap_start": "2019-03-25T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-27T01:05:00",
+      "gap_start": "2019-03-26T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-28T01:05:00",
+      "gap_start": "2019-03-27T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-03-29T01:05:00",
+      "gap_start": "2019-03-28T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 8100,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-01T01:05:00",
+      "gap_start": "2019-03-29T22:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 180900,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-02T01:05:00",
+      "gap_start": "2019-04-01T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-03T01:05:00",
+      "gap_start": "2019-04-02T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-04T01:05:00",
+      "gap_start": "2019-04-03T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-05T01:05:00",
+      "gap_start": "2019-04-04T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-08T01:05:00",
+      "gap_start": "2019-04-05T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-09T01:05:00",
+      "gap_start": "2019-04-08T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-10T01:05:00",
+      "gap_start": "2019-04-09T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-11T01:05:00",
+      "gap_start": "2019-04-10T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-12T01:05:00",
+      "gap_start": "2019-04-11T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-15T01:05:00",
+      "gap_start": "2019-04-12T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-16T01:05:00",
+      "gap_start": "2019-04-15T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-17T01:05:00",
+      "gap_start": "2019-04-16T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-18T01:05:00",
+      "gap_start": "2019-04-17T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-22T01:05:00",
+      "gap_start": "2019-04-18T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 263700,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-23T01:05:00",
+      "gap_start": "2019-04-22T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-24T01:05:00",
+      "gap_start": "2019-04-23T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-25T01:05:00",
+      "gap_start": "2019-04-24T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-26T01:05:00",
+      "gap_start": "2019-04-25T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-29T01:05:00",
+      "gap_start": "2019-04-26T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-04-30T01:05:00",
+      "gap_start": "2019-04-29T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-01T01:05:00",
+      "gap_start": "2019-04-30T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-02T01:05:00",
+      "gap_start": "2019-05-01T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-03T01:05:00",
+      "gap_start": "2019-05-02T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-06T01:05:00",
+      "gap_start": "2019-05-03T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-07T01:05:00",
+      "gap_start": "2019-05-06T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-08T01:05:00",
+      "gap_start": "2019-05-07T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-09T01:05:00",
+      "gap_start": "2019-05-08T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-10T01:05:00",
+      "gap_start": "2019-05-09T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-13T01:05:00",
+      "gap_start": "2019-05-10T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 177300,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-14T01:05:00",
+      "gap_start": "2019-05-13T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-15T01:05:00",
+      "gap_start": "2019-05-14T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-16T01:05:00",
+      "gap_start": "2019-05-15T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    },
+    {
+      "expected_seconds": 300,
+      "gap_end": "2019-05-17T01:05:00",
+      "gap_start": "2019-05-16T23:50:00",
+      "gap_type": "internal_gap",
+      "observed_gap_seconds": 4500,
+      "timeframe": "M5"
+    }
+  ],
+  "missing_range_gaps_truncated": true,
+  "mt5_initialized": true,
+  "mt5_read_only": true,
+  "mt5_shutdown_called": true,
+  "next_recommended_step": "v0_51 fixed-rule expanded train/validation retest on available older range only, no OOS",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "proposed_expanded_train_validation_plan": {
+    "available_candles_by_timeframe": {
+      "M10": 141476,
+      "M5": 281176
+    },
+    "candidate_id": "trend_pullback_continuation_directional",
+    "candidate_rules_preserved": true,
+    "demo_execution_allowed": false,
+    "expanded_evidence_range": {
+      "from_date": "2019-01-01",
+      "to_date": "2022-12-31"
+    },
+    "next_audit": "v0_51_fixed_rule_expanded_train_validation_retest_no_oos",
+    "oos_allowed": false,
+    "parameter_grid_allowed": false,
+    "plan_status": "ready_for_v0_51_fixed_rule_retest",
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "timeframes": [
+      "M10",
+      "M5"
+    ]
+  },
+  "repeated_oos_review": false,
+  "requested_from_date": "2019-01-01",
+  "requested_range_available": false,
+  "requested_to_date": "2022-12-31",
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "mt5_read_only": true,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_evaluation": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false
+  },
+  "scheduler_created": false,
+  "symbol": "XAUUSD",
+  "threshold_search_performed": false,
+  "trade_recommendation_output_present": false,
+  "warnings": [
+    "feasibility_audit_only_no_strategy_evaluation_no_oos",
+    "missing_range_gaps_truncated_to_100_examples",
+    "requested_range_partially_available_with_enough_usable_m5_candles"
+  ]
+}

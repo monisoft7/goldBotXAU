@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_49"
+    assert context["context_version"] == "v0_51"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 16000
+    assert len(context_text) < 18000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_49"
+    assert context["context_version"] == "v0_51"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_49.json"
+    output_path = tmp_path / "codex_context_v0_51.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_49"
+    assert context["context_version"] == "v0_51"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -654,3 +654,75 @@ def test_context_includes_v0_49_trend_pullback_stability_audit_summary() -> None
     assert audit["retune_performed"] is False
     assert audit["threshold_search_performed"] is False
     assert audit["parameter_grid_performed"] is False
+
+
+def test_context_includes_v0_50_historical_data_expansion_feasibility_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_historical_data_expansion_feasibility"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_50"
+    assert audit["audit_status"] in {
+        "expansion_data_available",
+        "expansion_data_partially_available",
+        "expansion_data_unavailable",
+        "blocked_mt5_unavailable",
+        "audit_failed",
+    }
+    assert audit["symbol"] == "XAUUSD"
+    assert audit["requested_from_date"] == "2019-01-01"
+    assert audit["requested_to_date"] == "2022-12-31"
+    assert audit["mt5_read_only"] is True
+    assert audit["mt5_initialized"] in {True, False}
+    assert audit["mt5_shutdown_called"] in {True, False}
+    assert audit["requested_range_available"] in {True, False}
+    assert isinstance(audit["candle_count_by_timeframe"], dict)
+    assert isinstance(audit["missing_range_gap_count"], int)
+    assert audit["data_expansion_feasible"] in {True, False}
+    assert audit["candidate_to_retest_later"] == "trend_pullback_continuation_directional"
+    assert audit["candidate_rules_preserved"] is True
+    assert audit["oos_used"] is False
+    assert audit["repeated_oos_review"] is False
+    assert audit["demo_execution_allowed"] is False
+    assert audit["order_send_called"] is False
+    assert audit["order_check_called"] is False
+    assert audit["live_allowed"] is False
+    assert audit["data_csv_added_to_git"] is False
+    assert audit["retune_performed"] is False
+    assert audit["threshold_search_performed"] is False
+    assert audit["parameter_grid_performed"] is False
+
+
+def test_context_includes_v0_51_trend_pullback_expanded_retest_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    retest = context["latest_trend_pullback_expanded_retest"]
+    assert retest is not None
+    assert retest["retest_version"] == "v0_51"
+    assert retest["retest_status"] in {
+        "expanded_evidence_passed_pre_oos_locking_gate",
+        "expanded_evidence_failed",
+        "blocked_missing_expansion_data",
+        "retest_failed",
+    }
+    assert retest["candidate_id"] == "trend_pullback_continuation_directional"
+    assert retest["source_candidate_board_version"] == "v0_48"
+    assert retest["source_stability_audit_version"] == "v0_49"
+    assert retest["source_data_feasibility_version"] == "v0_50"
+    assert retest["candidate_rules_preserved"] is True
+    assert retest["train_validation_equivalent_only"] is True
+    assert retest["oos_used"] is False
+    assert retest["repeated_oos_review"] is False
+    assert retest["retune_performed"] is False
+    assert retest["threshold_search_performed"] is False
+    assert retest["parameter_grid_performed"] is False
+    assert isinstance(retest["candle_count_by_timeframe"], dict)
+    assert isinstance(retest["expanded_trade_count"], int)
+    assert retest["sample_concentration_risk"] in {"low", "high", "unknown"}
+    assert retest["expanded_evidence_passed_gate"] in {True, False}
+    assert retest["candidate_locking_allowed_pre_oos"] in {True, False}
+    assert retest["demo_execution_allowed"] is False
+    assert retest["order_send_called"] is False
+    assert retest["order_check_called"] is False
+    assert retest["live_allowed"] is False
+    assert retest["data_csv_added_to_git"] is False

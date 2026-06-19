@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_49 trend pullback sample stability audit
+- Last completed checkpoint: v0_51 fixed-rule expanded train/validation retest
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 574 passed before v0_47; v0_49 targeted tests: 38 passed
+- Current test baseline: 41 passed for v0_51 targeted tests; prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_49 audited the v0_48 best candidate and kept locking/demo/OOS blocked
+- Execution status: research only; v0_51 retested older read-only MT5 low-timeframe data and kept demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -21,11 +21,89 @@
 - Latest direction research board: `reports/xauusd_direction_research_board_v0_47.json`
 - Latest new directional discovery board: `reports/xauusd_new_directional_discovery_v0_48.json`
 - Latest trend pullback stability audit: `reports/xauusd_trend_pullback_stability_audit_v0_49.json`
-- Latest checkpoint: `docs/checkpoints/v0_49_trend_pullback_sample_stability_audit_result.md`
-- Latest context pack: `reports/codex_context_v0_49.json`
-- Latest health report: `reports/project_health_v0_49.json`
-- Latest decision: `promising_but_insufficient_validation_sample`
-- Next safe task: collect more train/validation-equivalent evidence or stop; do not lock candidate, run OOS, or promote to demo
+- Latest historical data expansion feasibility audit: `reports/xauusd_historical_data_expansion_feasibility_v0_50.json`
+- Latest trend pullback expanded retest: `reports/xauusd_trend_pullback_expanded_retest_v0_51.json`
+- Latest checkpoint: `docs/checkpoints/v0_51_trend_pullback_expanded_retest_result.md`
+- Latest context pack: `reports/codex_context_v0_51.json`
+- Latest health report: `reports/project_health_v0_51.json`
+- Latest decision: `expanded_evidence_failed`
+- Next safe task: stop `trend_pullback_continuation_directional` branch or broaden non-OOS research; do not run OOS, retune, threshold search, parameter grid, or promote to demo
+
+## v0_51 Trend Pullback Expanded Retest Result
+
+- Retest module: `src/research/xauusd_trend_pullback_expanded_retest.py`
+- Retest script: `scripts/run_xauusd_trend_pullback_expanded_retest_v0_51.py`
+- Retest report: `reports/xauusd_trend_pullback_expanded_retest_v0_51.json`
+- Retest status: `expanded_evidence_failed`
+- Candidate id: `trend_pullback_continuation_directional`
+- Source candidate board version: `v0_48`
+- Source stability audit version: `v0_49`
+- Source data feasibility version: `v0_50`
+- Candidate rules preserved: `true`
+- Expanded range: `2019-01-02T06:00:00` to `2022-12-30T21:55:00`
+- Train/validation-equivalent only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Candle count by timeframe: `M5=281152`, `M10=141464`
+- Expanded trade count: `230`
+- Expanded profit factor: `1.1861259380980205`
+- Expanded expectancy: `0.0574451807402551`
+- Sample concentration risk: `low`
+- Expanded evidence passed gate: `false`
+- Candidate locking allowed pre-OOS: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `41 passed`
+- Next recommended step: `stop trend_pullback branch or broaden non-OOS research`
+
+v0_51 retested the exact fixed v0_48 `trend_pullback_continuation_directional` rule on the older range made feasible by v0_50. This was expanded train/validation-equivalent evidence only, not OOS, not a retune, and not a parameter or threshold search.
+
+The expanded sample reached `230` trades across `4` calendar years and reduced concentration risk to `low`, but the expanded profit factor was `1.1861259380980205`, below the fixed `1.20` gate. Candidate locking, OOS, demo execution, and live execution remain blocked.
+
+No order sending, order checking, live trading, scheduler, execution queue, candidate-rule change, retune, threshold search, parameter grid, OOS run, user-facing trade recommendation, or `data/*.csv` addition was introduced.
+
+## v0_50 Historical Data Expansion Feasibility Result
+
+- Audit module: `src/research/xauusd_historical_data_expansion_feasibility_audit.py`
+- Audit script: `scripts/audit_xauusd_historical_data_expansion_v0_50.py`
+- Audit report: `reports/xauusd_historical_data_expansion_feasibility_v0_50.json`
+- Audit status: `expansion_data_partially_available`
+- Symbol: `XAUUSD`
+- Requested range: `2019-01-01` to `2022-12-31`
+- MT5 read-only: `true`
+- MT5 initialized: `true`
+- MT5 shutdown called: `true`
+- Available oldest candle time: `2019-01-02T06:00:00`
+- Available newest candle time: `2022-12-30T23:55:00`
+- Requested range available: `false`
+- Candle count by timeframe: `M5=281176`, `M10=141476`
+- Missing range gap count: `2086`
+- Missing range gaps truncated in report: `true`
+- Data expansion feasible: `true`
+- Candidate to retest later: `trend_pullback_continuation_directional`
+- Candidate rules preserved: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `37 passed`
+- Next recommended step: `v0_51 fixed-rule expanded train/validation retest on available older range only, no OOS`
+
+v0_50 used MT5 read-only data availability checks only. The full requested range is not complete, but there is enough available older low-timeframe data to justify a fixed-rule expanded train/validation retest. No CSV files were exported or added to git.
+
+No order sending, order checking, live trading, scheduler, execution queue, candidate-rule change, retune, threshold search, parameter grid, OOS run, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_49 Trend Pullback Sample Stability Audit Result
 

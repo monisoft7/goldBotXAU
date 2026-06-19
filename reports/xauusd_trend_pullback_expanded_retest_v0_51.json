@@ -1,0 +1,968 @@
+{
+  "blockers": [
+    "expanded_profit_factor_below_fixed_gate"
+  ],
+  "candidate_id": "trend_pullback_continuation_directional",
+  "candidate_locking_allowed_pre_oos": false,
+  "candidate_rules_preserved": true,
+  "candle_count_by_timeframe": {
+    "M10": 141464,
+    "M5": 281152
+  },
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "execution_queue_created": false,
+  "expanded_evidence_gate": {
+    "catastrophic_negative_years": [],
+    "expanded_trade_minimum": 50,
+    "expectancy_minimum_exclusive": 0.0,
+    "failures": [
+      "expanded_profit_factor_below_fixed_gate"
+    ],
+    "max_single_year_trade_share": 0.5,
+    "min_calendar_years_with_trades": 3,
+    "observed_calendar_years_with_trades": 4,
+    "observed_expectancy_r": 0.0574451807402551,
+    "observed_max_single_year_trade_share": 0.2782608695652174,
+    "observed_profit_factor": 1.1861259380980205,
+    "observed_trade_count": 230,
+    "oos_used": false,
+    "passed": false,
+    "profit_factor_minimum": 1.2
+  },
+  "expanded_evidence_passed_gate": false,
+  "expanded_metrics": {
+    "expectancy_r": 0.0574451807402551,
+    "gross_loss_r": 70.98629941250084,
+    "gross_profit_r": 84.19869098275952,
+    "losses": 98,
+    "max_consecutive_losses": 12,
+    "profit_factor": 1.1861259380980205,
+    "timeframe_counts": {
+      "M10": 115,
+      "M5": 115
+    },
+    "trades": 230,
+    "win_rate": 0.5652173913043478,
+    "wins": 130
+  },
+  "expanded_range_from": "2019-01-02T06:00:00",
+  "expanded_range_to": "2022-12-30T21:55:00",
+  "expanded_trade_count": 230,
+  "live_allowed": false,
+  "metrics_by_month": {
+    "2019-01": {
+      "expectancy_r": -0.22769293113489797,
+      "gross_loss_r": 0.9107717245395919,
+      "gross_profit_r": 0,
+      "losses": 4,
+      "max_consecutive_losses": 4,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -0.9107717245395919,
+      "trades": 4,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2019-02": {
+      "expectancy_r": -1.263751295604328,
+      "gross_loss_r": 10.713227523011565,
+      "gross_profit_r": 0.6032171581769408,
+      "losses": 6,
+      "max_consecutive_losses": 6,
+      "profit_factor": 0.056305829114639404,
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": -10.110010364834624,
+      "trades": 8,
+      "win_rate": 0.25,
+      "wins": 2
+    },
+    "2019-03": {
+      "expectancy_r": 0.33571428571425643,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.6714285714285129,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": 0.6714285714285129,
+      "trades": 2,
+      "win_rate": 1.0,
+      "wins": 2
+    },
+    "2019-05": {
+      "expectancy_r": -0.1674134062003765,
+      "gross_loss_r": 2.1485977142364296,
+      "gross_profit_r": 0.4744636522326647,
+      "losses": 6,
+      "max_consecutive_losses": 4,
+      "profit_factor": 0.22082479613978365,
+      "timeframe_counts": {
+        "M10": 5,
+        "M5": 5
+      },
+      "total_return_r": -1.674134062003765,
+      "trades": 10,
+      "win_rate": 0.4,
+      "wins": 4
+    },
+    "2019-06": {
+      "expectancy_r": 0.5953202344989248,
+      "gross_loss_r": 1.2139973082099467,
+      "gross_profit_r": 3.595278246205646,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 2.9615207726505806,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 2.381280937995699,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2019-07": {
+      "expectancy_r": 1.256273054067527,
+      "gross_loss_r": 0,
+      "gross_profit_r": 10.050184432540217,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": 10.050184432540217,
+      "trades": 8,
+      "win_rate": 1.0,
+      "wins": 8
+    },
+    "2019-09": {
+      "expectancy_r": -0.5819316436251745,
+      "gross_loss_r": 10.124999999999885,
+      "gross_profit_r": 6.633410138248838,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.6551516185924853,
+      "timeframe_counts": {
+        "M10": 3,
+        "M5": 3
+      },
+      "total_return_r": -3.491589861751047,
+      "trades": 6,
+      "win_rate": 0.6666666666666666,
+      "wins": 4
+    },
+    "2019-10": {
+      "expectancy_r": 0.06654676258994997,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.13309352517989995,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": 0.13309352517989995,
+      "trades": 2,
+      "win_rate": 1.0,
+      "wins": 2
+    },
+    "2019-11": {
+      "expectancy_r": 0.5259185785751124,
+      "gross_loss_r": 0,
+      "gross_profit_r": 2.1036743143004495,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 2.1036743143004495,
+      "trades": 4,
+      "win_rate": 1.0,
+      "wins": 4
+    },
+    "2020-01": {
+      "expectancy_r": -0.794117281186282,
+      "gross_loss_r": 3.211822660098631,
+      "gross_profit_r": 0.03535353535350288,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.011007312387670002,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -3.176469124745128,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2020-03": {
+      "expectancy_r": 0.3080108269403482,
+      "gross_loss_r": 1.1184573002754614,
+      "gross_profit_r": 3.5825439157982473,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 3.203111924716226,
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": 2.4640866155227856,
+      "trades": 8,
+      "win_rate": 0.75,
+      "wins": 6
+    },
+    "2020-04": {
+      "expectancy_r": 0.4586911732764558,
+      "gross_loss_r": 0.5429625724828765,
+      "gross_profit_r": 3.2951096121416112,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 6.0687601303228496,
+      "timeframe_counts": {
+        "M10": 3,
+        "M5": 3
+      },
+      "total_return_r": 2.752147039658735,
+      "trades": 6,
+      "win_rate": 0.3333333333333333,
+      "wins": 2
+    },
+    "2020-05": {
+      "expectancy_r": 0.7607024232885334,
+      "gross_loss_r": 0,
+      "gross_profit_r": 6.0856193863082675,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": 6.0856193863082675,
+      "trades": 8,
+      "win_rate": 1.0,
+      "wins": 8
+    },
+    "2020-06": {
+      "expectancy_r": -1.5984072810011392,
+      "gross_loss_r": 3.1968145620022783,
+      "gross_profit_r": 0,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": -3.1968145620022783,
+      "trades": 2,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2020-07": {
+      "expectancy_r": 0.47478474784748775,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.9495694956949755,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": 0.9495694956949755,
+      "trades": 2,
+      "win_rate": 1.0,
+      "wins": 2
+    },
+    "2020-08": {
+      "expectancy_r": 0.5550579609891619,
+      "gross_loss_r": 1.450980392156859,
+      "gross_profit_r": 7.001560002048478,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 4.825399460871261,
+      "timeframe_counts": {
+        "M10": 5,
+        "M5": 5
+      },
+      "total_return_r": 5.55057960989162,
+      "trades": 10,
+      "win_rate": 0.8,
+      "wins": 8
+    },
+    "2020-09": {
+      "expectancy_r": -0.030173370388365494,
+      "gross_loss_r": 3.142488601160264,
+      "gross_profit_r": 2.840754897276609,
+      "losses": 6,
+      "max_consecutive_losses": 6,
+      "profit_factor": 0.9039825621730977,
+      "timeframe_counts": {
+        "M10": 5,
+        "M5": 5
+      },
+      "total_return_r": -0.30173370388365495,
+      "trades": 10,
+      "win_rate": 0.4,
+      "wins": 4
+    },
+    "2020-10": {
+      "expectancy_r": -0.123186390431733,
+      "gross_loss_r": 2.113044297891397,
+      "gross_profit_r": 0.8811803935740667,
+      "losses": 6,
+      "max_consecutive_losses": 6,
+      "profit_factor": 0.4170193660650631,
+      "timeframe_counts": {
+        "M10": 5,
+        "M5": 5
+      },
+      "total_return_r": -1.23186390431733,
+      "trades": 10,
+      "win_rate": 0.4,
+      "wins": 4
+    },
+    "2020-12": {
+      "expectancy_r": -0.351276608242255,
+      "gross_loss_r": 1.40510643296902,
+      "gross_profit_r": 0,
+      "losses": 4,
+      "max_consecutive_losses": 4,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -1.40510643296902,
+      "trades": 4,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2021-01": {
+      "expectancy_r": -0.5396729254996886,
+      "gross_loss_r": 1.0793458509993772,
+      "gross_profit_r": 0,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": -1.0793458509993772,
+      "trades": 2,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2021-03": {
+      "expectancy_r": 0.6666666666666218,
+      "gross_loss_r": 0,
+      "gross_profit_r": 1.3333333333332436,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": 1.3333333333332436,
+      "trades": 2,
+      "win_rate": 1.0,
+      "wins": 2
+    },
+    "2021-04": {
+      "expectancy_r": 0.13324218971275043,
+      "gross_loss_r": 0.07448789571696288,
+      "gross_profit_r": 1.1404254134189662,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 15.310211175146152,
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": 1.0659375177020034,
+      "trades": 8,
+      "win_rate": 0.75,
+      "wins": 6
+    },
+    "2021-05": {
+      "expectancy_r": 0.3072970195272429,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.6145940390544858,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": 0.6145940390544858,
+      "trades": 2,
+      "win_rate": 1.0,
+      "wins": 2
+    },
+    "2021-06": {
+      "expectancy_r": 0.24542857142857127,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.9817142857142851,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 0.9817142857142851,
+      "trades": 4,
+      "win_rate": 1.0,
+      "wins": 4
+    },
+    "2021-07": {
+      "expectancy_r": -0.13972151106851344,
+      "gross_loss_r": 4.754982358687382,
+      "gross_profit_r": 3.078324225865221,
+      "losses": 10,
+      "max_consecutive_losses": 10,
+      "profit_factor": 0.6473892001389036,
+      "timeframe_counts": {
+        "M10": 6,
+        "M5": 6
+      },
+      "total_return_r": -1.6766581328221613,
+      "trades": 12,
+      "win_rate": 0.16666666666666666,
+      "wins": 2
+    },
+    "2021-08": {
+      "expectancy_r": 0.15685273611162928,
+      "gross_loss_r": 2.143455087635316,
+      "gross_profit_r": 4.966804337644643,
+      "losses": 8,
+      "max_consecutive_losses": 6,
+      "profit_factor": 2.317195431943516,
+      "timeframe_counts": {
+        "M10": 9,
+        "M5": 9
+      },
+      "total_return_r": 2.823349250009327,
+      "trades": 18,
+      "win_rate": 0.5555555555555556,
+      "wins": 10
+    },
+    "2021-09": {
+      "expectancy_r": 0.17170842217483795,
+      "gross_loss_r": 1.375,
+      "gross_profit_r": 2.061833688699352,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 1.499515409963165,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 0.6868336886993518,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2021-10": {
+      "expectancy_r": -0.39967373572595316,
+      "gross_loss_r": 0.7993474714519063,
+      "gross_profit_r": 0,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": -0.7993474714519063,
+      "trades": 2,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2021-11": {
+      "expectancy_r": 0.23703626947175868,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.9481450778870347,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 0.9481450778870347,
+      "trades": 4,
+      "win_rate": 1.0,
+      "wins": 4
+    },
+    "2021-12": {
+      "expectancy_r": 0.6058566824429569,
+      "gross_loss_r": 0.34974655521621334,
+      "gross_profit_r": 3.9848866498739546,
+      "losses": 4,
+      "max_consecutive_losses": 2,
+      "profit_factor": 11.393640882068151,
+      "timeframe_counts": {
+        "M10": 3,
+        "M5": 3
+      },
+      "total_return_r": 3.6351400946577415,
+      "trades": 6,
+      "win_rate": 0.3333333333333333,
+      "wins": 2
+    },
+    "2022-01": {
+      "expectancy_r": 0.12673611111111446,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.2534722222222289,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": 0.2534722222222289,
+      "trades": 2,
+      "win_rate": 1.0,
+      "wins": 2
+    },
+    "2022-02": {
+      "expectancy_r": 0.1396779451438775,
+      "gross_loss_r": 0,
+      "gross_profit_r": 0.55871178057551,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 0.55871178057551,
+      "trades": 4,
+      "win_rate": 1.0,
+      "wins": 4
+    },
+    "2022-03": {
+      "expectancy_r": -0.2397589617984199,
+      "gross_loss_r": 0.9590358471936796,
+      "gross_profit_r": 0,
+      "losses": 4,
+      "max_consecutive_losses": 4,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -0.9590358471936796,
+      "trades": 4,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2022-04": {
+      "expectancy_r": -0.1174114249703388,
+      "gross_loss_r": 1.9660657476140282,
+      "gross_profit_r": 1.496420047732673,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.7611241127356466,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -0.4696456998813552,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2022-05": {
+      "expectancy_r": 0.35219129981381353,
+      "gross_loss_r": 0.8561782579338206,
+      "gross_profit_r": 2.2649434571890747,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 2.645411088404614,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 1.4087651992552541,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2022-06": {
+      "expectancy_r": 0.2431552824617235,
+      "gross_loss_r": 0,
+      "gross_profit_r": 1.458931694770341,
+      "losses": 0,
+      "max_consecutive_losses": 0,
+      "profit_factor": "inf",
+      "timeframe_counts": {
+        "M10": 3,
+        "M5": 3
+      },
+      "total_return_r": 1.458931694770341,
+      "trades": 6,
+      "win_rate": 1.0,
+      "wins": 6
+    },
+    "2022-07": {
+      "expectancy_r": -0.7993529744890875,
+      "gross_loss_r": 3.19741189795635,
+      "gross_profit_r": 0,
+      "losses": 4,
+      "max_consecutive_losses": 4,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -3.19741189795635,
+      "trades": 4,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2022-08": {
+      "expectancy_r": -2.1902777777777613,
+      "gross_loss_r": 4.380555555555523,
+      "gross_profit_r": 0,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.0,
+      "timeframe_counts": {
+        "M10": 1,
+        "M5": 1
+      },
+      "total_return_r": -4.380555555555523,
+      "trades": 2,
+      "win_rate": 0.0,
+      "wins": 0
+    },
+    "2022-09": {
+      "expectancy_r": 0.2629177805622658,
+      "gross_loss_r": 0.1469933184855413,
+      "gross_profit_r": 1.1986644407346043,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 8.15455051348139,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": 1.0516711222490631,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2022-10": {
+      "expectancy_r": -0.16896796431469274,
+      "gross_loss_r": 4.170316301703173,
+      "gross_profit_r": 3.4944444444444023,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 0.837932711007378,
+      "timeframe_counts": {
+        "M10": 2,
+        "M5": 2
+      },
+      "total_return_r": -0.675871857258771,
+      "trades": 4,
+      "win_rate": 0.5,
+      "wins": 2
+    },
+    "2022-11": {
+      "expectancy_r": 0.19977438413550622,
+      "gross_loss_r": 0.098576122672517,
+      "gross_profit_r": 1.6967711957565668,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 17.212801130284525,
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": 1.5981950730840497,
+      "trades": 8,
+      "win_rate": 0.75,
+      "wins": 6
+    },
+    "2022-12": {
+      "expectancy_r": 0.048537414586144384,
+      "gross_loss_r": 3.341530054644843,
+      "gross_profit_r": 3.729829371333998,
+      "losses": 2,
+      "max_consecutive_losses": 2,
+      "profit_factor": 1.1162040473493289,
+      "timeframe_counts": {
+        "M10": 4,
+        "M5": 4
+      },
+      "total_return_r": 0.38829931668915507,
+      "trades": 8,
+      "win_rate": 0.75,
+      "wins": 6
+    }
+  },
+  "metrics_by_side": {
+    "long": {
+      "expectancy_r": -0.07614691715999347,
+      "gross_loss_r": 47.144770073470106,
+      "gross_profit_r": 38.31172768291086,
+      "losses": 58,
+      "max_consecutive_losses": 10,
+      "profit_factor": 0.8126400367040949,
+      "timeframe_counts": {
+        "M10": 58,
+        "M5": 58
+      },
+      "total_return_r": -8.833042390559243,
+      "trades": 116,
+      "win_rate": 0.5,
+      "wins": 58
+    },
+    "short": {
+      "expectancy_r": 0.19338099965629751,
+      "gross_loss_r": 23.841529339030732,
+      "gross_profit_r": 45.886963299848645,
+      "losses": 40,
+      "max_consecutive_losses": 6,
+      "profit_factor": 1.9246652614992927,
+      "timeframe_counts": {
+        "M10": 57,
+        "M5": 57
+      },
+      "total_return_r": 22.045433960817917,
+      "trades": 114,
+      "win_rate": 0.631578947368421,
+      "wins": 72
+    }
+  },
+  "metrics_by_timeframe": {
+    "M10": {
+      "expectancy_r": 0.0574451807402551,
+      "gross_loss_r": 35.49314970625042,
+      "gross_profit_r": 42.09934549137976,
+      "losses": 49,
+      "max_consecutive_losses": 6,
+      "profit_factor": 1.1861259380980205,
+      "timeframe_counts": {
+        "M10": 115
+      },
+      "total_return_r": 6.606195785129336,
+      "trades": 115,
+      "win_rate": 0.5652173913043478,
+      "wins": 65
+    },
+    "M5": {
+      "expectancy_r": 0.0574451807402551,
+      "gross_loss_r": 35.49314970625042,
+      "gross_profit_r": 42.09934549137976,
+      "losses": 49,
+      "max_consecutive_losses": 6,
+      "profit_factor": 1.1861259380980205,
+      "timeframe_counts": {
+        "M5": 115
+      },
+      "total_return_r": 6.606195785129336,
+      "trades": 115,
+      "win_rate": 0.5652173913043478,
+      "wins": 65
+    }
+  },
+  "metrics_by_year": {
+    "2019": {
+      "expectancy_r": -0.017642588160088544,
+      "gross_loss_r": 25.11159426999742,
+      "gross_profit_r": 24.264750038313167,
+      "losses": 20,
+      "max_consecutive_losses": 10,
+      "profit_factor": 0.9662767635308589,
+      "timeframe_counts": {
+        "M10": 24,
+        "M5": 24
+      },
+      "total_return_r": -0.8468442316842502,
+      "trades": 48,
+      "win_rate": 0.5833333333333334,
+      "wins": 28
+    },
+    "2020": {
+      "expectancy_r": 0.13265647529935892,
+      "gross_loss_r": 16.181676819036788,
+      "gross_profit_r": 24.67169123819576,
+      "losses": 26,
+      "max_consecutive_losses": 10,
+      "profit_factor": 1.524668395871741,
+      "timeframe_counts": {
+        "M10": 32,
+        "M5": 32
+      },
+      "total_return_r": 8.490014419158971,
+      "trades": 64,
+      "win_rate": 0.5625,
+      "wins": 36
+    },
+    "2021": {
+      "expectancy_r": 0.13333899737162544,
+      "gross_loss_r": 10.576365219707158,
+      "gross_profit_r": 19.110061051491186,
+      "losses": 30,
+      "max_consecutive_losses": 10,
+      "profit_factor": 1.8068647077242583,
+      "timeframe_counts": {
+        "M10": 32,
+        "M5": 32
+      },
+      "total_return_r": 8.533695831784028,
+      "trades": 64,
+      "win_rate": 0.53125,
+      "wins": 34
+    },
+    "2022": {
+      "expectancy_r": -0.054897674981482895,
+      "gross_loss_r": 19.116663103759475,
+      "gross_profit_r": 16.1521886547594,
+      "losses": 22,
+      "max_consecutive_losses": 8,
+      "profit_factor": 0.8449272013159512,
+      "timeframe_counts": {
+        "M10": 27,
+        "M5": 27
+      },
+      "total_return_r": -2.9644744490000763,
+      "trades": 54,
+      "win_rate": 0.5925925925925926,
+      "wins": 32
+    }
+  },
+  "mt5_initialized": true,
+  "mt5_read_only": true,
+  "mt5_shutdown_called": true,
+  "next_recommended_step": "stop trend_pullback branch or broaden non-OOS research",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "retest_status": "expanded_evidence_failed",
+  "retest_version": "v0_51",
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "mt5_read_only": true,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_equivalent_only": true
+  },
+  "sample_concentration_risk": {
+    "expanded_month_max_share": 0.0782608695652174,
+    "expanded_side_max_share": 0.5043478260869565,
+    "expanded_timeframe_max_share": 0.5,
+    "expanded_trade_count": 230,
+    "expanded_year_max_share": 0.2782608695652174,
+    "reasons": [],
+    "risk_level": "low",
+    "risk_present": false,
+    "warnings": []
+  },
+  "scheduler_created": false,
+  "side_distribution": {
+    "long": 116,
+    "short": 114
+  },
+  "source_candidate_board_version": "v0_48",
+  "source_data_feasibility_version": "v0_50",
+  "source_stability_audit_version": "v0_49",
+  "symbol": "XAUUSD",
+  "threshold_search_performed": false,
+  "trade_distribution_by_month": {
+    "2019-01": 4,
+    "2019-02": 8,
+    "2019-03": 2,
+    "2019-05": 10,
+    "2019-06": 4,
+    "2019-07": 8,
+    "2019-09": 6,
+    "2019-10": 2,
+    "2019-11": 4,
+    "2020-01": 4,
+    "2020-03": 8,
+    "2020-04": 6,
+    "2020-05": 8,
+    "2020-06": 2,
+    "2020-07": 2,
+    "2020-08": 10,
+    "2020-09": 10,
+    "2020-10": 10,
+    "2020-12": 4,
+    "2021-01": 2,
+    "2021-03": 2,
+    "2021-04": 8,
+    "2021-05": 2,
+    "2021-06": 4,
+    "2021-07": 12,
+    "2021-08": 18,
+    "2021-09": 4,
+    "2021-10": 2,
+    "2021-11": 4,
+    "2021-12": 6,
+    "2022-01": 2,
+    "2022-02": 4,
+    "2022-03": 4,
+    "2022-04": 4,
+    "2022-05": 4,
+    "2022-06": 6,
+    "2022-07": 4,
+    "2022-08": 2,
+    "2022-09": 4,
+    "2022-10": 4,
+    "2022-11": 8,
+    "2022-12": 8
+  },
+  "trade_distribution_by_year": {
+    "2019": 48,
+    "2020": 64,
+    "2021": 64,
+    "2022": 54
+  },
+  "trade_recommendation_output_present": false,
+  "train_validation_equivalent_only": true,
+  "validation_trade_minimum": 25,
+  "warnings": [
+    "expanded_retest_only_no_oos_no_demo_promotion",
+    "candidate_rules_reconstructed_from_v0_48_fixed_family_rule"
+  ]
+}

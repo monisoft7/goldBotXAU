@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_49"
+CONTEXT_VERSION = "v0_51"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -646,6 +646,82 @@ def _trend_pullback_stability_audit_summary(root: Path) -> dict[str, Any] | None
     }
 
 
+def _historical_data_expansion_feasibility_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = root / "reports" / "xauusd_historical_data_expansion_feasibility_v0_50.json"
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "symbol": report.get("symbol"),
+        "requested_from_date": report.get("requested_from_date"),
+        "requested_to_date": report.get("requested_to_date"),
+        "mt5_read_only": report.get("mt5_read_only"),
+        "mt5_initialized": report.get("mt5_initialized"),
+        "mt5_shutdown_called": report.get("mt5_shutdown_called"),
+        "available_oldest_candle_time": report.get("available_oldest_candle_time"),
+        "available_newest_candle_time": report.get("available_newest_candle_time"),
+        "requested_range_available": report.get("requested_range_available"),
+        "candle_count_by_timeframe": report.get("candle_count_by_timeframe"),
+        "missing_range_gap_count": report.get("missing_range_gap_count"),
+        "missing_range_gaps_truncated": report.get("missing_range_gaps_truncated"),
+        "data_expansion_feasible": report.get("data_expansion_feasible"),
+        "candidate_to_retest_later": report.get("candidate_to_retest_later"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
+def _trend_pullback_expanded_retest_summary(root: Path) -> dict[str, Any] | None:
+    retest_path = root / "reports" / "xauusd_trend_pullback_expanded_retest_v0_51.json"
+    if not retest_path.exists():
+        return None
+    report = json.loads(retest_path.read_text(encoding="utf-8"))
+    metrics = report.get("expanded_metrics", {})
+    risk = report.get("sample_concentration_risk", {})
+    return {
+        "retest_version": report.get("retest_version"),
+        "retest_status": report.get("retest_status"),
+        "candidate_id": report.get("candidate_id"),
+        "source_candidate_board_version": report.get("source_candidate_board_version"),
+        "source_stability_audit_version": report.get("source_stability_audit_version"),
+        "source_data_feasibility_version": report.get("source_data_feasibility_version"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "expanded_range_from": report.get("expanded_range_from"),
+        "expanded_range_to": report.get("expanded_range_to"),
+        "train_validation_equivalent_only": report.get("train_validation_equivalent_only"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "candle_count_by_timeframe": report.get("candle_count_by_timeframe"),
+        "expanded_trade_count": report.get("expanded_trade_count"),
+        "expanded_profit_factor": metrics.get("profit_factor") if isinstance(metrics, dict) else None,
+        "expanded_expectancy_r": metrics.get("expectancy_r") if isinstance(metrics, dict) else None,
+        "sample_concentration_risk": risk.get("risk_level") if isinstance(risk, dict) else None,
+        "expanded_evidence_passed_gate": report.get("expanded_evidence_passed_gate"),
+        "candidate_locking_allowed_pre_oos": report.get("candidate_locking_allowed_pre_oos"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -709,6 +785,8 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_direction_research_board": _direction_research_board_summary(root),
         "latest_new_directional_discovery_board": _new_directional_discovery_board_summary(root),
         "latest_trend_pullback_stability_audit": _trend_pullback_stability_audit_summary(root),
+        "latest_historical_data_expansion_feasibility": _historical_data_expansion_feasibility_summary(root),
+        "latest_trend_pullback_expanded_retest": _trend_pullback_expanded_retest_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,
