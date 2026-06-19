@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_59"
+CONTEXT_VERSION = "v0_60"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -917,6 +917,45 @@ def _research_lab_warning_standardization_summary(root: Path) -> dict[str, Any] 
     }
 
 
+def _second_tier_fixed_rule_board_summary(root: Path) -> dict[str, Any] | None:
+    board_path = root / "reports" / "xauusd_second_tier_board_v0_60.json"
+    if not board_path.exists():
+        return None
+    report = json.loads(board_path.read_text(encoding="utf-8"))
+    metrics = report.get("best_candidate_metrics", {})
+    train = metrics.get("train", {}) if isinstance(metrics, dict) else {}
+    validation = metrics.get("validation", {}) if isinstance(metrics, dict) else {}
+    return {
+        "board_version": report.get("board_version"),
+        "board_status": report.get("board_status"),
+        "source_standardization_version": report.get("source_standardization_version"),
+        "tested_candidate_ids": report.get("tested_candidate_ids"),
+        "best_candidate_id": report.get("best_candidate_id"),
+        "best_candidate_passed_gate": report.get("best_candidate_passed_gate"),
+        "best_train_profit_factor": train.get("profit_factor") if isinstance(train, dict) else None,
+        "best_train_trades": train.get("trades") if isinstance(train, dict) else None,
+        "best_validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
+        "best_validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
+        "rejected_do_not_retune_candidates": report.get("rejected_do_not_retune_candidates"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "gates_lowered": report.get("gates_lowered"),
+        "past_metrics_changed": report.get("past_metrics_changed"),
+        "executable_candidate_created": report.get("executable_candidate_created"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+        "timestamp_basis_reported": report.get("timestamp_basis_reported"),
+        "timestamp_basis": report.get("timestamp_basis"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -991,6 +1030,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_volatility_regime_lead_viability": _volatility_regime_lead_viability_summary(root),
         "latest_research_lab_integrity_audit": _research_lab_integrity_summary(root),
         "latest_research_lab_warning_standardization": _research_lab_warning_standardization_summary(root),
+        "latest_second_tier_fixed_rule_board": _second_tier_fixed_rule_board_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

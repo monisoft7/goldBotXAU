@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_59 research lab warning standardization
-- OOS: no OOS used in v0_59; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 53 passed for v0_59 targeted tests; prior v0_58 targeted baseline 54 passed, prior v0_57 targeted baseline 48 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_60 standardized second-tier fixed-rule train/validation board
+- OOS: no OOS used in v0_60; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 53 passed for v0_60 targeted tests; prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, prior v0_57 targeted baseline 48 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_59 standardized the v0_58 lab-integrity warnings with policy docs, with demo/OOS blocked
+- Execution status: research only; v0_60 evaluated three second-tier fixed-rule train/validation ideas under v0_59 policies, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -32,11 +32,49 @@
 - Latest volatility regime lead viability audit: `reports/xauusd_volatility_regime_lead_viability_v0_57.json`
 - Latest research lab integrity audit: `reports/xauusd_research_lab_integrity_audit_v0_58.json`
 - Latest research lab warning standardization: `reports/xauusd_research_lab_warning_standardization_v0_59.json`
-- Latest checkpoint: `docs/checkpoints/v0_59_research_lab_warning_standardization_result.md`
-- Latest context pack: `reports/codex_context_v0_59.json`
-- Latest health report: `reports/project_health_v0_59.json`
-- Latest decision: `lab_warning_standardization_completed`
-- Next safe task: continue research with standardized lab policies; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+- Latest second-tier fixed-rule board: `reports/xauusd_second_tier_board_v0_60.json`
+- Latest checkpoint: `docs/checkpoints/v0_60_second_tier_fixed_rule_board_result.md`
+- Latest context pack: `reports/codex_context_v0_60.json`
+- Latest health report: `reports/project_health_v0_60.json`
+- Latest decision: `no_second_tier_candidate_passed`
+- Next safe task: broaden non-OOS research or consider adding external features such as DXY/yields/news calendar before further strategy tests; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+
+## v0_60 Second-Tier Fixed-Rule Board Result
+
+- Board module: `src/research/xauusd_second_tier_fixed_rule_board.py`
+- Board script: `scripts/run_xauusd_second_tier_board_v0_60.py`
+- Board report: `reports/xauusd_second_tier_board_v0_60.json`
+- Board status: `no_second_tier_candidate_passed`
+- Source standardization version: `v0_59`
+- Tested candidate ids: `failed_m15_swing_breakout_reversal`, `ny_liquidity_sweep_reversal`, `sequential_m5_move_mean_reversion`
+- Best candidate id: `ny_liquidity_sweep_reversal`
+- Best candidate passed gate: `false`
+- Best train profit factor: `0.7656489689036846`
+- Best train expectancy: `-0.21007613604144268`
+- Best train trades: `270`
+- Best validation profit factor: `1.7101588243682602`
+- Best validation expectancy: `0.5567402891905258`
+- Best validation trades: `43`
+- Rejected do-not-retune candidates: `failed_m15_swing_breakout_reversal`, `ny_liquidity_sweep_reversal`, `sequential_m5_move_mean_reversion`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Gates lowered: `false`
+- Past metrics changed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Timestamp basis reported: `true`
+- Targeted tests: `53 passed`
+- Next recommended step: `broaden non-OOS research or consider adding external features such as DXY/yields/news calendar before further strategy tests.`
+
+v0_60 evaluated exactly the three requested second-tier fixed-rule ideas under the v0_59 standardized lab policies. No candidate passed the fixed train/validation gate. No OOS run, repeated OOS review, retune, threshold search, parameter grid, executable candidate creation, demo/live execution, order sending, order checking, scheduler, execution queue, user-facing trade recommendation, profitability claim, or `data/*.csv` addition was introduced.
 
 ## v0_59 Research Lab Warning Standardization Result
 

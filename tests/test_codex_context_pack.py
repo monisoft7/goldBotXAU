@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_59"
+    assert context["context_version"] == "v0_60"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_59"
+    assert context["context_version"] == "v0_60"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_59.json"
+    output_path = tmp_path / "codex_context_v0_60.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_59"
+    assert context["context_version"] == "v0_60"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -995,3 +995,47 @@ def test_context_includes_v0_59_research_lab_warning_standardization_summary() -
     assert standardization["order_send_called"] is False
     assert standardization["order_check_called"] is False
     assert standardization["live_allowed"] is False
+
+
+def test_context_includes_v0_60_second_tier_fixed_rule_board_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    board = context["latest_second_tier_fixed_rule_board"]
+    assert board is not None
+    assert board["board_version"] == "v0_60"
+    assert board["board_status"] in {
+        "second_tier_candidate_passed_train_validation",
+        "no_second_tier_candidate_passed",
+        "blocked_missing_v0_59_policy_docs",
+        "blocked_missing_required_data",
+        "board_failed",
+    }
+    assert board["source_standardization_version"] == "v0_59"
+    assert board["tested_candidate_ids"] == [
+        "failed_m15_swing_breakout_reversal",
+        "ny_liquidity_sweep_reversal",
+        "sequential_m5_move_mean_reversion",
+    ]
+    assert board["best_candidate_id"] in {
+        "failed_m15_swing_breakout_reversal",
+        "ny_liquidity_sweep_reversal",
+        "sequential_m5_move_mean_reversion",
+        None,
+    }
+    assert board["best_candidate_passed_gate"] in {True, False}
+    assert isinstance(board["rejected_do_not_retune_candidates"], list)
+    assert board["train_validation_only"] is True
+    assert board["oos_used"] is False
+    assert board["repeated_oos_review"] is False
+    assert board["retune_performed"] is False
+    assert board["threshold_search_performed"] is False
+    assert board["parameter_grid_performed"] is False
+    assert board["gates_lowered"] is False
+    assert board["past_metrics_changed"] is False
+    assert board["executable_candidate_created"] is False
+    assert board["demo_execution_allowed"] is False
+    assert board["order_send_called"] is False
+    assert board["order_check_called"] is False
+    assert board["live_allowed"] is False
+    assert board["data_csv_added_to_git"] is False
+    assert board["timestamp_basis_reported"] is True

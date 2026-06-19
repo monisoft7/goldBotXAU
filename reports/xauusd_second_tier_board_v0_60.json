@@ -1,0 +1,656 @@
+{
+  "best_candidate_id": "ny_liquidity_sweep_reversal",
+  "best_candidate_metrics": {
+    "train": {
+      "exit_reason_counts": {
+        "invalidated_next_candle_close_beyond_extreme": 30,
+        "stop": 177,
+        "target_midpoint_00_00_12_00_range": 61,
+        "time_exit_20_00_utc": 2
+      },
+      "expectancy_r": -0.21007613604144268,
+      "gross_loss_r": 242.03246073143188,
+      "gross_profit_r": 185.31190400024235,
+      "losses": 208,
+      "max_consecutive_losses": 19,
+      "profit_factor": 0.7656489689036846,
+      "side_counts": {
+        "long": 102,
+        "short": 168
+      },
+      "trades": 270,
+      "win_rate": 0.22962962962962963,
+      "wins": 62
+    },
+    "validation": {
+      "exit_reason_counts": {
+        "invalidated_next_candle_close_beyond_extreme": 3,
+        "stop": 28,
+        "target_midpoint_00_00_12_00_range": 12
+      },
+      "expectancy_r": 0.5567402891905258,
+      "gross_loss_r": 33.71053293112129,
+      "gross_profit_r": 57.650365366313906,
+      "losses": 31,
+      "max_consecutive_losses": 7,
+      "profit_factor": 1.7101588243682602,
+      "side_counts": {
+        "long": 17,
+        "short": 26
+      },
+      "trades": 43,
+      "win_rate": 0.27906976744186046,
+      "wins": 12
+    }
+  },
+  "best_candidate_passed_gate": false,
+  "blockers": [],
+  "board_status": "no_second_tier_candidate_passed",
+  "board_version": "v0_60",
+  "candidate_results": [
+    {
+      "candidate_disposition": "rejected_do_not_retune",
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "combined_trade_count": 5237,
+      "do_not_retune": true,
+      "executable_candidate_created": false,
+      "fixed_before_evaluation": true,
+      "fixed_rules": {
+        "entry": "close_of_current_m15_candle",
+        "invalidation": "next_m15_close_beyond_failed_breakout_extreme_in_breakout_direction",
+        "long_setup": "current_low_breaks_prior_20_low_and_close_back_above_prior_20_low",
+        "session_filter_utc": "07:00-20:00",
+        "short_setup": "current_high_breaks_prior_20_high_and_close_back_below_prior_20_high",
+        "stop": "failed_breakout_candle_extreme",
+        "swing_lookback_completed_m15_candles": 20,
+        "target": "midpoint_of_prior_20_m15_range",
+        "time_exit": "after_8_m15_bars_or_20_00_utc",
+        "timeframe": "M15"
+      },
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "train_expectancy_not_positive",
+        "validation_expectancy_not_positive",
+        "train_max_consecutive_losses_above_fixed_gate",
+        "validation_max_consecutive_losses_above_fixed_gate"
+      ],
+      "passed_gate": false,
+      "safety": {
+        "auto_execute_order": false,
+        "data_csv_added_to_git": false,
+        "demo_execution_allowed": false,
+        "executable_candidate_created": false,
+        "execution_queue_created": false,
+        "gates_lowered": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "past_metrics_changed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "scheduler_created": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false,
+        "train_validation_only": true
+      },
+      "split_trade_counts": {
+        "train": 4341,
+        "validation": 896
+      },
+      "timeframe": "M15",
+      "trade_sample": [
+        {
+          "candidate_id": "failed_m15_swing_breakout_reversal",
+          "entry_price": 1841.92,
+          "entry_timestamp": "2023-01-03T08:15:00",
+          "exit_price": 1844.26,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-03T09:15:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1844.26,
+          "target_price": 1834.9850000000001,
+          "won": false
+        },
+        {
+          "candidate_id": "failed_m15_swing_breakout_reversal",
+          "entry_price": 1836.27,
+          "entry_timestamp": "2023-01-03T12:30:00",
+          "exit_price": 1834.49,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-03T12:45:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1834.49,
+          "target_price": 1842.275,
+          "won": false
+        },
+        {
+          "candidate_id": "failed_m15_swing_breakout_reversal",
+          "entry_price": 1834.5,
+          "entry_timestamp": "2023-01-03T12:45:00",
+          "exit_price": 1832.71,
+          "exit_reason": "invalidated_next_candle_close_beyond_extreme",
+          "exit_timestamp": "2023-01-03T13:00:00",
+          "return_r": -2.2948717948718285,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1833.72,
+          "target_price": 1842.24,
+          "won": false
+        },
+        {
+          "candidate_id": "failed_m15_swing_breakout_reversal",
+          "entry_price": 1833.22,
+          "entry_timestamp": "2023-01-03T13:15:00",
+          "exit_price": 1831.23,
+          "exit_reason": "invalidated_next_candle_close_beyond_extreme",
+          "exit_timestamp": "2023-01-03T13:30:00",
+          "return_r": -1.3092105263158111,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1831.7,
+          "target_price": 1841.29,
+          "won": false
+        },
+        {
+          "candidate_id": "failed_m15_swing_breakout_reversal",
+          "entry_price": 1844.97,
+          "entry_timestamp": "2023-01-03T16:45:00",
+          "exit_price": 1840.01,
+          "exit_reason": "target_midpoint_prior_20_m15_range",
+          "exit_timestamp": "2023-01-03T17:00:00",
+          "return_r": 1.0143149284253916,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1849.86,
+          "target_price": 1840.01,
+          "won": true
+        }
+      ],
+      "train_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle_close_beyond_extreme": 755,
+          "stop": 2070,
+          "target_midpoint_prior_20_m15_range": 1099,
+          "time_exit_8_m15_bars_or_20_00_utc": 417
+        },
+        "expectancy_r": -0.34118822754722805,
+        "gross_loss_r": 4260.390033750767,
+        "gross_profit_r": 2779.29193796825,
+        "losses": 2930,
+        "max_consecutive_losses": 17,
+        "profit_factor": 0.6523562199589069,
+        "side_counts": {
+          "long": 1973,
+          "short": 2368
+        },
+        "trades": 4341,
+        "win_rate": 0.3250403132918682,
+        "wins": 1411
+      },
+      "validation_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle_close_beyond_extreme": 136,
+          "stop": 447,
+          "target_midpoint_prior_20_m15_range": 222,
+          "time_exit_8_m15_bars_or_20_00_utc": 91
+        },
+        "expectancy_r": -0.38723026702502894,
+        "gross_loss_r": 946.7301750820767,
+        "gross_profit_r": 599.7718558276507,
+        "losses": 606,
+        "max_consecutive_losses": 19,
+        "profit_factor": 0.633519319034754,
+        "side_counts": {
+          "long": 377,
+          "short": 519
+        },
+        "trades": 896,
+        "win_rate": 0.3236607142857143,
+        "wins": 290
+      }
+    },
+    {
+      "candidate_disposition": "rejected_do_not_retune",
+      "candidate_id": "ny_liquidity_sweep_reversal",
+      "combined_trade_count": 313,
+      "do_not_retune": true,
+      "executable_candidate_created": false,
+      "fixed_before_evaluation": true,
+      "fixed_rules": {
+        "entry": "close_of_sweep_m15_candle",
+        "entry_window_utc": "12:30-14:30",
+        "invalidation": "next_m15_close_beyond_sweep_extreme_in_breakout_direction",
+        "long_setup": "sweep_below_reference_low_and_close_back_above_reference_low",
+        "reference_range_utc": "00:00-12:00",
+        "short_setup": "sweep_above_reference_high_and_close_back_below_reference_high",
+        "stop": "sweep_candle_extreme",
+        "target": "midpoint_of_00_00_12_00_range",
+        "time_exit": "20:00_utc",
+        "timeframe": "M15",
+        "timestamp_policy": "fixed_utc_windows_with_timestamp_basis_reported"
+      },
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_trades_below_fixed_gate",
+        "train_expectancy_not_positive",
+        "train_max_consecutive_losses_above_fixed_gate"
+      ],
+      "passed_gate": false,
+      "safety": {
+        "auto_execute_order": false,
+        "data_csv_added_to_git": false,
+        "demo_execution_allowed": false,
+        "executable_candidate_created": false,
+        "execution_queue_created": false,
+        "gates_lowered": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "past_metrics_changed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "scheduler_created": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false,
+        "train_validation_only": true
+      },
+      "split_trade_counts": {
+        "train": 270,
+        "validation": 43
+      },
+      "timeframe": "M15",
+      "trade_sample": [
+        {
+          "candidate_id": "ny_liquidity_sweep_reversal",
+          "entry_price": 1885.26,
+          "entry_timestamp": "2023-01-12T13:15:00",
+          "exit_price": 1886.02,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-12T13:30:00",
+          "return_r": -1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1886.02,
+          "target_price": 1880.015,
+          "won": false
+        },
+        {
+          "candidate_id": "ny_liquidity_sweep_reversal",
+          "entry_price": 1906.26,
+          "entry_timestamp": "2023-01-17T12:45:00",
+          "exit_price": 1912.4299999999998,
+          "exit_reason": "target_midpoint_00_00_12_00_range",
+          "exit_timestamp": "2023-01-17T13:45:00",
+          "return_r": 3.9050632911393226,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1904.68,
+          "target_price": 1912.4299999999998,
+          "won": true
+        },
+        {
+          "candidate_id": "ny_liquidity_sweep_reversal",
+          "entry_price": 1915.72,
+          "entry_timestamp": "2023-01-18T13:45:00",
+          "exit_price": 1917.06,
+          "exit_reason": "invalidated_next_candle_close_beyond_extreme",
+          "exit_timestamp": "2023-01-18T14:00:00",
+          "return_r": -1.229357798165155,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1916.81,
+          "target_price": 1906.2649999999999,
+          "won": false
+        },
+        {
+          "candidate_id": "ny_liquidity_sweep_reversal",
+          "entry_price": 1925.97,
+          "entry_timestamp": "2023-01-25T13:45:00",
+          "exit_price": 1923.08,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-25T14:00:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1923.08,
+          "target_price": 1932.795,
+          "won": false
+        },
+        {
+          "candidate_id": "ny_liquidity_sweep_reversal",
+          "entry_price": 1935.95,
+          "entry_timestamp": "2023-01-26T13:30:00",
+          "exit_price": 1933.15,
+          "exit_reason": "stop",
+          "exit_timestamp": "2023-01-26T15:30:00",
+          "return_r": -1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1933.15,
+          "target_price": 1941.4850000000001,
+          "won": false
+        }
+      ],
+      "train_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle_close_beyond_extreme": 30,
+          "stop": 177,
+          "target_midpoint_00_00_12_00_range": 61,
+          "time_exit_20_00_utc": 2
+        },
+        "expectancy_r": -0.21007613604144268,
+        "gross_loss_r": 242.03246073143188,
+        "gross_profit_r": 185.31190400024235,
+        "losses": 208,
+        "max_consecutive_losses": 19,
+        "profit_factor": 0.7656489689036846,
+        "side_counts": {
+          "long": 102,
+          "short": 168
+        },
+        "trades": 270,
+        "win_rate": 0.22962962962962963,
+        "wins": 62
+      },
+      "validation_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_candle_close_beyond_extreme": 3,
+          "stop": 28,
+          "target_midpoint_00_00_12_00_range": 12
+        },
+        "expectancy_r": 0.5567402891905258,
+        "gross_loss_r": 33.71053293112129,
+        "gross_profit_r": 57.650365366313906,
+        "losses": 31,
+        "max_consecutive_losses": 7,
+        "profit_factor": 1.7101588243682602,
+        "side_counts": {
+          "long": 17,
+          "short": 26
+        },
+        "trades": 43,
+        "win_rate": 0.27906976744186046,
+        "wins": 12
+      }
+    },
+    {
+      "candidate_disposition": "rejected_do_not_retune",
+      "candidate_id": "sequential_m5_move_mean_reversion",
+      "combined_trade_count": 3527,
+      "do_not_retune": true,
+      "executable_candidate_created": false,
+      "fixed_before_evaluation": true,
+      "fixed_rules": {
+        "entry": "close_of_5th_m5_candle",
+        "invalidation": "next_m5_close_continues_streak_direction_beyond_5th_candle_close",
+        "long_setup": "exactly_5_consecutive_m5_closes_lower_than_previous_close",
+        "news_calendar_filter": "none_in_v0_60",
+        "session_filter_utc": "07:00-20:00",
+        "short_setup": "exactly_5_consecutive_m5_closes_higher_than_previous_close",
+        "stop": "entry_plus_or_minus_distance_from_first_candle_open_to_fifth_candle_close",
+        "streak_length": 5,
+        "target": "open_of_first_candle_in_streak",
+        "time_exit": "after_12_m5_bars",
+        "timeframe": "M5"
+      },
+      "gate_failures": [
+        "train_profit_factor_below_fixed_gate",
+        "validation_profit_factor_below_fixed_gate",
+        "train_max_consecutive_losses_above_fixed_gate",
+        "validation_max_consecutive_losses_above_fixed_gate"
+      ],
+      "passed_gate": false,
+      "safety": {
+        "auto_execute_order": false,
+        "data_csv_added_to_git": false,
+        "demo_execution_allowed": false,
+        "executable_candidate_created": false,
+        "execution_queue_created": false,
+        "gates_lowered": false,
+        "live_allowed": false,
+        "oos_used": false,
+        "order_check_called": false,
+        "order_send_called": false,
+        "parameter_grid_performed": false,
+        "past_metrics_changed": false,
+        "repeated_oos_review": false,
+        "research_only": true,
+        "retune_performed": false,
+        "scheduler_created": false,
+        "threshold_search_performed": false,
+        "trade_recommendation_output_present": false,
+        "train_validation_only": true
+      },
+      "split_trade_counts": {
+        "train": 2913,
+        "validation": 614
+      },
+      "timeframe": "M5",
+      "trade_sample": [
+        {
+          "candidate_id": "sequential_m5_move_mean_reversion",
+          "entry_price": 1849.39,
+          "entry_timestamp": "2023-01-03T09:30:00",
+          "exit_price": 1841.37,
+          "exit_reason": "target_first_candle_open",
+          "exit_timestamp": "2023-01-03T10:20:00",
+          "return_r": 1.0,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1857.4100000000003,
+          "target_price": 1841.37,
+          "won": true
+        },
+        {
+          "candidate_id": "sequential_m5_move_mean_reversion",
+          "entry_price": 1835.36,
+          "entry_timestamp": "2023-01-03T10:50:00",
+          "exit_price": 1840.6,
+          "exit_reason": "target_first_candle_open",
+          "exit_timestamp": "2023-01-03T11:25:00",
+          "return_r": 1.0,
+          "side": "long",
+          "split": "train",
+          "stop_price": 1830.12,
+          "target_price": 1840.6,
+          "won": true
+        },
+        {
+          "candidate_id": "sequential_m5_move_mean_reversion",
+          "entry_price": 1841.36,
+          "entry_timestamp": "2023-01-03T11:25:00",
+          "exit_price": 1838.01,
+          "exit_reason": "time_exit_12_m5_bars",
+          "exit_timestamp": "2023-01-03T12:25:00",
+          "return_r": 0.5620805369127544,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1847.3199999999997,
+          "target_price": 1835.4,
+          "won": true
+        },
+        {
+          "candidate_id": "sequential_m5_move_mean_reversion",
+          "entry_price": 1839.24,
+          "entry_timestamp": "2023-01-03T15:15:00",
+          "exit_price": 1839.28,
+          "exit_reason": "time_exit_12_m5_bars",
+          "exit_timestamp": "2023-01-03T16:15:00",
+          "return_r": -0.008196721311467772,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1844.1200000000001,
+          "target_price": 1834.36,
+          "won": false
+        },
+        {
+          "candidate_id": "sequential_m5_move_mean_reversion",
+          "entry_price": 1841.24,
+          "entry_timestamp": "2023-01-03T16:25:00",
+          "exit_price": 1844.69,
+          "exit_reason": "invalidated_next_m5_close_continued_streak_direction",
+          "exit_timestamp": "2023-01-03T16:30:00",
+          "return_r": -0.8175355450237022,
+          "side": "short",
+          "split": "train",
+          "stop_price": 1845.46,
+          "target_price": 1837.02,
+          "won": false
+        }
+      ],
+      "train_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_m5_close_continued_streak_direction": 1415,
+          "stop": 249,
+          "target_first_candle_open": 591,
+          "time_exit_12_m5_bars": 658
+        },
+        "expectancy_r": 0.009922792410909601,
+        "gross_loss_r": 698.8800937155144,
+        "gross_profit_r": 727.7851880084941,
+        "losses": 1939,
+        "max_consecutive_losses": 14,
+        "profit_factor": 1.0413591609675261,
+        "side_counts": {
+          "long": 1420,
+          "short": 1493
+        },
+        "trades": 2913,
+        "win_rate": 0.3340199107449365,
+        "wins": 973
+      },
+      "validation_metrics": {
+        "exit_reason_counts": {
+          "invalidated_next_m5_close_continued_streak_direction": 307,
+          "stop": 54,
+          "target_first_candle_open": 110,
+          "time_exit_12_m5_bars": 143
+        },
+        "expectancy_r": 0.0017568407609239256,
+        "gross_loss_r": 144.6758304112431,
+        "gross_profit_r": 145.7545306384504,
+        "losses": 406,
+        "max_consecutive_losses": 17,
+        "profit_factor": 1.0074559808928767,
+        "side_counts": {
+          "long": 272,
+          "short": 342
+        },
+        "trades": 614,
+        "win_rate": 0.33876221498371334,
+        "wins": 208
+      }
+    }
+  ],
+  "cost_policy_reference": "docs/research_lab_cost_policy.md",
+  "data_csv_added_to_git": false,
+  "data_files_used": {
+    "M15": [
+      "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+    ],
+    "M5": [
+      "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+    ]
+  },
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "fixed_gate": {
+    "max_consecutive_losses_max": 8,
+    "oos_used": false,
+    "train_expectancy_min_exclusive": 0.0,
+    "train_profit_factor_min": 1.2,
+    "validation_expectancy_min_exclusive": 0.0,
+    "validation_pf_min_train_pf_ratio": 0.75,
+    "validation_profit_factor_min": 1.15,
+    "validation_trades_min": 50
+  },
+  "gap_policy_reference": "docs/research_lab_gap_classification_policy.md",
+  "gate_policy_reference": "docs/research_lab_gate_policy.md",
+  "gates_lowered": false,
+  "live_allowed": false,
+  "next_recommended_step": "broaden non-OOS research or consider adding external features such as DXY/yields/news calendar before further strategy tests.",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "past_metrics_changed": false,
+  "rejected_do_not_retune_candidates": [
+    "failed_m15_swing_breakout_reversal",
+    "ny_liquidity_sweep_reversal",
+    "sequential_m5_move_mean_reversion"
+  ],
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "gates_lowered": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "past_metrics_changed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "source_standardization_version": "v0_59",
+  "split_candle_counts": {
+    "M15": {
+      "excluded_oos": 10180,
+      "other": 0,
+      "train": 58922,
+      "validation": 11922
+    },
+    "M5": {
+      "excluded_oos": 0,
+      "other": 0,
+      "train": 176746,
+      "validation": 35622
+    }
+  },
+  "standardized_policy_references": {
+    "cost_policy": "docs/research_lab_cost_policy.md",
+    "gap_classification_policy": "docs/research_lab_gap_classification_policy.md",
+    "gate_policy": "docs/research_lab_gate_policy.md",
+    "timestamp_session_policy": "docs/research_lab_timestamp_and_session_policy.md"
+  },
+  "tested_candidate_ids": [
+    "failed_m15_swing_breakout_reversal",
+    "ny_liquidity_sweep_reversal",
+    "sequential_m5_move_mean_reversion"
+  ],
+  "threshold_search_performed": false,
+  "timestamp_basis": "unknown_or_broker_server_time",
+  "timestamp_basis_reported": true,
+  "timestamp_session_policy_reference": "docs/research_lab_timestamp_and_session_policy.md",
+  "train_validation_only": true,
+  "warnings": [
+    "research_only_second_tier_board_not_execution",
+    "fixed_rules_only_no_retune_no_threshold_search_no_parameter_grid",
+    "oos_candles_on_disk_excluded_from_evaluation",
+    "v0_59_cost_policy_referenced_metrics_remain_raw_r_without_retroactive_cost_recompute",
+    "timestamp_basis_reported_from_v0_59_unknown_or_broker_server_time",
+    "same_candle_stop_and_target_resolution_is_conservative_stop_first",
+    "m15_excluded_oos_candle_count:10180"
+  ]
+}
