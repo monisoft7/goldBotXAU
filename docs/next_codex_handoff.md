@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_52 external strategy idea intake triage
+- Last completed checkpoint: v0_52_1 Kimi external idea addendum
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 43 passed for v0_52 targeted tests; prior broad baseline 574 passed before v0_47
+- Current test baseline: 48 passed for v0_52_1 targeted tests; prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_52 recorded and ranked external ideas only, with demo/OOS blocked
+- Execution status: research only; v0_52_1 added Kimi idea triage only, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -24,11 +24,48 @@
 - Latest historical data expansion feasibility audit: `reports/xauusd_historical_data_expansion_feasibility_v0_50.json`
 - Latest trend pullback expanded retest: `reports/xauusd_trend_pullback_expanded_retest_v0_51.json`
 - Latest external strategy idea triage: `reports/xauusd_external_strategy_idea_triage_v0_52.json`
-- Latest checkpoint: `docs/checkpoints/v0_52_external_strategy_idea_triage_result.md`
-- Latest context pack: `reports/codex_context_v0_52.json`
-- Latest health report: `reports/project_health_v0_52.json`
-- Latest decision: `shortlist_ready_for_v0_53_non_oos_board`
-- Next safe task: design v0_53 fixed-rule train/validation-only board for the shortlisted ideas; do not run OOS, retune, threshold search, parameter grid, backtests beyond the board scope, or demo/live execution
+- Latest Kimi external idea addendum: `reports/xauusd_kimi_external_idea_addendum_v0_52_1.json`
+- Latest checkpoint: `docs/checkpoints/v0_52_1_kimi_external_idea_addendum_result.md`
+- Latest context pack: `reports/codex_context_v0_52_1.json`
+- Latest health report: `reports/project_health_v0_52_1.json`
+- Latest decision: `kimi_addendum_completed_shortlist_unchanged`
+- Next safe task: design v0_53 fixed-rule train/validation-only board for the unchanged shortlist; do not run OOS, retune, threshold search, parameter grid, create executable candidates, or demo/live execution
+
+## v0_52_1 Kimi External Idea Addendum Result
+
+- Addendum module: `src/research/xauusd_kimi_external_idea_addendum.py`
+- Addendum script: `scripts/run_xauusd_kimi_idea_addendum_v0_52_1.py`
+- Addendum report: `reports/xauusd_kimi_external_idea_addendum_v0_52_1.json`
+- Addendum status: `kimi_addendum_completed_shortlist_unchanged`
+- Source triage version: `v0_52`
+- Kimi added to external sources: `true`
+- Kimi raw idea count: `10`
+- Kimi deduplicated idea count: `5`
+- Original v0_52 shortlist: `prior_day_liquidity_sweep_reversal`, `london_opening_range_breakout_or_first_candle_direction`, `asian_range_london_breakout_confirmation`
+- Final shortlist for v0_53: `prior_day_liquidity_sweep_reversal`, `london_opening_range_breakout_or_first_candle_direction`, `asian_range_london_breakout_confirmation`
+- Shortlist changed: `false`
+- Top ranked idea id: `prior_day_liquidity_sweep_reversal`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Backtest implemented: `false`
+- Candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `48 passed`
+- Next recommended step: `use the unchanged v0_52 shortlist for v0_53 fixed-rule train/validation-only board design; keep Kimi addendum ideas as supplemental do-not-retune-aware notes`
+
+v0_52_1 adds Kimi as an external idea source without changing the finalized v0_52 report. Kimi ideas were deduplicated or penalized where they overlapped opening-range, Asian/liquidity-sweep, v0_26 compression/expansion, VWAP, weekend gap, trend-pullback, or generic candle-pattern families.
+
+The v0_52 shortlist remains unchanged because no Kimi idea materially beat the top three. No profitability claim was made.
+
+No order sending, order checking, live trading, scheduler, execution queue, backtest implementation, candidate creation, retune, threshold search, parameter grid, OOS run, repeated OOS review, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_52 External Strategy Idea Intake Triage Result
 

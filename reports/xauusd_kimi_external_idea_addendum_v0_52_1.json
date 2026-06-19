@@ -1,0 +1,578 @@
+{
+  "addendum_status": "kimi_addendum_completed_shortlist_unchanged",
+  "addendum_version": "v0_52_1",
+  "backtest_implemented": false,
+  "blockers": [],
+  "candidate_created": false,
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "external_sources_considered": [
+    "Claude",
+    "DeepSeek",
+    "Gemini",
+    "GLM",
+    "Perplexity",
+    "Qwen/QwinMax",
+    "kimi"
+  ],
+  "final_shortlist_for_v0_53": [
+    "prior_day_liquidity_sweep_reversal",
+    "london_opening_range_breakout_or_first_candle_direction",
+    "asian_range_london_breakout_confirmation"
+  ],
+  "kimi_added_to_external_sources": true,
+  "kimi_deduplicated_idea_count": 5,
+  "kimi_idea_records": [
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Opening range breakout with fixed momentum confirmation.",
+      "disposition": "deduplicated_overlap",
+      "family_id": "london_opening_range_direction",
+      "idea_id": "opening_range_breakout_with_momentum_confirmation",
+      "overlaps_with": [
+        "london_opening_range_breakout_or_first_candle_direction"
+      ],
+      "penalty_notes": [
+        "overlaps_with_existing_v0_52_london_opening_range_family"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Fixed sequence of same-direction M5 closes followed by a reversal response.",
+      "disposition": "new_scored_idea",
+      "family_id": "sequential_move_mean_reversion",
+      "idea_id": "mean_reversion_after_extended_sequential_moves",
+      "overlaps_with": [],
+      "penalty_notes": [
+        "penalized_for_sequence_length_threshold_sensitivity"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 32,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 3,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 3
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 32
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "London close or Asian liquidity sweep variant.",
+      "disposition": "deduplicated_overlap",
+      "family_id": "asian_range_london_breakout",
+      "idea_id": "london_close_or_asian_liquidity_sweep",
+      "overlaps_with": [
+        "asian_range_london_breakout_confirmation",
+        "prior_day_liquidity_sweep_reversal"
+      ],
+      "penalty_notes": [
+        "overlaps_with_existing_asian_range_and_liquidity_sweep_families"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Range contraction/expansion with explicit close-location directional bias.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "compression_expansion_close_bias",
+      "idea_id": "range_contraction_expansion_with_close_bias",
+      "overlaps_with": [
+        "xauusd_compression_then_expansion_v0_26"
+      ],
+      "penalty_notes": [
+        "penalized_similarity_to_failed_v0_26_compression_expansion_branch",
+        "explicit_close_location_direction_is_distinct_but_not_enough_to_displace_v0_52_top_three"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 31,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 2,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 3,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 31
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "NY session first-hour continuation idea.",
+      "disposition": "deduplicated_overlap",
+      "family_id": "london_ny_range_extension",
+      "idea_id": "ny_session_first_hour_continuation",
+      "overlaps_with": [
+        "london_ny_range_extension"
+      ],
+      "penalty_notes": [
+        "overlaps_with_existing_range_extension_and_first_hour_family"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Weekend gap fill failure variant.",
+      "disposition": "penalized_overlap",
+      "family_id": "weekend_gap_fill",
+      "idea_id": "gap_fill_failure",
+      "overlaps_with": [
+        "weekend_gap_fill"
+      ],
+      "penalty_notes": [
+        "related_to_weekend_gap_family",
+        "penalized_low_sample_frequency"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "VWAP deviation reversion variant.",
+      "disposition": "penalized_overlap",
+      "family_id": "vwap_mean_reversion",
+      "idea_id": "vwap_deviation_reversion",
+      "overlaps_with": [
+        "vwap_mean_reversion"
+      ],
+      "penalty_notes": [
+        "penalized_vwap_volume_quality_uncertain",
+        "overlaps_with_existing_vwap_mean_reversion_family"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Three-candle body confirmation reversal.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "generic_candle_pattern_reversal",
+      "idea_id": "three_candle_body_confirmation_reversal",
+      "overlaps_with": [],
+      "penalty_notes": [
+        "penalized_generic_candle_pattern_mining_risk",
+        "penalized_noisy_high_frequency_pattern"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 28,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 3,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 2,
+        "mechanical_rule_clarity": 3,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 2
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 28
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Higher-timeframe alignment with pullback continuation.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "trend_pullback_alignment",
+      "idea_id": "higher_timeframe_alignment_pullback",
+      "overlaps_with": [
+        "trend_pullback_continuation_directional_v0_51"
+      ],
+      "penalty_notes": [
+        "penalized_similarity_to_failed_v0_48_v0_51_trend_pullback_branch",
+        "requires_materially_different_fixed_rule_before_future_consideration"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 24,
+      "scorecard": {
+        "available_data_compatibility": 4,
+        "difference_from_failed_candidates": 1,
+        "expected_trade_frequency": 3,
+        "implementation_simplicity": 2,
+        "low_parameterization": 2,
+        "mechanical_rule_clarity": 3,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 24
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Friday range extension reversal.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "friday_range_extension_reversal",
+      "idea_id": "friday_range_extension_reversal",
+      "overlaps_with": [],
+      "penalty_notes": [
+        "penalized_low_frequency",
+        "penalized_friday_concentration_risk"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 30,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 1,
+        "implementation_simplicity": 4,
+        "low_parameterization": 4,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 3
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 30
+    }
+  ],
+  "kimi_raw_idea_count": 10,
+  "kimi_raw_idea_ids": [
+    "opening_range_breakout_with_momentum_confirmation",
+    "mean_reversion_after_extended_sequential_moves",
+    "london_close_or_asian_liquidity_sweep",
+    "range_contraction_expansion_with_close_bias",
+    "ny_session_first_hour_continuation",
+    "gap_fill_failure",
+    "vwap_deviation_reversion",
+    "three_candle_body_confirmation_reversal",
+    "higher_timeframe_alignment_pullback",
+    "friday_range_extension_reversal"
+  ],
+  "kimi_rejected_or_penalized_ideas": [
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Opening range breakout with fixed momentum confirmation.",
+      "disposition": "deduplicated_overlap",
+      "family_id": "london_opening_range_direction",
+      "idea_id": "opening_range_breakout_with_momentum_confirmation",
+      "overlaps_with": [
+        "london_opening_range_breakout_or_first_candle_direction"
+      ],
+      "penalty_notes": [
+        "overlaps_with_existing_v0_52_london_opening_range_family"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "London close or Asian liquidity sweep variant.",
+      "disposition": "deduplicated_overlap",
+      "family_id": "asian_range_london_breakout",
+      "idea_id": "london_close_or_asian_liquidity_sweep",
+      "overlaps_with": [
+        "asian_range_london_breakout_confirmation",
+        "prior_day_liquidity_sweep_reversal"
+      ],
+      "penalty_notes": [
+        "overlaps_with_existing_asian_range_and_liquidity_sweep_families"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Range contraction/expansion with explicit close-location directional bias.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "compression_expansion_close_bias",
+      "idea_id": "range_contraction_expansion_with_close_bias",
+      "overlaps_with": [
+        "xauusd_compression_then_expansion_v0_26"
+      ],
+      "penalty_notes": [
+        "penalized_similarity_to_failed_v0_26_compression_expansion_branch",
+        "explicit_close_location_direction_is_distinct_but_not_enough_to_displace_v0_52_top_three"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 31,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 2,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 3,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 31
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "NY session first-hour continuation idea.",
+      "disposition": "deduplicated_overlap",
+      "family_id": "london_ny_range_extension",
+      "idea_id": "ny_session_first_hour_continuation",
+      "overlaps_with": [
+        "london_ny_range_extension"
+      ],
+      "penalty_notes": [
+        "overlaps_with_existing_range_extension_and_first_hour_family"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Weekend gap fill failure variant.",
+      "disposition": "penalized_overlap",
+      "family_id": "weekend_gap_fill",
+      "idea_id": "gap_fill_failure",
+      "overlaps_with": [
+        "weekend_gap_fill"
+      ],
+      "penalty_notes": [
+        "related_to_weekend_gap_family",
+        "penalized_low_sample_frequency"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "VWAP deviation reversion variant.",
+      "disposition": "penalized_overlap",
+      "family_id": "vwap_mean_reversion",
+      "idea_id": "vwap_deviation_reversion",
+      "overlaps_with": [
+        "vwap_mean_reversion"
+      ],
+      "penalty_notes": [
+        "penalized_vwap_volume_quality_uncertain",
+        "overlaps_with_existing_vwap_mean_reversion_family"
+      ],
+      "profitability_claimed": false,
+      "rank_score": null,
+      "scorecard": {},
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": null
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Three-candle body confirmation reversal.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "generic_candle_pattern_reversal",
+      "idea_id": "three_candle_body_confirmation_reversal",
+      "overlaps_with": [],
+      "penalty_notes": [
+        "penalized_generic_candle_pattern_mining_risk",
+        "penalized_noisy_high_frequency_pattern"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 28,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 3,
+        "expected_trade_frequency": 4,
+        "implementation_simplicity": 4,
+        "low_parameterization": 2,
+        "mechanical_rule_clarity": 3,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 2
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 28
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Higher-timeframe alignment with pullback continuation.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "trend_pullback_alignment",
+      "idea_id": "higher_timeframe_alignment_pullback",
+      "overlaps_with": [
+        "trend_pullback_continuation_directional_v0_51"
+      ],
+      "penalty_notes": [
+        "penalized_similarity_to_failed_v0_48_v0_51_trend_pullback_branch",
+        "requires_materially_different_fixed_rule_before_future_consideration"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 24,
+      "scorecard": {
+        "available_data_compatibility": 4,
+        "difference_from_failed_candidates": 1,
+        "expected_trade_frequency": 3,
+        "implementation_simplicity": 2,
+        "low_parameterization": 2,
+        "mechanical_rule_clarity": 3,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 4
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 24
+    },
+    {
+      "backtest_implemented": false,
+      "candidate_created": false,
+      "description": "Friday range extension reversal.",
+      "disposition": "penalized_scored_idea",
+      "family_id": "friday_range_extension_reversal",
+      "idea_id": "friday_range_extension_reversal",
+      "overlaps_with": [],
+      "penalty_notes": [
+        "penalized_low_frequency",
+        "penalized_friday_concentration_risk"
+      ],
+      "profitability_claimed": false,
+      "rank_score": 30,
+      "scorecard": {
+        "available_data_compatibility": 5,
+        "difference_from_failed_candidates": 4,
+        "expected_trade_frequency": 1,
+        "implementation_simplicity": 4,
+        "low_parameterization": 4,
+        "mechanical_rule_clarity": 4,
+        "oos_safety": 5,
+        "xauusd_structural_logic": 3
+      },
+      "source": "kimi",
+      "sufficiently_mechanical_for_v0_53": false,
+      "total_score": 30
+    }
+  ],
+  "live_allowed": false,
+  "next_recommended_step": "use the unchanged v0_52 shortlist for v0_53 fixed-rule train/validation-only board design; keep Kimi addendum ideas as supplemental do-not-retune-aware notes",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "original_v0_52_shortlist": [
+    "prior_day_liquidity_sweep_reversal",
+    "london_opening_range_breakout_or_first_candle_direction",
+    "asian_range_london_breakout_confirmation"
+  ],
+  "parameter_grid_performed": false,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "backtest_implemented": false,
+    "candidate_created": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true,
+    "triage_supplement_only": true
+  },
+  "scoring_method": {
+    "backtests_run": false,
+    "dimensions": [
+      "mechanical_rule_clarity",
+      "expected_trade_frequency",
+      "xauusd_structural_logic",
+      "available_data_compatibility",
+      "low_parameterization",
+      "difference_from_failed_candidates",
+      "oos_safety",
+      "implementation_simplicity"
+    ],
+    "penalties_applied_for": [
+      "needs_vwap_if_volume_quality_unreliable",
+      "too_low_trade_frequency",
+      "resembles_failed_branch_too_closely",
+      "requires_arbitrary_thresholds",
+      "requires_external_news_calendar",
+      "relies_on_vague_discretionary_smc_language"
+    ],
+    "profitability_evidence_used": false,
+    "score_range": "0_to_5_each_dimension",
+    "sufficiently_mechanical_rule": "mechanical_rule_clarity>=4, available_data_compatibility>=4, low_parameterization>=4, and total_score>=32",
+    "total_score_max": 40
+  },
+  "scoring_method_preserved": true,
+  "shortlist_change_reason": "unchanged: best_kimi=mean_reversion_after_extended_sequential_moves score=32 did_not_materially_beat_weakest_v0_52_shortlist=asian_range_london_breakout_confirmation score=36",
+  "shortlist_changed": false,
+  "source_triage_version": "v0_52",
+  "threshold_search_performed": false,
+  "top_ranked_idea_id": "prior_day_liquidity_sweep_reversal",
+  "train_validation_only": true,
+  "warnings": [
+    "kimi_ideas_are_external_hypotheses_not_profitability_evidence",
+    "v0_52_report_left_unchanged_by_addendum",
+    "final_shortlist_remains_capped_at_three"
+  ]
+}

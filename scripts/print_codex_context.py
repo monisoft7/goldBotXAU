@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_52"
+CONTEXT_VERSION = "v0_52_1"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -501,23 +501,10 @@ def _live_signal_snapshot_summary(root: Path) -> dict[str, Any] | None:
         "symbol": report.get("symbol"),
         "timeframes_requested": report.get("timeframes_requested"),
         "mt5_read_only": report.get("mt5_read_only"),
-        "mt5_initialized": report.get("mt5_initialized"),
-        "mt5_shutdown_called": report.get("mt5_shutdown_called"),
-        "candles_loaded_by_timeframe": report.get("candles_loaded_by_timeframe"),
-        "latest_candle_time_by_timeframe": report.get("latest_candle_time_by_timeframe"),
-        "current_signal_snapshot_present": report.get("current_signal_snapshot_present"),
-        "signal_evaluated": report.get("signal_evaluated"),
-        "signal_qualified": report.get("signal_qualified"),
-        "signal_reason": report.get("signal_reason"),
         "direction_assigned": report.get("direction_assigned"),
-        "direction_source": report.get("direction_source"),
         "executable_side_valid": report.get("executable_side_valid"),
-        "order_request_present": report.get("order_request_present"),
-        "order_request_complete": report.get("order_request_complete"),
         "order_request_validation_status": report.get("order_request_validation_status"),
         "invalid_order_request_reasons": report.get("invalid_order_request_reasons"),
-        "review_request_present": report.get("review_request_present"),
-        "macro_event_lock_status": report.get("macro_event_lock_status"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
         "live_allowed": report.get("live_allowed"),
@@ -660,12 +647,9 @@ def _historical_data_expansion_feasibility_summary(root: Path) -> dict[str, Any]
         "mt5_read_only": report.get("mt5_read_only"),
         "mt5_initialized": report.get("mt5_initialized"),
         "mt5_shutdown_called": report.get("mt5_shutdown_called"),
-        "available_oldest_candle_time": report.get("available_oldest_candle_time"),
-        "available_newest_candle_time": report.get("available_newest_candle_time"),
         "requested_range_available": report.get("requested_range_available"),
         "candle_count_by_timeframe": report.get("candle_count_by_timeframe"),
         "missing_range_gap_count": report.get("missing_range_gap_count"),
-        "missing_range_gaps_truncated": report.get("missing_range_gaps_truncated"),
         "data_expansion_feasible": report.get("data_expansion_feasible"),
         "candidate_to_retest_later": report.get("candidate_to_retest_later"),
         "candidate_rules_preserved": report.get("candidate_rules_preserved"),
@@ -697,8 +681,6 @@ def _trend_pullback_expanded_retest_summary(root: Path) -> dict[str, Any] | None
         "source_stability_audit_version": report.get("source_stability_audit_version"),
         "source_data_feasibility_version": report.get("source_data_feasibility_version"),
         "candidate_rules_preserved": report.get("candidate_rules_preserved"),
-        "expanded_range_from": report.get("expanded_range_from"),
-        "expanded_range_to": report.get("expanded_range_to"),
         "train_validation_equivalent_only": report.get("train_validation_equivalent_only"),
         "oos_used": report.get("oos_used"),
         "repeated_oos_review": report.get("repeated_oos_review"),
@@ -707,8 +689,6 @@ def _trend_pullback_expanded_retest_summary(root: Path) -> dict[str, Any] | None
         "parameter_grid_performed": report.get("parameter_grid_performed"),
         "candle_count_by_timeframe": report.get("candle_count_by_timeframe"),
         "expanded_trade_count": report.get("expanded_trade_count"),
-        "expanded_profit_factor": metrics.get("profit_factor") if isinstance(metrics, dict) else None,
-        "expanded_expectancy_r": metrics.get("expectancy_r") if isinstance(metrics, dict) else None,
         "sample_concentration_risk": risk.get("risk_level") if isinstance(risk, dict) else None,
         "expanded_evidence_passed_gate": report.get("expanded_evidence_passed_gate"),
         "candidate_locking_allowed_pre_oos": report.get("candidate_locking_allowed_pre_oos"),
@@ -738,6 +718,37 @@ def _external_strategy_idea_triage_summary(root: Path) -> dict[str, Any] | None:
         "retune_performed": report.get("retune_performed"),
         "threshold_search_performed": report.get("threshold_search_performed"),
         "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+    }
+
+
+def _kimi_external_idea_addendum_summary(root: Path) -> dict[str, Any] | None:
+    addendum_path = root / "reports" / "xauusd_kimi_external_idea_addendum_v0_52_1.json"
+    if not addendum_path.exists():
+        return None
+    report = json.loads(addendum_path.read_text(encoding="utf-8"))
+    return {
+        "addendum_version": report.get("addendum_version"),
+        "addendum_status": report.get("addendum_status"),
+        "source_triage_version": report.get("source_triage_version"),
+        "kimi_added_to_external_sources": report.get("kimi_added_to_external_sources"),
+        "kimi_raw_idea_count": report.get("kimi_raw_idea_count"),
+        "final_shortlist_for_v0_53": report.get("final_shortlist_for_v0_53"),
+        "shortlist_changed": report.get("shortlist_changed"),
+        "top_ranked_idea_id": report.get("top_ranked_idea_id"),
+        "scoring_method_preserved": report.get("scoring_method_preserved"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "backtest_implemented": report.get("backtest_implemented"),
+        "candidate_created": report.get("candidate_created"),
         "demo_execution_allowed": report.get("demo_execution_allowed"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
@@ -812,6 +823,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_historical_data_expansion_feasibility": _historical_data_expansion_feasibility_summary(root),
         "latest_trend_pullback_expanded_retest": _trend_pullback_expanded_retest_summary(root),
         "latest_external_strategy_idea_triage": _external_strategy_idea_triage_summary(root),
+        "latest_kimi_external_idea_addendum": _kimi_external_idea_addendum_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,
