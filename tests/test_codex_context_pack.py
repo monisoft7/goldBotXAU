@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_54"
+    assert context["context_version"] == "v0_55"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_54"
+    assert context["context_version"] == "v0_55"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_54.json"
+    output_path = tmp_path / "codex_context_v0_55.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_54"
+    assert context["context_version"] == "v0_55"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -824,21 +824,39 @@ def test_context_includes_v0_54_edge_profiler_summary() -> None:
     assert profiler["purpose"] == "empirical_edge_mapping_not_strategy_backtest"
     assert profiler["train_validation_only"] is True
     assert profiler["oos_used"] is False
-    assert profiler["event_families_profiled"] == [
-        "session_return_profile",
-        "prior_day_high_low_sweep_profile",
-        "asian_range_breakout_profile",
-        "london_opening_candle_profile",
-        "ny_first_hour_profile",
-        "failed_m15_swing_breakout_profile",
-        "sequential_m5_move_profile",
-        "volatility_regime_profile",
-    ]
     assert isinstance(profiler["strongest_empirical_leads"], list)
-    assert isinstance(profiler["recommended_v0_55_research_plan"], list)
     assert profiler["candidate_created"] is False
     assert profiler["demo_execution_allowed"] is False
     assert profiler["order_send_called"] is False
     assert profiler["order_check_called"] is False
     assert profiler["live_allowed"] is False
     assert profiler["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_55_session_volatility_design_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    design = context["latest_session_volatility_design"]
+    assert design is not None
+    assert design["design_version"] == "v0_55"
+    assert design["design_status"] in {
+        "session_volatility_design_completed_with_v0_56_candidate",
+        "session_volatility_design_completed_no_candidate",
+        "blocked_missing_v0_54_profiler_report",
+        "design_failed",
+    }
+    assert design["source_profiler_version"] == "v0_54"
+    assert design["profiler_leads_used"] == ["session_return_profile", "volatility_regime_profile"]
+    assert 2 <= design["candidate_design_count"] <= 4
+    assert design["recommended_candidate_for_v0_56"] in {
+        None,
+        "session_block_directional_bias_candidate",
+        "volatility_regime_session_filter_candidate",
+        "session_transition_continuation_candidate",
+        "volatility_regime_momentum_candidate",
+    }
+    assert design["train_validation_only"] is True
+    assert design["oos_used"] is False
+    assert design["demo_execution_allowed"] is False
+    assert design["order_send_called"] is False
+    assert design["order_check_called"] is False

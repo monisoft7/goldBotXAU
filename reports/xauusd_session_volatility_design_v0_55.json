@@ -1,0 +1,171 @@
+{
+  "blockers": [],
+  "candidate_design_count": 4,
+  "candidate_designs": [
+    {
+      "anti_curve_fit_argument": "The session block is selected from the v0_54 train dominant behavior and checked in validation; the entry and exit use fixed block boundaries with no session-window or threshold optimization.",
+      "candidate_design_id": "session_block_directional_bias_candidate",
+      "candidate_design_suitability_score": 35,
+      "exact_direction_rule": "Derive direction from train only: if train mean block_return_points for asian_00_06 is positive use long; if negative use short; if zero, reject before testing. Current v0_54 train value implies long.",
+      "exact_entry_rule": "On each train/validation day with a complete asian_00_06 M15 block, enter once at the first M15 open inside that fixed UTC block.",
+      "exact_invalidation_rule": "Invalidate the day if the asian_00_06 block is incomplete, the first M15 open or final block close is missing, or the train-derived direction is zero.",
+      "expected_trade_frequency": "At most one completed fixed session-block observation per train/validation trading day.",
+      "main_failure_modes": [
+        "session bias disappears after transaction-cost modeling",
+        "validation positive mean is driven by a small number of large days",
+        "overnight liquidity or spread conditions make fixed-block entry unrealistic"
+      ],
+      "market_logic": "v0_54 found the fixed asian_00_06 session block had the clearest train session-return bias and the same block remained positive in validation (4.66648854961831 points).",
+      "minimum_data_required": "At least 100 train observations and 50 validation observations for the selected fixed session block.",
+      "recommended_action": "promote_to_v0_56_train_validation_test",
+      "rejection_metrics": [
+        "validation_mean_return_points <= 0",
+        "validation_positive_rate < 0.50",
+        "validation_trade_count < 50",
+        "single_month_trade_share > 0.35",
+        "median_return_after_costs <= 0"
+      ],
+      "source_lead": "session_return_profile",
+      "stop_loss_logic": "Use the opposite edge of the prior completed fixed session block range as the structural stop; for long use that prior block low, for short use that prior block high. Do not optimize distance.",
+      "take_profit_or_exit_logic": "No optimized profit target; exit at the final M15 close inside the same fixed asian_00_06 block.",
+      "time_session_filter": "Only the fixed UTC asian_00_06 block from v0_54.",
+      "train_validation_test_plan": "In v0_56, compute train and validation return distribution, adverse excursion to structural stop, trade count, positive rate, month concentration, and transaction-cost sensitivity using only this fixed design.",
+      "volatility_filter": "None in this design; volatility filters are reserved for separate v0_55 designs."
+    },
+    {
+      "anti_curve_fit_argument": "The source and destination blocks are fixed from the v0_54 session map; no transition pair, threshold, or stop/exit distance is searched.",
+      "candidate_design_id": "session_transition_continuation_candidate",
+      "candidate_design_suitability_score": 30,
+      "exact_direction_rule": "Use the same train-derived direction as the asian_00_06 block: long for current v0_54 evidence; if the selected session mean is zero, reject before testing.",
+      "exact_entry_rule": "When the fixed asian_00_06 block closes in the train-derived direction, enter at the first M15 open of the next fixed session block.",
+      "exact_invalidation_rule": "Invalidate if either the source session block or the next fixed session block is incomplete, or if the source session block closes against the train-derived direction.",
+      "expected_trade_frequency": "Less than daily; only days where the source block closes in the fixed train-derived direction.",
+      "main_failure_modes": [
+        "continuation is weaker than same-session return",
+        "entry after the source block captures exhausted movement",
+        "transition sample is smaller and more concentrated than the base session design"
+      ],
+      "market_logic": "v0_54 suggests fixed session behavior matters; this design tests whether the asian_00_06 bias continues into the next predeclared session block without using intraday signal chasing.",
+      "minimum_data_required": "At least 100 train transitions and 50 validation transitions after the fixed close-direction condition.",
+      "recommended_action": "keep_for_observation_only",
+      "rejection_metrics": [
+        "validation_transition_count < 50",
+        "validation_mean_return_points <= 0",
+        "validation_positive_rate < 0.50",
+        "single_month_trade_share > 0.35",
+        "underperforms session_block_directional_bias_candidate"
+      ],
+      "source_lead": "session_return_profile",
+      "stop_loss_logic": "Use the completed source session block's opposite extreme as the structural stop; for long use the source block low, for short use the source block high.",
+      "take_profit_or_exit_logic": "No optimized target; exit at the final M15 close of the next fixed session block.",
+      "time_session_filter": "Transition from fixed asian_00_06 to its next fixed UTC session block only.",
+      "train_validation_test_plan": "In v0_56 only if the primary session design is not selected, compute fixed transition counts, return distribution, stop interaction, month concentration, and validation consistency.",
+      "volatility_filter": "None in this design."
+    },
+    {
+      "anti_curve_fit_argument": "The bucket is the v0_54 train-dominant descriptive label, not an optimized volatility threshold; the design must keep that label fixed even though validation highlighted a different high-volatility bucket.",
+      "candidate_design_id": "volatility_regime_session_filter_candidate",
+      "candidate_design_suitability_score": 26,
+      "exact_direction_rule": "Use train only: if mean same_day_close_open_points for medium_high_volatility_quartile is positive use long; if negative use short; if zero, reject before testing. Do not switch to high_volatility_quartile after validation review.",
+      "exact_entry_rule": "For each train/validation day labeled medium_high_volatility_quartile by the v0_54 daily-range quartile method, enter at the first available M15 open of the day.",
+      "exact_invalidation_rule": "Invalidate the day if the fixed descriptive volatility label is not medium_high_volatility_quartile, if a full day open/close is missing, or if the train-derived direction is zero.",
+      "expected_trade_frequency": "One observation on train/validation days labeled medium_high_volatility_quartile; fewer than daily.",
+      "main_failure_modes": [
+        "train and validation dominant volatility buckets differ",
+        "descriptive quartile labels leak if recomputed outside the intended split policy",
+        "daily open-to-close behavior is too coarse for executable risk control"
+      ],
+      "market_logic": "v0_54 showed positive same-day behavior in descriptive volatility buckets, with train strongest in medium_high_volatility_quartile and validation strongest in high_volatility_quartile; this design keeps the bucket definition fixed and descriptive.",
+      "minimum_data_required": "At least 100 train labeled days and 50 validation labeled days after applying the fixed bucket.",
+      "recommended_action": "keep_for_observation_only",
+      "rejection_metrics": [
+        "validation_mean_return_points <= 0 for the train-selected bucket",
+        "validation_labeled_day_count < 50",
+        "validation_positive_rate < 0.50",
+        "train_validation_bucket_dominance_conflict_remains_material",
+        "median_return_after_costs <= 0"
+      ],
+      "source_lead": "volatility_regime_profile",
+      "stop_loss_logic": "Use the prior completed day's high-low range as a non-optimized structural stop distance from entry; for long subtract the range, for short add the range.",
+      "take_profit_or_exit_logic": "No optimized target; exit at the last available M15 close of the same UTC day.",
+      "time_session_filter": "Full UTC day; no intraday session chasing.",
+      "train_validation_test_plan": "In v0_56, recompute only the predeclared descriptive labels under the existing split policy, then measure train/validation same-day returns, bucket counts, month concentration, and structural-stop hit rate.",
+      "volatility_filter": "Only the fixed descriptive medium_high_volatility_quartile bucket from v0_54 train dominance."
+    },
+    {
+      "anti_curve_fit_argument": "Only the momentum interpretation is tested, based on the train sign from v0_54; mean reversion is not tested in the same candidate and no bucket threshold is searched.",
+      "candidate_design_id": "volatility_regime_momentum_candidate",
+      "candidate_design_suitability_score": 25,
+      "exact_direction_rule": "Momentum only: use long because train same_day_close_open_points for medium_high_volatility_quartile is positive; do not switch to mean reversion or a different bucket after validation.",
+      "exact_entry_rule": "On days labeled medium_high_volatility_quartile by the fixed v0_54 daily-range quartile method, enter at the 12:00 UTC M15 open.",
+      "exact_invalidation_rule": "Invalidate if the day is not labeled medium_high_volatility_quartile, if the 12:00 UTC M15 open is missing, or if the same-day close required for the fixed exit is missing.",
+      "expected_trade_frequency": "Only train/validation days with medium_high_volatility_quartile label and a 12:00 UTC M15 candle.",
+      "main_failure_modes": [
+        "midday entry is not what the daily open-to-close profiler measured",
+        "validation dominance shifted to a different volatility bucket",
+        "fixed half-range stop is too coarse without optimization"
+      ],
+      "market_logic": "v0_54 observed same-day positive momentum in the train-dominant medium_high_volatility_quartile descriptive volatility regime; this design tests that single momentum interpretation only.",
+      "minimum_data_required": "At least 100 train labeled midday observations and 50 validation labeled midday observations.",
+      "recommended_action": "keep_for_observation_only",
+      "rejection_metrics": [
+        "validation_labeled_midday_count < 50",
+        "validation_mean_return_points <= 0",
+        "validation_positive_rate < 0.50",
+        "train_validation_bucket_dominance_conflict_remains_material",
+        "median_return_after_costs <= 0"
+      ],
+      "source_lead": "volatility_regime_profile",
+      "stop_loss_logic": "Use half of the prior completed day's high-low range as a fixed descriptive stop distance; this fraction is predeclared for design review and must not be optimized in v0_56.",
+      "take_profit_or_exit_logic": "No optimized target; exit at the last available M15 close of the same UTC day.",
+      "time_session_filter": "Entry fixed at 12:00 UTC only.",
+      "train_validation_test_plan": "In v0_56 only after the recommended design, measure the fixed midday momentum rule on train/validation rows, including labeled-day counts, stop interaction, and validation sign consistency.",
+      "volatility_filter": "Only the fixed descriptive medium_high_volatility_quartile bucket from v0_54 train dominance."
+    }
+  ],
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "design_status": "session_volatility_design_completed_with_v0_56_candidate",
+  "design_version": "v0_55",
+  "executable_candidate_created": false,
+  "live_allowed": false,
+  "next_recommended_step": "v0_56 fixed-rule train/validation evaluation for session_block_directional_bias_candidate only, no OOS",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "profiler_leads_used": [
+    "session_return_profile",
+    "volatility_regime_profile"
+  ],
+  "recommended_candidate_for_v0_56": "session_block_directional_bias_candidate",
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "demo_execution_allowed": false,
+    "design_board_only": true,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "train_validation_only": true,
+    "user_facing_trade_recommendation": false
+  },
+  "source_profiler_status": "edge_profile_completed_with_research_leads",
+  "source_profiler_version": "v0_54",
+  "threshold_search_performed": false,
+  "train_validation_only": true,
+  "warnings": [
+    "design_board_only_no_train_validation_metrics_computed",
+    "v0_56_must_evaluate_recommended_candidate_only_before_any_new_branch",
+    "volatility_regime_train_validation_dominant_bucket_differs"
+  ]
+}

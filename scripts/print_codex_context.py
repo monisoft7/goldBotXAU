@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_54"
+CONTEXT_VERSION = "v0_55"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -758,15 +758,33 @@ def _edge_profiler_summary(root: Path) -> dict[str, Any] | None:
         "purpose": report.get("purpose"),
         "train_validation_only": report.get("train_validation_only"),
         "oos_used": report.get("oos_used"),
-        "event_families_profiled": report.get("event_families_profiled"),
         "strongest_empirical_leads": lead_ids,
-        "recommended_v0_55_research_plan": report.get("recommended_v0_55_research_plan"),
         "candidate_created": report.get("candidate_created"),
         "demo_execution_allowed": report.get("demo_execution_allowed"),
         "order_send_called": report.get("order_send_called"),
         "order_check_called": report.get("order_check_called"),
         "live_allowed": report.get("live_allowed"),
         "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+    }
+
+
+def _session_volatility_design_summary(root: Path) -> dict[str, Any] | None:
+    design_path = root / "reports" / "xauusd_session_volatility_design_v0_55.json"
+    if not design_path.exists():
+        return None
+    report = json.loads(design_path.read_text(encoding="utf-8"))
+    return {
+        "design_version": report.get("design_version"),
+        "design_status": report.get("design_status"),
+        "source_profiler_version": report.get("source_profiler_version"),
+        "profiler_leads_used": report.get("profiler_leads_used"),
+        "candidate_design_count": report.get("candidate_design_count"),
+        "recommended_candidate_for_v0_56": report.get("recommended_candidate_for_v0_56"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
     }
 
 
@@ -839,6 +857,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_kimi_external_idea_addendum": _kimi_external_idea_addendum_summary(root),
         "latest_external_shortlist_board": _external_shortlist_board_summary(root),
         "latest_edge_profiler": _edge_profiler_summary(root),
+        "latest_session_volatility_design": _session_volatility_design_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

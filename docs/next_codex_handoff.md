@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_54 XAUUSD edge profiler
+- Last completed checkpoint: v0_55 session/volatility fixed-rule candidate design board
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 47 passed for v0_54 targeted tests; prior broad baseline 574 passed before v0_47
+- Current test baseline: 45 passed for v0_55 targeted tests; prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_54 profiled XAUUSD train/validation event behavior, with demo/OOS blocked
+- Execution status: research only; v0_55 designed fixed session/volatility hypotheses from v0_54 leads, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -27,11 +27,42 @@
 - Latest Kimi external idea addendum: `reports/xauusd_kimi_external_idea_addendum_v0_52_1.json`
 - Latest external shortlist board: `reports/xauusd_external_shortlist_board_v0_53.json`
 - Latest edge profiler: `reports/xauusd_edge_profiler_v0_54.json`
-- Latest checkpoint: `docs/checkpoints/v0_54_xauusd_edge_profiler_result.md`
-- Latest context pack: `reports/codex_context_v0_54.json`
-- Latest health report: `reports/project_health_v0_54.json`
-- Latest decision: `edge_profile_completed_with_research_leads`
-- Next safe task: v0_55 fixed-rule candidate design for top 1-2 leads, no OOS; do not run OOS, retune, threshold search, parameter grid, create executable candidates, or demo/live execution
+- Latest session/volatility design board: `reports/xauusd_session_volatility_design_v0_55.json`
+- Latest checkpoint: `docs/checkpoints/v0_55_session_volatility_candidate_design_result.md`
+- Latest context pack: `reports/codex_context_v0_55.json`
+- Latest health report: `reports/project_health_v0_55.json`
+- Latest decision: `session_volatility_design_completed_with_v0_56_candidate`
+- Next safe task: v0_56 fixed-rule train/validation evaluation for `session_block_directional_bias_candidate` only, no OOS; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+
+## v0_55 Session/Volatility Candidate Design Result
+
+- Design module: `src/research/xauusd_session_volatility_candidate_design_board.py`
+- Design script: `scripts/run_xauusd_session_volatility_design_v0_55.py`
+- Design report: `reports/xauusd_session_volatility_design_v0_55.json`
+- Design status: `session_volatility_design_completed_with_v0_56_candidate`
+- Source profiler version: `v0_54`
+- Source profiler status: `edge_profile_completed_with_research_leads`
+- Profiler leads used: `session_return_profile`, `volatility_regime_profile`
+- Candidate design count: `4`
+- Recommended candidate for v0_56: `session_block_directional_bias_candidate`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `45 passed`
+- Next recommended step: `v0_56 fixed-rule train/validation evaluation for session_block_directional_bias_candidate only, no OOS`
+
+v0_55 is a design board only. It converts the two strongest v0_54 leads into fixed hypotheses and recommends exactly one train/validation-only evaluation candidate for v0_56.
+
+No OOS run, repeated OOS review, retune, threshold search, parameter grid, executable candidate creation, demo/live execution, order sending, order checking, scheduler, execution queue, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_54 XAUUSD Edge Profiler Result
 
