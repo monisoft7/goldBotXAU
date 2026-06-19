@@ -1,0 +1,304 @@
+{
+  "blockers": [
+    "validation_profit_factor_below_fixed_gate",
+    "validation_trades_below_fixed_gate",
+    "validation_expectancy_not_positive",
+    "validation_profit_factor_less_than_0_75_train_profit_factor"
+  ],
+  "candidate_id": "session_block_directional_bias_candidate",
+  "candidate_locking_allowed_pre_oos": false,
+  "candidate_passed_train_validation_gate": false,
+  "candidate_rules_preserved": true,
+  "data_csv_added_to_git": false,
+  "data_files_used": [
+    "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+  ],
+  "data_ranges_used": {
+    "excluded_oos": {
+      "candle_count": 10180,
+      "end": "2026-06-11T11:45:00",
+      "start": "2026-01-02T01:00:00"
+    },
+    "train": {
+      "candle_count": 58922,
+      "end": "2025-06-30T23:45:00",
+      "start": "2023-01-03T01:00:00"
+    },
+    "validation": {
+      "candle_count": 11922,
+      "end": "2025-12-31T23:45:00",
+      "start": "2025-07-01T01:00:00"
+    }
+  },
+  "demo_execution_allowed": false,
+  "evaluated_candidate_count": 1,
+  "evaluation_status": "session_block_candidate_rejected",
+  "evaluation_version": "v0_56",
+  "executable_candidate_created": false,
+  "fixed_gate": {
+    "max_consecutive_losses_max": 8,
+    "oos_used": false,
+    "train_expectancy_min_exclusive": 0.0,
+    "train_profit_factor_min": 1.2,
+    "validation_expectancy_min_exclusive": 0.0,
+    "validation_pf_min_train_pf_ratio": 0.75,
+    "validation_profit_factor_min": 1.15,
+    "validation_trades_min": 50
+  },
+  "gate_failures": [
+    "validation_profit_factor_below_fixed_gate",
+    "validation_trades_below_fixed_gate",
+    "validation_expectancy_not_positive",
+    "validation_profit_factor_less_than_0_75_train_profit_factor"
+  ],
+  "live_allowed": false,
+  "metrics_by_session_block": {
+    "asian_00_06": {
+      "combined": {
+        "exit_reason_counts": {
+          "structural_stop_prior_completed_session_low": 3,
+          "time_exit_final_m15_close_inside_fixed_session_block": 34
+        },
+        "expectancy_r": 0.0806221666975325,
+        "gross_loss_r": 5.5375369367702,
+        "gross_profit_r": 8.520557104578904,
+        "losses": 19,
+        "max_consecutive_losses": 4,
+        "mean_return_points": 0.8675675675675651,
+        "median_return_points": -0.10000000000013642,
+        "profit_factor": 1.538690793735557,
+        "side_counts": {
+          "long": 37
+        },
+        "trades": 37,
+        "win_rate": 0.4864864864864865,
+        "wins": 18
+      },
+      "train": {
+        "exit_reason_counts": {
+          "structural_stop_prior_completed_session_low": 2,
+          "time_exit_final_m15_close_inside_fixed_session_block": 32
+        },
+        "expectancy_r": 0.12169806372142332,
+        "gross_loss_r": 4.382822938050511,
+        "gross_profit_r": 8.520557104578904,
+        "losses": 16,
+        "max_consecutive_losses": 4,
+        "mean_return_points": 2.0391176470588346,
+        "median_return_points": 0.18000000000006366,
+        "profit_factor": 1.944079700461015,
+        "side_counts": {
+          "long": 34
+        },
+        "trades": 34,
+        "win_rate": 0.5294117647058824,
+        "wins": 18
+      },
+      "validation": {
+        "exit_reason_counts": {
+          "structural_stop_prior_completed_session_low": 1,
+          "time_exit_final_m15_close_inside_fixed_session_block": 2
+        },
+        "expectancy_r": -0.38490466623989666,
+        "gross_loss_r": 1.15471399871969,
+        "gross_profit_r": 0,
+        "losses": 3,
+        "max_consecutive_losses": 3,
+        "mean_return_points": -12.410000000000158,
+        "median_return_points": -10.990000000000236,
+        "profit_factor": 0.0,
+        "side_counts": {
+          "long": 3
+        },
+        "trades": 3,
+        "win_rate": 0.0,
+        "wins": 0
+      }
+    }
+  },
+  "metrics_by_volatility_regime_if_available": {},
+  "next_recommended_step": "stop session_block branch or return to profiler leads.",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "other_v0_55_candidates_evaluated": false,
+  "parameter_grid_performed": false,
+  "rejected_do_not_retune": true,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "sample_concentration_risk": {
+    "reasons": [
+      "validation_trades_concentrated_in_single_month",
+      "validation_trades_concentrated_in_single_year",
+      "trades_concentrated_in_single_side_by_fixed_design"
+    ],
+    "risk_level": "high",
+    "risk_present": true,
+    "side_max_share": 1.0,
+    "validation_month_max_share": 1.0,
+    "validation_year_max_share": 1.0,
+    "warnings": [
+      "sample_concentration_risk:validation_trades_concentrated_in_single_month",
+      "sample_concentration_risk:validation_trades_concentrated_in_single_year",
+      "sample_concentration_risk:trades_concentrated_in_single_side_by_fixed_design"
+    ]
+  },
+  "selected_candidate_rules": {
+    "anti_curve_fit_argument": "The session block is selected from the v0_54 train dominant behavior and checked in validation; the entry and exit use fixed block boundaries with no session-window or threshold optimization.",
+    "candidate_design_id": "session_block_directional_bias_candidate",
+    "candidate_design_suitability_score": 35,
+    "exact_direction_rule": "Derive direction from train only: if train mean block_return_points for asian_00_06 is positive use long; if negative use short; if zero, reject before testing. Current v0_54 train value implies long.",
+    "exact_entry_rule": "On each train/validation day with a complete asian_00_06 M15 block, enter once at the first M15 open inside that fixed UTC block.",
+    "exact_invalidation_rule": "Invalidate the day if the asian_00_06 block is incomplete, the first M15 open or final block close is missing, or the train-derived direction is zero.",
+    "expected_trade_frequency": "At most one completed fixed session-block observation per train/validation trading day.",
+    "main_failure_modes": [
+      "session bias disappears after transaction-cost modeling",
+      "validation positive mean is driven by a small number of large days",
+      "overnight liquidity or spread conditions make fixed-block entry unrealistic"
+    ],
+    "market_logic": "v0_54 found the fixed asian_00_06 session block had the clearest train session-return bias and the same block remained positive in validation (4.66648854961831 points).",
+    "minimum_data_required": "At least 100 train observations and 50 validation observations for the selected fixed session block.",
+    "recommended_action": "promote_to_v0_56_train_validation_test",
+    "rejection_metrics": [
+      "validation_mean_return_points <= 0",
+      "validation_positive_rate < 0.50",
+      "validation_trade_count < 50",
+      "single_month_trade_share > 0.35",
+      "median_return_after_costs <= 0"
+    ],
+    "source_lead": "session_return_profile",
+    "stop_loss_logic": "Use the opposite edge of the prior completed fixed session block range as the structural stop; for long use that prior block low, for short use that prior block high. Do not optimize distance.",
+    "take_profit_or_exit_logic": "No optimized profit target; exit at the final M15 close inside the same fixed asian_00_06 block.",
+    "time_session_filter": "Only the fixed UTC asian_00_06 block from v0_54.",
+    "train_validation_test_plan": "In v0_56, compute train and validation return distribution, adverse excursion to structural stop, trade count, positive rate, month concentration, and transaction-cost sensitivity using only this fixed design.",
+    "volatility_filter": "None in this design; volatility filters are reserved for separate v0_55 designs."
+  },
+  "selected_candidate_rules_sha256": "492e224bf6cbf32b588acfee6a31b81a5f3a705b7169b71ab07384e1c89ea3cf",
+  "side_distribution": {
+    "combined": {
+      "long": 37
+    },
+    "train": {
+      "long": 34
+    },
+    "validation": {
+      "long": 3
+    }
+  },
+  "source_design_version": "v0_55",
+  "source_profiler_version": "v0_54",
+  "split_candle_counts": {
+    "excluded_oos": 10180,
+    "other": 0,
+    "train": 58922,
+    "validation": 11922
+  },
+  "threshold_search_performed": false,
+  "timeframe": "M15",
+  "trade_distribution_by_month": {
+    "combined": {
+      "2023-03": 8,
+      "2023-10": 1,
+      "2023-11": 2,
+      "2024-03": 8,
+      "2024-10": 4,
+      "2025-03": 11,
+      "2025-10": 3
+    },
+    "train": {
+      "2023-03": 8,
+      "2023-10": 1,
+      "2023-11": 2,
+      "2024-03": 8,
+      "2024-10": 4,
+      "2025-03": 11
+    },
+    "validation": {
+      "2025-10": 3
+    }
+  },
+  "trade_distribution_by_year": {
+    "combined": {
+      "2023": 11,
+      "2024": 12,
+      "2025": 14
+    },
+    "train": {
+      "2023": 11,
+      "2024": 12,
+      "2025": 11
+    },
+    "validation": {
+      "2025": 3
+    }
+  },
+  "train_metrics": {
+    "exit_reason_counts": {
+      "structural_stop_prior_completed_session_low": 2,
+      "time_exit_final_m15_close_inside_fixed_session_block": 32
+    },
+    "expectancy_r": 0.12169806372142332,
+    "gross_loss_r": 4.382822938050511,
+    "gross_profit_r": 8.520557104578904,
+    "losses": 16,
+    "max_consecutive_losses": 4,
+    "mean_return_points": 2.0391176470588346,
+    "median_return_points": 0.18000000000006366,
+    "profit_factor": 1.944079700461015,
+    "side_counts": {
+      "long": 34
+    },
+    "trades": 34,
+    "win_rate": 0.5294117647058824,
+    "wins": 18
+  },
+  "train_validation_only": true,
+  "validation_metrics": {
+    "exit_reason_counts": {
+      "structural_stop_prior_completed_session_low": 1,
+      "time_exit_final_m15_close_inside_fixed_session_block": 2
+    },
+    "expectancy_r": -0.38490466623989666,
+    "gross_loss_r": 1.15471399871969,
+    "gross_profit_r": 0,
+    "losses": 3,
+    "max_consecutive_losses": 3,
+    "mean_return_points": -12.410000000000158,
+    "median_return_points": -10.990000000000236,
+    "profit_factor": 0.0,
+    "side_counts": {
+      "long": 3
+    },
+    "trades": 3,
+    "win_rate": 0.0,
+    "wins": 0
+  },
+  "warnings": [
+    "fixed_rule_train_validation_research_only_not_oos",
+    "oos_candles_on_disk_excluded_from_evaluation",
+    "same_candle_stop_resolution_is_stop_first",
+    "excluded_oos_candle_count:10180",
+    "sample_concentration_risk:validation_trades_concentrated_in_single_month",
+    "sample_concentration_risk:validation_trades_concentrated_in_single_year",
+    "sample_concentration_risk:trades_concentrated_in_single_side_by_fixed_design"
+  ]
+}

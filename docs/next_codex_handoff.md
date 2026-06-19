@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_55 session/volatility fixed-rule candidate design board
+- Last completed checkpoint: v0_56 fixed-rule train/validation evaluation for session_block_directional_bias_candidate
 - OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 45 passed for v0_55 targeted tests; prior broad baseline 574 passed before v0_47
+- Current test baseline: 47 passed for v0_56 targeted tests; prior v0_55 targeted baseline 45 passed and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_55 designed fixed session/volatility hypotheses from v0_54 leads, with demo/OOS blocked
+- Execution status: research only; v0_56 rejected the fixed v0_55 session_block_directional_bias_candidate on train/validation gates, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -28,11 +28,52 @@
 - Latest external shortlist board: `reports/xauusd_external_shortlist_board_v0_53.json`
 - Latest edge profiler: `reports/xauusd_edge_profiler_v0_54.json`
 - Latest session/volatility design board: `reports/xauusd_session_volatility_design_v0_55.json`
-- Latest checkpoint: `docs/checkpoints/v0_55_session_volatility_candidate_design_result.md`
-- Latest context pack: `reports/codex_context_v0_55.json`
-- Latest health report: `reports/project_health_v0_55.json`
-- Latest decision: `session_volatility_design_completed_with_v0_56_candidate`
-- Next safe task: v0_56 fixed-rule train/validation evaluation for `session_block_directional_bias_candidate` only, no OOS; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+- Latest session block bias evaluation: `reports/xauusd_session_block_bias_eval_v0_56.json`
+- Latest checkpoint: `docs/checkpoints/v0_56_session_block_directional_bias_eval_result.md`
+- Latest context pack: `reports/codex_context_v0_56.json`
+- Latest health report: `reports/project_health_v0_56.json`
+- Latest decision: `session_block_candidate_rejected`
+- Next safe task: stop session_block branch or return to profiler leads; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+
+## v0_56 Session Block Directional Bias Evaluation Result
+
+- Evaluation module: `src/research/xauusd_session_block_directional_bias_evaluation.py`
+- Evaluation script: `scripts/run_xauusd_session_block_bias_eval_v0_56.py`
+- Evaluation report: `reports/xauusd_session_block_bias_eval_v0_56.json`
+- Evaluation status: `session_block_candidate_rejected`
+- Source design version: `v0_55`
+- Source profiler version: `v0_54`
+- Candidate id: `session_block_directional_bias_candidate`
+- Candidate rules preserved: `true`
+- Evaluated candidate count: `1`
+- Other v0_55 candidates evaluated: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Train profit factor: `1.944079700461015`
+- Train expectancy: `0.12169806372142332`
+- Train trades: `34`
+- Validation profit factor: `0.0`
+- Validation expectancy: `-0.38490466623989666`
+- Validation trades: `3`
+- Candidate passed train/validation gate: `false`
+- Candidate locking allowed pre-OOS: `false`
+- Rejected do not retune: `true`
+- Gate blockers: `validation_profit_factor_below_fixed_gate`, `validation_trades_below_fixed_gate`, `validation_expectancy_not_positive`, `validation_profit_factor_less_than_0_75_train_profit_factor`
+- Sample concentration risk: `high`
+- Targeted tests: `47 passed`
+- Next recommended step: `stop session_block branch or return to profiler leads.`
+
+v0_56 evaluated exactly one fixed-rule candidate from v0_55: `session_block_directional_bias_candidate`. The candidate failed the required validation gates and remains non-executable. No OOS run, repeated OOS review, retune, threshold search, parameter grid, executable candidate creation, demo/live execution, order sending, order checking, scheduler, execution queue, user-facing trade recommendation, or `data/*.csv` addition was introduced.
 
 ## v0_55 Session/Volatility Candidate Design Result
 

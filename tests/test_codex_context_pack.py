@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_55"
+    assert context["context_version"] == "v0_56"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 18000
+    assert len(context_text) < 20000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_55"
+    assert context["context_version"] == "v0_56"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_55.json"
+    output_path = tmp_path / "codex_context_v0_56.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_55"
+    assert context["context_version"] == "v0_56"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -860,3 +860,39 @@ def test_context_includes_v0_55_session_volatility_design_summary() -> None:
     assert design["demo_execution_allowed"] is False
     assert design["order_send_called"] is False
     assert design["order_check_called"] is False
+
+
+def test_context_includes_v0_56_session_block_bias_eval_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    evaluation = context["latest_session_block_bias_eval"]
+    assert evaluation is not None
+    assert evaluation["evaluation_version"] == "v0_56"
+    assert evaluation["evaluation_status"] in {
+        "session_block_candidate_passed_train_validation",
+        "session_block_candidate_rejected",
+        "blocked_missing_v0_55_design",
+        "blocked_missing_required_data",
+        "evaluation_failed",
+    }
+    assert evaluation["source_design_version"] == "v0_55"
+    assert evaluation["source_profiler_version"] == "v0_54"
+    assert evaluation["candidate_id"] == "session_block_directional_bias_candidate"
+    assert evaluation["candidate_rules_preserved"] is True
+    assert evaluation["evaluated_candidate_count"] == 1
+    assert evaluation["other_v0_55_candidates_evaluated"] is False
+    assert evaluation["train_validation_only"] is True
+    assert evaluation["oos_used"] is False
+    assert evaluation["repeated_oos_review"] is False
+    assert evaluation["retune_performed"] is False
+    assert evaluation["threshold_search_performed"] is False
+    assert evaluation["parameter_grid_performed"] is False
+    assert isinstance(evaluation["train_trades"], int)
+    assert isinstance(evaluation["validation_trades"], int)
+    assert evaluation["candidate_passed_train_validation_gate"] in {True, False}
+    assert evaluation["candidate_locking_allowed_pre_oos"] in {True, False}
+    assert evaluation["demo_execution_allowed"] is False
+    assert evaluation["order_send_called"] is False
+    assert evaluation["order_check_called"] is False
+    assert evaluation["live_allowed"] is False
+    assert evaluation["data_csv_added_to_git"] is False

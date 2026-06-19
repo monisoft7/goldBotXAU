@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_55"
+CONTEXT_VERSION = "v0_56"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -788,6 +788,48 @@ def _session_volatility_design_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _session_block_bias_eval_summary(root: Path) -> dict[str, Any] | None:
+    eval_path = root / "reports" / "xauusd_session_block_bias_eval_v0_56.json"
+    if not eval_path.exists():
+        return None
+    report = json.loads(eval_path.read_text(encoding="utf-8"))
+    train = report.get("train_metrics", {})
+    validation = report.get("validation_metrics", {})
+    return {
+        "evaluation_version": report.get("evaluation_version"),
+        "evaluation_status": report.get("evaluation_status"),
+        "source_design_version": report.get("source_design_version"),
+        "source_profiler_version": report.get("source_profiler_version"),
+        "candidate_id": report.get("candidate_id"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
+        "evaluated_candidate_count": report.get("evaluated_candidate_count"),
+        "other_v0_55_candidates_evaluated": report.get("other_v0_55_candidates_evaluated"),
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "train_profit_factor": train.get("profit_factor") if isinstance(train, dict) else None,
+        "train_expectancy_r": train.get("expectancy_r") if isinstance(train, dict) else None,
+        "train_trades": train.get("trades") if isinstance(train, dict) else None,
+        "validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
+        "validation_expectancy_r": validation.get("expectancy_r") if isinstance(validation, dict) else None,
+        "validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
+        "candidate_passed_train_validation_gate": report.get("candidate_passed_train_validation_gate"),
+        "candidate_locking_allowed_pre_oos": report.get("candidate_locking_allowed_pre_oos"),
+        "rejected_do_not_retune": report.get("rejected_do_not_retune"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+        "data_csv_added_to_git": report.get("data_csv_added_to_git"),
+        "blockers": len(report.get("blockers", [])) if isinstance(report.get("blockers"), list) else None,
+        "warnings": len(report.get("warnings", [])) if isinstance(report.get("warnings"), list) else None,
+        "next_recommended_step": report.get("next_recommended_step"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -858,6 +900,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_external_shortlist_board": _external_shortlist_board_summary(root),
         "latest_edge_profiler": _edge_profiler_summary(root),
         "latest_session_volatility_design": _session_volatility_design_summary(root),
+        "latest_session_block_bias_eval": _session_block_bias_eval_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,
