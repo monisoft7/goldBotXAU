@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_58"
+CONTEXT_VERSION = "v0_59"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -885,6 +885,38 @@ def _research_lab_integrity_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _research_lab_warning_standardization_summary(root: Path) -> dict[str, Any] | None:
+    standardization_path = root / "reports" / "xauusd_research_lab_warning_standardization_v0_59.json"
+    if not standardization_path.exists():
+        return None
+    report = json.loads(standardization_path.read_text(encoding="utf-8"))
+    return {
+        "standardization_version": report.get("standardization_version"),
+        "standardization_status": report.get("standardization_status"),
+        "source_integrity_audit_version": report.get("source_integrity_audit_version"),
+        "warnings_addressed": len(report.get("warnings_addressed", []))
+        if isinstance(report.get("warnings_addressed"), list)
+        else None,
+        "cost_policy_documented": report.get("cost_policy_documented"),
+        "timestamp_policy_documented": report.get("timestamp_policy_documented"),
+        "gap_classification_policy_documented": report.get("gap_classification_policy_documented"),
+        "gate_policy_documented": report.get("gate_policy_documented"),
+        "low_frequency_false_negative_risk_documented": report.get("low_frequency_false_negative_risk_documented"),
+        "strategy_metrics_changed": report.get("strategy_metrics_changed"),
+        "gates_lowered": report.get("gates_lowered"),
+        "oos_used": report.get("oos_used"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "retune_performed": report.get("retune_performed"),
+        "threshold_search_performed": report.get("threshold_search_performed"),
+        "parameter_grid_performed": report.get("parameter_grid_performed"),
+        "executable_candidate_created": report.get("executable_candidate_created"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "order_check_called": report.get("order_check_called"),
+        "live_allowed": report.get("live_allowed"),
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
     protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
     if not protocol_path.exists():
@@ -958,6 +990,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_session_block_bias_eval": _session_block_bias_eval_summary(root),
         "latest_volatility_regime_lead_viability": _volatility_regime_lead_viability_summary(root),
         "latest_research_lab_integrity_audit": _research_lab_integrity_summary(root),
+        "latest_research_lab_warning_standardization": _research_lab_warning_standardization_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

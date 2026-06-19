@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_58"
+    assert context["context_version"] == "v0_59"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 20000
+    assert len(context_text) < 22000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_58"
+    assert context["context_version"] == "v0_59"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_58.json"
+    output_path = tmp_path / "codex_context_v0_59.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_58"
+    assert context["context_version"] == "v0_59"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -963,3 +963,35 @@ def test_context_includes_v0_58_research_lab_integrity_summary() -> None:
     assert audit["order_check_called"] is False
     assert audit["live_allowed"] is False
     assert audit["data_csv_added_to_git"] is False
+
+
+def test_context_includes_v0_59_research_lab_warning_standardization_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    standardization = context["latest_research_lab_warning_standardization"]
+    assert standardization is not None
+    assert standardization["standardization_version"] == "v0_59"
+    assert standardization["standardization_status"] in {
+        "lab_warning_standardization_completed",
+        "blocked_missing_v0_58_integrity_report",
+        "standardization_failed",
+    }
+    assert standardization["source_integrity_audit_version"] == "v0_58"
+    assert isinstance(standardization["warnings_addressed"], int)
+    assert standardization["cost_policy_documented"] is True
+    assert standardization["timestamp_policy_documented"] is True
+    assert standardization["gap_classification_policy_documented"] is True
+    assert standardization["gate_policy_documented"] is True
+    assert standardization["low_frequency_false_negative_risk_documented"] is True
+    assert standardization["strategy_metrics_changed"] is False
+    assert standardization["gates_lowered"] is False
+    assert standardization["oos_used"] is False
+    assert standardization["repeated_oos_review"] is False
+    assert standardization["retune_performed"] is False
+    assert standardization["threshold_search_performed"] is False
+    assert standardization["parameter_grid_performed"] is False
+    assert standardization["executable_candidate_created"] is False
+    assert standardization["demo_execution_allowed"] is False
+    assert standardization["order_send_called"] is False
+    assert standardization["order_check_called"] is False
+    assert standardization["live_allowed"] is False

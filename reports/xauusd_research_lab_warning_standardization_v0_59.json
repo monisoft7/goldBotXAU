@@ -1,0 +1,198 @@
+{
+  "blockers": [],
+  "cost_policy": {
+    "application_locations_identified": [
+      "some fixed candidate reports include median_return_after_costs or cost-sensitivity language",
+      "forward observation schema records spread when available"
+    ],
+    "cost_fields_missing_or_inconsistent_warning": true,
+    "current_cost_application_state": "not_globally_consistent",
+    "existing_tools_apply_costs_consistently": false,
+    "future_report_requirement": "state whether cost, spread, and slippage are applied; warn when missing or inconsistent",
+    "globally_consistent_cost_model_detected": false,
+    "historical_metrics_recomputed": false,
+    "policy_id": "research_cost_slippage_policy_v0_59",
+    "retroactive_metric_change_allowed": false
+  },
+  "cost_policy_documented": true,
+  "critical_findings_from_v0_58": [],
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "gap_classification_policy": {
+    "classification_enums": [
+      "expected_weekend_or_market_closure_gap",
+      "unexpected_intraday_gap",
+      "zero_range_candle_warning",
+      "duplicate_or_non_monotonic_error"
+    ],
+    "classifications_by_timeframe": {
+      "M10": {
+        "data_altered": false,
+        "duplicate_or_non_monotonic_error": false,
+        "duplicate_timestamp_count": 0,
+        "expected_weekend_or_market_closure_gap_count": 168,
+        "timestamp_monotonic": true,
+        "unexpected_intraday_gap_count": 629,
+        "zero_range_candle_warning_count": 6,
+        "zero_range_frequency_excessive": false
+      },
+      "M15": {
+        "data_altered": false,
+        "duplicate_or_non_monotonic_error": false,
+        "duplicate_timestamp_count": 0,
+        "expected_weekend_or_market_closure_gap_count": 189,
+        "timestamp_monotonic": true,
+        "unexpected_intraday_gap_count": 717,
+        "zero_range_candle_warning_count": 17,
+        "zero_range_frequency_excessive": false
+      },
+      "M5": {
+        "data_altered": false,
+        "duplicate_or_non_monotonic_error": false,
+        "duplicate_timestamp_count": 0,
+        "expected_weekend_or_market_closure_gap_count": 172,
+        "timestamp_monotonic": true,
+        "unexpected_intraday_gap_count": 645,
+        "zero_range_candle_warning_count": 55,
+        "zero_range_frequency_excessive": false
+      }
+    },
+    "critical_findings": [],
+    "data_deleted_or_altered": false,
+    "duplicate_or_non_monotonic_timestamps_are_critical": true,
+    "expected_weekend_or_market_closure_gaps_are_warnings": true,
+    "policy_id": "research_gap_classification_policy_v0_59",
+    "warnings": [
+      "m10_expected_weekend_or_market_closure_gap",
+      "m10_unexpected_intraday_gap",
+      "m10_zero_range_candle_warning",
+      "m15_expected_weekend_or_market_closure_gap",
+      "m15_unexpected_intraday_gap",
+      "m15_zero_range_candle_warning",
+      "m5_expected_weekend_or_market_closure_gap",
+      "m5_unexpected_intraday_gap",
+      "m5_zero_range_candle_warning"
+    ],
+    "zero_range_candles_are_warnings_unless_excessive": true,
+    "zero_range_excessive_frequency_threshold": 0.001
+  },
+  "gap_classification_policy_documented": true,
+  "gate_policy": {
+    "fixed_gates_preserved": {
+      "expectancy_min_exclusive": 0.0,
+      "max_consecutive_losses_max": 8,
+      "train_profit_factor_min": 1.2,
+      "validation_profit_factor_min": 1.15,
+      "validation_trades_min": 50
+    },
+    "future_report_requirement": "distinguish insufficient validation sample from negative edge without lowering gates",
+    "gates_lowered": false,
+    "low_frequency_caveat": "validation_trades >= 50 can reject low-frequency candidates as insufficient evidence; this is not necessarily evidence of negative edge",
+    "low_frequency_false_negative_risk_documented": true,
+    "policy_id": "research_validation_gate_policy_v0_59",
+    "validation_trade_minimum": 50,
+    "validation_trade_minimum_lowered": false
+  },
+  "gate_policy_documented": true,
+  "gates_lowered": false,
+  "live_allowed": false,
+  "low_frequency_false_negative_risk_documented": true,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "policy_documents": {
+    "cost_policy": {
+      "exists": true,
+      "path": "docs/research_lab_cost_policy.md"
+    },
+    "gap_classification_policy": {
+      "exists": true,
+      "path": "docs/research_lab_gap_classification_policy.md"
+    },
+    "gate_policy": {
+      "exists": true,
+      "path": "docs/research_lab_gate_policy.md"
+    },
+    "timestamp_policy": {
+      "exists": true,
+      "path": "docs/research_lab_timestamp_and_session_policy.md"
+    }
+  },
+  "recommended_next_step": "continue research with standardized lab policies.",
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "gates_lowered": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "policy_standardization_only": true,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_metrics_changed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "source_integrity_audit_version": "v0_58",
+  "source_integrity_decision": "lab_integrity_passed_with_warnings",
+  "standardization_status": "lab_warning_standardization_completed",
+  "standardization_version": "v0_59",
+  "strategy_metrics_changed": false,
+  "threshold_search_performed": false,
+  "timestamp_policy_documented": true,
+  "timestamp_session_policy": {
+    "broker_timezone_provably_utc": false,
+    "fixed_session_windows_from_v0_58": {
+      "asian": "00:00-06:59",
+      "late_us": "17:00-20:59",
+      "london": "07:00-11:59",
+      "ny_core": "12:00-16:59"
+    },
+    "future_session_research_must_state_timestamp_basis": true,
+    "policy_id": "research_timestamp_session_policy_v0_59",
+    "source_v0_58_broker_timestamp_basis": "undetected_local_csv_timestamp_no_timezone_column",
+    "timestamp_basis": "unknown_or_broker_server_time",
+    "timestamp_shift_performed": false
+  },
+  "train_validation_only": true,
+  "warnings": [
+    "standardized_v0_58_warning:m5_zero_or_negative_ranges_detected",
+    "standardized_v0_58_warning:m5_missing_candle_gaps_detected",
+    "standardized_v0_58_warning:m5_weekend_or_session_gaps_reported",
+    "standardized_v0_58_warning:m10_zero_or_negative_ranges_detected",
+    "standardized_v0_58_warning:m10_missing_candle_gaps_detected",
+    "standardized_v0_58_warning:m10_weekend_or_session_gaps_reported",
+    "standardized_v0_58_warning:m15_zero_or_negative_ranges_detected",
+    "standardized_v0_58_warning:m15_missing_candle_gaps_detected",
+    "standardized_v0_58_warning:m15_weekend_or_session_gaps_reported",
+    "standardized_v0_58_warning:broker_timestamp_basis_not_explicitly_encoded_in_csv",
+    "standardized_v0_58_warning:costs_not_applied_consistently_across_all_train_validation_tools",
+    "standardized_v0_58_warning:fixed_validation_trade_floor_may_be_mismatched_to_low_frequency_strategy_families"
+  ],
+  "warnings_addressed": [
+    "m5_zero_or_negative_ranges_detected",
+    "m5_missing_candle_gaps_detected",
+    "m5_weekend_or_session_gaps_reported",
+    "m10_zero_or_negative_ranges_detected",
+    "m10_missing_candle_gaps_detected",
+    "m10_weekend_or_session_gaps_reported",
+    "m15_zero_or_negative_ranges_detected",
+    "m15_missing_candle_gaps_detected",
+    "m15_weekend_or_session_gaps_reported",
+    "broker_timestamp_basis_not_explicitly_encoded_in_csv",
+    "costs_not_applied_consistently_across_all_train_validation_tools",
+    "fixed_validation_trade_floor_may_be_mismatched_to_low_frequency_strategy_families"
+  ]
+}

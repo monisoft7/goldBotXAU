@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_58 research lab integrity audit
-- OOS: evaluated once, marker locked, repeated review disallowed
-- Current test baseline: 54 passed for v0_58 targeted tests; prior v0_57 targeted baseline 48 passed and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_59 research lab warning standardization
+- OOS: no OOS used in v0_59; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 53 passed for v0_59 targeted tests; prior v0_58 targeted baseline 54 passed, prior v0_57 targeted baseline 48 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_58 passed the lab integrity audit with warnings only, with demo/OOS blocked
+- Execution status: research only; v0_59 standardized the v0_58 lab-integrity warnings with policy docs, with demo/OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -31,11 +31,47 @@
 - Latest session block bias evaluation: `reports/xauusd_session_block_bias_eval_v0_56.json`
 - Latest volatility regime lead viability audit: `reports/xauusd_volatility_regime_lead_viability_v0_57.json`
 - Latest research lab integrity audit: `reports/xauusd_research_lab_integrity_audit_v0_58.json`
-- Latest checkpoint: `docs/checkpoints/v0_58_research_lab_integrity_audit_result.md`
-- Latest context pack: `reports/codex_context_v0_58.json`
-- Latest health report: `reports/project_health_v0_58.json`
-- Latest decision: `lab_integrity_passed_with_warnings`
-- Next safe task: address v0_58 lab-integrity warnings or continue non-OOS research with caution; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+- Latest research lab warning standardization: `reports/xauusd_research_lab_warning_standardization_v0_59.json`
+- Latest checkpoint: `docs/checkpoints/v0_59_research_lab_warning_standardization_result.md`
+- Latest context pack: `reports/codex_context_v0_59.json`
+- Latest health report: `reports/project_health_v0_59.json`
+- Latest decision: `lab_warning_standardization_completed`
+- Next safe task: continue research with standardized lab policies; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+
+## v0_59 Research Lab Warning Standardization Result
+
+- Standardization module: `src/research/xauusd_research_lab_warning_standardization.py`
+- Standardization script: `scripts/standardize_xauusd_research_lab_warnings_v0_59.py`
+- Standardization report: `reports/xauusd_research_lab_warning_standardization_v0_59.json`
+- Standardization status: `lab_warning_standardization_completed`
+- Source integrity audit version: `v0_58`
+- Source integrity decision: `lab_integrity_passed_with_warnings`
+- Critical findings from v0_58: none
+- Warnings addressed: M5/M10/M15 gap and zero-range warnings, timestamp-basis warning, cost/slippage consistency warning, and low-frequency validation-floor caveat
+- Cost policy documented: `true`
+- Timestamp/session policy documented: `true`
+- Gap classification policy documented: `true`
+- Gate policy documented: `true`
+- Low-frequency false-negative risk documented: `true`
+- Strategy metrics changed: `false`
+- Gates lowered: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Policy docs: `docs/research_lab_cost_policy.md`, `docs/research_lab_timestamp_and_session_policy.md`, `docs/research_lab_gap_classification_policy.md`, `docs/research_lab_gate_policy.md`
+- Targeted tests: `53 passed`
+- Next recommended step: `continue research with standardized lab policies.`
+
+v0_59 standardizes lab warning policy only. It does not change strategy results, lower gates, retune, search thresholds, run a parameter grid, run OOS, create an executable candidate, enable demo/live execution, send orders, check orders, create a scheduler, create an execution queue, output a user-facing trade recommendation, claim profitability, or add `data/*.csv`.
 
 ## v0_58 Research Lab Integrity Audit Result
 
