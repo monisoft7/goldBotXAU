@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_61 market context layer feasibility audit
-- OOS: no OOS used in v0_61; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 59 passed for v0_61 targeted tests; prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_62 market context labeler skeleton
+- OOS: no OOS used in v0_62; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 53 passed for v0_62 targeted tests; prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_61 audited market context feasibility and defined schemas/policies, with feature import, strategy testing, demo, and OOS blocked
+- Execution status: research only; v0_62 labels market/session/time context from existing timestamps for observation only, with strategy testing, trade filtering, demo, and OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -34,11 +34,47 @@
 - Latest research lab warning standardization: `reports/xauusd_research_lab_warning_standardization_v0_59.json`
 - Latest second-tier fixed-rule board: `reports/xauusd_second_tier_board_v0_60.json`
 - Latest market context feasibility audit: `reports/xauusd_market_context_feasibility_v0_61.json`
-- Latest checkpoint: `docs/checkpoints/v0_61_market_context_feasibility_result.md`
-- Latest context pack: `reports/codex_context_v0_61.json`
-- Latest health report: `reports/project_health_v0_61.json`
-- Latest decision: `market_context_feasibility_completed`
-- Next safe task: v0_62 controlled read-only market context data importer design only; no strategy testing, no feature import approval yet, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, and no demo/live execution
+- Latest market context labeler: `reports/xauusd_market_context_labels_v0_62.json`
+- Latest checkpoint: `docs/checkpoints/v0_62_market_context_labeler_result.md`
+- Latest context pack: `reports/codex_context_v0_62.json`
+- Latest health report: `reports/project_health_v0_62.json`
+- Latest decision: `market_context_labeler_completed`
+- Next safe task: v0_63 context-labeled event study only; no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, and no demo/live execution
+
+## v0_62 Market Context Labeler Result
+
+- Labeler module: `src/research/xauusd_market_context_labeler.py`
+- Labeler script: `scripts/build_xauusd_market_context_labels_v0_62.py`
+- Labeler report: `reports/xauusd_market_context_labels_v0_62.json`
+- Labeler status: `market_context_labeler_completed`
+- Source feasibility version: `v0_61`
+- Purpose: `observational_market_context_labels_only`
+- Labels are trade blockers: `false`
+- Hard blockers limited to market closed and missing data: `true`
+- Timestamp basis: `local_csv_timestamp_no_timezone_column`
+- Timeframes used: `M10`, `M15`, `M5`
+- Total timestamp rows labeled: `399509`
+- Market closed weekend count: `0`
+- Likely market open count: `399509`
+- Asian session count: `105668`
+- London morning session count: `87208`
+- NY core session count: `87344`
+- Late US session count: `69849`
+- Off-session or low-activity count: `49440`
+- DXY placeholder status: `placeholder_schema_defined_no_dxy_series_imported`
+- Yields placeholder status: `placeholder_schema_defined_no_yields_series_imported`
+- Calendar placeholder status: `placeholder_schema_defined_no_economic_calendar_imported`
+- Holiday placeholder status: `placeholder_schema_defined_no_holiday_calendar_imported`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Targeted tests: `53 passed`
+- Next recommended step: `v0_63 context-labeled event study, no strategy, no OOS`
+
+v0_62 is an observational labeler skeleton only. It reads existing local XAUUSD timestamps and creates descriptive market/session/time labels plus placeholder external label schemas. Holiday, news/event, DXY, yields, geopolitical, and session labels are not trade blockers in v0_62.
 
 ## v0_61 Market Context Layer Feasibility Result
 

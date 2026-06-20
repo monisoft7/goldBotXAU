@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_61"
+CONTEXT_VERSION = "v0_62"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -964,7 +964,6 @@ def _market_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
         "market_context_family_count": len(report.get("market_context_families_audited", []))
         if isinstance(report.get("market_context_families_audited"), list)
         else None,
-        "mt5_symbol_discovery_attempted": report.get("mt5_symbol_discovery_attempted"),
         "discovered_candidate_symbols": report.get("discovered_candidate_symbols"),
         "external_feature_schema_documented": report.get("external_feature_schema_documented"),
         "anti_lookahead_policy_documented": report.get("anti_lookahead_policy_documented"),
@@ -989,7 +988,46 @@ def _market_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
             )
         )
         and report.get("train_validation_only") is True,
-        "recommended_v0_62_plan": report.get("recommended_v0_62_plan"),
+    }
+
+
+def _market_context_labeler_summary(root: Path) -> dict[str, Any] | None:
+    labeler_path = root / "reports" / "xauusd_market_context_labels_v0_62.json"
+    if not labeler_path.exists():
+        return None
+    report = json.loads(labeler_path.read_text(encoding="utf-8"))
+    counts = report.get("label_counts", {})
+    compact_counts = {
+        key: counts.get(key)
+        for key in (
+            "market_closed_weekend",
+            "likely_market_open",
+        )
+    } if isinstance(counts, dict) else {}
+    return {
+        "labeler_version": report.get("labeler_version"),
+        "labeler_status": report.get("labeler_status"),
+        "source_feasibility_version": report.get("source_feasibility_version"),
+        "labels_are_trade_blockers": report.get("labels_are_trade_blockers"),
+        "hard_blockers_limited_to_market_closed_and_missing_data": report.get(
+            "hard_blockers_limited_to_market_closed_and_missing_data"
+        ),
+        "timeframes_used": report.get("timeframes_used"),
+        "total_timestamp_rows": report.get("total_timestamp_rows"),
+        "label_counts": compact_counts,
+        "approved_for_strategy_testing": report.get("approved_for_strategy_testing"),
+        "approved_for_trade_filtering": report.get("approved_for_trade_filtering"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+            )
+        ),
     }
 
 
@@ -1069,6 +1107,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_research_lab_warning_standardization": _research_lab_warning_standardization_summary(root),
         "latest_second_tier_fixed_rule_board": _second_tier_fixed_rule_board_summary(root),
         "latest_market_context_feasibility": _market_context_feasibility_summary(root),
+        "latest_market_context_labels": _market_context_labeler_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

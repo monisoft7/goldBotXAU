@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_61"
+    assert context["context_version"] == "v0_62"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_61"
+    assert context["context_version"] == "v0_62"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_61.json"
+    output_path = tmp_path / "codex_context_v0_62.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_61"
+    assert context["context_version"] == "v0_62"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1064,3 +1064,27 @@ def test_context_includes_v0_61_market_context_feasibility_summary() -> None:
     assert audit["approved_for_v0_62_feature_import"] is False
     assert audit["approved_for_strategy_testing"] is False
     assert audit["safety_locked"] is True
+
+
+def test_context_includes_v0_62_market_context_labeler_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    labels = context["latest_market_context_labels"]
+    assert labels is not None
+    assert labels["labeler_version"] == "v0_62"
+    assert labels["labeler_status"] in {
+        "market_context_labeler_completed",
+        "blocked_missing_v0_61_report",
+        "labeler_failed",
+    }
+    assert labels["source_feasibility_version"] == "v0_61"
+    assert labels["labels_are_trade_blockers"] is False
+    assert labels["hard_blockers_limited_to_market_closed_and_missing_data"] is True
+    assert labels["timeframes_used"] == ["M10", "M15", "M5"]
+    assert isinstance(labels["total_timestamp_rows"], int)
+    assert isinstance(labels["label_counts"], dict)
+    assert "market_closed_weekend" in labels["label_counts"]
+    assert "likely_market_open" in labels["label_counts"]
+    assert labels["approved_for_strategy_testing"] is False
+    assert labels["approved_for_trade_filtering"] is False
+    assert labels["safety_locked"] is True
