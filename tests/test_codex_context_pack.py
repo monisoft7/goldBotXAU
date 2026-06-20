@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_62"
+    assert context["context_version"] == "v0_64_2"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 23000
+    assert len(context_text) < 25000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_62"
+    assert context["context_version"] == "v0_64_2"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_62.json"
+    output_path = tmp_path / "codex_context_v0_64_2.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_62"
+    assert context["context_version"] == "v0_64_2"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1088,3 +1088,86 @@ def test_context_includes_v0_62_market_context_labeler_summary() -> None:
     assert labels["approved_for_strategy_testing"] is False
     assert labels["approved_for_trade_filtering"] is False
     assert labels["safety_locked"] is True
+
+
+def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    study = context["latest_context_labeled_event_study"]
+    assert study is not None
+    assert study["context_study_version"] == "v0_63"
+    assert study["context_study_status"] in {
+        "context_labeled_event_study_completed_with_leads",
+        "context_labeled_event_study_completed_no_clear_leads",
+        "blocked_missing_v0_62_labels",
+        "context_study_failed",
+    }
+    assert study["source_labeler_version"] == "v0_62"
+    assert study["source_prior_versions_considered"] == ["v0_53", "v0_56", "v0_60"]
+    assert study["labels_used_as_trade_blockers"] is False
+    assert study["strategy_rules_changed"] is False
+    assert isinstance(study["lead_count"], int)
+    assert study["train_validation_only"] is True
+    assert study["oos_used"] is False
+    assert study["demo_execution_allowed"] is False
+    assert study["order_send_called"] is False
+    assert study["safety_locked"] is True
+
+
+def test_context_includes_v0_64_repository_consolidation_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    plan = context["latest_repository_consolidation_plan"]
+    assert plan is not None
+    assert plan["consolidation_version"] == "v0_64"
+    assert plan["consolidation_status"] == "repository_consolidation_plan_completed"
+    assert isinstance(plan["files_scanned_count"], int)
+    assert plan["files_scanned_count"] > 0
+    assert plan["active_keep_count"] > 0
+    assert plan["archive_candidate_count"] > 0
+    assert plan["delete_candidate_count"] > 0
+    assert plan["manual_review_count"] > 0
+    assert plan["tracked_data_csv_count"] >= 1
+    assert plan["cache_files_detected_count"] > 0
+    assert plan["failed_experiments_indexed_count"] >= 10
+    assert plan["safe_to_apply_cleanup_now"] is False
+    assert plan["cleanup_requires_human_review"] is True
+    assert plan["recommended_next_step"] == "v0_64_1_apply_reviewed_cleanup_plan_no_strategy_changes"
+    assert plan["safety_locked"] is True
+
+
+def test_context_includes_v0_64_1_repository_cleanup_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    cleanup = context["latest_repository_cleanup"]
+    assert cleanup is not None
+    assert cleanup["cleanup_version"] == "v0_64_1"
+    assert cleanup["cleanup_status"] in {
+        "dry_run_completed",
+        "cleanup_applied_completed",
+        "cleanup_blocked",
+    }
+    assert cleanup["data_csv_touched"] is False
+    assert cleanup["safety_files_touched"] is False
+    assert cleanup["latest_context_files_touched"] is False
+    assert cleanup["archive_root"] == "project_archive/retired_v0_64_1"
+    assert cleanup["recommended_next_step"] == "v0_65_dxy_proxy_context_audit_after_cleanup"
+    assert cleanup["safety_locked"] is True
+
+
+def test_context_includes_v0_64_2_repository_cleanup_repair_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    repair = context["latest_repository_cleanup_repair"]
+    assert repair is not None
+    assert repair["repair_version"] == "v0_64_2"
+    assert repair["repair_status"] == "cleanup_boundary_repair_completed"
+    assert repair["pytest_archive_excluded"] is True
+    assert repair["restored_active_dependency_count"] >= 4
+    assert repair["active_tests_import_check_passed"] is True
+    assert repair["full_pytest_passed"] is True
+    assert repair["data_csv_touched"] is False
+    assert repair["safety_files_touched"] is False
+    assert repair["latest_context_files_touched"] is False
+    assert repair["recommended_next_step"] == "commit_v0_63_to_v0_64_2_then_v0_65_dxy_proxy_context_audit"
+    assert repair["safety_locked"] is True

@@ -1,4 +1,4 @@
-"""Print a compact local Codex context pack for goldBotXAU."""
+﻿"""Print a compact local Codex context pack for goldBotXAU."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_62"
+CONTEXT_VERSION = "v0_64_2"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -38,6 +38,13 @@ def _recommended_next_step(root: Path) -> str:
     return "ask_director"
 
 
+def _report_path(root: Path, filename: str) -> Path:
+    active_path = root / "reports" / filename
+    if active_path.exists():
+        return active_path
+    return root / "project_archive" / "retired_v0_64_1" / "reports" / filename
+
+
 def _rejected_candidate_versions(registry: dict[str, Any]) -> list[str]:
     versions: list[str] = []
     for candidate in registry["candidates"]:
@@ -51,7 +58,7 @@ def _rejected_candidate_versions(registry: dict[str, Any]) -> list[str]:
 
 
 def _oos_repair_summary(root: Path) -> dict[str, Any] | None:
-    repair_path = root / "reports" / "xauusd_oos_review_repair_v0_29_1.json"
+    repair_path = _report_path(root, "xauusd_oos_review_repair_v0_29_1.json")
     if not repair_path.exists():
         return None
     report = json.loads(repair_path.read_text(encoding="utf-8"))
@@ -66,7 +73,7 @@ def _oos_repair_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _post_oos_governance_summary(root: Path) -> dict[str, Any] | None:
-    governance_path = root / "reports" / "xauusd_post_oos_governance_v0_30.json"
+    governance_path = _report_path(root, "xauusd_post_oos_governance_v0_30.json")
     if not governance_path.exists():
         return None
     report = json.loads(governance_path.read_text(encoding="utf-8"))
@@ -85,7 +92,7 @@ def _post_oos_governance_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _paper_shadow_journal_summary(root: Path) -> dict[str, Any] | None:
-    journal_path = root / "reports" / "xauusd_paper_shadow_journal_protocol_v0_31.json"
+    journal_path = _report_path(root, "xauusd_paper_shadow_journal_protocol_v0_31.json")
     if not journal_path.exists():
         return None
     report = json.loads(journal_path.read_text(encoding="utf-8"))
@@ -104,7 +111,7 @@ def _paper_shadow_journal_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _forward_observation_plan_summary(root: Path) -> dict[str, Any] | None:
-    plan_path = root / "reports" / "xauusd_forward_observation_export_plan_v0_32.json"
+    plan_path = _report_path(root, "xauusd_forward_observation_export_plan_v0_32.json")
     if not plan_path.exists():
         return None
     report = json.loads(plan_path.read_text(encoding="utf-8"))
@@ -127,7 +134,7 @@ def _forward_observation_plan_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _forward_observation_runner_summary(root: Path) -> dict[str, Any] | None:
-    runner_path = root / "reports" / "xauusd_forward_observation_runner_protocol_v0_33.json"
+    runner_path = _report_path(root, "xauusd_forward_observation_runner_protocol_v0_33.json")
     if not runner_path.exists():
         return None
     report = json.loads(runner_path.read_text(encoding="utf-8"))
@@ -149,7 +156,7 @@ def _forward_observation_runner_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _forward_observation_journal_summary(root: Path) -> dict[str, Any] | None:
-    journal_path = root / "reports" / "xauusd_forward_observation_journal_v0_34.json"
+    journal_path = _report_path(root, "xauusd_forward_observation_journal_v0_34.json")
     if not journal_path.exists():
         return None
     report = json.loads(journal_path.read_text(encoding="utf-8"))
@@ -172,7 +179,7 @@ def _forward_observation_journal_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _forward_observation_schema_adapter_summary(root: Path) -> dict[str, Any] | None:
-    adapter_path = root / "reports" / "xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json"
+    adapter_path = _report_path(root, "xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json")
     if not adapter_path.exists():
         return None
     report = json.loads(adapter_path.read_text(encoding="utf-8"))
@@ -195,7 +202,7 @@ def _forward_observation_schema_adapter_summary(root: Path) -> dict[str, Any] | 
 
 
 def _forward_observation_consolidated_summary(root: Path) -> dict[str, Any] | None:
-    consolidated_path = root / "reports" / "xauusd_forward_observation_consolidated_v0_34_2.json"
+    consolidated_path = _report_path(root, "xauusd_forward_observation_consolidated_v0_34_2.json")
     if not consolidated_path.exists():
         return None
     report = json.loads(consolidated_path.read_text(encoding="utf-8"))
@@ -222,9 +229,9 @@ def _forward_observation_consolidated_summary(root: Path) -> dict[str, Any] | No
 
 
 def _forward_observation_ledger_summary(root: Path) -> dict[str, Any] | None:
-    ledger_path = root / "reports" / "xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json"
+    ledger_path = _report_path(root, "xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json")
     if not ledger_path.exists():
-        ledger_path = root / "reports" / "xauusd_forward_observation_ledger_v0_35.json"
+        ledger_path = _report_path(root, "xauusd_forward_observation_ledger_v0_35.json")
     if not ledger_path.exists():
         return None
     report = json.loads(ledger_path.read_text(encoding="utf-8"))
@@ -255,7 +262,7 @@ def _forward_observation_ledger_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _demo_preflight_review_summary(root: Path) -> dict[str, Any] | None:
-    review_path = root / "reports" / "xauusd_demo_preflight_review_v0_37.json"
+    review_path = _report_path(root, "xauusd_demo_preflight_review_v0_37.json")
     if not review_path.exists():
         return None
     report = json.loads(review_path.read_text(encoding="utf-8"))
@@ -290,7 +297,7 @@ def _demo_preflight_review_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _demo_broker_safety_preflight_summary(root: Path) -> dict[str, Any] | None:
-    preflight_path = root / "reports" / "xauusd_demo_broker_safety_preflight_v0_38.json"
+    preflight_path = _report_path(root, "xauusd_demo_broker_safety_preflight_v0_38.json")
     if not preflight_path.exists():
         return None
     report = json.loads(preflight_path.read_text(encoding="utf-8"))
@@ -318,7 +325,7 @@ def _demo_broker_safety_preflight_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _broker_facts_audit_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_broker_facts_audit_v0_39.json"
+    audit_path = _report_path(root, "xauusd_broker_facts_audit_v0_39.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -348,7 +355,7 @@ def _broker_facts_audit_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _demo_risk_envelope_summary(root: Path) -> dict[str, Any] | None:
-    envelope_path = root / "reports" / "xauusd_demo_risk_envelope_v0_40.json"
+    envelope_path = _report_path(root, "xauusd_demo_risk_envelope_v0_40.json")
     if not envelope_path.exists():
         return None
     report = json.loads(envelope_path.read_text(encoding="utf-8"))
@@ -380,7 +387,7 @@ def _demo_risk_envelope_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _final_demo_readiness_gate_summary(root: Path) -> dict[str, Any] | None:
-    gate_path = root / "reports" / "xauusd_final_demo_readiness_gate_v0_41.json"
+    gate_path = _report_path(root, "xauusd_final_demo_readiness_gate_v0_41.json")
     if not gate_path.exists():
         return None
     report = json.loads(gate_path.read_text(encoding="utf-8"))
@@ -409,7 +416,7 @@ def _final_demo_readiness_gate_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _limited_demo_execution_summary(root: Path) -> dict[str, Any] | None:
-    execution_path = root / "reports" / "xauusd_limited_demo_execution_v0_42.json"
+    execution_path = _report_path(root, "xauusd_limited_demo_execution_v0_42.json")
     if not execution_path.exists():
         return None
     report = json.loads(execution_path.read_text(encoding="utf-8"))
@@ -432,7 +439,7 @@ def _limited_demo_execution_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _signal_order_request_summary(root: Path) -> dict[str, Any] | None:
-    request_path = root / "reports" / "xauusd_signal_order_request_v0_43.json"
+    request_path = _report_path(root, "xauusd_signal_order_request_v0_43.json")
     if not request_path.exists():
         return None
     report = json.loads(request_path.read_text(encoding="utf-8"))
@@ -452,7 +459,7 @@ def _signal_order_request_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _bounded_signal_watch_summary(root: Path) -> dict[str, Any] | None:
-    watch_path = root / "reports" / "xauusd_bounded_signal_watch_v0_44.json"
+    watch_path = _report_path(root, "xauusd_bounded_signal_watch_v0_44.json")
     if not watch_path.exists():
         return None
     report = json.loads(watch_path.read_text(encoding="utf-8"))
@@ -475,7 +482,7 @@ def _bounded_signal_watch_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _live_signal_snapshot_summary(root: Path) -> dict[str, Any] | None:
-    snapshot_path = root / "reports" / "xauusd_live_signal_snapshot_v0_45.json"
+    snapshot_path = _report_path(root, "xauusd_live_signal_snapshot_v0_45.json")
     if not snapshot_path.exists():
         return None
     report = json.loads(snapshot_path.read_text(encoding="utf-8"))
@@ -503,7 +510,7 @@ def _live_signal_snapshot_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _candidate_direction_provenance_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_candidate_direction_provenance_v0_46.json"
+    audit_path = _report_path(root, "xauusd_candidate_direction_provenance_v0_46.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -530,7 +537,7 @@ def _candidate_direction_provenance_summary(root: Path) -> dict[str, Any] | None
 
 
 def _direction_research_board_summary(root: Path) -> dict[str, Any] | None:
-    board_path = root / "reports" / "xauusd_direction_research_board_v0_47.json"
+    board_path = _report_path(root, "xauusd_direction_research_board_v0_47.json")
     if not board_path.exists():
         return None
     report = json.loads(board_path.read_text(encoding="utf-8"))
@@ -559,7 +566,7 @@ def _direction_research_board_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _new_directional_discovery_board_summary(root: Path) -> dict[str, Any] | None:
-    board_path = root / "reports" / "xauusd_new_directional_discovery_v0_48.json"
+    board_path = _report_path(root, "xauusd_new_directional_discovery_v0_48.json")
     if not board_path.exists():
         return None
     report = json.loads(board_path.read_text(encoding="utf-8"))
@@ -585,7 +592,7 @@ def _new_directional_discovery_board_summary(root: Path) -> dict[str, Any] | Non
 
 
 def _trend_pullback_stability_audit_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_trend_pullback_stability_audit_v0_49.json"
+    audit_path = _report_path(root, "xauusd_trend_pullback_stability_audit_v0_49.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -616,7 +623,7 @@ def _trend_pullback_stability_audit_summary(root: Path) -> dict[str, Any] | None
 
 
 def _historical_data_expansion_feasibility_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_historical_data_expansion_feasibility_v0_50.json"
+    audit_path = _report_path(root, "xauusd_historical_data_expansion_feasibility_v0_50.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -649,7 +656,7 @@ def _historical_data_expansion_feasibility_summary(root: Path) -> dict[str, Any]
 
 
 def _trend_pullback_expanded_retest_summary(root: Path) -> dict[str, Any] | None:
-    retest_path = root / "reports" / "xauusd_trend_pullback_expanded_retest_v0_51.json"
+    retest_path = _report_path(root, "xauusd_trend_pullback_expanded_retest_v0_51.json")
     if not retest_path.exists():
         return None
     report = json.loads(retest_path.read_text(encoding="utf-8"))
@@ -683,7 +690,7 @@ def _trend_pullback_expanded_retest_summary(root: Path) -> dict[str, Any] | None
 
 
 def _external_strategy_idea_triage_summary(root: Path) -> dict[str, Any] | None:
-    triage_path = root / "reports" / "xauusd_external_strategy_idea_triage_v0_52.json"
+    triage_path = _report_path(root, "xauusd_external_strategy_idea_triage_v0_52.json")
     if not triage_path.exists():
         return None
     report = json.loads(triage_path.read_text(encoding="utf-8"))
@@ -696,7 +703,7 @@ def _external_strategy_idea_triage_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _kimi_external_idea_addendum_summary(root: Path) -> dict[str, Any] | None:
-    addendum_path = root / "reports" / "xauusd_kimi_external_idea_addendum_v0_52_1.json"
+    addendum_path = _report_path(root, "xauusd_kimi_external_idea_addendum_v0_52_1.json")
     if not addendum_path.exists():
         return None
     report = json.loads(addendum_path.read_text(encoding="utf-8"))
@@ -712,7 +719,7 @@ def _kimi_external_idea_addendum_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _external_shortlist_board_summary(root: Path) -> dict[str, Any] | None:
-    board_path = root / "reports" / "xauusd_external_shortlist_board_v0_53.json"
+    board_path = _report_path(root, "xauusd_external_shortlist_board_v0_53.json")
     if not board_path.exists():
         return None
     report = json.loads(board_path.read_text(encoding="utf-8"))
@@ -741,7 +748,7 @@ def _external_shortlist_board_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _edge_profiler_summary(root: Path) -> dict[str, Any] | None:
-    profiler_path = root / "reports" / "xauusd_edge_profiler_v0_54.json"
+    profiler_path = _report_path(root, "xauusd_edge_profiler_v0_54.json")
     if not profiler_path.exists():
         return None
     report = json.loads(profiler_path.read_text(encoding="utf-8"))
@@ -769,7 +776,7 @@ def _edge_profiler_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _session_volatility_design_summary(root: Path) -> dict[str, Any] | None:
-    design_path = root / "reports" / "xauusd_session_volatility_design_v0_55.json"
+    design_path = _report_path(root, "xauusd_session_volatility_design_v0_55.json")
     if not design_path.exists():
         return None
     report = json.loads(design_path.read_text(encoding="utf-8"))
@@ -789,7 +796,7 @@ def _session_volatility_design_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _session_block_bias_eval_summary(root: Path) -> dict[str, Any] | None:
-    eval_path = root / "reports" / "xauusd_session_block_bias_eval_v0_56.json"
+    eval_path = _report_path(root, "xauusd_session_block_bias_eval_v0_56.json")
     if not eval_path.exists():
         return None
     report = json.loads(eval_path.read_text(encoding="utf-8"))
@@ -824,7 +831,7 @@ def _session_block_bias_eval_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _volatility_regime_lead_viability_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_volatility_regime_lead_viability_v0_57.json"
+    audit_path = _report_path(root, "xauusd_volatility_regime_lead_viability_v0_57.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -850,7 +857,7 @@ def _volatility_regime_lead_viability_summary(root: Path) -> dict[str, Any] | No
 
 
 def _research_lab_integrity_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_research_lab_integrity_audit_v0_58.json"
+    audit_path = _report_path(root, "xauusd_research_lab_integrity_audit_v0_58.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -886,7 +893,7 @@ def _research_lab_integrity_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _research_lab_warning_standardization_summary(root: Path) -> dict[str, Any] | None:
-    standardization_path = root / "reports" / "xauusd_research_lab_warning_standardization_v0_59.json"
+    standardization_path = _report_path(root, "xauusd_research_lab_warning_standardization_v0_59.json")
     if not standardization_path.exists():
         return None
     report = json.loads(standardization_path.read_text(encoding="utf-8"))
@@ -918,7 +925,7 @@ def _research_lab_warning_standardization_summary(root: Path) -> dict[str, Any] 
 
 
 def _second_tier_fixed_rule_board_summary(root: Path) -> dict[str, Any] | None:
-    board_path = root / "reports" / "xauusd_second_tier_board_v0_60.json"
+    board_path = _report_path(root, "xauusd_second_tier_board_v0_60.json")
     if not board_path.exists():
         return None
     report = json.loads(board_path.read_text(encoding="utf-8"))
@@ -949,7 +956,7 @@ def _second_tier_fixed_rule_board_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _market_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
-    audit_path = root / "reports" / "xauusd_market_context_feasibility_v0_61.json"
+    audit_path = _report_path(root, "xauusd_market_context_feasibility_v0_61.json")
     if not audit_path.exists():
         return None
     report = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -992,7 +999,7 @@ def _market_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
 
 
 def _market_context_labeler_summary(root: Path) -> dict[str, Any] | None:
-    labeler_path = root / "reports" / "xauusd_market_context_labels_v0_62.json"
+    labeler_path = _report_path(root, "xauusd_market_context_labels_v0_62.json")
     if not labeler_path.exists():
         return None
     report = json.loads(labeler_path.read_text(encoding="utf-8"))
@@ -1031,8 +1038,172 @@ def _market_context_labeler_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
+    study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
+    if not study_path.exists():
+        return None
+    report = json.loads(study_path.read_text(encoding="utf-8"))
+    leads = report.get("strongest_context_conditioned_leads", [])
+    return {
+        "context_study_version": report.get("context_study_version"),
+        "context_study_status": report.get("context_study_status"),
+        "source_labeler_version": report.get("source_labeler_version"),
+        "source_prior_versions_considered": report.get("source_prior_versions_considered"),
+        "labels_used_as_trade_blockers": report.get("labels_used_as_trade_blockers"),
+        "strategy_rules_changed": report.get("strategy_rules_changed"),
+        "lead_count": len(leads) if isinstance(leads, list) else None,
+        "train_validation_only": report.get("train_validation_only"),
+        "oos_used": report.get("oos_used"),
+        "demo_execution_allowed": report.get("demo_execution_allowed"),
+        "order_send_called": report.get("order_send_called"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "labels_used_as_trade_blockers",
+                "strategy_rules_changed",
+                "gates_lowered",
+                "revived_candidate_allowed",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "data_csv_added_to_git",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
+def _repository_consolidation_summary(root: Path) -> dict[str, Any] | None:
+    plan_path = _report_path(root, "repository_consolidation_plan_v0_64.json")
+    if not plan_path.exists():
+        return None
+    report = json.loads(plan_path.read_text(encoding="utf-8"))
+    return {
+        "consolidation_version": report.get("consolidation_version"),
+        "consolidation_status": report.get("consolidation_status"),
+        "files_scanned_count": report.get("files_scanned_count"),
+        "active_keep_count": report.get("active_keep_count"),
+        "archive_candidate_count": report.get("archive_candidate_count"),
+        "delete_candidate_count": report.get("delete_candidate_count"),
+        "manual_review_count": report.get("manual_review_count"),
+        "tracked_data_csv_count": len(report.get("tracked_data_csv_files", []))
+        if isinstance(report.get("tracked_data_csv_files"), list)
+        else None,
+        "cache_files_detected_count": len(report.get("cache_files_detected", []))
+        if isinstance(report.get("cache_files_detected"), list)
+        else None,
+        "failed_experiments_indexed_count": report.get("failed_experiments_indexed_count"),
+        "safe_to_apply_cleanup_now": report.get("safe_to_apply_cleanup_now"),
+        "cleanup_requires_human_review": report.get("cleanup_requires_human_review"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
+def _repository_cleanup_summary(root: Path) -> dict[str, Any] | None:
+    cleanup_path = _report_path(root, "repository_cleanup_applied_v0_64_1.json")
+    if not cleanup_path.exists():
+        return None
+    report = json.loads(cleanup_path.read_text(encoding="utf-8"))
+    return {
+        "cleanup_version": report.get("cleanup_version"),
+        "cleanup_status": report.get("cleanup_status"),
+        "files_deleted_count": report.get("files_deleted_count"),
+        "files_archived_count": report.get("files_archived_count"),
+        "data_csv_touched": report.get("data_csv_touched"),
+        "safety_files_touched": report.get("safety_files_touched"),
+        "latest_context_files_touched": report.get("latest_context_files_touched"),
+        "archive_root": report.get("archive_root"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
+def _repository_cleanup_repair_summary(root: Path) -> dict[str, Any] | None:
+    repair_path = _report_path(root, "repository_cleanup_repair_v0_64_2.json")
+    if not repair_path.exists():
+        return None
+    report = json.loads(repair_path.read_text(encoding="utf-8"))
+    return {
+        "repair_version": report.get("repair_version"),
+        "repair_status": report.get("repair_status"),
+        "pytest_archive_excluded": report.get("pytest_archive_excluded"),
+        "restored_active_dependency_count": report.get("restored_active_dependency_count"),
+        "active_tests_import_check_passed": report.get("active_tests_import_check_passed"),
+        "full_pytest_passed": report.get("full_pytest_passed"),
+        "data_csv_touched": report.get("data_csv_touched"),
+        "safety_files_touched": report.get("safety_files_touched"),
+        "latest_context_files_touched": report.get("latest_context_files_touched"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
 def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | None:
-    protocol_path = root / "reports" / "xauusd_forward_observation_cycle_protocol_v0_36.json"
+    protocol_path = _report_path(root, "xauusd_forward_observation_cycle_protocol_v0_36.json")
     if not protocol_path.exists():
         return None
     report = json.loads(protocol_path.read_text(encoding="utf-8"))
@@ -1108,6 +1279,10 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_second_tier_fixed_rule_board": _second_tier_fixed_rule_board_summary(root),
         "latest_market_context_feasibility": _market_context_feasibility_summary(root),
         "latest_market_context_labels": _market_context_labeler_summary(root),
+        "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
+        "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
+        "latest_repository_cleanup": _repository_cleanup_summary(root),
+        "latest_repository_cleanup_repair": _repository_cleanup_repair_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,
@@ -1145,3 +1320,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

@@ -29,3 +29,10 @@ Only the assets below are worth carrying into `goldBotXAU`.
 - Reusable as context only.
 - Context append or ingestion requires explicit approval in the old project.
 - Not a trade signal.
+
+## v0_64 consolidation reusable assets
+- `reports/repository_consolidation_plan_v0_64.json` is the source of truth for cleanup planning.
+- `docs/active_project_map.md` is the human-readable active-context map.
+- `docs/retired_experiments_archive.md` preserves failed experiment evidence before any cleanup.
+- `project_memory/failed_strategy_registry.md` remains the do-not-retune registry.
+- Reusable only for repository hygiene and context reduction; not reusable as strategy logic, trade filtering, or execution approval.

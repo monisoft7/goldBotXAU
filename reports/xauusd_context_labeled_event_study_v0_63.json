@@ -1,0 +1,1941 @@
+{
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "blockers": [],
+  "candidate_results_by_context": {
+    "asian_range_london_breakout_confirmation": {
+      "asian_session": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "asian_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "friday_late_session": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "friday_late_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "late_us_session": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "late_us_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "likely_market_open": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.20212765957446807,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "likely_market_open",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 10,
+          "validation": 9
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 497,
+        "trade_count_validation": 94,
+        "train_expectancy": 0.005028872470589754,
+        "train_profit_factor": 1.0107152929889043,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.053786897553678714,
+        "validation_profit_factor": 1.1330238648738264
+      },
+      "london_morning_session": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.20212765957446807,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "london_morning_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 10,
+          "validation": 9
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 497,
+        "trade_count_validation": 94,
+        "train_expectancy": 0.005028872470589754,
+        "train_profit_factor": 1.0107152929889043,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.053786897553678714,
+        "validation_profit_factor": 1.1330238648738264
+      },
+      "market_closed_weekend": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "market_closed_weekend",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "monday_reopen_window": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "monday_reopen_window",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "ny_core_session": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "ny_core_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "off_session_or_low_activity": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "off_session_or_low_activity",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_asian_to_london": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.2894736842105263,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_asian_to_london",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 9,
+          "validation": 6
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 136,
+        "trade_count_validation": 38,
+        "train_expectancy": -0.03952711108867746,
+        "train_profit_factor": 0.9174776214460891,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.007165834486409139,
+        "validation_profit_factor": 1.016709188286756
+      },
+      "session_transition_london_to_ny": {
+        "candidate_id": "asian_range_london_breakout_confirmation",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "session_transition_london_to_ny",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      }
+    },
+    "failed_m15_swing_breakout_reversal": {
+      "asian_session": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "asian_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "friday_late_session": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.24324324324324326,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "friday_late_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 10,
+          "validation": 6
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 171,
+        "trade_count_validation": 37,
+        "train_expectancy": -0.39209447952173776,
+        "train_profit_factor": 0.575786392628634,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.6602870677245257,
+        "validation_profit_factor": 0.385536580715576
+      },
+      "late_us_session": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.19047619047619047,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "late_us_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 13,
+          "validation": 9
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 753,
+        "trade_count_validation": 189,
+        "train_expectancy": -0.33289082399904363,
+        "train_profit_factor": 0.612964515493881,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.4436807820216857,
+        "validation_profit_factor": 0.5103244552015478
+      },
+      "likely_market_open": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.21763392857142858,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "likely_market_open",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 17,
+          "validation": 19
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 4341,
+        "trade_count_validation": 896,
+        "train_expectancy": -0.34118822754722805,
+        "train_profit_factor": 0.6523562199589069,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.38723026702502894,
+        "validation_profit_factor": 0.633519319034754
+      },
+      "london_morning_session": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.2206703910614525,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "london_morning_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 17,
+          "validation": 13
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 1733,
+        "trade_count_validation": 358,
+        "train_expectancy": -0.32795263408140335,
+        "train_profit_factor": 0.6697935109957885,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.19987224554855884,
+        "validation_profit_factor": 0.7870623034881096
+      },
+      "market_closed_weekend": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "market_closed_weekend",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "monday_reopen_window": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "monday_reopen_window",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "ny_core_session": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.23209169054441262,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "ny_core_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 16,
+          "validation": 12
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 1855,
+        "trade_count_validation": 349,
+        "train_expectancy": -0.35692150428472513,
+        "train_profit_factor": 0.6499771286126316,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.5488492479826454,
+        "validation_profit_factor": 0.5641168757119565
+      },
+      "off_session_or_low_activity": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "off_session_or_low_activity",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_asian_to_london": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.30952380952380953,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_asian_to_london",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 14,
+          "validation": 13
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 197,
+        "trade_count_validation": 42,
+        "train_expectancy": -0.09506076850700108,
+        "train_profit_factor": 0.9035805332449767,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.2029116970836004,
+        "validation_profit_factor": 1.1972626436485128
+      },
+      "session_transition_london_to_ny": {
+        "candidate_id": "failed_m15_swing_breakout_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.24193548387096775,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_london_to_ny",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 13,
+          "validation": 5
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 382,
+        "trade_count_validation": 62,
+        "train_expectancy": -0.27007522799436845,
+        "train_profit_factor": 0.7058979709309728,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.0010375168393989289,
+        "validation_profit_factor": 1.0010737329442172
+      }
+    },
+    "ny_liquidity_sweep_reversal": {
+      "asian_session": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "asian_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "friday_late_session": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "friday_late_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "late_us_session": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "late_us_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "likely_market_open": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.23255813953488372,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "likely_market_open",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 19,
+          "validation": 7
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 270,
+        "trade_count_validation": 43,
+        "train_expectancy": -0.21007613604144268,
+        "train_profit_factor": 0.7656489689036846,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.5567402891905258,
+        "validation_profit_factor": 1.7101588243682602
+      },
+      "london_morning_session": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "london_morning_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "market_closed_weekend": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "market_closed_weekend",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "monday_reopen_window": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "monday_reopen_window",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "ny_core_session": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.23255813953488372,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "ny_core_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 19,
+          "validation": 7
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 270,
+        "trade_count_validation": 43,
+        "train_expectancy": -0.21007613604144268,
+        "train_profit_factor": 0.7656489689036846,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.5567402891905258,
+        "validation_profit_factor": 1.7101588243682602
+      },
+      "off_session_or_low_activity": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "off_session_or_low_activity",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_asian_to_london": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "session_transition_asian_to_london",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_london_to_ny": {
+        "candidate_id": "ny_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_month",
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.42857142857142855,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_london_to_ny",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 13,
+          "validation": 2
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 67,
+        "trade_count_validation": 7,
+        "train_expectancy": 0.251248018059095,
+        "train_profit_factor": 1.30161505308173,
+        "train_validation_consistency": "consistent_positive_train_validation",
+        "validation_expectancy": 1.3162568779854318,
+        "validation_profit_factor": 2.4460286828570856
+      }
+    },
+    "prior_day_liquidity_sweep_reversal": {
+      "asian_session": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "asian_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "friday_late_session": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.3333333333333333,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "friday_late_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 7,
+          "validation": 1
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 20,
+        "trade_count_validation": 3,
+        "train_expectancy": -0.45428918336758517,
+        "train_profit_factor": 0.5941957704782084,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.2586309523809734,
+        "validation_profit_factor": 1.77589285714292
+      },
+      "late_us_session": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.3157894736842105,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "late_us_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 7,
+          "validation": 3
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 74,
+        "trade_count_validation": 19,
+        "train_expectancy": -0.17961719295915526,
+        "train_profit_factor": 0.744728283832881,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.06632222629481022,
+        "validation_profit_factor": 0.8858912962515859
+      },
+      "likely_market_open": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.20454545454545456,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "likely_market_open",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 15,
+          "validation": 15
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 431,
+        "trade_count_validation": 88,
+        "train_expectancy": -0.21894358456723,
+        "train_profit_factor": 0.7480580622278113,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.31609433092277556,
+        "validation_profit_factor": 0.6656431754289152
+      },
+      "london_morning_session": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.20833333333333334,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "london_morning_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 16,
+          "validation": 21
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 198,
+        "trade_count_validation": 48,
+        "train_expectancy": -0.17753080351251557,
+        "train_profit_factor": 0.8139448068520062,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.6864638974628932,
+        "validation_profit_factor": 0.3993935962700796
+      },
+      "market_closed_weekend": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "market_closed_weekend",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "monday_reopen_window": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "monday_reopen_window",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "ny_core_session": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.2857142857142857,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "ny_core_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 13,
+          "validation": 5
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 159,
+        "trade_count_validation": 21,
+        "train_expectancy": -0.28881706650327393,
+        "train_profit_factor": 0.6561502558922283,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.30448039317219133,
+        "validation_profit_factor": 1.3698437366269351
+      },
+      "off_session_or_low_activity": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "off_session_or_low_activity",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_asian_to_london": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_month",
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.5,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_asian_to_london",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 19,
+          "validation": 8
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 35,
+        "trade_count_validation": 10,
+        "train_expectancy": -0.5774037835938958,
+        "train_profit_factor": 0.44885031876213843,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -1.266675790060694,
+        "validation_profit_factor": 0.16644900668278356
+      },
+      "session_transition_london_to_ny": {
+        "candidate_id": "prior_day_liquidity_sweep_reversal",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_month",
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.4,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_london_to_ny",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 5,
+          "validation": 3
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 24,
+        "trade_count_validation": 5,
+        "train_expectancy": 0.7605888383082409,
+        "train_profit_factor": 1.8855298053008405,
+        "train_validation_consistency": "consistent_positive_train_validation",
+        "validation_expectancy": 1.366887779941675,
+        "validation_profit_factor": 2.5537285556172264
+      }
+    },
+    "sequential_m5_move_mean_reversion": {
+      "asian_session": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "asian_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "friday_late_session": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.25,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "friday_late_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 15,
+          "validation": 7
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 142,
+        "trade_count_validation": 28,
+        "train_expectancy": 0.041497490606503644,
+        "train_profit_factor": 1.219860648719601,
+        "train_validation_consistency": "train_positive_validation_weak",
+        "validation_expectancy": -0.04313049383511193,
+        "validation_profit_factor": 0.7951183787943515
+      },
+      "late_us_session": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.23308270676691728,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "late_us_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 12,
+          "validation": 7
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 688,
+        "trade_count_validation": 133,
+        "train_expectancy": 0.018324049779438783,
+        "train_profit_factor": 1.0882372492427836,
+        "train_validation_consistency": "train_positive_validation_weak",
+        "validation_expectancy": -0.02926754257512139,
+        "validation_profit_factor": 0.8814237536031082
+      },
+      "likely_market_open": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.20195439739413681,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "likely_market_open",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 14,
+          "validation": 17
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 2913,
+        "trade_count_validation": 614,
+        "train_expectancy": 0.009922792410909601,
+        "train_profit_factor": 1.0413591609675261,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0017568407609239256,
+        "validation_profit_factor": 1.0074559808928767
+      },
+      "london_morning_session": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.19574468085106383,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "london_morning_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 12,
+          "validation": 13
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 1101,
+        "trade_count_validation": 235,
+        "train_expectancy": 0.016964487615673693,
+        "train_profit_factor": 1.0680474786972276,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.018860860885278132,
+        "validation_profit_factor": 1.0912691358350246
+      },
+      "market_closed_weekend": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "market_closed_weekend",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "monday_reopen_window": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "monday_reopen_window",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "ny_core_session": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.1991869918699187,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "ny_core_session",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 13,
+          "validation": 15
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 1124,
+        "trade_count_validation": 246,
+        "train_expectancy": -0.0021172178115044025,
+        "train_profit_factor": 0.9915468069126394,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.0021909800067401357,
+        "validation_profit_factor": 1.0085167059886593
+      },
+      "off_session_or_low_activity": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "off_session_or_low_activity",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_asian_to_london": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.25,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_asian_to_london",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 14,
+          "validation": 7
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 115,
+        "trade_count_validation": 24,
+        "train_expectancy": -0.023084956203527348,
+        "train_profit_factor": 0.918246075247615,
+        "train_validation_consistency": "validation_positive_train_weak",
+        "validation_expectancy": 0.10231564839331952,
+        "validation_profit_factor": 1.8004585355179252
+      },
+      "session_transition_london_to_ny": {
+        "candidate_id": "sequential_m5_move_mean_reversion",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 0.2692307692307692,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "session_transition_london_to_ny",
+        "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+        "max_consecutive_losses": {
+          "train": 9,
+          "validation": 5
+        },
+        "sample_sufficiency": "sufficient_for_context_lead_screen",
+        "trade_count_train": 241,
+        "trade_count_validation": 52,
+        "train_expectancy": 0.09562902600749376,
+        "train_profit_factor": 1.4827671481593392,
+        "train_validation_consistency": "consistent_positive_train_validation",
+        "validation_expectancy": 0.06208528139521431,
+        "validation_profit_factor": 1.328039443533628
+      }
+    },
+    "session_block_directional_bias_candidate": {
+      "asian_session": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_month",
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 1.0,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "asian_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 4,
+          "validation": 3
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 34,
+        "trade_count_validation": 3,
+        "train_expectancy": 0.12169806372142332,
+        "train_profit_factor": 1.944079700461015,
+        "train_validation_consistency": "train_positive_validation_weak",
+        "validation_expectancy": -0.38490466623989666,
+        "validation_profit_factor": 0.0
+      },
+      "friday_late_session": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "friday_late_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "late_us_session": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "late_us_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "likely_market_open": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_month",
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 1.0,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "likely_market_open",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 4,
+          "validation": 3
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 34,
+        "trade_count_validation": 3,
+        "train_expectancy": 0.12169806372142332,
+        "train_profit_factor": 1.944079700461015,
+        "train_validation_consistency": "train_positive_validation_weak",
+        "validation_expectancy": -0.38490466623989666,
+        "validation_profit_factor": 0.0
+      },
+      "london_morning_session": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "london_morning_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "market_closed_weekend": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "market_closed_weekend",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "monday_reopen_window": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [
+            "validation_trades_concentrated_in_single_month",
+            "validation_trades_concentrated_in_single_year"
+          ],
+          "risk_level": "high",
+          "risk_present": true,
+          "validation_month_max_share": 1.0,
+          "validation_year_max_share": 1.0
+        },
+        "context_label": "monday_reopen_window",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 3,
+          "validation": 1
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 6,
+        "trade_count_validation": 1,
+        "train_expectancy": -0.1657204091318616,
+        "train_profit_factor": 0.0005528595497658017,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": -0.010710978997125125,
+        "validation_profit_factor": 0.0
+      },
+      "ny_core_session": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "ny_core_session",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "off_session_or_low_activity": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "off_session_or_low_activity",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_asian_to_london": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "session_transition_asian_to_london",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      },
+      "session_transition_london_to_ny": {
+        "candidate_id": "session_block_directional_bias_candidate",
+        "context_concentration_risk": {
+          "reasons": [],
+          "risk_level": "low",
+          "risk_present": false,
+          "validation_month_max_share": 0.0,
+          "validation_year_max_share": 0.0
+        },
+        "context_label": "session_transition_london_to_ny",
+        "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+        "max_consecutive_losses": {
+          "train": 0,
+          "validation": 0
+        },
+        "sample_sufficiency": "insufficient_validation_sample",
+        "trade_count_train": 0,
+        "trade_count_validation": 0,
+        "train_expectancy": 0.0,
+        "train_profit_factor": 0.0,
+        "train_validation_consistency": "weak_or_negative_train_validation",
+        "validation_expectancy": 0.0,
+        "validation_profit_factor": 0.0
+      }
+    }
+  },
+  "context_study_status": "context_labeled_event_study_completed_no_clear_leads",
+  "context_study_version": "v0_63",
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "gates_lowered": false,
+  "labels_considered": [
+    "asian_session",
+    "london_morning_session",
+    "ny_core_session",
+    "late_us_session",
+    "off_session_or_low_activity",
+    "session_transition_asian_to_london",
+    "session_transition_london_to_ny",
+    "friday_late_session",
+    "monday_reopen_window",
+    "likely_market_open",
+    "market_closed_weekend"
+  ],
+  "labels_used_as_trade_blockers": false,
+  "live_allowed": false,
+  "next_recommended_step": "add external datasets such as holiday/economic calendar/DXY before further context testing.",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "recommended_v0_64_plan": "add external datasets such as holiday/economic calendar/DXY before further context testing.",
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "revived_candidate_allowed": false,
+  "safety": {
+    "auto_execute_order": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "gates_lowered": false,
+    "labels_used_as_trade_blockers": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "profitability_claimed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retrospective_event_study_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_rules_changed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "source_labeler_status": "market_context_labeler_completed",
+  "source_labeler_version": "v0_62",
+  "source_prior_versions_considered": [
+    "v0_53",
+    "v0_56",
+    "v0_60"
+  ],
+  "source_recompute_summary": {
+    "asian_range_london_breakout_confirmation": {
+      "trade_count_train": 497,
+      "trade_count_validation": 94
+    },
+    "failed_m15_swing_breakout_reversal": {
+      "trade_count_train": 4341,
+      "trade_count_validation": 896
+    },
+    "ny_liquidity_sweep_reversal": {
+      "trade_count_train": 270,
+      "trade_count_validation": 43
+    },
+    "prior_day_liquidity_sweep_reversal": {
+      "trade_count_train": 431,
+      "trade_count_validation": 88
+    },
+    "sequential_m5_move_mean_reversion": {
+      "trade_count_train": 2913,
+      "trade_count_validation": 614
+    },
+    "session_block_directional_bias_candidate": {
+      "trade_count_train": 34,
+      "trade_count_validation": 3
+    }
+  },
+  "source_rejection_state": {
+    "all_requested_prior_branches_remain_rejected_do_not_retune": true,
+    "v0_53_rejected_do_not_retune_candidates": [
+      "prior_day_liquidity_sweep_reversal",
+      "london_opening_range_breakout_or_first_candle_direction",
+      "asian_range_london_breakout_confirmation"
+    ],
+    "v0_56_rejected_do_not_retune": true,
+    "v0_60_rejected_do_not_retune_candidates": [
+      "failed_m15_swing_breakout_reversal",
+      "ny_liquidity_sweep_reversal",
+      "sequential_m5_move_mean_reversion"
+    ]
+  },
+  "strategy_rules_changed": false,
+  "strongest_context_conditioned_leads": [],
+  "threshold_search_performed": false,
+  "train_validation_only": true,
+  "warnings": [
+    "retrospective_event_study_only_not_strategy",
+    "labels_attached_after_fixed_prior_outcomes_not_used_as_trade_blockers",
+    "all_source_prior_branches_preserved_as_rejected_do_not_retune"
+  ],
+  "weak_or_unstable_contexts": [
+    {
+      "candidate_id": "asian_range_london_breakout_confirmation",
+      "context_concentration_risk": "high",
+      "context_label": "london_morning_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "asian_range_london_breakout_confirmation",
+      "context_concentration_risk": "high",
+      "context_label": "session_transition_asian_to_london",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "asian_range_london_breakout_confirmation",
+      "context_concentration_risk": "high",
+      "context_label": "likely_market_open",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "ny_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "ny_core_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "ny_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "session_transition_london_to_ny",
+      "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+      "sample_sufficiency": "insufficient_validation_sample",
+      "train_validation_consistency": "consistent_positive_train_validation"
+    },
+    {
+      "candidate_id": "ny_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "likely_market_open",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "london_morning_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "ny_core_session",
+      "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+      "sample_sufficiency": "insufficient_validation_sample",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "late_us_session",
+      "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+      "sample_sufficiency": "insufficient_validation_sample",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "session_transition_asian_to_london",
+      "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+      "sample_sufficiency": "insufficient_validation_sample",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "session_transition_london_to_ny",
+      "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+      "sample_sufficiency": "insufficient_validation_sample",
+      "train_validation_consistency": "consistent_positive_train_validation"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "friday_late_session",
+      "interpretive_note": "context slice is descriptive only because sample is insufficient for lead screening",
+      "sample_sufficiency": "insufficient_validation_sample",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "prior_day_liquidity_sweep_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "likely_market_open",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "london_morning_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "ny_core_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "late_us_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "session_transition_asian_to_london",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "session_transition_london_to_ny",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "validation_positive_train_weak"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "friday_late_session",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    },
+    {
+      "candidate_id": "failed_m15_swing_breakout_reversal",
+      "context_concentration_risk": "high",
+      "context_label": "likely_market_open",
+      "interpretive_note": "context slice has enough trades but concentration risk blocks a clear lead",
+      "sample_sufficiency": "sufficient_for_context_lead_screen",
+      "train_validation_consistency": "weak_or_negative_train_validation"
+    }
+  ]
+}

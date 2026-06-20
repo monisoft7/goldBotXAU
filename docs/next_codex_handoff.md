@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_62 market context labeler skeleton
-- OOS: no OOS used in v0_62; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 53 passed for v0_62 targeted tests; prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_64_2 repository cleanup boundary repair
+- OOS: no OOS used in v0_64_2; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_62 labels market/session/time context from existing timestamps for observation only, with strategy testing, trade filtering, demo, and OOS blocked
+- Execution status: repository hygiene only; v0_64_2 repaired the cleanup boundary, restored active dependencies, and excluded `project_archive` from pytest collection without strategy or execution changes
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -35,11 +35,152 @@
 - Latest second-tier fixed-rule board: `reports/xauusd_second_tier_board_v0_60.json`
 - Latest market context feasibility audit: `reports/xauusd_market_context_feasibility_v0_61.json`
 - Latest market context labeler: `reports/xauusd_market_context_labels_v0_62.json`
-- Latest checkpoint: `docs/checkpoints/v0_62_market_context_labeler_result.md`
-- Latest context pack: `reports/codex_context_v0_62.json`
-- Latest health report: `reports/project_health_v0_62.json`
-- Latest decision: `market_context_labeler_completed`
-- Next safe task: v0_63 context-labeled event study only; no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, and no demo/live execution
+- Latest context-labeled event study: `reports/xauusd_context_labeled_event_study_v0_63.json`
+- Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
+- Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
+- Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
+- Latest active project map: `docs/active_project_map.md`
+- Latest retired experiments archive: `docs/retired_experiments_archive.md`
+- Latest checkpoint: `docs/checkpoints/v0_64_2_repository_cleanup_repair_result.md`
+- Latest context pack: `reports/codex_context_v0_64_2.json`
+- Latest health report: `reports/project_health_v0_64_2.json`
+- Latest decision: `cleanup_boundary_repair_completed`
+- Next safe task: commit_v0_63_to_v0_64_2_then_v0_65_dxy_proxy_context_audit; commit the reviewed checkpoint chain first, then use the cleaned repository state to audit a DXY proxy context data path only, with no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_64_2 Repository Cleanup Boundary Repair Result
+
+- Pytest config: `pytest.ini`
+- Repair report: `reports/repository_cleanup_repair_v0_64_2.json`
+- Repair status: `cleanup_boundary_repair_completed`
+- Project archive excluded from pytest collection: `true`
+- Restored active dependency count: `14`
+- Active tests import check passed: `true`
+- Full pytest: `364 passed`
+- Data CSV touched: `false`
+- Safety files touched: `false`
+- Latest context files touched: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Next recommended step: `commit_v0_63_to_v0_64_2_then_v0_65_dxy_proxy_context_audit`
+
+v0_64_2 treats `project_archive/retired_v0_64_1` as archived historical evidence, not an active pytest surface. It also protects active dependency files through `active_dependency_keep` so the cleanup applier does not re-archive modules, active CLI scripts, or fixture reports still required by root tests and safety/context tooling.
+
+## v0_64_1 Repository Cleanup Applied Result
+
+- Cleanup module: `src/research/repository_cleanup_applier.py`
+- Cleanup script: `scripts/apply_repository_cleanup_v0_64_1.py`
+- Cleanup report: `reports/repository_cleanup_applied_v0_64_1.json`
+- Cleanup status: `cleanup_applied_completed`
+- Archive root: `project_archive/retired_v0_64_1`
+- Files archived: `298`
+- Cache paths deleted: `172`
+- Files preserved: `232`
+- Manual-review paths skipped: `11`
+- Archive candidates remaining: `0`
+- Cache candidates remaining: `0`
+- Data CSV touched: `false`
+- Safety files touched: `false`
+- Latest context files touched: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Targeted tests before apply: `61 passed`
+- Post-apply CLIs: `scripts/print_codex_context.py --json` passed; `scripts/project_health_check.py --json` passed
+- Next recommended step: `v0_65_dxy_proxy_context_audit_after_cleanup`
+
+v0_64_1 used the v0_64 plan as its source, then applied active dependency protections for current health/context tooling before archiving. It moved historical/generated artifacts under `project_archive/retired_v0_64_1` with relative paths preserved, deleted cache paths only, skipped manual-review paths, and did not touch CSV data.
+
+## v0_64 Repository Consolidation Plan Result
+
+- Planner module: `src/research/repository_consolidation_plan.py`
+- Planner script: `scripts/build_repository_consolidation_plan_v0_64.py`
+- Planner report: `reports/repository_consolidation_plan_v0_64.json`
+- Consolidation status: `repository_consolidation_plan_completed`
+- Files scanned: `666`
+- Active keep count: `189`
+- Archive candidate count: `305`
+- Delete candidate count: `170`
+- Manual review count: `11`
+- Tracked data CSV files: `data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv`
+- Cache files detected: `170`
+- Failed experiments indexed: `22`
+- Safe to apply cleanup now: `false`
+- Cleanup requires human review: `true`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Targeted tests: `55 passed`
+- Next recommended step: `v0_64_1_apply_reviewed_cleanup_plan_no_strategy_changes`
+
+v0_64 is a cleanup planning checkpoint only. It documents active keep surfaces, historical archive candidates, retired experiment candidates, generated report archive candidates, local data files, cache delete candidates, and manual-review paths. It applies no cleanup and preserves failed experiment evidence in `docs/retired_experiments_archive.md` and `project_memory/failed_strategy_registry.md`.
+
+## v0_63 Context-Labeled Event Study Result
+
+- Study module: `src/research/xauusd_context_labeled_event_study.py`
+- Study script: `scripts/run_xauusd_context_labeled_event_study_v0_63.py`
+- Study report: `reports/xauusd_context_labeled_event_study_v0_63.json`
+- Study status: `context_labeled_event_study_completed_no_clear_leads`
+- Source labeler version: `v0_62`
+- Source prior versions considered: `v0_53`, `v0_56`, `v0_60`
+- Labels used as trade blockers: `false`
+- Strategy rules changed: `false`
+- Gates lowered: `false`
+- Strongest context-conditioned leads: none
+- Revived candidate allowed: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `53 passed`
+- Next recommended step: `add external datasets such as holiday/economic calendar/DXY before further context testing.`
+
+v0_63 is retrospective analysis only. It recomputes the previously tested fixed-rule train/validation outcomes, attaches v0_62 timestamp-only labels, and summarizes context-conditioned behavior without changing rules or turning labels into blockers.
+
+No context-conditioned lead satisfied the required validation sample, train/validation consistency, PF, expectancy, and concentration checks. Prior rejected branches remain rejected do-not-retune.
 
 ## v0_62 Market Context Labeler Result
 

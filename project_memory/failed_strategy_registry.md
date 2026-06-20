@@ -81,3 +81,37 @@ All families below are blacklisted for the clean `goldBotXAU` project.
 - retune_allowed: false
 - can_reuse_components: yes
 - notes: FOMC context must not produce trade-direction output.
+
+## v0_64 failed/rejected experiment archive
+- source_report: `reports/repository_consolidation_plan_v0_64.json`
+- consolidation_status: `repository_consolidation_plan_completed`
+- failed_experiments_indexed_count: `22`
+- do_not_retune_default: true
+- safe_to_apply_cleanup_now: false
+- cleanup_requires_human_review: true
+
+The v0_64 consolidation pass indexes failed and rejected candidates from the static registry plus existing reports/checkpoints. These entries are historical evidence, not active strategy invitations. Retired candidates must not be retuned or revived without a separate human-approved research contract.
+
+Indexed candidate names are listed below. The evidence-entry count is higher than the unique-name count because `trend_pullback_continuation_directional` is represented by both the v0_48 initial rejection and the v0_51 expanded retest failure.
+
+- `xauusd_atr_impulse_reversion_v0_7`
+- `xauusd_multi_bar_exhaustion_reversion_v0_8`
+- `xauusd_session_volatility_expansion_v0_11`
+- `xauusd_low_atr_range_expansion_followthrough_v0_14`
+- `xauusd_low_atr_x_hour_16_v0_17`
+- `xauusd_low_tf_spike_m5_hour_11_fade_v0_23`
+- `expansion_continuation_close_direction`
+- `expansion_fade_direction`
+- `first_breakout_m5_confirmed_by_m10`
+- `response_block_body_direction`
+- `session_open_range_breakout_directional`
+- `prior_block_breakout_continuation_directional`
+- `failed_breakout_reversal_directional`
+- `trend_pullback_continuation_directional`
+- `prior_day_liquidity_sweep_reversal`
+- `london_opening_range_breakout_or_first_candle_direction`
+- `asian_range_london_breakout_confirmation`
+- `session_block_directional_bias_candidate`
+- `failed_m15_swing_breakout_reversal`
+- `ny_liquidity_sweep_reversal`
+- `sequential_m5_move_mean_reversion`

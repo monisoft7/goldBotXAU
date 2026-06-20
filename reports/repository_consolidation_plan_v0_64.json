@@ -1,0 +1,3496 @@
+{
+  "active_keep_count": 193,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "archive_candidate_count": 305,
+  "cache_files_detected": [
+    ".pytest_cache",
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/CACHEDIR.TAG",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v",
+    ".pytest_cache/v/cache",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids",
+    "scripts/__pycache__",
+    "scripts/__pycache__/print_codex_context.cpython-314.pyc",
+    "scripts/__pycache__/project_health_check.cpython-314.pyc",
+    "scripts/__pycache__/repair_xauusd_oos_review_report_v0_29_1.cpython-314.pyc",
+    "src/__pycache__",
+    "src/__pycache__/__init__.cpython-314.pyc",
+    "src/__pycache__/backtest_engine.cpython-314.pyc",
+    "src/__pycache__/data_loader.cpython-314.pyc",
+    "src/__pycache__/indicators.cpython-314.pyc",
+    "src/__pycache__/metrics.cpython-314.pyc",
+    "src/__pycache__/risk_manager.cpython-314.pyc",
+    "src/__pycache__/strategy_interface.cpython-314.pyc",
+    "src/backtest/__pycache__",
+    "src/backtest/__pycache__/__init__.cpython-314.pyc",
+    "src/backtest/__pycache__/engine.cpython-314.pyc",
+    "src/backtest/__pycache__/metrics.cpython-314.pyc",
+    "src/data/__pycache__",
+    "src/data/__pycache__/__init__.cpython-314.pyc",
+    "src/data/__pycache__/mt5_readonly_low_tf_exporter.cpython-314.pyc",
+    "src/data/__pycache__/mt5_readonly_xauusd_exporter.cpython-314.pyc",
+    "src/data/__pycache__/xauusd_csv_loader.cpython-314.pyc",
+    "src/data/__pycache__/xauusd_data_auditor.cpython-314.pyc",
+    "src/data/__pycache__/xauusd_dataset_manifest.cpython-314.pyc",
+    "src/data/__pycache__/xauusd_low_tf_dataset_catalog.cpython-314.pyc",
+    "src/data/__pycache__/xauusd_timeframe_resampler.cpython-314.pyc",
+    "src/execution/__pycache__",
+    "src/execution/__pycache__/__init__.cpython-314.pyc",
+    "src/execution/__pycache__/xauusd_bounded_signal_watch_runner.cpython-314.pyc",
+    "src/execution/__pycache__/xauusd_limited_demo_executor.cpython-314.pyc",
+    "src/execution/__pycache__/xauusd_live_signal_snapshot_provider.cpython-314.pyc",
+    "src/execution/__pycache__/xauusd_signal_to_order_request_builder.cpython-314.pyc",
+    "src/research/__pycache__",
+    "src/research/__pycache__/__init__.cpython-314.pyc",
+    "src/research/__pycache__/advisor_idea_triage_profiler.cpython-314.pyc",
+    "src/research/__pycache__/candidate_registry.cpython-314.pyc",
+    "src/research/__pycache__/candidate_stability_diagnostics.cpython-314.pyc",
+    "src/research/__pycache__/oos_guard.cpython-314.pyc",
+    "src/research/__pycache__/repository_cleanup_applier.cpython-314.pyc",
+    "src/research/__pycache__/repository_consolidation_plan.cpython-314.pyc",
+    "src/research/__pycache__/strategy_candidate.cpython-314.pyc",
+    "src/research/__pycache__/strategy_family_selection_board.cpython-314.pyc",
+    "src/research/__pycache__/strategy_research_runner.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_broker_facts_audit.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_candidate_direction_provenance_audit.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_compression_expansion_candidate.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_compression_expansion_promotion_gate.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_context_labeled_event_study.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_demo_broker_safety_preflight.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_demo_preflight_review.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_demo_risk_envelope.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_edge_profiler.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_executable_direction_research_board.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_external_shortlist_train_validation_board.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_external_strategy_idea_triage.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_final_demo_readiness_gate.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_forward_observation_consolidator.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_forward_observation_ledger.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_forward_observation_orchestrator.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_forward_observation_plan.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_forward_observation_runner.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_forward_observation_schema_adapter.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_historical_data_expansion_feasibility_audit.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_kimi_external_idea_addendum.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_low_tf_spike_profiler.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_market_context_feasibility_audit.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_market_context_labeler.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_market_profiler.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_new_directional_strategy_discovery_board.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_oos_review.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_oos_review_protocol.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_paper_shadow_journal.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_post_oos_governance.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_research_lab_integrity_audit.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_research_lab_warning_standardization.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_second_tier_fixed_rule_board.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_session_block_directional_bias_evaluation.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_session_structure_atlas.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_session_volatility_candidate_design_board.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_spike_family_decision.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_spike_promotion_gate.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_trend_pullback_expanded_retest.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_trend_pullback_sample_stability_audit.cpython-314.pyc",
+    "src/research/__pycache__/xauusd_volatility_regime_lead_viability_audit.cpython-314.pyc",
+    "src/strategies/__pycache__",
+    "src/strategies/__pycache__/__init__.cpython-314.pyc",
+    "src/strategies/__pycache__/xauusd_atr_impulse_reversion.cpython-314.pyc",
+    "src/strategies/__pycache__/xauusd_low_atr_range_expansion_followthrough.cpython-314.pyc",
+    "src/strategies/__pycache__/xauusd_low_atr_x_hour_16_response.cpython-314.pyc",
+    "src/strategies/__pycache__/xauusd_multi_bar_exhaustion_reversion.cpython-314.pyc",
+    "src/strategies/__pycache__/xauusd_session_volatility_expansion.cpython-314.pyc",
+    "tests/__pycache__",
+    "tests/__pycache__/test_advisor_idea_triage_profiler.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_candidate_stability_diagnostics.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_codex_context_pack.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_mt5_readonly_low_tf_exporter.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_mt5_readonly_xauusd_exporter.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_project_health_check.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_project_skeleton.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_repository_cleanup_applier.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_repository_consolidation_plan.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_research_candidate_registry.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_research_safety_semantics.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_strategy_family_selection_board.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_strategy_research_harness.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_atr_impulse_reversion_candidate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_backtest_lab.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_bounded_signal_watch_runner.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_broker_facts_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_candidate_direction_provenance_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_compression_expansion_candidate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_compression_expansion_promotion_gate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_context_labeled_event_study.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_data_auditor.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_dataset_manifest.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_demo_broker_safety_preflight.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_demo_preflight_review.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_demo_risk_envelope.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_edge_profiler.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_executable_direction_research_board.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_external_shortlist_train_validation_board.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_external_strategy_idea_triage.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_final_demo_readiness_gate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_forward_observation_consolidator.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_forward_observation_ledger.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_forward_observation_orchestrator.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_forward_observation_plan.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_forward_observation_runner.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_forward_observation_schema_adapter.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_historical_data_expansion_feasibility_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_kimi_external_idea_addendum.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_limited_demo_executor.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_live_signal_snapshot_provider.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_live_signal_snapshot_provider.cpython-314.pyc",
+    "tests/__pycache__/test_xauusd_low_atr_range_expansion_followthrough_candidate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_low_atr_x_hour_16_response_candidate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_low_tf_spike_profiler.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_market_context_feasibility_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_market_context_labeler.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_market_profiler.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_multi_bar_exhaustion_reversion_candidate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_multi_bar_exhaustion_reversion_candidate.cpython-314.pyc",
+    "tests/__pycache__/test_xauusd_new_directional_strategy_discovery_board.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_new_directional_strategy_discovery_board.cpython-314.pyc",
+    "tests/__pycache__/test_xauusd_oos_review.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_oos_review.cpython-314.pyc",
+    "tests/__pycache__/test_xauusd_oos_review_protocol.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_oos_review_repair.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_paper_shadow_journal.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_post_oos_governance.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_research_lab_integrity_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_research_lab_warning_standardization.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_second_tier_fixed_rule_board.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_session_block_directional_bias_evaluation.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_session_structure_atlas.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_session_volatility_candidate_design_board.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_session_volatility_expansion_candidate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_signal_to_order_request_builder.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_spike_family_decision.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_spike_promotion_gate.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_timeframe_resampler.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_trend_pullback_expanded_retest.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_trend_pullback_sample_stability_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_volatility_regime_lead_viability_audit.cpython-314-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_xauusd_volatility_regime_lead_viability_audit.cpython-314.pyc"
+  ],
+  "classification_counts": {
+    "active_context_layer_keep": 68,
+    "active_core_keep": 37,
+    "active_data_contract_keep": 27,
+    "active_safety_keep": 61,
+    "cache_delete_candidate": 172,
+    "generated_report_archive_candidate": 101,
+    "historical_archive_document_only": 95,
+    "local_data_only": 21,
+    "manual_review_required": 11,
+    "retired_experiment_candidate": 109
+  },
+  "classification_index": [
+    {
+      "classification": "manual_review_required",
+      "path": ".agents"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": ".codex"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": ".gitattributes"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": ".github"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/ISSUE_TEMPLATE"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/ISSUE_TEMPLATE/research_candidate.md"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/ISSUE_TEMPLATE/research_diagnostic.md"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/pull_request_template.md"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/workflows"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": ".github/workflows/tests.yml"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": ".gitignore"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/.gitignore"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/CACHEDIR.TAG"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/README.md"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/v"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/v/cache"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/v/cache/lastfailed"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": ".pytest_cache/v/cache/nodeids"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "README.md"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "config"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "config/settings.example.json"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "data"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m10_normalized_2026-06-12_2026-06-14.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m10_normalized_2026_06_14_2026_06_15_v0_36.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m10_normalized_2026_06_15_2026_06_16_v0_36.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m10_normalized_2026_06_16_2026_06_17_v0_36.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m5_normalized_2026-06-12_2026-06-14.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m5_normalized_2026_06_14_2026_06_15_v0_36.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m5_normalized_2026_06_15_2026_06_16_v0_36.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_forward_obs_m5_normalized_2026_06_16_2026_06_17_v0_36.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m10_xauusd_m1_xauusd_2026_01_01_2026_06_11_2026-01-02_2026-06-11.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m10_xauusd_m5_xauusd_2023_01_01_2025_12_31_2023-01-03_2025-12-31.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m10_xauusd_m5_xauusd_2026_06_12_2026_06_14_2026-06-12_2026-06-12.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m10_xauusd_m5_xauusd_2026_06_14_2026_06_15_2026-06-15_2026-06-15.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m10_xauusd_m5_xauusd_2026_06_15_2026_06_16_2026-06-15_2026-06-15.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m10_xauusd_m5_xauusd_2026_06_16_2026_06_17_2026-06-16_2026-06-16.csv"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m1_xauusd_2026-01-01_2026-01-02.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m1_xauusd_2026-01-01_2026-06-11.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m5_xauusd_2026-06-12_2026-06-14.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m5_xauusd_2026-06-14_2026-06-15.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m5_xauusd_2026-06-15_2026-06-16.csv"
+    },
+    {
+      "classification": "local_data_only",
+      "path": "data/xauusd_m5_xauusd_2026-06-16_2026-06-17.csv"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "docs"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/active_project_map.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_10_train_only_market_profile_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_11_session_volatility_expansion_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_14_low_atr_range_expansion_followthrough_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_17_low_atr_x_hour_16_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_22_low_tf_spike_profile_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_23_spike_family_decision_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_24_spike_promotion_gate_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_25_session_structure_atlas_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_26_compression_expansion_candidate_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_27_compression_expansion_promotion_gate_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_28_oos_review_protocol_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_29_1_oos_report_repair_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_29_oos_review_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_30_post_oos_governance_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_31_paper_shadow_journal_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_32_forward_observation_export_plan_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_33_forward_observation_runner_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_34_1_forward_observation_schema_adapter_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_34_2_forward_observation_consolidated_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_34_forward_observation_journal_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_35_forward_observation_ledger_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_36_1_ci_path_normalization_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_36_2_ci_parity_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_36_3_ci_promotion_gate_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_36_3_session_handoff.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_36_forward_observation_cycle_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_37_demo_preflight_review_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_38_demo_broker_safety_preflight_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_39_broker_facts_audit_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_40_demo_risk_envelope_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_41_final_demo_readiness_gate_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_42_1_order_request_completeness_guard_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_42_limited_demo_execution_scaffold_result.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/checkpoints/v0_43_signal_to_order_request_builder_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_44_1_real_interval_enforcement_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_44_bounded_signal_watch_runner_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_45_1_direction_validity_guard_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_45_live_signal_snapshot_provider_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_46_candidate_direction_provenance_audit_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_47_executable_direction_research_board_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_48_new_directional_strategy_discovery_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_49_trend_pullback_sample_stability_audit_result.md"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "docs/checkpoints/v0_50_historical_data_expansion_feasibility_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_51_trend_pullback_expanded_retest_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_52_1_kimi_external_idea_addendum_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_52_external_strategy_idea_triage_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_53_external_shortlist_train_validation_board_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_54_xauusd_edge_profiler_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_55_session_volatility_candidate_design_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_56_session_block_directional_bias_eval_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_57_volatility_regime_lead_viability_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_58_research_lab_integrity_audit_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_59_research_lab_warning_standardization_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_60_second_tier_fixed_rule_board_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_61_market_context_feasibility_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_62_market_context_labeler_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_63_context_labeled_event_study_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/checkpoints/v0_64_repository_consolidation_plan_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_7_atr_impulse_reversion_result.md"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "docs/checkpoints/v0_8_multi_bar_exhaustion_reversion_result.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/codex_operating_notes.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/codex_task_protocol.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/market_context_anti_lookahead_policy.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/market_context_feature_schema.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/market_context_holiday_calendar_policy.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/market_context_layer_policy.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/next_codex_handoff.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/research_lab_cost_policy.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/research_lab_gap_classification_policy.md"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "docs/research_lab_gate_policy.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/research_lab_timestamp_and_session_policy.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "docs/retired_experiments_archive.md"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "project_memory"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "project_memory/codex_usage_contract.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "project_memory/failed_strategy_registry.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "project_memory/new_project_file_plan.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "project_memory/new_project_handoff.md"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "project_memory/reusable_assets.md"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "reports"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_20.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_21.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_22.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_23.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_24.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_25.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_26.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_27.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_28.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_29.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_29_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_30.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_31.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_32.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_33.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_34.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_34_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_34_2.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_35.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_36.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_36_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_36_2.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_36_3.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_36_cycle_2026-06-16.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_37.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_38.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_39.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_40.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_41.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_42.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_42_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_43.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_44.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_44_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_45.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_45_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_46.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_47.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_48.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_49.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_50.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_51.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_52.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_52_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_53.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_54.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_55.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_56.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/codex_context_v0_57.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_58.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_59.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_60.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_61.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_62.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_63.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/codex_context_v0_64.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_19.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_20.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_21.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_22.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_23.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_24.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_25.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_26.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_27.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_28.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_29.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_29_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_30.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_31.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_32.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_33.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_34.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_34_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_34_2.json"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "reports/project_health_v0_34_2_after_normalized_forward_data.json"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "reports/project_health_v0_34_after_forward_data.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_35.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36_2.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36_3.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36_cycle_2026-06-14.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36_cycle_2026-06-15.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_36_cycle_2026-06-16.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_37.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_38.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_39.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_40.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_41.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_42.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_42_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_43.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_44.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_44_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_45.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_45_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_46.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_47.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_48.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_49.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_50.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_51.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_52.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_52_1.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_53.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_54.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_55.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_56.json"
+    },
+    {
+      "classification": "generated_report_archive_candidate",
+      "path": "reports/project_health_v0_57.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/project_health_v0_58.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/project_health_v0_59.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/project_health_v0_60.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/project_health_v0_61.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/project_health_v0_62.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/project_health_v0_63.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/repository_cleanup_applied_v0_64_1.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/repository_consolidation_plan_v0_64.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_advisor_idea_triage_v0_16.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_bounded_signal_watch_v0_44.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_broker_facts_audit_v0_39.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_candidate_direction_provenance_v0_46.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_candidate_stability_v0_12.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_compression_expansion_decision_v0_26.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_compression_expansion_promotion_gate_v0_27.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/xauusd_context_labeled_event_study_v0_63.json"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "reports/xauusd_dataset_manifest_v0_5.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_demo_broker_safety_preflight_v0_38.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_demo_preflight_review_v0_37.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_demo_risk_envelope_v0_40.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_direction_research_board_v0_47.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_edge_profiler_v0_54.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_external_shortlist_board_v0_53.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_external_strategy_idea_triage_v0_52.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_final_demo_readiness_gate_v0_41.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_consolidated_cycle_2026_06_14_2026_06_15_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_consolidated_cycle_2026_06_15_2026_06_16_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_consolidated_cycle_2026_06_16_2026_06_17_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_consolidated_v0_34_2.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_cycle_2026-06-14_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_cycle_2026-06-15_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_cycle_2026-06-16_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_cycle_protocol_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_export_plan_v0_32.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_journal_v0_34.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_ledger_v0_35.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_ledger_v0_36_cycle_2026-06-14.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_ledger_v0_36_cycle_2026-06-15.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_ledger_v0_36_cycle_2026-06-16.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m10_cycle_2026_06_14_2026_06_15_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m10_cycle_2026_06_15_2026_06_16_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m10_cycle_2026_06_16_2026_06_17_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m10_local_v0_34.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m10_normalized_v0_34_2.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m5_cycle_2026_06_14_2026_06_15_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m5_cycle_2026_06_15_2026_06_16_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m5_cycle_2026_06_16_2026_06_17_v0_36.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m5_local_v0_34.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_m5_normalized_v0_34_2.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_runner_protocol_v0_33.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_forward_observation_schema_adapter_protocol_v0_34_1.json"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "reports/xauusd_historical_data_expansion_feasibility_v0_50.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_kimi_external_idea_addendum_v0_52_1.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_limited_demo_execution_v0_42.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_live_signal_snapshot_v0_45.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_low_tf_spike_profile_v0_22.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/xauusd_market_context_feasibility_v0_61.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/xauusd_market_context_labels_v0_62.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_market_profile_v0_10.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_new_directional_discovery_v0_48.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_oos_review_protocol_v0_28.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_oos_review_repair_v0_29_1.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_oos_review_v0_29.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_oos_review_v0_29.marker.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_paper_shadow_journal_protocol_v0_31.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_post_oos_governance_v0_30.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/xauusd_research_lab_integrity_audit_v0_58.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/xauusd_research_lab_warning_standardization_v0_59.json"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "reports/xauusd_second_tier_board_v0_60.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_session_block_bias_eval_v0_56.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_session_structure_atlas_v0_25.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_session_volatility_design_v0_55.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "reports/xauusd_signal_order_request_v0_43.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_spike_family_decision_v0_23.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_spike_fixed_candidate_v0_23_train_validation.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_spike_promotion_gate_v0_24.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_strategy_family_selection_v0_13.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_trend_pullback_expanded_retest_v0_51.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_trend_pullback_stability_audit_v0_49.json"
+    },
+    {
+      "classification": "historical_archive_document_only",
+      "path": "reports/xauusd_volatility_regime_lead_viability_v0_57.json"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "safety_rules.md"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "scripts"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "scripts/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "scripts/__pycache__/print_codex_context.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "scripts/__pycache__/project_health_check.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "scripts/__pycache__/repair_xauusd_oos_review_report_v0_29_1.cpython-314.pyc"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "scripts/apply_repository_cleanup_v0_64_1.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/audit_xauusd_candidate_direction_v0_46.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "scripts/audit_xauusd_data.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "scripts/audit_xauusd_historical_data_expansion_v0_50.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/audit_xauusd_market_context_feasibility_v0_61.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/audit_xauusd_research_lab_integrity_v0_58.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/audit_xauusd_trend_pullback_stability_v0_49.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/audit_xauusd_volatility_regime_lead_v0_57.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/build_repository_consolidation_plan_v0_64.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/build_xauusd_broker_facts_audit_v0_39.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "scripts/build_xauusd_dataset_manifest.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_demo_broker_safety_preflight_v0_38.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_demo_preflight_review_v0_37.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_demo_risk_envelope_v0_40.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_final_demo_readiness_gate_v0_41.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/build_xauusd_forward_observation_export_plan_v0_32.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/build_xauusd_forward_observation_ledger_v0_35.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/build_xauusd_live_signal_snapshot_v0_45.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/build_xauusd_market_context_labels_v0_62.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_oos_review_protocol_v0_28.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/build_xauusd_paper_shadow_journal_v0_31.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_post_oos_governance_v0_30.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/build_xauusd_signal_order_request_v0_43.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/consolidate_xauusd_forward_observation_v0_34_2.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/decide_compression_expansion_candidate_v0_26.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/decide_compression_expansion_promotion_gate_v0_27.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/decide_spike_family_v0_23.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/decide_spike_promotion_gate_v0_24.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/diagnose_candidate_stability.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/export_mt5_xauusd_low_tf.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/export_mt5_xauusd_m15.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/list_research_candidates.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/normalize_xauusd_forward_observation_csv_v0_34_1.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/print_codex_context.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/profile_low_tf_spike_behavior.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/profile_session_structure_atlas_v0_25.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/profile_xauusd_market.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "scripts/project_health_check.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/repair_xauusd_oos_review_report_v0_29_1.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/resample_xauusd_timeframe.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "scripts/run_strategy_research_harness.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_backtest_lab.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_bounded_signal_watch_v0_44.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/run_xauusd_context_labeled_event_study_v0_63.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_direction_research_board_v0_47.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_edge_profiler_v0_54.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_external_shortlist_board_v0_53.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_external_strategy_idea_triage_v0_52.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_forward_observation_cycle_v0_36.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_forward_observation_journal_v0_34.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_forward_observation_v0_33.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_kimi_idea_addendum_v0_52_1.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/run_xauusd_limited_demo_execution_v0_42.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_new_directional_discovery_v0_48.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "scripts/run_xauusd_oos_review_v0_29.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/run_xauusd_second_tier_board_v0_60.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_session_block_bias_eval_v0_56.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_session_volatility_design_v0_55.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "scripts/run_xauusd_trend_pullback_expanded_retest_v0_51.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "scripts/select_next_strategy_family.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "scripts/standardize_xauusd_research_lab_warnings_v0_59.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "scripts/triage_advisor_ideas.py"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "src"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/__init__.py"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/__init__.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/backtest_engine.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/data_loader.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/indicators.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/metrics.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/risk_manager.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/__pycache__/strategy_interface.cpython-314.pyc"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/backtest"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/backtest/__init__.py"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/backtest/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/backtest/__pycache__/__init__.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/backtest/__pycache__/engine.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/backtest/__pycache__/metrics.cpython-314.pyc"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/backtest/engine.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/backtest/metrics.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/backtest_engine.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/__init__.py"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/__init__.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/mt5_readonly_low_tf_exporter.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/mt5_readonly_xauusd_exporter.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/xauusd_csv_loader.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/xauusd_data_auditor.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/xauusd_dataset_manifest.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/xauusd_low_tf_dataset_catalog.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/data/__pycache__/xauusd_timeframe_resampler.cpython-314.pyc"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/mt5_readonly_low_tf_exporter.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/mt5_readonly_xauusd_exporter.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/xauusd_csv_loader.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/xauusd_data_auditor.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/xauusd_dataset_manifest.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/xauusd_low_tf_dataset_catalog.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data/xauusd_timeframe_resampler.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/data_loader.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/execution"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/execution/__init__.py"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/execution/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/execution/__pycache__/__init__.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/execution/__pycache__/xauusd_bounded_signal_watch_runner.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/execution/__pycache__/xauusd_limited_demo_executor.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/execution/__pycache__/xauusd_live_signal_snapshot_provider.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/execution/__pycache__/xauusd_signal_to_order_request_builder.cpython-314.pyc"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/execution/xauusd_bounded_signal_watch_runner.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/execution/xauusd_limited_demo_executor.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/execution/xauusd_live_signal_snapshot_provider.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/execution/xauusd_signal_to_order_request_builder.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/indicators.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/metrics.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/research"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/research/__init__.py"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/__init__.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/advisor_idea_triage_profiler.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/candidate_registry.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/candidate_stability_diagnostics.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/oos_guard.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/repository_cleanup_applier.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/repository_consolidation_plan.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/strategy_candidate.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/strategy_family_selection_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/strategy_research_runner.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_broker_facts_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_candidate_direction_provenance_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_compression_expansion_candidate.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_compression_expansion_promotion_gate.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_context_labeled_event_study.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_demo_broker_safety_preflight.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_demo_preflight_review.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_demo_risk_envelope.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_edge_profiler.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_executable_direction_research_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_external_shortlist_train_validation_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_external_strategy_idea_triage.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_final_demo_readiness_gate.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_forward_observation_consolidator.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_forward_observation_ledger.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_forward_observation_orchestrator.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_forward_observation_plan.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_forward_observation_runner.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_forward_observation_schema_adapter.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_historical_data_expansion_feasibility_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_kimi_external_idea_addendum.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_low_tf_spike_profiler.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_market_context_feasibility_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_market_context_labeler.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_market_profiler.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_new_directional_strategy_discovery_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_oos_review.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_oos_review_protocol.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_paper_shadow_journal.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_post_oos_governance.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_research_lab_integrity_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_research_lab_warning_standardization.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_second_tier_fixed_rule_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_session_block_directional_bias_evaluation.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_session_structure_atlas.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_session_volatility_candidate_design_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_spike_family_decision.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_spike_promotion_gate.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_trend_pullback_expanded_retest.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_trend_pullback_sample_stability_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/research/__pycache__/xauusd_volatility_regime_lead_viability_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/research/advisor_idea_triage_profiler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/candidate_registry.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/candidate_stability_diagnostics.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/oos_guard.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/research/repository_cleanup_applier.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/repository_consolidation_plan.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/strategy_candidate.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/research/strategy_family_selection_board.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/research/strategy_research_runner.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_broker_facts_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_candidate_direction_provenance_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_compression_expansion_candidate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_compression_expansion_promotion_gate.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/xauusd_context_labeled_event_study.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_demo_broker_safety_preflight.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_demo_preflight_review.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_demo_risk_envelope.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_edge_profiler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_executable_direction_research_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_external_shortlist_train_validation_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_external_strategy_idea_triage.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_final_demo_readiness_gate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_forward_observation_consolidator.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_forward_observation_ledger.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_forward_observation_orchestrator.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_forward_observation_plan.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_forward_observation_runner.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_forward_observation_schema_adapter.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "src/research/xauusd_historical_data_expansion_feasibility_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_kimi_external_idea_addendum.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_low_tf_spike_profiler.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/xauusd_market_context_feasibility_audit.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/xauusd_market_context_labeler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_market_profiler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_new_directional_strategy_discovery_board.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_oos_review.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_oos_review_protocol.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_paper_shadow_journal.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/research/xauusd_post_oos_governance.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/xauusd_research_lab_integrity_audit.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/xauusd_research_lab_warning_standardization.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "src/research/xauusd_second_tier_fixed_rule_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_session_block_directional_bias_evaluation.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_session_structure_atlas.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_session_volatility_candidate_design_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_spike_family_decision.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_spike_promotion_gate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_trend_pullback_expanded_retest.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_trend_pullback_sample_stability_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/research/xauusd_volatility_regime_lead_viability_audit.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "src/risk_manager.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/strategies"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/strategies/__init__.py"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__/__init__.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__/xauusd_atr_impulse_reversion.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__/xauusd_low_atr_range_expansion_followthrough.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__/xauusd_low_atr_x_hour_16_response.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__/xauusd_multi_bar_exhaustion_reversion.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "src/strategies/__pycache__/xauusd_session_volatility_expansion.cpython-314.pyc"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/strategies/xauusd_atr_impulse_reversion.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/strategies/xauusd_low_atr_range_expansion_followthrough.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/strategies/xauusd_low_atr_x_hour_16_response.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/strategies/xauusd_multi_bar_exhaustion_reversion.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "src/strategies/xauusd_session_volatility_expansion.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "src/strategy_interface.py"
+    },
+    {
+      "classification": "manual_review_required",
+      "path": "tests"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_advisor_idea_triage_profiler.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_candidate_stability_diagnostics.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_codex_context_pack.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_mt5_readonly_low_tf_exporter.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_mt5_readonly_xauusd_exporter.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_project_health_check.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_project_skeleton.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_repository_cleanup_applier.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_repository_consolidation_plan.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_research_candidate_registry.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_research_safety_semantics.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_strategy_family_selection_board.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_strategy_research_harness.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_atr_impulse_reversion_candidate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_backtest_lab.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_bounded_signal_watch_runner.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_broker_facts_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_candidate_direction_provenance_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_compression_expansion_candidate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_compression_expansion_promotion_gate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_context_labeled_event_study.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_data_auditor.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_dataset_manifest.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_demo_broker_safety_preflight.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_demo_preflight_review.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_demo_risk_envelope.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_edge_profiler.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_executable_direction_research_board.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_external_shortlist_train_validation_board.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_external_strategy_idea_triage.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_final_demo_readiness_gate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_forward_observation_consolidator.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_forward_observation_ledger.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_forward_observation_orchestrator.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_forward_observation_plan.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_forward_observation_runner.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_forward_observation_schema_adapter.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_historical_data_expansion_feasibility_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_kimi_external_idea_addendum.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_limited_demo_executor.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_live_signal_snapshot_provider.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_live_signal_snapshot_provider.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_low_atr_range_expansion_followthrough_candidate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_low_atr_x_hour_16_response_candidate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_low_tf_spike_profiler.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_market_context_feasibility_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_market_context_labeler.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_market_profiler.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_multi_bar_exhaustion_reversion_candidate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_multi_bar_exhaustion_reversion_candidate.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_new_directional_strategy_discovery_board.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_new_directional_strategy_discovery_board.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_oos_review.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_oos_review.cpython-314.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_oos_review_protocol.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_oos_review_repair.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_paper_shadow_journal.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_post_oos_governance.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_research_lab_integrity_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_research_lab_warning_standardization.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_second_tier_fixed_rule_board.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_session_block_directional_bias_evaluation.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_session_structure_atlas.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_session_volatility_candidate_design_board.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_session_volatility_expansion_candidate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_signal_to_order_request_builder.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_spike_family_decision.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_spike_promotion_gate.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_timeframe_resampler.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_trend_pullback_expanded_retest.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_trend_pullback_sample_stability_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_volatility_regime_lead_viability_audit.cpython-314-pytest-9.0.3.pyc"
+    },
+    {
+      "classification": "cache_delete_candidate",
+      "path": "tests/__pycache__/test_xauusd_volatility_regime_lead_viability_audit.cpython-314.pyc"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_advisor_idea_triage_profiler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_candidate_stability_diagnostics.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_codex_context_pack.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_mt5_readonly_low_tf_exporter.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_mt5_readonly_xauusd_exporter.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_project_health_check.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_project_skeleton.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_repository_cleanup_applier.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_repository_consolidation_plan.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_research_candidate_registry.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_research_safety_semantics.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_strategy_family_selection_board.py"
+    },
+    {
+      "classification": "active_core_keep",
+      "path": "tests/test_strategy_research_harness.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_atr_impulse_reversion_candidate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_backtest_lab.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_bounded_signal_watch_runner.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_broker_facts_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_candidate_direction_provenance_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_compression_expansion_candidate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_compression_expansion_promotion_gate.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_xauusd_context_labeled_event_study.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "tests/test_xauusd_data_auditor.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "tests/test_xauusd_dataset_manifest.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_demo_broker_safety_preflight.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_demo_preflight_review.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_demo_risk_envelope.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_edge_profiler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_executable_direction_research_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_external_shortlist_train_validation_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_external_strategy_idea_triage.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_final_demo_readiness_gate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_forward_observation_consolidator.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_forward_observation_ledger.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_forward_observation_orchestrator.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_forward_observation_plan.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_forward_observation_runner.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_forward_observation_schema_adapter.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "tests/test_xauusd_historical_data_expansion_feasibility_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_kimi_external_idea_addendum.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_limited_demo_executor.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_live_signal_snapshot_provider.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_low_atr_range_expansion_followthrough_candidate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_low_atr_x_hour_16_response_candidate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_low_tf_spike_profiler.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_xauusd_market_context_feasibility_audit.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_xauusd_market_context_labeler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_market_profiler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_multi_bar_exhaustion_reversion_candidate.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_new_directional_strategy_discovery_board.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_oos_review.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_oos_review_protocol.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_oos_review_repair.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_paper_shadow_journal.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_post_oos_governance.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_xauusd_research_lab_integrity_audit.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_xauusd_research_lab_warning_standardization.py"
+    },
+    {
+      "classification": "active_context_layer_keep",
+      "path": "tests/test_xauusd_second_tier_fixed_rule_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_session_block_directional_bias_evaluation.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_session_structure_atlas.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_session_volatility_candidate_design_board.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_session_volatility_expansion_candidate.py"
+    },
+    {
+      "classification": "active_safety_keep",
+      "path": "tests/test_xauusd_signal_to_order_request_builder.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_spike_family_decision.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_spike_promotion_gate.py"
+    },
+    {
+      "classification": "active_data_contract_keep",
+      "path": "tests/test_xauusd_timeframe_resampler.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_trend_pullback_expanded_retest.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_trend_pullback_sample_stability_audit.py"
+    },
+    {
+      "classification": "retired_experiment_candidate",
+      "path": "tests/test_xauusd_volatility_regime_lead_viability_audit.py"
+    }
+  ],
+  "cleanup_actions_applied": [],
+  "cleanup_requires_human_review": true,
+  "consolidation_status": "repository_consolidation_plan_completed",
+  "consolidation_version": "v0_64",
+  "delete_candidate_count": 172,
+  "demo_execution_allowed": false,
+  "directory_file_counts": {
+    ".": 4,
+    ".github": 5,
+    ".pytest_cache": 5,
+    "config": 1,
+    "data": 22,
+    "docs": 73,
+    "project_memory": 5,
+    "reports": 191,
+    "scripts": 65,
+    "src": 160,
+    "tests": 141
+  },
+  "executable_candidate_created": false,
+  "failed_experiments": [
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "xauusd_atr_impulse_reversion_v0_7",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_gate_failed",
+      "source_report_or_checkpoint": "src/research/candidate_registry.py",
+      "status": "rejected",
+      "version": "v0_7"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "xauusd_multi_bar_exhaustion_reversion_v0_8",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_gate_failed",
+      "source_report_or_checkpoint": "src/research/candidate_registry.py",
+      "status": "rejected",
+      "version": "v0_8"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "xauusd_session_volatility_expansion_v0_11",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_gate_failed",
+      "source_report_or_checkpoint": "src/research/candidate_registry.py",
+      "status": "rejected",
+      "version": "v0_11"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "xauusd_low_atr_range_expansion_followthrough_v0_14",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_gate_failed",
+      "source_report_or_checkpoint": "src/research/candidate_registry.py",
+      "status": "rejected",
+      "version": "v0_14"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "xauusd_low_atr_x_hour_16_v0_17",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_gate_failed",
+      "source_report_or_checkpoint": "src/research/candidate_registry.py",
+      "status": "rejected",
+      "version": "v0_17"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "xauusd_low_tf_spike_m5_hour_11_fade_v0_23",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "v0_24_fixed_promotion_gate_failed_marginal_train_validation_evidence",
+      "source_report_or_checkpoint": "src/research/candidate_registry.py",
+      "status": "rejected_train_validation_gate_failed",
+      "version": "v0_23"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "expansion_continuation_close_direction",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,validation_expectancy_not_positive",
+      "source_report_or_checkpoint": "reports/xauusd_direction_research_board_v0_47.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_47"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "expansion_fade_direction",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,train_expectancy_not_positive",
+      "source_report_or_checkpoint": "reports/xauusd_direction_research_board_v0_47.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_47"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "first_breakout_m5_confirmed_by_m10",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,validation_expectancy_not_positive",
+      "source_report_or_checkpoint": "reports/xauusd_direction_research_board_v0_47.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_47"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "response_block_body_direction",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,train_expectancy_not_positive,validation_expectancy_not_positive,train_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_direction_research_board_v0_47.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_47"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "failed_breakout_reversal_directional",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,train_expectancy_not_positive",
+      "source_report_or_checkpoint": "reports/xauusd_new_directional_discovery_v0_48.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_48"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "prior_block_breakout_continuation_directional",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,validation_expectancy_not_positive",
+      "source_report_or_checkpoint": "reports/xauusd_new_directional_discovery_v0_48.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_48"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "session_open_range_breakout_directional",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_profit_factor_below_fixed_gate,validation_expectancy_not_positive",
+      "source_report_or_checkpoint": "reports/xauusd_new_directional_discovery_v0_48.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_48"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "trend_pullback_continuation_directional",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_trades_below_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_new_directional_discovery_v0_48.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_48"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "trend_pullback_continuation_directional",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "expanded_profit_factor_below_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_trend_pullback_expanded_retest_v0_51.json",
+      "status": "expanded_evidence_failed",
+      "version": "v0_51"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "asian_range_london_breakout_confirmation",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,train_max_consecutive_losses_above_fixed_gate,validation_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_external_shortlist_board_v0_53.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_53"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "london_opening_range_breakout_or_first_candle_direction",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,train_max_consecutive_losses_above_fixed_gate,validation_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_external_shortlist_board_v0_53.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_53"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "prior_day_liquidity_sweep_reversal",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,train_expectancy_not_positive,validation_expectancy_not_positive,train_max_consecutive_losses_above_fixed_gate,validation_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_external_shortlist_board_v0_53.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_53"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "session_block_directional_bias_candidate",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "validation_profit_factor_below_fixed_gate,validation_trades_below_fixed_gate,validation_expectancy_not_positive,validation_profit_factor_less_than_0_75_train_profit_factor",
+      "source_report_or_checkpoint": "reports/xauusd_session_block_bias_eval_v0_56.json",
+      "status": "session_block_candidate_rejected",
+      "version": "v0_56"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "failed_m15_swing_breakout_reversal",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,train_expectancy_not_positive,validation_expectancy_not_positive,train_max_consecutive_losses_above_fixed_gate,validation_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_second_tier_board_v0_60.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_60"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "ny_liquidity_sweep_reversal",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_trades_below_fixed_gate,train_expectancy_not_positive,train_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_second_tier_board_v0_60.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_60"
+    },
+    {
+      "approved_for_demo_or_live": false,
+      "candidate_name": "sequential_m5_move_mean_reversion",
+      "do_not_retune": true,
+      "oos_used": false,
+      "reason_for_rejection": "train_profit_factor_below_fixed_gate,validation_profit_factor_below_fixed_gate,train_max_consecutive_losses_above_fixed_gate,validation_max_consecutive_losses_above_fixed_gate",
+      "source_report_or_checkpoint": "reports/xauusd_second_tier_board_v0_60.json",
+      "status": "rejected_do_not_retune",
+      "version": "v0_60"
+    }
+  ],
+  "failed_experiments_indexed_count": 22,
+  "files_scanned_count": 672,
+  "latest_preserved_versions": [
+    "v0_58",
+    "v0_59",
+    "v0_60",
+    "v0_61",
+    "v0_62",
+    "v0_63",
+    "v0_64"
+  ],
+  "live_allowed": false,
+  "manual_review_count": 11,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "recommended_next_step": "v0_64_1_apply_reviewed_cleanup_plan_no_strategy_changes",
+  "repeated_oos_review": false,
+  "report_counts_by_version": {
+    "v0_10": 1,
+    "v0_12": 1,
+    "v0_13": 1,
+    "v0_16": 1,
+    "v0_19": 1,
+    "v0_20": 2,
+    "v0_21": 2,
+    "v0_22": 3,
+    "v0_23": 4,
+    "v0_24": 3,
+    "v0_25": 3,
+    "v0_26": 4,
+    "v0_27": 3,
+    "v0_28": 3,
+    "v0_29": 4,
+    "v0_29_1": 3,
+    "v0_30": 3,
+    "v0_31": 3,
+    "v0_32": 3,
+    "v0_33": 3,
+    "v0_34": 6,
+    "v0_34_1": 3,
+    "v0_34_2": 6,
+    "v0_35": 3,
+    "v0_36": 22,
+    "v0_36_1": 2,
+    "v0_36_2": 2,
+    "v0_36_3": 2,
+    "v0_37": 3,
+    "v0_38": 3,
+    "v0_39": 3,
+    "v0_40": 3,
+    "v0_41": 3,
+    "v0_42": 3,
+    "v0_42_1": 2,
+    "v0_43": 3,
+    "v0_44": 3,
+    "v0_44_1": 2,
+    "v0_45": 3,
+    "v0_45_1": 2,
+    "v0_46": 3,
+    "v0_47": 3,
+    "v0_48": 3,
+    "v0_49": 3,
+    "v0_5": 1,
+    "v0_50": 3,
+    "v0_51": 3,
+    "v0_52": 3,
+    "v0_52_1": 3,
+    "v0_53": 3,
+    "v0_54": 3,
+    "v0_55": 3,
+    "v0_56": 3,
+    "v0_57": 3,
+    "v0_58": 3,
+    "v0_59": 3,
+    "v0_60": 3,
+    "v0_61": 3,
+    "v0_62": 3,
+    "v0_63": 3,
+    "v0_64": 2,
+    "v0_64_1": 1
+  },
+  "retired_experiment_candidate_paths": [
+    "scripts/audit_xauusd_candidate_direction_v0_46.py",
+    "scripts/audit_xauusd_trend_pullback_stability_v0_49.py",
+    "scripts/audit_xauusd_volatility_regime_lead_v0_57.py",
+    "scripts/build_xauusd_broker_facts_audit_v0_39.py",
+    "scripts/build_xauusd_forward_observation_export_plan_v0_32.py",
+    "scripts/build_xauusd_forward_observation_ledger_v0_35.py",
+    "scripts/build_xauusd_live_signal_snapshot_v0_45.py",
+    "scripts/build_xauusd_paper_shadow_journal_v0_31.py",
+    "scripts/consolidate_xauusd_forward_observation_v0_34_2.py",
+    "scripts/decide_compression_expansion_candidate_v0_26.py",
+    "scripts/decide_compression_expansion_promotion_gate_v0_27.py",
+    "scripts/decide_spike_family_v0_23.py",
+    "scripts/decide_spike_promotion_gate_v0_24.py",
+    "scripts/diagnose_candidate_stability.py",
+    "scripts/export_mt5_xauusd_low_tf.py",
+    "scripts/export_mt5_xauusd_m15.py",
+    "scripts/list_research_candidates.py",
+    "scripts/normalize_xauusd_forward_observation_csv_v0_34_1.py",
+    "scripts/profile_low_tf_spike_behavior.py",
+    "scripts/profile_session_structure_atlas_v0_25.py",
+    "scripts/profile_xauusd_market.py",
+    "scripts/resample_xauusd_timeframe.py",
+    "scripts/run_xauusd_backtest_lab.py",
+    "scripts/run_xauusd_bounded_signal_watch_v0_44.py",
+    "scripts/run_xauusd_direction_research_board_v0_47.py",
+    "scripts/run_xauusd_edge_profiler_v0_54.py",
+    "scripts/run_xauusd_external_shortlist_board_v0_53.py",
+    "scripts/run_xauusd_external_strategy_idea_triage_v0_52.py",
+    "scripts/run_xauusd_forward_observation_cycle_v0_36.py",
+    "scripts/run_xauusd_forward_observation_journal_v0_34.py",
+    "scripts/run_xauusd_forward_observation_v0_33.py",
+    "scripts/run_xauusd_kimi_idea_addendum_v0_52_1.py",
+    "scripts/run_xauusd_new_directional_discovery_v0_48.py",
+    "scripts/run_xauusd_session_block_bias_eval_v0_56.py",
+    "scripts/run_xauusd_session_volatility_design_v0_55.py",
+    "scripts/run_xauusd_trend_pullback_expanded_retest_v0_51.py",
+    "src/research/candidate_registry.py",
+    "src/research/candidate_stability_diagnostics.py",
+    "src/research/strategy_candidate.py",
+    "src/research/xauusd_broker_facts_audit.py",
+    "src/research/xauusd_candidate_direction_provenance_audit.py",
+    "src/research/xauusd_compression_expansion_candidate.py",
+    "src/research/xauusd_compression_expansion_promotion_gate.py",
+    "src/research/xauusd_edge_profiler.py",
+    "src/research/xauusd_executable_direction_research_board.py",
+    "src/research/xauusd_external_shortlist_train_validation_board.py",
+    "src/research/xauusd_external_strategy_idea_triage.py",
+    "src/research/xauusd_forward_observation_consolidator.py",
+    "src/research/xauusd_forward_observation_ledger.py",
+    "src/research/xauusd_forward_observation_orchestrator.py",
+    "src/research/xauusd_forward_observation_plan.py",
+    "src/research/xauusd_forward_observation_runner.py",
+    "src/research/xauusd_forward_observation_schema_adapter.py",
+    "src/research/xauusd_kimi_external_idea_addendum.py",
+    "src/research/xauusd_low_tf_spike_profiler.py",
+    "src/research/xauusd_market_profiler.py",
+    "src/research/xauusd_new_directional_strategy_discovery_board.py",
+    "src/research/xauusd_paper_shadow_journal.py",
+    "src/research/xauusd_session_block_directional_bias_evaluation.py",
+    "src/research/xauusd_session_structure_atlas.py",
+    "src/research/xauusd_session_volatility_candidate_design_board.py",
+    "src/research/xauusd_spike_family_decision.py",
+    "src/research/xauusd_spike_promotion_gate.py",
+    "src/research/xauusd_trend_pullback_expanded_retest.py",
+    "src/research/xauusd_trend_pullback_sample_stability_audit.py",
+    "src/research/xauusd_volatility_regime_lead_viability_audit.py",
+    "src/strategies/xauusd_atr_impulse_reversion.py",
+    "src/strategies/xauusd_low_atr_range_expansion_followthrough.py",
+    "src/strategies/xauusd_low_atr_x_hour_16_response.py",
+    "src/strategies/xauusd_multi_bar_exhaustion_reversion.py",
+    "src/strategies/xauusd_session_volatility_expansion.py",
+    "tests/test_candidate_stability_diagnostics.py",
+    "tests/test_mt5_readonly_xauusd_exporter.py",
+    "tests/test_research_candidate_registry.py",
+    "tests/test_xauusd_atr_impulse_reversion_candidate.py",
+    "tests/test_xauusd_backtest_lab.py",
+    "tests/test_xauusd_bounded_signal_watch_runner.py",
+    "tests/test_xauusd_broker_facts_audit.py",
+    "tests/test_xauusd_candidate_direction_provenance_audit.py",
+    "tests/test_xauusd_compression_expansion_candidate.py",
+    "tests/test_xauusd_compression_expansion_promotion_gate.py",
+    "tests/test_xauusd_edge_profiler.py",
+    "tests/test_xauusd_executable_direction_research_board.py",
+    "tests/test_xauusd_external_shortlist_train_validation_board.py",
+    "tests/test_xauusd_external_strategy_idea_triage.py",
+    "tests/test_xauusd_forward_observation_consolidator.py",
+    "tests/test_xauusd_forward_observation_ledger.py",
+    "tests/test_xauusd_forward_observation_orchestrator.py",
+    "tests/test_xauusd_forward_observation_plan.py",
+    "tests/test_xauusd_forward_observation_runner.py",
+    "tests/test_xauusd_forward_observation_schema_adapter.py",
+    "tests/test_xauusd_kimi_external_idea_addendum.py",
+    "tests/test_xauusd_live_signal_snapshot_provider.py",
+    "tests/test_xauusd_low_atr_range_expansion_followthrough_candidate.py",
+    "tests/test_xauusd_low_atr_x_hour_16_response_candidate.py",
+    "tests/test_xauusd_low_tf_spike_profiler.py",
+    "tests/test_xauusd_market_profiler.py",
+    "tests/test_xauusd_multi_bar_exhaustion_reversion_candidate.py",
+    "tests/test_xauusd_new_directional_strategy_discovery_board.py",
+    "tests/test_xauusd_paper_shadow_journal.py",
+    "tests/test_xauusd_session_block_directional_bias_evaluation.py",
+    "tests/test_xauusd_session_structure_atlas.py",
+    "tests/test_xauusd_session_volatility_candidate_design_board.py",
+    "tests/test_xauusd_session_volatility_expansion_candidate.py",
+    "tests/test_xauusd_spike_family_decision.py",
+    "tests/test_xauusd_spike_promotion_gate.py",
+    "tests/test_xauusd_trend_pullback_expanded_retest.py",
+    "tests/test_xauusd_trend_pullback_sample_stability_audit.py",
+    "tests/test_xauusd_volatility_regime_lead_viability_audit.py"
+  ],
+  "retune_performed": false,
+  "safe_to_apply_cleanup_now": false,
+  "script_counts_by_version": {
+    "v0_23": 1,
+    "v0_24": 1,
+    "v0_25": 1,
+    "v0_26": 1,
+    "v0_27": 1,
+    "v0_28": 1,
+    "v0_29": 1,
+    "v0_29_1": 2,
+    "v0_30": 1,
+    "v0_31": 1,
+    "v0_32": 1,
+    "v0_33": 1,
+    "v0_34": 1,
+    "v0_34_1": 1,
+    "v0_34_2": 1,
+    "v0_35": 1,
+    "v0_36": 1,
+    "v0_37": 1,
+    "v0_38": 1,
+    "v0_39": 1,
+    "v0_40": 1,
+    "v0_41": 1,
+    "v0_42": 1,
+    "v0_43": 1,
+    "v0_44": 1,
+    "v0_45": 1,
+    "v0_46": 1,
+    "v0_47": 1,
+    "v0_48": 1,
+    "v0_49": 1,
+    "v0_50": 1,
+    "v0_51": 1,
+    "v0_52": 1,
+    "v0_52_1": 1,
+    "v0_53": 1,
+    "v0_54": 1,
+    "v0_55": 1,
+    "v0_56": 1,
+    "v0_57": 1,
+    "v0_58": 1,
+    "v0_59": 1,
+    "v0_60": 1,
+    "v0_61": 1,
+    "v0_62": 1,
+    "v0_63": 1,
+    "v0_64": 1,
+    "v0_64_1": 1
+  },
+  "test_counts_by_version": {},
+  "threshold_search_performed": false,
+  "tracked_data_csv_files": [
+    "data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+  ],
+  "trade_recommendation_output": false,
+  "train_validation_only": true
+}
