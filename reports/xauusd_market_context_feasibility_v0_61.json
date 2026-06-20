@@ -1,0 +1,265 @@
+{
+  "anti_lookahead_policy_documented": true,
+  "api_key_storage_policy_documented": true,
+  "approved_for_strategy_testing": false,
+  "approved_for_v0_62_feature_import": false,
+  "audit_status": "market_context_feasibility_completed",
+  "audit_version": "v0_61",
+  "blockers": [],
+  "data_alignment_policy_documented": true,
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "discovered_candidate_symbols": {
+    "dxy_usd_proxy": [
+      "DXYN",
+      "DXYZ",
+      "GDXY",
+      "USDX"
+    ],
+    "us_yields_rates_proxy": []
+  },
+  "dxy_proxy_feasibility": {
+    "alignment_rules": [
+      "normalize_all_feature_timestamps_to_utc_before_joining_xauusd_candles",
+      "join_context_features_asof_using_only_values_known_at_or_before_xauusd_candle_open",
+      "never_forward_fill_actual_event_outcomes_before_release_timestamp",
+      "record_source_symbol_timeframe_timestamp_basis_and_source_for_each_context_series",
+      "treat missing_context_data as block_due_to_missing_context_data or observe_only_not_tradeable"
+    ],
+    "approved_data": false,
+    "candidate_symbols": [
+      "DXYN",
+      "DXYZ",
+      "GDXY",
+      "USDX"
+    ],
+    "future_ohlc_schema": [
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "source_symbol",
+      "timeframe",
+      "timestamp_basis",
+      "source"
+    ],
+    "status": "mt5_candidate_symbol_discovery_only_external_or_broker_data_required"
+  },
+  "economic_calendar_feasibility": {
+    "anti_lookahead_rules": [
+      "actual_forecast_surprise_unavailable_before_release_timestamp",
+      "revised_values_must_set_revision_flag",
+      "future_schedule_may_use_timestamps_and_names_only_not_outcomes"
+    ],
+    "event_window_labels": [
+      "pre_high_impact_us_event_window",
+      "immediate_post_high_impact_us_event_window",
+      "post_event_repricing_window",
+      "fomc_day",
+      "nfp_day",
+      "cpi_day"
+    ],
+    "required_events": [
+      "CPI",
+      "PPI",
+      "NFP",
+      "Unemployment Rate",
+      "FOMC Rate Decision",
+      "FOMC Minutes",
+      "Fed Chair Speech",
+      "GDP",
+      "Retail Sales",
+      "ISM",
+      "Jobless Claims"
+    ],
+    "schema": [
+      "event_time_utc",
+      "currency",
+      "event_name",
+      "impact",
+      "actual",
+      "forecast",
+      "previous",
+      "source",
+      "revision_flag"
+    ],
+    "status": "schema_defined_external_dataset_required",
+    "v0_61_dataset_downloaded": false
+  },
+  "executable_candidate_created": false,
+  "external_feature_schema_documented": true,
+  "geopolitical_label_feasibility": {
+    "future_labels": [
+      "geopolitical_risk_bid",
+      "risk_off_proxy_window",
+      "middle_east_tension_window",
+      "central_bank_headline_window",
+      "unexpected_shock_window"
+    ],
+    "live_scraping_allowed": false,
+    "manual_subjective_labels_allowed_for_strategy_testing": false,
+    "source_requirement": "timestamped_evidence_with_source_citation_required_before_any_research_dataset",
+    "status": "schema_only_requires_timestamped_cited_sources_before_research_use"
+  },
+  "holiday_calendar_feasibility": {
+    "acquisition_options": [
+      "manual_offline_csv_from_exchange_or_government_sources",
+      "broker_calendar_export_if_available",
+      "free_public_calendar_download_reviewed_before_import"
+    ],
+    "required_future_dataset_category": "US_market_holidays_and_reduced_liquidity_days",
+    "schema": [
+      "date",
+      "market",
+      "country",
+      "holiday_name",
+      "closure_type",
+      "liquidity_impact",
+      "source",
+      "timestamp_basis"
+    ],
+    "status": "schema_defined_external_dataset_required",
+    "v0_61_dataset_downloaded": false
+  },
+  "live_allowed": false,
+  "market_context_families_audited": [
+    "market_open_closed_session_state",
+    "holiday_reduced_liquidity_calendar",
+    "economic_calendar_event_timestamps",
+    "dxy_usd_proxy",
+    "us_yields_rates_proxy",
+    "geopolitical_macro_risk_labels",
+    "technical_permission_gate"
+  ],
+  "market_open_closed_feasibility": {
+    "can_infer_weekends_from_existing_timestamps": true,
+    "closed_market_tradeable_signal_allowed": false,
+    "future_labels": [
+      "market_closed_weekend",
+      "market_closed_holiday",
+      "thin_liquidity_session",
+      "normal_liquidity_session",
+      "london_active",
+      "ny_active",
+      "london_ny_overlap",
+      "late_us_session"
+    ],
+    "holiday_closure_inference": "requires_holiday_calendar_dataset_before_forward_or_research_gate",
+    "online_forward_policy": "no_tradeable_signal_during_closed_market_periods",
+    "session_liquidity_basis": "utc_time_windows_only_until_broker_timestamp_basis_is_confirmed",
+    "status": "feasible_for_weekend_and_session_labels_from_timestamps",
+    "weekend_closure_inference": "timestamps_can_identify_saturday_sunday_closed_market_periods"
+  },
+  "mt5_symbol_discovery": {
+    "approved_data": false,
+    "attempted": true,
+    "blockers": [],
+    "dxy_usd_proxy_candidate_symbols": [
+      "DXYN",
+      "DXYZ",
+      "GDXY",
+      "USDX"
+    ],
+    "mt5_initialized": true,
+    "mt5_shutdown_called": true,
+    "status": "symbols_discovered",
+    "symbol_count_scanned": 11780,
+    "us_yields_rates_candidate_symbols": []
+  },
+  "mt5_symbol_discovery_attempted": true,
+  "next_recommended_step": "v0_62 controlled read-only market context data importer design, no strategy, no OOS",
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "pure_ohlc_branch_status": {
+    "best_candidate_id": "ny_liquidity_sweep_reversal",
+    "best_candidate_passed_gate": false,
+    "pure_ohlc_branch_failure_recorded": true,
+    "rejected_do_not_retune_candidates": [
+      "failed_m15_swing_breakout_reversal",
+      "ny_liquidity_sweep_reversal",
+      "sequential_m5_move_mean_reversion"
+    ],
+    "source_board_status": "no_second_tier_candidate_passed",
+    "source_report_present": true
+  },
+  "purpose": "market_context_layer_feasibility_only",
+  "recommended_v0_62_plan": "controlled read-only market context data importer, no strategy, no OOS.",
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safety": {
+    "api_keys_in_code": false,
+    "approved_for_strategy_testing": false,
+    "approved_for_v0_62_feature_import": false,
+    "auto_execute_order": false,
+    "backtest_candidate_created": false,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "external_dataset_imported": false,
+    "feasibility_audit_only": true,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "profitability_claimed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_evaluation": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output_present": false,
+    "train_validation_only": true
+  },
+  "source_previous_board_version": "v0_60",
+  "technical_permission_gate_defined": {
+    "defined": true,
+    "future_gate_outputs": [
+      "allow_technical_research",
+      "block_due_to_closed_market",
+      "block_due_to_thin_liquidity",
+      "block_due_to_event_risk",
+      "block_due_to_missing_context_data",
+      "observe_only_due_to_macro_uncertainty"
+    ],
+    "gate_position": "market_context_gate_before_technical_setup_before_risk_filter",
+    "trading_logic_in_v0_61": false
+  },
+  "threshold_search_performed": false,
+  "train_validation_only": true,
+  "us_yields_proxy_feasibility": {
+    "alignment_rules": [
+      "normalize_all_feature_timestamps_to_utc_before_joining_xauusd_candles",
+      "join_context_features_asof_using_only_values_known_at_or_before_xauusd_candle_open",
+      "never_forward_fill_actual_event_outcomes_before_release_timestamp",
+      "record_source_symbol_timeframe_timestamp_basis_and_source_for_each_context_series",
+      "treat missing_context_data as block_due_to_missing_context_data or observe_only_not_tradeable"
+    ],
+    "approved_data": false,
+    "candidate_symbols": [],
+    "external_offline_data_needed_if_no_broker_symbol": true,
+    "future_ohlc_schema": [
+      "timestamp",
+      "open",
+      "high",
+      "low",
+      "close",
+      "source_symbol",
+      "timeframe",
+      "timestamp_basis",
+      "source"
+    ],
+    "status": "mt5_candidate_symbol_discovery_only_external_offline_data_required_if_unavailable"
+  },
+  "warnings": [
+    "feasibility_audit_only_not_strategy_not_backtest_not_oos",
+    "external_datasets_not_imported_in_v0_61",
+    "mt5_symbol_discovery_is_candidate_metadata_only_not_approved_data",
+    "manual_or_offline_sources_required_before_context_research"
+  ]
+}

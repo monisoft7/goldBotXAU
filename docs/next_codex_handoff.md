@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_60 standardized second-tier fixed-rule train/validation board
-- OOS: no OOS used in v0_60; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 53 passed for v0_60 targeted tests; prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, prior v0_57 targeted baseline 48 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_61 market context layer feasibility audit
+- OOS: no OOS used in v0_61; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 59 passed for v0_61 targeted tests; prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research only; v0_60 evaluated three second-tier fixed-rule train/validation ideas under v0_59 policies, with demo/OOS blocked
+- Execution status: research only; v0_61 audited market context feasibility and defined schemas/policies, with feature import, strategy testing, demo, and OOS blocked
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -33,11 +33,39 @@
 - Latest research lab integrity audit: `reports/xauusd_research_lab_integrity_audit_v0_58.json`
 - Latest research lab warning standardization: `reports/xauusd_research_lab_warning_standardization_v0_59.json`
 - Latest second-tier fixed-rule board: `reports/xauusd_second_tier_board_v0_60.json`
-- Latest checkpoint: `docs/checkpoints/v0_60_second_tier_fixed_rule_board_result.md`
-- Latest context pack: `reports/codex_context_v0_60.json`
-- Latest health report: `reports/project_health_v0_60.json`
-- Latest decision: `no_second_tier_candidate_passed`
-- Next safe task: broaden non-OOS research or consider adding external features such as DXY/yields/news calendar before further strategy tests; do not run OOS, retune, threshold search, parameter grid, create executable candidates for demo, or demo/live execution
+- Latest market context feasibility audit: `reports/xauusd_market_context_feasibility_v0_61.json`
+- Latest checkpoint: `docs/checkpoints/v0_61_market_context_feasibility_result.md`
+- Latest context pack: `reports/codex_context_v0_61.json`
+- Latest health report: `reports/project_health_v0_61.json`
+- Latest decision: `market_context_feasibility_completed`
+- Next safe task: v0_62 controlled read-only market context data importer design only; no strategy testing, no feature import approval yet, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, and no demo/live execution
+
+## v0_61 Market Context Layer Feasibility Result
+
+- Audit module: `src/research/xauusd_market_context_feasibility_audit.py`
+- Audit script: `scripts/audit_xauusd_market_context_feasibility_v0_61.py`
+- Audit report: `reports/xauusd_market_context_feasibility_v0_61.json`
+- Audit status: `market_context_feasibility_completed`
+- Purpose: `market_context_layer_feasibility_only`
+- Source previous board version: `v0_60`
+- Pure OHLC branch status: `no_second_tier_candidate_passed`
+- Market context families audited: `market_open_closed_session_state`, `holiday_reduced_liquidity_calendar`, `economic_calendar_event_timestamps`, `dxy_usd_proxy`, `us_yields_rates_proxy`, `geopolitical_macro_risk_labels`, `technical_permission_gate`
+- Market open/closed feasibility: `feasible_for_weekend_and_session_labels_from_timestamps`
+- Holiday calendar feasibility: `schema_defined_external_dataset_required`
+- Economic calendar feasibility: `schema_defined_external_dataset_required`
+- DXY/USD proxy feasibility: `mt5_candidate_symbol_discovery_only_external_or_broker_data_required`
+- DXY/USD proxy candidate symbols discovered: `DXYN`, `DXYZ`, `GDXY`, `USDX`
+- US yields/rates proxy feasibility: `mt5_candidate_symbol_discovery_only_external_offline_data_required_if_unavailable`
+- US yields/rates proxy candidate symbols discovered: none
+- Approved for v0_62 feature import: `false`
+- Approved for strategy testing: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Targeted tests: `59 passed`
+- Next recommended step: `v0_62 controlled read-only market context data importer design, no strategy, no OOS`
+
+v0_61 is a feasibility audit only. It defines the future Market Context Gate before technical setup work and documents schemas, source requirements, anti-lookahead rules, and alignment policy. No external datasets were imported, and MT5 symbol discovery was read-only candidate metadata only.
 
 ## v0_60 Second-Tier Fixed-Rule Board Result
 

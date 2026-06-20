@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_60"
+CONTEXT_VERSION = "v0_61"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -922,9 +922,6 @@ def _second_tier_fixed_rule_board_summary(root: Path) -> dict[str, Any] | None:
     if not board_path.exists():
         return None
     report = json.loads(board_path.read_text(encoding="utf-8"))
-    metrics = report.get("best_candidate_metrics", {})
-    train = metrics.get("train", {}) if isinstance(metrics, dict) else {}
-    validation = metrics.get("validation", {}) if isinstance(metrics, dict) else {}
     return {
         "board_version": report.get("board_version"),
         "board_status": report.get("board_status"),
@@ -932,10 +929,6 @@ def _second_tier_fixed_rule_board_summary(root: Path) -> dict[str, Any] | None:
         "tested_candidate_ids": report.get("tested_candidate_ids"),
         "best_candidate_id": report.get("best_candidate_id"),
         "best_candidate_passed_gate": report.get("best_candidate_passed_gate"),
-        "best_train_profit_factor": train.get("profit_factor") if isinstance(train, dict) else None,
-        "best_train_trades": train.get("trades") if isinstance(train, dict) else None,
-        "best_validation_profit_factor": validation.get("profit_factor") if isinstance(validation, dict) else None,
-        "best_validation_trades": validation.get("trades") if isinstance(validation, dict) else None,
         "rejected_do_not_retune_candidates": report.get("rejected_do_not_retune_candidates"),
         "train_validation_only": report.get("train_validation_only"),
         "oos_used": report.get("oos_used"),
@@ -952,7 +945,51 @@ def _second_tier_fixed_rule_board_summary(root: Path) -> dict[str, Any] | None:
         "live_allowed": report.get("live_allowed"),
         "data_csv_added_to_git": report.get("data_csv_added_to_git"),
         "timestamp_basis_reported": report.get("timestamp_basis_reported"),
-        "timestamp_basis": report.get("timestamp_basis"),
+    }
+
+
+def _market_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = root / "reports" / "xauusd_market_context_feasibility_v0_61.json"
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "purpose": report.get("purpose"),
+        "source_previous_board_version": report.get("source_previous_board_version"),
+        "pure_ohlc_branch_status": report.get("pure_ohlc_branch_status", {}).get("source_board_status")
+        if isinstance(report.get("pure_ohlc_branch_status"), dict)
+        else None,
+        "market_context_family_count": len(report.get("market_context_families_audited", []))
+        if isinstance(report.get("market_context_families_audited"), list)
+        else None,
+        "mt5_symbol_discovery_attempted": report.get("mt5_symbol_discovery_attempted"),
+        "discovered_candidate_symbols": report.get("discovered_candidate_symbols"),
+        "external_feature_schema_documented": report.get("external_feature_schema_documented"),
+        "anti_lookahead_policy_documented": report.get("anti_lookahead_policy_documented"),
+        "data_alignment_policy_documented": report.get("data_alignment_policy_documented"),
+        "api_key_storage_policy_documented": report.get("api_key_storage_policy_documented"),
+        "approved_for_v0_62_feature_import": report.get("approved_for_v0_62_feature_import"),
+        "approved_for_strategy_testing": report.get("approved_for_strategy_testing"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "data_csv_added_to_git",
+            )
+        )
+        and report.get("train_validation_only") is True,
+        "recommended_v0_62_plan": report.get("recommended_v0_62_plan"),
     }
 
 
@@ -1031,6 +1068,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_research_lab_integrity_audit": _research_lab_integrity_summary(root),
         "latest_research_lab_warning_standardization": _research_lab_warning_standardization_summary(root),
         "latest_second_tier_fixed_rule_board": _second_tier_fixed_rule_board_summary(root),
+        "latest_market_context_feasibility": _market_context_feasibility_summary(root),
         "rejected_do_not_retune_candidates": _rejected_candidate_versions(registry),
         "current_safety_rules": {
             "demo_only_scaffold": True,

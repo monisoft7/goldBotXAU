@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_60"
+    assert context["context_version"] == "v0_61"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 22000
+    assert len(context_text) < 23000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_60"
+    assert context["context_version"] == "v0_61"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_60.json"
+    output_path = tmp_path / "codex_context_v0_61.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_60"
+    assert context["context_version"] == "v0_61"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1039,3 +1039,28 @@ def test_context_includes_v0_60_second_tier_fixed_rule_board_summary() -> None:
     assert board["live_allowed"] is False
     assert board["data_csv_added_to_git"] is False
     assert board["timestamp_basis_reported"] is True
+
+
+def test_context_includes_v0_61_market_context_feasibility_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_market_context_feasibility"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_61"
+    assert audit["audit_status"] in {
+        "market_context_feasibility_completed",
+        "blocked_missing_v0_60_report",
+        "market_context_feasibility_failed",
+    }
+    assert audit["purpose"] == "market_context_layer_feasibility_only"
+    assert audit["source_previous_board_version"] == "v0_60"
+    assert audit["pure_ohlc_branch_status"] == "no_second_tier_candidate_passed"
+    assert audit["market_context_family_count"] == 7
+    assert isinstance(audit["discovered_candidate_symbols"], dict)
+    assert audit["external_feature_schema_documented"] is True
+    assert audit["anti_lookahead_policy_documented"] is True
+    assert audit["data_alignment_policy_documented"] is True
+    assert audit["api_key_storage_policy_documented"] is True
+    assert audit["approved_for_v0_62_feature_import"] is False
+    assert audit["approved_for_strategy_testing"] is False
+    assert audit["safety_locked"] is True
