@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_66 DXY proxy quality ranker
-- OOS: no OOS used in v0_66; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_67 DXY regime label design
+- OOS: no OOS used in v0_67; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_66 ranked DXY/USD proxy quality and designed in-memory backward as-of alignment without strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
+- Execution status: research infrastructure only; v0_67 defines DXY regime labels as descriptive context without strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -38,16 +38,56 @@
 - Latest context-labeled event study: `reports/xauusd_context_labeled_event_study_v0_63.json`
 - Latest DXY proxy context audit: `reports/xauusd_dxy_proxy_context_audit_v0_65.json`
 - Latest DXY proxy quality ranker: `reports/xauusd_dxy_proxy_quality_ranker_v0_66.json`
+- Latest DXY regime label design: `reports/xauusd_dxy_regime_label_design_v0_67.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_66_dxy_proxy_quality_ranker_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_66`)
+- Latest checkpoint: `docs/checkpoints/v0_67_dxy_regime_label_design_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_67`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `dxy_proxy_quality_ranking_completed`
-- Next safe task: v0_67_dxy_regime_label_design_if_proxy_quality_passes; design labels from the selected proxy only as research context if the v0_66 report remains valid, with no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `dxy_regime_label_design_completed`
+- Next safe task: v0_68_dxy_conditioned_event_study_no_strategy_if_labels_pass; use v0_67 labels only as research context if the label definitions and v0_66 proxy ranker remain valid, with no strategy testing unless explicitly approved, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_67 DXY Regime Label Design Result
+
+- Label design module: `src/research/xauusd_dxy_regime_label_design.py`
+- Label design script: `scripts/run_xauusd_dxy_regime_label_design_v0_67.py`
+- Label design report: `reports/xauusd_dxy_regime_label_design_v0_67.json`
+- Label design status: `dxy_regime_label_design_completed`
+- Source proxy ranker version: `v0_66`
+- Selected proxy symbol: `DXYN`
+- Secondary proxy symbol: `USDX`
+- Labels defined: `dxy_strength`, `dxy_weakness`, `dxy_shock_up`, `dxy_shock_down`, `gold_dxy_normal_inverse_behavior`, `gold_dxy_decoupling`, `dxy_gold_pressure_aligned`, `dxy_gold_pressure_conflict`
+- Label count: `8`
+- Sample label counts if available: `{}`
+- Safe as-of alignment required: `true`
+- Lookahead risk detected: `false`
+- Labels used as trade blockers: `false`
+- Labels used for strategy testing: `false`
+- Aligned dataset created: `false`
+- Data CSV touched: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Targeted tests: `61 passed`
+- Next recommended step: `v0_68_dxy_conditioned_event_study_no_strategy_if_labels_pass`
+
+v0_67 defines labels only. It records required input fields, timeframe applicability, safe backward as-of alignment, no-lookahead requirements, intended interpretation, and the warning that labels are descriptive context only, not an entry, exit, sizing rule, filter, blocker, or recommendation.
+
+No persistent aligned market CSV was created, no `data/*.csv` file was touched, and optional sample counts remain aggregate-only and in memory.
 
 ## v0_66 DXY Proxy Quality Ranker Result
 

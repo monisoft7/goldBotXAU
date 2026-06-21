@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_66"
+CONTEXT_VERSION = "v0_67"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1113,6 +1113,48 @@ def _dxy_proxy_quality_ranker_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _dxy_regime_label_design_summary(root: Path) -> dict[str, Any] | None:
+    design_path = _report_path(root, "xauusd_dxy_regime_label_design_v0_67.json")
+    if not design_path.exists():
+        return None
+    report = json.loads(design_path.read_text(encoding="utf-8"))
+    return {
+        "label_design_version": report.get("label_design_version"),
+        "label_design_status": report.get("label_design_status"),
+        "source_proxy_ranker_version": report.get("source_proxy_ranker_version"),
+        "selected_proxy_symbol": report.get("selected_proxy_symbol"),
+        "secondary_proxy_symbol": report.get("secondary_proxy_symbol"),
+        "label_count": report.get("label_count"),
+        "safe_asof_alignment_required": report.get("safe_asof_alignment_required"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "lookahead_risk_detected",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "aligned_dataset_created",
+                "data_csv_touched",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("safe_asof_alignment_required") is True
+        and report.get("train_validation_only") is True,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1356,6 +1398,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_market_context_labels": _market_context_labeler_summary(root),
         "latest_dxy_proxy_context_audit": _dxy_proxy_context_audit_summary(root),
         "latest_dxy_proxy_quality_ranker": _dxy_proxy_quality_ranker_summary(root),
+        "latest_dxy_regime_label_design": _dxy_regime_label_design_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

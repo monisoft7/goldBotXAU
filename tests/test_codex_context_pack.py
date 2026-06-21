@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_66"
+    assert context["context_version"] == "v0_67"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_66"
+    assert context["context_version"] == "v0_67"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_66.json"
+    output_path = tmp_path / "codex_context_v0_67.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_66"
+    assert context["context_version"] == "v0_67"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1125,6 +1125,22 @@ def test_context_includes_v0_66_dxy_proxy_quality_ranker_summary() -> None:
     assert ranker["approved_for_trade_filtering"] is False
     assert ranker["recommended_next_step"] == "v0_67_dxy_regime_label_design_if_proxy_quality_passes"
     assert ranker["safety_locked"] is True
+
+
+def test_context_includes_v0_67_dxy_regime_label_design_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    design = context["latest_dxy_regime_label_design"]
+    assert design is not None
+    assert design["label_design_version"] == "v0_67"
+    assert design["label_design_status"] == "dxy_regime_label_design_completed"
+    assert design["source_proxy_ranker_version"] == "v0_66"
+    assert design["selected_proxy_symbol"] == "DXYN"
+    assert design["secondary_proxy_symbol"] == "USDX"
+    assert design["label_count"] == 8
+    assert design["safe_asof_alignment_required"] is True
+    assert design["recommended_next_step"] == "v0_68_dxy_conditioned_event_study_no_strategy_if_labels_pass"
+    assert design["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

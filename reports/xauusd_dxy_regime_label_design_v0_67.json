@@ -1,0 +1,208 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "data_csv_touched": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "label_count": 8,
+  "label_design_status": "dxy_regime_label_design_completed",
+  "label_design_version": "v0_67",
+  "labels_defined": [
+    {
+      "intended_interpretation": "The selected DXY proxy shows a strengthening USD regime over a fixed research window.",
+      "label_name": "dxy_strength",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "dxy_return_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "The selected DXY proxy shows a weakening USD regime over a fixed research window.",
+      "label_name": "dxy_weakness",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "dxy_return_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "The selected DXY proxy shows an unusually sharp upward move versus predeclared context.",
+      "label_name": "dxy_shock_up",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "dxy_shock_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "The selected DXY proxy shows an unusually sharp downward move versus predeclared context.",
+      "label_name": "dxy_shock_down",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "dxy_shock_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "Gold and the selected DXY proxy moved in the conventional inverse direction.",
+      "label_name": "gold_dxy_normal_inverse_behavior",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "xauusd_return_context",
+        "dxy_return_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "Gold and the selected DXY proxy did not show the conventional inverse relationship.",
+      "label_name": "gold_dxy_decoupling",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "xauusd_return_context",
+        "dxy_return_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "DXY and XAUUSD pressure context point to a consistent descriptive macro state.",
+      "label_name": "dxy_gold_pressure_aligned",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "xauusd_pressure_context",
+        "dxy_pressure_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    },
+    {
+      "intended_interpretation": "DXY and XAUUSD pressure context disagree, indicating descriptive cross-market tension.",
+      "label_name": "dxy_gold_pressure_conflict",
+      "no_lookahead_rule": "The label may use only XAUUSD and proxy fields available at or before the labeled XAUUSD timestamp.",
+      "not_a_trade_signal_warning": "Descriptive research context only; not an entry, exit, sizing, filter, blocker, or recommendation.",
+      "required_input_fields": [
+        "xauusd_timestamp",
+        "proxy_timestamp",
+        "selected_proxy_symbol",
+        "xauusd_pressure_context",
+        "dxy_pressure_context"
+      ],
+      "safe_asof_requirement": "Proxy context must be joined backward in memory so the proxy timestamp is less than or equal to the XAUUSD timestamp.",
+      "timeframe_applicability": [
+        "M5",
+        "M10",
+        "M15"
+      ]
+    }
+  ],
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "lookahead_risk_detected": false,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "recommended_next_step": "v0_68_dxy_conditioned_event_study_no_strategy_if_labels_pass",
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safe_asof_alignment_required": true,
+  "safety": {
+    "aligned_dataset_created": false,
+    "approved_for_strategy_testing": false,
+    "approved_for_trade_filtering": false,
+    "data_csv_touched": false,
+    "definitions_only": true,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "labels_used_as_trade_blockers": false,
+    "labels_used_for_strategy_testing": false,
+    "live_allowed": false,
+    "lookahead_risk_detected": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "persistent_market_dataset_created": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "strategy_rules_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output": false,
+    "trade_signals_output": false,
+    "train_validation_only": true
+  },
+  "sample_label_counts_if_available": {},
+  "secondary_proxy_symbol": "USDX",
+  "selected_proxy_symbol": "DXYN",
+  "source_proxy_ranker_report": "C:/Users/THE BLU WALF/Desktop/goldBotXAU/reports/xauusd_dxy_proxy_quality_ranker_v0_66.json",
+  "source_proxy_ranker_status": "dxy_proxy_quality_ranking_completed",
+  "source_proxy_ranker_version": "v0_66",
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "train_validation_only": true
+}
