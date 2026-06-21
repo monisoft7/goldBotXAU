@@ -1,0 +1,307 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "candidate_symbols_ranked": [
+    "DXYN",
+    "DXYZ",
+    "GDXY",
+    "USDX"
+  ],
+  "data_csv_touched": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "future_label_candidates_preserved": [
+    "dollar_strength",
+    "dollar_weakness",
+    "dollar_shock",
+    "gold_dxy_decoupling",
+    "dxy_trend_aligned",
+    "dxy_trend_conflict"
+  ],
+  "live_allowed": false,
+  "lookahead_risk_detected": false,
+  "mt5_readonly_detail": {
+    "attempted": true,
+    "blockers": [],
+    "candidate_symbols_available": [
+      "DXYN",
+      "DXYZ",
+      "GDXY",
+      "USDX"
+    ],
+    "copy_rates_rows_total": 40000,
+    "mt5_initialized": true,
+    "mt5_shutdown_called": true,
+    "order_check_called": false,
+    "order_send_called": false,
+    "status": "readonly_detail_completed"
+  },
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "quality_scores_by_symbol": {
+    "DXYN": {
+      "availability_score": 25,
+      "coverage_score": 10,
+      "duplicate_timestamp_penalty": 0,
+      "gap_penalty": 12,
+      "monotonic_timestamp_penalty": 0,
+      "ohlc_quality_penalty": 0,
+      "overlap_score": 30,
+      "row_quality_bonus": 10,
+      "scoring_note": "fixed deterministic scoring; candidate order is used only after equal total_score",
+      "symbol_selection_stability_score": 5,
+      "timeframe_score": 16,
+      "total_score": 84
+    },
+    "DXYZ": {
+      "availability_score": 25,
+      "coverage_score": 9,
+      "duplicate_timestamp_penalty": 0,
+      "gap_penalty": 12,
+      "monotonic_timestamp_penalty": 0,
+      "ohlc_quality_penalty": 0,
+      "overlap_score": 13,
+      "row_quality_bonus": 10,
+      "scoring_note": "fixed deterministic scoring; candidate order is used only after equal total_score",
+      "symbol_selection_stability_score": 5,
+      "timeframe_score": 16,
+      "total_score": 66
+    },
+    "GDXY": {
+      "availability_score": 25,
+      "coverage_score": 9,
+      "duplicate_timestamp_penalty": 0,
+      "gap_penalty": 12,
+      "monotonic_timestamp_penalty": 0,
+      "ohlc_quality_penalty": 0,
+      "overlap_score": 13,
+      "row_quality_bonus": 10,
+      "scoring_note": "fixed deterministic scoring; candidate order is used only after equal total_score",
+      "symbol_selection_stability_score": 5,
+      "timeframe_score": 16,
+      "total_score": 66
+    },
+    "USDX": {
+      "availability_score": 25,
+      "coverage_score": 10,
+      "duplicate_timestamp_penalty": 0,
+      "gap_penalty": 12,
+      "monotonic_timestamp_penalty": 0,
+      "ohlc_quality_penalty": 0,
+      "overlap_score": 24,
+      "row_quality_bonus": 10,
+      "scoring_note": "fixed deterministic scoring; candidate order is used only after equal total_score",
+      "symbol_selection_stability_score": 5,
+      "timeframe_score": 16,
+      "total_score": 78
+    }
+  },
+  "ranker_status": "dxy_proxy_quality_ranking_completed",
+  "ranker_version": "v0_66",
+  "ranking_rules": {
+    "fixed_candidate_order_for_ties_only": [
+      "DXYN",
+      "DXYZ",
+      "GDXY",
+      "USDX"
+    ],
+    "higher_score_wins": true,
+    "score_inputs": [
+      "data_availability",
+      "supported_timeframes",
+      "row_count",
+      "timestamp_coverage",
+      "overlap_with_xauusd_m5_m10_m15",
+      "gap_count_and_gap_severity",
+      "duplicate_timestamps",
+      "monotonic_timestamp_order",
+      "missing_or_invalid_ohlc",
+      "spread_tick_volume_availability",
+      "symbol_selection_stability"
+    ]
+  },
+  "ranking_table": [
+    {
+      "best_overlap_rows": 122418,
+      "candidate_order": 0,
+      "data_available": true,
+      "duplicate_timestamp_count": 0,
+      "gap_count": 5310,
+      "max_gap_minutes": 5505,
+      "missing_ohlc_rows": 0,
+      "monotonic_timestamp_order": true,
+      "overlap_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "quality_score": 84,
+      "ranker_version": "v0_66",
+      "row_count": 10000,
+      "safe_asof_alignment_feasible": true,
+      "spread_available": true,
+      "supported_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "symbol": "DXYN",
+      "symbol_selection_stable": true,
+      "tick_volume_available": true,
+      "timestamp_coverage": {
+        "coverage_minutes": 934710,
+        "first_timestamp": "2022-12-23T20:30:00",
+        "last_timestamp": "2024-10-02T23:00:00"
+      },
+      "zero_or_invalid_ohlc_rows": 0
+    },
+    {
+      "best_overlap_rows": 48248,
+      "candidate_order": 3,
+      "data_available": true,
+      "duplicate_timestamp_count": 0,
+      "gap_count": 4874,
+      "max_gap_minutes": 17040,
+      "missing_ohlc_rows": 0,
+      "monotonic_timestamp_order": true,
+      "overlap_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "quality_score": 78,
+      "ranker_version": "v0_66",
+      "row_count": 10000,
+      "safe_asof_alignment_feasible": true,
+      "spread_available": true,
+      "supported_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "symbol": "USDX",
+      "symbol_selection_stable": true,
+      "tick_volume_available": true,
+      "timestamp_coverage": {
+        "coverage_minutes": 734470,
+        "first_timestamp": "2025-01-24T21:45:00",
+        "last_timestamp": "2026-06-18T22:55:00"
+      },
+      "zero_or_invalid_ohlc_rows": 0
+    },
+    {
+      "best_overlap_rows": 26174,
+      "candidate_order": 1,
+      "data_available": true,
+      "duplicate_timestamp_count": 0,
+      "gap_count": 259,
+      "max_gap_minutes": 5385,
+      "missing_ohlc_rows": 0,
+      "monotonic_timestamp_order": true,
+      "overlap_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "quality_score": 66,
+      "ranker_version": "v0_66",
+      "row_count": 10000,
+      "safe_asof_alignment_feasible": true,
+      "spread_available": true,
+      "supported_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "symbol": "DXYZ",
+      "symbol_selection_stable": true,
+      "tick_volume_available": true,
+      "timestamp_coverage": {
+        "coverage_minutes": 403360,
+        "first_timestamp": "2025-09-11T20:15:00",
+        "last_timestamp": "2026-06-18T22:55:00"
+      },
+      "zero_or_invalid_ohlc_rows": 0
+    },
+    {
+      "best_overlap_rows": 26177,
+      "candidate_order": 2,
+      "data_available": true,
+      "duplicate_timestamp_count": 0,
+      "gap_count": 296,
+      "max_gap_minutes": 5385,
+      "missing_ohlc_rows": 0,
+      "monotonic_timestamp_order": true,
+      "overlap_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "quality_score": 66,
+      "ranker_version": "v0_66",
+      "row_count": 10000,
+      "safe_asof_alignment_feasible": true,
+      "spread_available": true,
+      "supported_timeframes": [
+        "M15",
+        "M5"
+      ],
+      "symbol": "GDXY",
+      "symbol_selection_stable": true,
+      "tick_volume_available": true,
+      "timestamp_coverage": {
+        "coverage_minutes": 403405,
+        "first_timestamp": "2025-09-11T19:30:00",
+        "last_timestamp": "2026-06-18T22:55:00"
+      },
+      "zero_or_invalid_ohlc_rows": 0
+    }
+  ],
+  "recommended_next_step": "v0_67_dxy_regime_label_design_if_proxy_quality_passes",
+  "rejected_proxy_symbols": {},
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safe_asof_alignment_design": {
+    "alignment_storage": "in_memory_only",
+    "allowed_join_direction": "backward",
+    "design_only": true,
+    "disallowed_join_directions": [
+      "forward",
+      "nearest_future"
+    ],
+    "lookahead_guard_function": "assert_no_future_proxy_bars",
+    "persistent_aligned_csv_created": false,
+    "proxy_timestamp_rule": "proxy_timestamp_must_be_less_than_or_equal_to_xauusd_timestamp"
+  },
+  "safe_asof_alignment_feasible_by_symbol": {
+    "DXYN": true,
+    "DXYZ": true,
+    "GDXY": true,
+    "USDX": true
+  },
+  "safety": {
+    "aligned_dataset_created": false,
+    "approved_for_strategy_testing": false,
+    "approved_for_trade_filtering": false,
+    "data_csv_touched": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "strategy_rules_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output": false,
+    "trade_signals_output": false,
+    "train_validation_only": true
+  },
+  "selected_proxy_safe_asof_alignment_feasible": true,
+  "selected_proxy_symbol_or_null": "DXYN",
+  "selection_reason": "DXYN selected because it has the highest safe proxy quality score",
+  "source_audit_report": "C:/Users/THE BLU WALF/Desktop/goldBotXAU/reports/xauusd_dxy_proxy_context_audit_v0_65.json",
+  "source_audit_version": "v0_65",
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "train_validation_only": true
+}

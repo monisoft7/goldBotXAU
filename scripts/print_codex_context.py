@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_65"
+CONTEXT_VERSION = "v0_66"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1070,6 +1070,49 @@ def _dxy_proxy_context_audit_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _dxy_proxy_quality_ranker_summary(root: Path) -> dict[str, Any] | None:
+    ranker_path = _report_path(root, "xauusd_dxy_proxy_quality_ranker_v0_66.json")
+    if not ranker_path.exists():
+        return None
+    report = json.loads(ranker_path.read_text(encoding="utf-8"))
+    return {
+        "ranker_version": report.get("ranker_version"),
+        "ranker_status": report.get("ranker_status"),
+        "source_audit_version": report.get("source_audit_version"),
+        "candidate_symbols_ranked": report.get("candidate_symbols_ranked"),
+        "selected_proxy_symbol_or_null": report.get("selected_proxy_symbol_or_null"),
+        "selected_proxy_safe_asof_alignment_feasible": report.get("selected_proxy_safe_asof_alignment_feasible"),
+        "lookahead_risk_detected": report.get("lookahead_risk_detected"),
+        "aligned_dataset_created": report.get("aligned_dataset_created"),
+        "data_csv_touched": report.get("data_csv_touched"),
+        "approved_for_strategy_testing": report.get("approved_for_strategy_testing"),
+        "approved_for_trade_filtering": report.get("approved_for_trade_filtering"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+                "aligned_dataset_created",
+                "data_csv_touched",
+            )
+        )
+        and report.get("train_validation_only") is True
+        and report.get("lookahead_risk_detected") is False,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1312,6 +1355,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_market_context_feasibility": _market_context_feasibility_summary(root),
         "latest_market_context_labels": _market_context_labeler_summary(root),
         "latest_dxy_proxy_context_audit": _dxy_proxy_context_audit_summary(root),
+        "latest_dxy_proxy_quality_ranker": _dxy_proxy_quality_ranker_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

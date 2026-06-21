@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_65"
+    assert context["context_version"] == "v0_66"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 25000
+    assert len(context_text) < 26000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_65"
+    assert context["context_version"] == "v0_66"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_65.json"
+    output_path = tmp_path / "codex_context_v0_66.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_65"
+    assert context["context_version"] == "v0_66"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1102,6 +1102,29 @@ def test_context_includes_v0_65_dxy_proxy_context_audit_summary() -> None:
         "dxy_proxy_audit_blocked_missing_data",
     }
     assert audit["safety_locked"] is True
+
+
+def test_context_includes_v0_66_dxy_proxy_quality_ranker_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    ranker = context["latest_dxy_proxy_quality_ranker"]
+    assert ranker is not None
+    assert ranker["ranker_version"] == "v0_66"
+    assert ranker["ranker_status"] in {
+        "dxy_proxy_quality_ranking_completed",
+        "dxy_proxy_quality_ranking_completed_no_safe_proxy",
+        "dxy_proxy_quality_ranking_blocked_missing_data",
+    }
+    assert ranker["source_audit_version"] == "v0_65"
+    assert ranker["candidate_symbols_ranked"] == ["DXYN", "DXYZ", "GDXY", "USDX"]
+    assert ranker["selected_proxy_symbol_or_null"] in {"DXYN", "DXYZ", "GDXY", "USDX", None}
+    assert ranker["lookahead_risk_detected"] is False
+    assert ranker["aligned_dataset_created"] is False
+    assert ranker["data_csv_touched"] is False
+    assert ranker["approved_for_strategy_testing"] is False
+    assert ranker["approved_for_trade_filtering"] is False
+    assert ranker["recommended_next_step"] == "v0_67_dxy_regime_label_design_if_proxy_quality_passes"
+    assert ranker["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:
