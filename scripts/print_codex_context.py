@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_64_2"
+CONTEXT_VERSION = "v0_65"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1038,6 +1038,38 @@ def _market_context_labeler_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _dxy_proxy_context_audit_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = _report_path(root, "xauusd_dxy_proxy_context_audit_v0_65.json")
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    return {
+        "version": report.get("audit_version"),
+        "status": report.get("audit_status"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+                "data_csv_added_to_git",
+            )
+        )
+        and report.get("train_validation_only") is True
+        and report.get("lookahead_risk_detected") is False,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1279,6 +1311,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_second_tier_fixed_rule_board": _second_tier_fixed_rule_board_summary(root),
         "latest_market_context_feasibility": _market_context_feasibility_summary(root),
         "latest_market_context_labels": _market_context_labeler_summary(root),
+        "latest_dxy_proxy_context_audit": _dxy_proxy_context_audit_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_64_2 repository cleanup boundary repair
-- OOS: no OOS used in v0_64_2; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_65 DXY proxy context feasibility audit
+- OOS: no OOS used in v0_65; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: repository hygiene only; v0_64_2 repaired the cleanup boundary, restored active dependencies, and excluded `project_archive` from pytest collection without strategy or execution changes
+- Execution status: research infrastructure only; v0_65 audited DXY/USD proxy context feasibility without strategy testing, trade filtering approval, execution, order sending, or order checking
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -36,16 +36,50 @@
 - Latest market context feasibility audit: `reports/xauusd_market_context_feasibility_v0_61.json`
 - Latest market context labeler: `reports/xauusd_market_context_labels_v0_62.json`
 - Latest context-labeled event study: `reports/xauusd_context_labeled_event_study_v0_63.json`
+- Latest DXY proxy context audit: `reports/xauusd_dxy_proxy_context_audit_v0_65.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_64_2_repository_cleanup_repair_result.md`
-- Latest context pack: `reports/codex_context_v0_64_2.json`
+- Latest checkpoint: `docs/checkpoints/v0_65_dxy_proxy_context_audit_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_65`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `cleanup_boundary_repair_completed`
-- Next safe task: commit_v0_63_to_v0_64_2_then_v0_65_dxy_proxy_context_audit; commit the reviewed checkpoint chain first, then use the cleaned repository state to audit a DXY proxy context data path only, with no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `dxy_proxy_context_feasibility_completed`
+- Next safe task: v0_66_dxy_asof_alignment_if_proxy_feasible; build a bounded as-of alignment artifact only if the v0_65 report remains valid, with no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_65 DXY Proxy Context Audit Result
+
+- Audit module: `src/research/xauusd_dxy_proxy_context_audit.py`
+- Audit script: `scripts/run_xauusd_dxy_proxy_context_audit_v0_65.py`
+- Audit report: `reports/xauusd_dxy_proxy_context_audit_v0_65.json`
+- Audit status: `dxy_proxy_context_feasibility_completed`
+- Candidate symbols checked: `DXYN`, `DXYZ`, `GDXY`, `USDX`
+- Usable proxy symbols: `DXYN`, `DXYZ`, `GDXY`, `USDX`
+- Selected proxy symbol: `DXYN`
+- XAUUSD timeframes available: `M1`, `M5`, `M10`, `M15`
+- Proxy timeframes available: `M5`, `M15` for each usable candidate via MT5 read-only discovery
+- Safe as-of alignment feasible: `true`
+- Lookahead risk detected: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Data CSV added to git: `false`
+- Targeted tests: `59 passed`
+- Next recommended step: `v0_66_dxy_asof_alignment_if_proxy_feasible`
+
+v0_65 audits whether the prior v0_61 candidate DXY/USD proxy symbols can be observed through local files or MT5 read-only market data and safely aligned with XAUUSD without lookahead. The current environment exposed all four candidates through read-only MT5 copy-rates access with overlapping M5/M15 windows. This is not a trading rule, not a trade filter, not a strategy test, and not approval to proceed to OOS or execution.
 
 ## v0_64_2 Repository Cleanup Boundary Repair Result
 

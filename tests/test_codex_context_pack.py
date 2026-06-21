@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_64_2"
+    assert context["context_version"] == "v0_65"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_64_2"
+    assert context["context_version"] == "v0_65"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_64_2.json"
+    output_path = tmp_path / "codex_context_v0_65.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_64_2"
+    assert context["context_version"] == "v0_65"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1088,6 +1088,20 @@ def test_context_includes_v0_62_market_context_labeler_summary() -> None:
     assert labels["approved_for_strategy_testing"] is False
     assert labels["approved_for_trade_filtering"] is False
     assert labels["safety_locked"] is True
+
+
+def test_context_includes_v0_65_dxy_proxy_context_audit_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_dxy_proxy_context_audit"]
+    assert audit is not None
+    assert audit["version"] == "v0_65"
+    assert audit["status"] in {
+        "dxy_proxy_context_feasibility_completed",
+        "no_usable_dxy_proxy_found",
+        "dxy_proxy_audit_blocked_missing_data",
+    }
+    assert audit["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

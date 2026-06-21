@@ -1,0 +1,600 @@
+{
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "asof_alignment_policy": {
+    "alignment_evaluated_as_feasibility_only": true,
+    "allowed_join_direction": "backward",
+    "disallowed_join_directions": [
+      "forward",
+      "nearest_future"
+    ],
+    "feature_timestamp_must_be_less_than_or_equal_to_xauusd_timestamp": true
+  },
+  "audit_status": "dxy_proxy_context_feasibility_completed",
+  "audit_version": "v0_65",
+  "blockers": [],
+  "candidate_symbols_checked": [
+    "DXYN",
+    "DXYZ",
+    "GDXY",
+    "USDX"
+  ],
+  "data_csv_added_to_git": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "future_label_candidates": [
+    "dollar_strength",
+    "dollar_weakness",
+    "dollar_shock",
+    "gold_dxy_decoupling",
+    "dxy_trend_aligned",
+    "dxy_trend_conflict"
+  ],
+  "gap_summary": {
+    "proxy_symbols": {
+      "DXYN": {
+        "series_count": 2,
+        "usable": true
+      },
+      "DXYZ": {
+        "series_count": 2,
+        "usable": true
+      },
+      "GDXY": {
+        "series_count": 2,
+        "usable": true
+      },
+      "USDX": {
+        "series_count": 2,
+        "usable": true
+      }
+    },
+    "xauusd": {
+      "max_gap_minutes": 4455,
+      "series_count": 22,
+      "total_gap_count": 2754
+    }
+  },
+  "live_allowed": false,
+  "local_csv_files_scanned_count": 22,
+  "lookahead_risk_detected": false,
+  "market_thesis": "gold_must_not_be_treated_as_normal_fx_pair_intraday_dxy_usd_pressure_first_context_layer",
+  "mt5_readonly_discovery": {
+    "attempted": true,
+    "blockers": [],
+    "candidate_symbols_available": [
+      "DXYN",
+      "DXYZ",
+      "GDXY",
+      "USDX"
+    ],
+    "copy_rates_rows_total": 40000,
+    "mt5_initialized": true,
+    "mt5_shutdown_called": true,
+    "order_check_called": false,
+    "order_send_called": false,
+    "status": "readonly_discovery_completed"
+  },
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "overlap_summary": {
+    "DXYN": {
+      "best_overlap_rows": 122418,
+      "overlap_count": 2,
+      "overlaps": [
+        {
+          "overlap_end": "2024-10-02T23:00:00",
+          "overlap_minutes": 612090,
+          "overlap_row_floor": 122418,
+          "overlap_start": "2023-08-04T21:30:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYN",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2024-10-02T23:00:00",
+          "overlap_minutes": 920040,
+          "overlap_row_floor": 61336,
+          "overlap_start": "2023-01-03T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYN",
+          "timeframe": "M15",
+          "xauusd_source": "local_csv"
+        }
+      ],
+      "usable": true
+    },
+    "DXYZ": {
+      "best_overlap_rows": 26174,
+      "overlap_count": 9,
+      "overlaps": [
+        {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:30:00",
+          "overlap_minutes": 1230,
+          "overlap_row_floor": 246,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:25:00",
+          "overlap_minutes": 1225,
+          "overlap_row_floor": 245,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-16T15:30:00",
+          "overlap_minutes": 870,
+          "overlap_row_floor": 174,
+          "overlap_start": "2026-06-16T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:30:00",
+          "overlap_minutes": 1230,
+          "overlap_row_floor": 246,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:25:00",
+          "overlap_minutes": 1225,
+          "overlap_row_floor": 245,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-16T15:30:00",
+          "overlap_minutes": 870,
+          "overlap_row_floor": 174,
+          "overlap_start": "2026-06-16T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 392610,
+          "overlap_row_floor": 26174,
+          "overlap_start": "2025-09-11T20:15:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "DXYZ",
+          "timeframe": "M15",
+          "xauusd_source": "local_csv"
+        }
+      ],
+      "usable": true
+    },
+    "GDXY": {
+      "best_overlap_rows": 26177,
+      "overlap_count": 9,
+      "overlaps": [
+        {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:30:00",
+          "overlap_minutes": 1230,
+          "overlap_row_floor": 246,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:25:00",
+          "overlap_minutes": 1225,
+          "overlap_row_floor": 245,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-16T15:30:00",
+          "overlap_minutes": 870,
+          "overlap_row_floor": 174,
+          "overlap_start": "2026-06-16T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:30:00",
+          "overlap_minutes": 1230,
+          "overlap_row_floor": 246,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:25:00",
+          "overlap_minutes": 1225,
+          "overlap_row_floor": 245,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-16T15:30:00",
+          "overlap_minutes": 870,
+          "overlap_row_floor": 174,
+          "overlap_start": "2026-06-16T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 392655,
+          "overlap_row_floor": 26177,
+          "overlap_start": "2025-09-11T19:30:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "GDXY",
+          "timeframe": "M15",
+          "xauusd_source": "local_csv"
+        }
+      ],
+      "usable": true
+    },
+    "USDX": {
+      "best_overlap_rows": 48248,
+      "overlap_count": 10,
+      "overlaps": [
+        {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:30:00",
+          "overlap_minutes": 1230,
+          "overlap_row_floor": 246,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:25:00",
+          "overlap_minutes": 1225,
+          "overlap_row_floor": 245,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-16T15:30:00",
+          "overlap_minutes": 870,
+          "overlap_row_floor": 174,
+          "overlap_start": "2026-06-16T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2025-12-31T23:55:00",
+          "overlap_minutes": 221995,
+          "overlap_row_floor": 44399,
+          "overlap_start": "2025-07-30T20:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:30:00",
+          "overlap_minutes": 1230,
+          "overlap_row_floor": 246,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-15T21:25:00",
+          "overlap_minutes": 1225,
+          "overlap_row_floor": 245,
+          "overlap_start": "2026-06-15T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-16T15:30:00",
+          "overlap_minutes": 870,
+          "overlap_row_floor": 174,
+          "overlap_start": "2026-06-16T01:00:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M5",
+          "xauusd_source": "local_csv"
+        },
+        {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 723720,
+          "overlap_row_floor": 48248,
+          "overlap_start": "2025-01-24T21:45:00",
+          "proxy_source": "mt5_readonly",
+          "symbol": "USDX",
+          "timeframe": "M15",
+          "xauusd_source": "local_csv"
+        }
+      ],
+      "usable": true
+    }
+  },
+  "parameter_grid_performed": false,
+  "proxy_timeframes_available": {
+    "DXYN": {
+      "M15": {
+        "first_timestamp": "2022-12-23T20:30:00",
+        "last_timestamp": "2024-10-02T23:00:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M5": {
+        "first_timestamp": "2023-08-04T21:30:00",
+        "last_timestamp": "2024-10-02T23:00:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      }
+    },
+    "DXYZ": {
+      "M15": {
+        "first_timestamp": "2025-09-11T20:15:00",
+        "last_timestamp": "2026-06-18T22:45:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M5": {
+        "first_timestamp": "2026-03-18T21:50:00",
+        "last_timestamp": "2026-06-18T22:55:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      }
+    },
+    "GDXY": {
+      "M15": {
+        "first_timestamp": "2025-09-11T19:30:00",
+        "last_timestamp": "2026-06-18T22:45:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M5": {
+        "first_timestamp": "2026-03-18T18:20:00",
+        "last_timestamp": "2026-06-18T22:55:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      }
+    },
+    "USDX": {
+      "M15": {
+        "first_timestamp": "2025-01-24T21:45:00",
+        "last_timestamp": "2026-06-18T22:45:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M5": {
+        "first_timestamp": "2025-07-30T20:00:00",
+        "last_timestamp": "2026-06-18T22:55:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      }
+    }
+  },
+  "purpose": "dxy_usd_proxy_context_feasibility_audit_only_not_strategy",
+  "recommended_next_step": "v0_66_dxy_asof_alignment_if_proxy_feasible",
+  "rejected_proxy_symbols": {},
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safe_asof_alignment_feasible": true,
+  "safety": {
+    "approved_for_strategy_testing": false,
+    "approved_for_trade_filtering": false,
+    "auto_execute_order": false,
+    "backtest_candidate_created": false,
+    "context_feasibility_only": true,
+    "data_csv_added_to_git": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_evaluation": false,
+    "strategy_rules_created": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output": false,
+    "trade_signals_output": false,
+    "train_validation_only": true
+  },
+  "selected_proxy_symbol_or_null": "DXYN",
+  "strategy_rules_created": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "usable_proxy_symbols": [
+    "DXYN",
+    "DXYZ",
+    "GDXY",
+    "USDX"
+  ],
+  "warnings": [
+    "research_infrastructure_only_not_strategy",
+    "no_trade_filtering_approval_in_v0_65",
+    "future_labels_are_schema_candidates_only",
+    "asof_alignment_must_use_proxy_values_known_at_or_before_xauusd_timestamp"
+  ],
+  "xauusd_timeframes_available": {
+    "M1": {
+      "first_timestamp": "2026-01-02T01:00:00",
+      "last_timestamp": "2026-06-11T22:59:00",
+      "row_count": 154661,
+      "series_count": 2,
+      "sources": [
+        "local_csv",
+        "local_csv"
+      ]
+    },
+    "M10": {
+      "first_timestamp": "2023-01-03T01:00:00",
+      "last_timestamp": "2026-06-16T15:20:00",
+      "row_count": 122370,
+      "series_count": 10,
+      "sources": [
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv"
+      ]
+    },
+    "M15": {
+      "first_timestamp": "2023-01-03T01:00:00",
+      "last_timestamp": "2026-06-11T11:45:00",
+      "row_count": 81024,
+      "series_count": 1,
+      "sources": [
+        "local_csv"
+      ]
+    },
+    "M5": {
+      "first_timestamp": "2023-01-03T01:00:00",
+      "last_timestamp": "2026-06-16T15:30:00",
+      "row_count": 214232,
+      "series_count": 9,
+      "sources": [
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv"
+      ]
+    }
+  }
+}
