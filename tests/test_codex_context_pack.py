@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_68_1"
+    assert context["context_version"] == "v0_69"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_68_1"
+    assert context["context_version"] == "v0_69"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_68_1.json"
+    output_path = tmp_path / "codex_context_v0_69.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_68_1"
+    assert context["context_version"] == "v0_69"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1192,6 +1192,35 @@ def test_context_includes_v0_68_1_dxy_proxy_row_adapter_summary() -> None:
         "v0_69_yield_or_brent_context_feasibility_before_new_strategy",
     }
     assert adapter["safety_locked"] is True
+
+
+def test_context_includes_v0_69_oil_proxy_context_audit_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_oil_proxy_context_audit"]
+    assert audit is not None
+    assert audit["version"] == "v0_69"
+    assert audit["status"] in {
+        "oil_proxy_context_feasibility_completed",
+        "no_usable_oil_proxy_found",
+        "oil_proxy_audit_blocked_missing_data",
+    }
+    assert audit["selected_proxy_symbol_or_null"] in {
+        "UKOIL",
+        "XBRUSD",
+        "BRENT",
+        "BRENT.fs",
+        "BRN",
+        "USOIL",
+        "WTI",
+        "XTIUSD",
+        None,
+    }
+    assert audit["recommended_next_step"] in {
+        "v0_70_oil_proxy_quality_ranking_and_label_design",
+        "v0_70_yield_context_external_dataset_feasibility_no_strategy",
+    }
+    assert audit["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

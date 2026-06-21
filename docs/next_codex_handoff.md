@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_68_1 DXY proxy row adapter repair
+- Last completed checkpoint: v0_69 Oil proxy context feasibility audit
 - OOS: no OOS used in v0_68_1; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Current test baseline: 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_68_1 repaired the shared in-memory DXY proxy row adapter and v0_68 now completes diagnostic DXY-conditioned event study processing with no clear leads, without strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
+- Execution status: research infrastructure only; v0_69 discovered usable read-only MT5 oil proxy context rows for `BRN` and `WTI`, selected `BRN` M15 for future context-quality work, and did not perform strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -41,16 +41,54 @@
 - Latest DXY regime label design: `reports/xauusd_dxy_regime_label_design_v0_67.json`
 - Latest DXY proxy row adapter: `reports/xauusd_dxy_proxy_row_adapter_v0_68_1.json`
 - Latest DXY-conditioned event study: `reports/xauusd_dxy_conditioned_event_study_v0_68.json`
+- Latest oil proxy context audit: `reports/xauusd_oil_proxy_context_audit_v0_69.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_68_1_dxy_proxy_row_adapter_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_68_1`)
+- Latest checkpoint: `docs/checkpoints/v0_69_oil_proxy_context_audit_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_69`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `dxy_proxy_row_adapter_completed`; v0_68 rerun status `dxy_conditioned_event_study_completed_no_clear_leads`
-- Next safe task: v0_69_yield_or_brent_context_feasibility_before_new_strategy; keep the next context branch as feasibility/diagnostic research only, with no strategy testing unless explicitly approved, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `oil_proxy_context_feasibility_completed`; selected oil proxy `BRN` M15, with `WTI` also usable
+- Next safe task: v0_70_oil_proxy_quality_ranking_and_label_design; keep oil work as feasibility/diagnostic research only, with no strategy testing unless explicitly approved, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_69 Oil Proxy Context Audit Result
+
+- Audit module: `src/research/xauusd_oil_proxy_context_audit.py`
+- Audit script: `scripts/run_xauusd_oil_proxy_context_audit_v0_69.py`
+- Audit report: `reports/xauusd_oil_proxy_context_audit_v0_69.json`
+- Audit status: `oil_proxy_context_feasibility_completed`
+- Candidate symbols checked: `UKOIL`, `XBRUSD`, `BRENT`, `BRENT.fs`, `BRN`, `USOIL`, `WTI`, `XTIUSD`
+- Usable proxy symbols: `BRN`, `WTI`
+- Selected proxy symbol: `BRN`
+- Selected proxy timeframe: `M15`
+- Selection reason: `BRN M15 selected by fixed candidate/timeframe order with parseable overlapping rows`
+- MT5 read-only candidate symbols available: `BRN`, `WTI`
+- MT5 copied rows total: `30000`
+- Safe as-of alignment feasible: `true`
+- Lookahead risk detected: `false`
+- Aligned dataset created: `false`
+- Data CSV touched: `false`
+- Labels used as trade blockers: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Targeted tests: `63 passed`
+- Next recommended step: `v0_70_oil_proxy_quality_ranking_and_label_design`
+
+v0_69 is a macro-context research infrastructure audit only. Future oil labels are schema candidates only and are not approved as strategy filters, blockers, entry rules, exit rules, or recommendations.
 
 ## v0_68_1 DXY Proxy Row Adapter Result
 

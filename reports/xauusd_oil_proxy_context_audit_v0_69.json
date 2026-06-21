@@ -1,0 +1,1075 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "asof_alignment_policy": {
+    "alignment_storage": "in_memory_only",
+    "allowed_join_direction": "backward",
+    "disallowed_join_directions": [
+      "forward",
+      "nearest_future"
+    ],
+    "persistent_aligned_csv_created": false,
+    "proxy_timestamp_must_be_less_than_or_equal_to_xauusd_timestamp": true
+  },
+  "audit_status": "oil_proxy_context_feasibility_completed",
+  "audit_version": "v0_69",
+  "blockers": [],
+  "candidate_symbols_checked": [
+    "UKOIL",
+    "XBRUSD",
+    "BRENT",
+    "BRENT.fs",
+    "BRN",
+    "USOIL",
+    "WTI",
+    "XTIUSD"
+  ],
+  "data_csv_touched": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "future_label_candidates": [
+    "oil_strength",
+    "oil_weakness",
+    "oil_shock_up",
+    "oil_shock_down",
+    "gold_oil_inflation_pressure_aligned",
+    "gold_oil_safe_haven_conflict",
+    "oil_supply_shock_context_candidate"
+  ],
+  "gap_summary": {
+    "proxy_symbols": {
+      "BRENT": {
+        "max_gap_minutes": 0,
+        "total_gap_count": 0,
+        "usable": false
+      },
+      "BRENT.fs": {
+        "max_gap_minutes": 0,
+        "total_gap_count": 0,
+        "usable": false
+      },
+      "BRN": {
+        "max_gap_minutes": 16950,
+        "total_gap_count": 6349,
+        "usable": true
+      },
+      "UKOIL": {
+        "max_gap_minutes": 0,
+        "total_gap_count": 0,
+        "usable": false
+      },
+      "USOIL": {
+        "max_gap_minutes": 0,
+        "total_gap_count": 0,
+        "usable": false
+      },
+      "WTI": {
+        "max_gap_minutes": 5385,
+        "total_gap_count": 387,
+        "usable": true
+      },
+      "XBRUSD": {
+        "max_gap_minutes": 0,
+        "total_gap_count": 0,
+        "usable": false
+      },
+      "XTIUSD": {
+        "max_gap_minutes": 0,
+        "total_gap_count": 0,
+        "usable": false
+      }
+    },
+    "xauusd": {
+      "max_gap_minutes": 4455,
+      "series_count": 20,
+      "total_gap_count": 2637
+    }
+  },
+  "labels_used_as_trade_blockers": false,
+  "live_allowed": false,
+  "local_csv_files_scanned_count": 20,
+  "lookahead_risk_detected": false,
+  "mt5_readonly_discovery": {
+    "attempted": true,
+    "blockers": [],
+    "candidate_symbols_available": [
+      "BRN",
+      "WTI"
+    ],
+    "copy_rates_rows_total": 30000,
+    "mt5_initialized": true,
+    "mt5_shutdown_called": true,
+    "order_check_called": false,
+    "order_send_called": false,
+    "status": "readonly_discovery_completed"
+  },
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "overlap_summary": {
+    "BRENT": {
+      "best_overlap_rows": 0,
+      "timeframes": {},
+      "usable": false
+    },
+    "BRENT.fs": {
+      "best_overlap_rows": 0,
+      "timeframes": {},
+      "usable": false
+    },
+    "BRN": {
+      "best_overlap_rows": 54299,
+      "timeframes": {
+        "M10": {
+          "overlap_end": "2025-12-31T23:50:00",
+          "overlap_minutes": 413400,
+          "overlap_row_floor": 41340,
+          "overlap_start": "2025-03-19T21:50:00",
+          "timeframe": "M10"
+        },
+        "M15": {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 814485,
+          "overlap_row_floor": 54299,
+          "overlap_start": "2024-11-22T21:00:00",
+          "timeframe": "M15"
+        },
+        "M5": {
+          "overlap_end": "2025-12-31T23:55:00",
+          "overlap_minutes": 158760,
+          "overlap_row_floor": 31752,
+          "overlap_start": "2025-09-12T17:55:00",
+          "timeframe": "M5"
+        }
+      },
+      "usable": true
+    },
+    "UKOIL": {
+      "best_overlap_rows": 0,
+      "timeframes": {},
+      "usable": false
+    },
+    "USOIL": {
+      "best_overlap_rows": 0,
+      "timeframes": {},
+      "usable": false
+    },
+    "WTI": {
+      "best_overlap_rows": 26182,
+      "timeframes": {
+        "M10": {
+          "overlap_end": "2026-06-11T22:50:00",
+          "overlap_minutes": 231710,
+          "overlap_row_floor": 23171,
+          "overlap_start": "2026-01-02T01:00:00",
+          "timeframe": "M10"
+        },
+        "M15": {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 392730,
+          "overlap_row_floor": 26182,
+          "overlap_start": "2025-09-11T18:15:00",
+          "timeframe": "M15"
+        },
+        "M5": {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "timeframe": "M5"
+        }
+      },
+      "usable": true
+    },
+    "XBRUSD": {
+      "best_overlap_rows": 0,
+      "timeframes": {},
+      "usable": false
+    },
+    "XTIUSD": {
+      "best_overlap_rows": 0,
+      "timeframes": {},
+      "usable": false
+    }
+  },
+  "parameter_grid_performed": false,
+  "proxy_timeframes_available": {
+    "BRENT": {},
+    "BRENT.fs": {},
+    "BRN": {
+      "M10": {
+        "first_timestamp": "2025-03-19T21:50:00",
+        "last_timestamp": "2026-06-18T22:50:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M15": {
+        "first_timestamp": "2024-11-22T21:00:00",
+        "last_timestamp": "2026-06-18T22:45:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M5": {
+        "first_timestamp": "2025-09-12T17:55:00",
+        "last_timestamp": "2026-06-18T22:55:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      }
+    },
+    "UKOIL": {},
+    "USOIL": {},
+    "WTI": {
+      "M10": {
+        "first_timestamp": "2025-12-11T22:00:00",
+        "last_timestamp": "2026-06-18T22:50:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M15": {
+        "first_timestamp": "2025-09-11T18:15:00",
+        "last_timestamp": "2026-06-18T22:45:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      },
+      "M5": {
+        "first_timestamp": "2026-03-18T21:20:00",
+        "last_timestamp": "2026-06-18T22:55:00",
+        "row_count": 5000,
+        "series_count": 1,
+        "sources": [
+          "mt5_readonly"
+        ]
+      }
+    },
+    "XBRUSD": {},
+    "XTIUSD": {}
+  },
+  "purpose": "brent_oil_proxy_context_feasibility_audit_only_not_strategy",
+  "recommended_next_step": "v0_70_oil_proxy_quality_ranking_and_label_design",
+  "rejected_proxy_symbols": {
+    "BRENT": {
+      "reasons_by_timeframe": {
+        "M10": "oil_proxy_symbol_or_timeframe_not_available",
+        "M15": "oil_proxy_symbol_or_timeframe_not_available",
+        "M5": "oil_proxy_symbol_or_timeframe_not_available"
+      },
+      "status": "rejected_no_safe_oil_proxy_overlap"
+    },
+    "BRENT.fs": {
+      "reasons_by_timeframe": {
+        "M10": "oil_proxy_symbol_or_timeframe_not_available",
+        "M15": "oil_proxy_symbol_or_timeframe_not_available",
+        "M5": "oil_proxy_symbol_or_timeframe_not_available"
+      },
+      "status": "rejected_no_safe_oil_proxy_overlap"
+    },
+    "UKOIL": {
+      "reasons_by_timeframe": {
+        "M10": "oil_proxy_symbol_or_timeframe_not_available",
+        "M15": "oil_proxy_symbol_or_timeframe_not_available",
+        "M5": "oil_proxy_symbol_or_timeframe_not_available"
+      },
+      "status": "rejected_no_safe_oil_proxy_overlap"
+    },
+    "USOIL": {
+      "reasons_by_timeframe": {
+        "M10": "oil_proxy_symbol_or_timeframe_not_available",
+        "M15": "oil_proxy_symbol_or_timeframe_not_available",
+        "M5": "oil_proxy_symbol_or_timeframe_not_available"
+      },
+      "status": "rejected_no_safe_oil_proxy_overlap"
+    },
+    "XBRUSD": {
+      "reasons_by_timeframe": {
+        "M10": "oil_proxy_symbol_or_timeframe_not_available",
+        "M15": "oil_proxy_symbol_or_timeframe_not_available",
+        "M5": "oil_proxy_symbol_or_timeframe_not_available"
+      },
+      "status": "rejected_no_safe_oil_proxy_overlap"
+    },
+    "XTIUSD": {
+      "reasons_by_timeframe": {
+        "M10": "oil_proxy_symbol_or_timeframe_not_available",
+        "M15": "oil_proxy_symbol_or_timeframe_not_available",
+        "M5": "oil_proxy_symbol_or_timeframe_not_available"
+      },
+      "status": "rejected_no_safe_oil_proxy_overlap"
+    }
+  },
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safe_asof_alignment_feasible": true,
+  "safety": {
+    "aligned_dataset_created": false,
+    "approved_for_strategy_testing": false,
+    "approved_for_trade_filtering": false,
+    "auto_execute_order": false,
+    "context_feasibility_only": true,
+    "data_csv_touched": false,
+    "demo_execution_allowed": false,
+    "executable_candidate_created": false,
+    "execution_queue_created": false,
+    "labels_used_as_trade_blockers": false,
+    "live_allowed": false,
+    "oos_used": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "repeated_oos_review": false,
+    "research_only": true,
+    "retune_performed": false,
+    "scheduler_created": false,
+    "strategy_rules_created": false,
+    "strategy_rules_modified": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output": false,
+    "trade_signals_output": false,
+    "train_validation_only": true
+  },
+  "selected_proxy_symbol_or_null": "BRN",
+  "selected_proxy_timeframe_or_null": "M15",
+  "selection_reason": "BRN M15 selected by fixed candidate/timeframe order with parseable overlapping rows",
+  "strategy_rules_created": false,
+  "symbol_timeframe_audits": {
+    "BRENT": {
+      "M10": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "BRENT"
+      },
+      "M15": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "BRENT"
+      },
+      "M5": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "BRENT"
+      }
+    },
+    "BRENT.fs": {
+      "M10": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "BRENT.fs"
+      },
+      "M15": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "BRENT.fs"
+      },
+      "M5": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "BRENT.fs"
+      }
+    },
+    "BRN": {
+      "M10": {
+        "copied_row_count": 5000,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": "2025-03-19T21:50:00",
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 2073,
+          "max_gap_minutes": 16950
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-18T22:50:00",
+        "monotonic_timestamp_order": true,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": "2025-12-31T23:50:00",
+          "overlap_minutes": 413400,
+          "overlap_row_floor": 41340,
+          "overlap_start": "2025-03-19T21:50:00",
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 5000,
+        "reason_if_rejected": null,
+        "required_columns_present": true,
+        "safe_asof_alignment_feasible": true,
+        "symbol_found": true,
+        "symbol_selected": "BRN"
+      },
+      "M15": {
+        "copied_row_count": 5000,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": "2024-11-22T21:00:00",
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 1893,
+          "max_gap_minutes": 16950
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-18T22:45:00",
+        "monotonic_timestamp_order": true,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 814485,
+          "overlap_row_floor": 54299,
+          "overlap_start": "2024-11-22T21:00:00",
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 5000,
+        "reason_if_rejected": null,
+        "required_columns_present": true,
+        "safe_asof_alignment_feasible": true,
+        "symbol_found": true,
+        "symbol_selected": "BRN"
+      },
+      "M5": {
+        "copied_row_count": 5000,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": "2025-09-12T17:55:00",
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 2383,
+          "max_gap_minutes": 5420
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-18T22:55:00",
+        "monotonic_timestamp_order": true,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": "2025-12-31T23:55:00",
+          "overlap_minutes": 158760,
+          "overlap_row_floor": 31752,
+          "overlap_start": "2025-09-12T17:55:00",
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 5000,
+        "reason_if_rejected": null,
+        "required_columns_present": true,
+        "safe_asof_alignment_feasible": true,
+        "symbol_found": true,
+        "symbol_selected": "BRN"
+      }
+    },
+    "UKOIL": {
+      "M10": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "UKOIL"
+      },
+      "M15": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "UKOIL"
+      },
+      "M5": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "UKOIL"
+      }
+    },
+    "USOIL": {
+      "M10": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "USOIL"
+      },
+      "M15": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "USOIL"
+      },
+      "M5": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "USOIL"
+      }
+    },
+    "WTI": {
+      "M10": {
+        "copied_row_count": 5000,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": "2025-12-11T22:00:00",
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 129,
+          "max_gap_minutes": 5380
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-18T22:50:00",
+        "monotonic_timestamp_order": true,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": "2026-06-11T22:50:00",
+          "overlap_minutes": 231710,
+          "overlap_row_floor": 23171,
+          "overlap_start": "2026-01-02T01:00:00",
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 5000,
+        "reason_if_rejected": null,
+        "required_columns_present": true,
+        "safe_asof_alignment_feasible": true,
+        "symbol_found": true,
+        "symbol_selected": "WTI"
+      },
+      "M15": {
+        "copied_row_count": 5000,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": "2025-09-11T18:15:00",
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 194,
+          "max_gap_minutes": 5385
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-18T22:45:00",
+        "monotonic_timestamp_order": true,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": "2026-06-11T11:45:00",
+          "overlap_minutes": 392730,
+          "overlap_row_floor": 26182,
+          "overlap_start": "2025-09-11T18:15:00",
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 5000,
+        "reason_if_rejected": null,
+        "required_columns_present": true,
+        "safe_asof_alignment_feasible": true,
+        "symbol_found": true,
+        "symbol_selected": "WTI"
+      },
+      "M5": {
+        "copied_row_count": 5000,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": "2026-03-18T21:20:00",
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 64,
+          "max_gap_minutes": 5375
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": "2026-06-18T22:55:00",
+        "monotonic_timestamp_order": true,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": "2026-06-12T22:55:00",
+          "overlap_minutes": 1315,
+          "overlap_row_floor": 263,
+          "overlap_start": "2026-06-12T01:00:00",
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 5000,
+        "reason_if_rejected": null,
+        "required_columns_present": true,
+        "safe_asof_alignment_feasible": true,
+        "symbol_found": true,
+        "symbol_selected": "WTI"
+      }
+    },
+    "XBRUSD": {
+      "M10": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "XBRUSD"
+      },
+      "M15": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "XBRUSD"
+      },
+      "M5": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "XBRUSD"
+      }
+    },
+    "XTIUSD": {
+      "M10": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 10,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M10"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "XTIUSD"
+      },
+      "M15": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 15,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M15"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "XTIUSD"
+      },
+      "M5": {
+        "copied_row_count": 0,
+        "duplicate_timestamp_count": 0,
+        "first_timestamp": null,
+        "gap_summary": {
+          "duplicate_timestamp_count": 0,
+          "expected_minutes": 5,
+          "gap_count": 0,
+          "max_gap_minutes": 0
+        },
+        "invalid_ohlc_count": 0,
+        "last_timestamp": null,
+        "monotonic_timestamp_order": null,
+        "overlap_with_xauusd_summary": {
+          "overlap_end": null,
+          "overlap_minutes": 0,
+          "overlap_row_floor": 0,
+          "overlap_start": null,
+          "timeframe": "M5"
+        },
+        "parseable_row_count": 0,
+        "reason_if_rejected": "oil_proxy_symbol_or_timeframe_not_available",
+        "required_columns_present": false,
+        "safe_asof_alignment_feasible": false,
+        "symbol_found": false,
+        "symbol_selected": "XTIUSD"
+      }
+    }
+  },
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "usable_proxy_symbols": [
+    "BRN",
+    "WTI"
+  ],
+  "warnings": [
+    "research_infrastructure_only_not_strategy",
+    "no_trade_filtering_approval_in_v0_69",
+    "future_oil_labels_are_schema_candidates_only",
+    "asof_alignment_must_use_proxy_values_known_at_or_before_xauusd_timestamp"
+  ],
+  "xauusd_timeframes_available": {
+    "M10": {
+      "first_timestamp": "2023-01-03T01:00:00",
+      "last_timestamp": "2026-06-16T15:20:00",
+      "row_count": 122370,
+      "series_count": 10,
+      "sources": [
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv"
+      ]
+    },
+    "M15": {
+      "first_timestamp": "2023-01-03T01:00:00",
+      "last_timestamp": "2026-06-11T11:45:00",
+      "row_count": 81024,
+      "series_count": 1,
+      "sources": [
+        "local_csv"
+      ]
+    },
+    "M5": {
+      "first_timestamp": "2023-01-03T01:00:00",
+      "last_timestamp": "2026-06-16T15:30:00",
+      "row_count": 214232,
+      "series_count": 9,
+      "sources": [
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv",
+        "local_csv"
+      ]
+    }
+  }
+}

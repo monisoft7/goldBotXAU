@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_68_1"
+CONTEXT_VERSION = "v0_69"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1246,6 +1246,42 @@ def _dxy_conditioned_event_study_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _oil_proxy_context_audit_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = _report_path(root, "xauusd_oil_proxy_context_audit_v0_69.json")
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    return {
+        "version": report.get("audit_version"),
+        "status": report.get("audit_status"),
+        "selected_proxy_symbol_or_null": report.get("selected_proxy_symbol_or_null"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "lookahead_risk_detected",
+                "labels_used_as_trade_blockers",
+                "aligned_dataset_created",
+                "data_csv_touched",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1492,6 +1528,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_dxy_regime_label_design": _dxy_regime_label_design_summary(root),
         "latest_dxy_proxy_row_adapter": _dxy_proxy_row_adapter_summary(root),
         "latest_dxy_conditioned_event_study": _dxy_conditioned_event_study_summary(root),
+        "latest_oil_proxy_context_audit": _oil_proxy_context_audit_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),
