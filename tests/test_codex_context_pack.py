@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_67"
+    assert context["context_version"] == "v0_68"
     json.dumps(context)
 
 
@@ -51,7 +51,7 @@ def test_context_includes_eligible_for_oos_review_count() -> None:
 
 
 def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> None:
-    context_text = json.dumps(build_codex_context(ROOT))
+    context_text = json.dumps(build_codex_context(ROOT), separators=(",", ":"))
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_67"
+    assert context["context_version"] == "v0_68"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_67.json"
+    output_path = tmp_path / "codex_context_v0_68.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_67"
+    assert context["context_version"] == "v0_68"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1141,6 +1141,31 @@ def test_context_includes_v0_67_dxy_regime_label_design_summary() -> None:
     assert design["safe_asof_alignment_required"] is True
     assert design["recommended_next_step"] == "v0_68_dxy_conditioned_event_study_no_strategy_if_labels_pass"
     assert design["safety_locked"] is True
+
+
+def test_context_includes_v0_68_dxy_conditioned_event_study_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    study = context["latest_dxy_conditioned_event_study"]
+    assert study is not None
+    assert study["study_version"] == "v0_68"
+    assert study["study_status"] in {
+        "dxy_conditioned_event_study_completed",
+        "dxy_conditioned_event_study_completed_no_clear_leads",
+        "dxy_conditioned_event_study_blocked_missing_data",
+    }
+    assert study["source_proxy_ranker_version"] == "v0_66"
+    assert study["source_label_design_version"] == "v0_67"
+    assert study["selected_proxy_symbol"] == "DXYN"
+    assert isinstance(study["event_count"], int)
+    assert isinstance(study["clear_lead_count"], int)
+    assert study["train_validation_only"] is True
+    assert study["oos_used"] is False
+    assert study["recommended_next_step"] in {
+        "v0_69_yield_or_brent_context_feasibility_before_new_strategy",
+        "v0_69_dxy_conditioned_research_board_no_oos_no_strategy_change",
+    }
+    assert study["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:
