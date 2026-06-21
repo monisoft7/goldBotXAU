@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+from src.research.xauusd_dxy_proxy_quality_ranker import adapt_dxy_proxy_rows
 from src.research.xauusd_dxy_regime_label_design import LABEL_NAMES
 
 STUDY_VERSION = "v0_68"
@@ -437,7 +438,13 @@ def _discover_mt5_proxy_rows(symbol: str, *, mt5_module: Any | None) -> dict[str
 
 
 def _proxy_detail_from_rows(rows: Iterable[Any], *, attempted: bool) -> dict[str, Any]:
-    parsed = [row for row in rows if _proxy_row(row) is not None]
+    adapted = adapt_dxy_proxy_rows(
+        rows,
+        symbol=SELECTED_PROXY_SYMBOL,
+        timeframe="M15",
+        copy_rates_attempted=attempted,
+    )
+    parsed = adapted["rows"]
     return {
         "rows": parsed,
         "summary": {
@@ -451,6 +458,17 @@ def _proxy_detail_from_rows(rows: Iterable[Any], *, attempted: bool) -> dict[str
             "persistent_aligned_csv_created": False,
             "order_send_called": False,
             "order_check_called": False,
+            "adapter_version": adapted["adapter_version"],
+            "copied_row_count": adapted["copied_row_count"],
+            "parseable_row_count": adapted["parseable_row_count"],
+            "first_timestamp": adapted["first_timestamp"],
+            "last_timestamp": adapted["last_timestamp"],
+            "required_columns_present": adapted["required_columns_present"],
+            "invalid_ohlc_count": adapted["invalid_ohlc_count"],
+            "duplicate_timestamp_count": adapted["duplicate_timestamp_count"],
+            "monotonic_timestamp_order": adapted["monotonic_timestamp_order"],
+            "reason_if_unparseable": adapted["reason_if_unparseable"],
+            "fallback_attempted": False,
             "blockers": [] if parsed else ["selected_proxy_rows_unavailable"],
         },
     }

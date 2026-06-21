@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_68"
+    assert context["context_version"] == "v0_68_1"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_68"
+    assert context["context_version"] == "v0_68_1"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_68.json"
+    output_path = tmp_path / "codex_context_v0_68_1.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_68"
+    assert context["context_version"] == "v0_68_1"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1166,6 +1166,32 @@ def test_context_includes_v0_68_dxy_conditioned_event_study_summary() -> None:
         "v0_69_dxy_conditioned_research_board_no_oos_no_strategy_change",
     }
     assert study["safety_locked"] is True
+
+
+def test_context_includes_v0_68_1_dxy_proxy_row_adapter_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    adapter = context["latest_dxy_proxy_row_adapter"]
+    assert adapter is not None
+    assert adapter["adapter_version"] == "v0_68_1"
+    assert adapter["adapter_status"] in {
+        "dxy_proxy_row_adapter_completed",
+        "dxy_proxy_row_adapter_completed_with_fallback_recommended",
+        "dxy_proxy_row_adapter_blocked_no_parseable_proxy_rows",
+    }
+    assert adapter["source_quality_ranker_version"] == "v0_66"
+    assert adapter["source_event_study_version"] == "v0_68"
+    assert adapter["symbols_checked"] == ["DXYN", "DXYZ", "GDXY", "USDX"]
+    assert adapter["shared_adapter_created_or_updated"] is True
+    assert adapter["event_study_updated_to_use_shared_adapter"] is True
+    assert adapter["aligned_dataset_created"] is False
+    assert adapter["data_csv_touched"] is False
+    assert adapter["lookahead_risk_detected"] is False
+    assert adapter["recommended_next_step"] in {
+        "rerun_v0_68_dxy_conditioned_event_study_with_shared_adapter",
+        "v0_69_yield_or_brent_context_feasibility_before_new_strategy",
+    }
+    assert adapter["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

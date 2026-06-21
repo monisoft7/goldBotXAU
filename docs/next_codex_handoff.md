@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_68 DXY-conditioned event study
-- OOS: no OOS used in v0_68; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_68_1 DXY proxy row adapter repair
+- OOS: no OOS used in v0_68_1; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_68 attempted DXY-conditioned diagnostics around prior train/validation research observations but failed closed on missing usable DXYN proxy rows, without strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
+- Execution status: research infrastructure only; v0_68_1 repaired the shared in-memory DXY proxy row adapter and v0_68 now completes diagnostic DXY-conditioned event study processing with no clear leads, without strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -39,33 +39,83 @@
 - Latest DXY proxy context audit: `reports/xauusd_dxy_proxy_context_audit_v0_65.json`
 - Latest DXY proxy quality ranker: `reports/xauusd_dxy_proxy_quality_ranker_v0_66.json`
 - Latest DXY regime label design: `reports/xauusd_dxy_regime_label_design_v0_67.json`
+- Latest DXY proxy row adapter: `reports/xauusd_dxy_proxy_row_adapter_v0_68_1.json`
 - Latest DXY-conditioned event study: `reports/xauusd_dxy_conditioned_event_study_v0_68.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_68_dxy_conditioned_event_study_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_68`)
+- Latest checkpoint: `docs/checkpoints/v0_68_1_dxy_proxy_row_adapter_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_68_1`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `dxy_conditioned_event_study_blocked_missing_data`
+- Latest decision: `dxy_proxy_row_adapter_completed`; v0_68 rerun status `dxy_conditioned_event_study_completed_no_clear_leads`
 - Next safe task: v0_69_yield_or_brent_context_feasibility_before_new_strategy; keep the next context branch as feasibility/diagnostic research only, with no strategy testing unless explicitly approved, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_68_1 DXY Proxy Row Adapter Result
+
+- Adapter module: `src/research/xauusd_dxy_proxy_quality_ranker.py`
+- Diagnostic script: `scripts/diagnose_xauusd_dxy_proxy_rows_v0_68_1.py`
+- Adapter report: `reports/xauusd_dxy_proxy_row_adapter_v0_68_1.json`
+- Adapter status: `dxy_proxy_row_adapter_completed`
+- Source quality ranker version: `v0_66`
+- Source event study version: `v0_68`
+- Symbols checked: `DXYN`, `DXYZ`, `GDXY`, `USDX`
+- Selected parseable proxy symbol: `DXYN`
+- Fallback proxy symbol: `null`
+- v0_68 blocker root cause: `timestamp_conversion_mismatch`
+- Shared adapter created or updated: `true`
+- Event study updated to use shared adapter: `true`
+- Safe as-of alignment possible after adapter: `true`
+- DXYN M15 copied rows: `10000`
+- DXYN M15 parseable rows: `10000`
+- DXYN first timestamp: `2021-09-15T18:30:00`
+- DXYN last timestamp: `2024-10-02T23:00:00`
+- All checked M15 symbols parseable: `true`
+- Aligned dataset created: `false`
+- Data CSV touched: `false`
+- Lookahead risk detected: `false`
+- Labels used as trade blockers: `false`
+- Labels used for strategy testing: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Targeted tests: `71 passed`
+- Adapter next recommended step: `rerun_v0_68_dxy_conditioned_event_study_with_shared_adapter`
+
+v0_68_1 diagnoses the handoff failure between v0_66 and v0_68 as `timestamp_conversion_mismatch`. The current read-only MT5 M15 rows for `DXYN`, `DXYZ`, `GDXY`, and `USDX` are present and parseable through the shared adapter, with no invalid OHLC, duplicate timestamps, or non-monotonic timestamp ordering.
+
+After wiring v0_68 to the shared adapter, `reports/xauusd_dxy_conditioned_event_study_v0_68.json` reran with `study_status=dxy_conditioned_event_study_completed_no_clear_leads`, `event_count=30`, and `clear_lead_count=0`. This remains diagnostic-only context work and does not approve labels as trade blockers or filters.
 
 ## v0_68 DXY-Conditioned Event Study Result
 
 - Study module: `src/research/xauusd_dxy_conditioned_event_study.py`
 - Study script: `scripts/run_xauusd_dxy_conditioned_event_study_v0_68.py`
 - Study report: `reports/xauusd_dxy_conditioned_event_study_v0_68.json`
-- Study status: `dxy_conditioned_event_study_blocked_missing_data`
+- Study status: `dxy_conditioned_event_study_completed_no_clear_leads`
 - Source proxy ranker version: `v0_66`
 - Source label design version: `v0_67`
 - Selected proxy symbol: `DXYN`
 - Secondary proxy symbol: `USDX`
 - Prior research versions considered: `v0_53`, `v0_56`, `v0_60`, `v0_63`
 - Labels evaluated: `dxy_strength`, `dxy_weakness`, `dxy_shock_up`, `dxy_shock_down`, `gold_dxy_normal_inverse_behavior`, `gold_dxy_decoupling`, `dxy_gold_pressure_aligned`, `dxy_gold_pressure_conflict`
-- Event count: `0`
+- Event count: `30`
 - Clear lead count: `0`
-- Blocker: `selected_proxy_rows_unavailable`
+- Blocker: none
+- Proxy adapter version: `v0_68_1`
+- DXYN M15 copied rows: `10000`
+- DXYN M15 parseable rows: `10000`
 - Lookahead risk detected: `false`
 - Aligned dataset created: `false`
 - Data CSV touched: `false`
@@ -85,10 +135,10 @@
 - Order check called: `false`
 - Live allowed: `false`
 - Trade recommendation output: `false`
-- Targeted tests: `62 passed`
+- Targeted tests: `71 passed` in the v0_68_1 combined targeted run
 - Next recommended step: `v0_69_yield_or_brent_context_feasibility_before_new_strategy`
 
-v0_68 considers the requested prior train/validation research versions and uses DXYN from v0_66 plus the v0_67 label definitions. The current read-only proxy snapshot listed DXYN and USDX, but no parseable DXYN M15 proxy rows were available for safe backward as-of conditioning, so the event study failed closed with no clear leads and no aligned dataset export.
+v0_68 considers the requested prior train/validation research versions and uses DXYN from v0_66 plus the v0_67 label definitions. After v0_68_1, the event study uses the shared proxy row adapter and no longer fails closed on DXYN M15 row parsing. It completed as a diagnostic-only no-clear-leads study with no aligned dataset export.
 
 ## v0_67 DXY Regime Label Design Result
 

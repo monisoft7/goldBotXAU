@@ -49,10 +49,10 @@ def _events() -> list[dict[str, object]]:
 
 def _proxy_rows() -> list[dict[str, object]]:
     return [
-        {"time": "2024-01-02T00:00:00", "close": 100.0},
-        {"time": "2024-01-02T00:15:00", "close": 101.0},
-        {"time": "2024-01-02T00:30:00", "close": 100.5},
-        {"time": "2024-01-02T00:45:00", "close": 102.0},
+        {"time": "2024-01-02T00:00:00", "open": 99.5, "high": 100.5, "low": 99.0, "close": 100.0},
+        {"time": "2024-01-02T00:15:00", "open": 100.0, "high": 101.5, "low": 99.5, "close": 101.0},
+        {"time": "2024-01-02T00:30:00", "open": 101.0, "high": 101.25, "low": 100.0, "close": 100.5},
+        {"time": "2024-01-02T00:45:00", "open": 100.5, "high": 102.5, "low": 100.0, "close": 102.0},
     ]
 
 
@@ -146,6 +146,8 @@ def test_lookahead_safe_asof_rules_are_respected() -> None:
 
     assert report["lookahead_risk_detected"] is False
     assert report["proxy_readonly_summary"]["allowed_join_direction"] == "backward"
+    assert report["proxy_readonly_summary"]["adapter_version"] == "v0_68_1"
+    assert report["proxy_readonly_summary"]["parseable_row_count"] == 4
     with pytest.raises(ValueError, match="future proxy timestamp"):
         assert_backward_asof_safe("2024-01-02T00:15:00", "2024-01-02T00:30:00")
 

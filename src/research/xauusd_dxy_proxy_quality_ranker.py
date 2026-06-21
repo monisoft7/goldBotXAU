@@ -12,15 +12,21 @@ from pathlib import Path
 from typing import Any, Iterable
 
 RANKER_VERSION = "v0_66"
+PROXY_ROW_ADAPTER_VERSION = "v0_68_1"
 SOURCE_AUDIT_VERSION = "v0_65"
 DEFAULT_SOURCE_AUDIT = Path("reports") / "xauusd_dxy_proxy_context_audit_v0_65.json"
 DEFAULT_OUTPUT = Path("reports") / "xauusd_dxy_proxy_quality_ranker_v0_66.json"
+DEFAULT_ROW_ADAPTER_OUTPUT = Path("reports") / "xauusd_dxy_proxy_row_adapter_v0_68_1.json"
+DEFAULT_SOURCE_EVENT_STUDY = Path("reports") / "xauusd_dxy_conditioned_event_study_v0_68.json"
 DEFAULT_CANDIDATE_SYMBOLS = ["DXYN", "DXYZ", "GDXY", "USDX"]
 RECOMMENDED_NEXT_STEP = "v0_67_dxy_regime_label_design_if_proxy_quality_passes"
 
 COMPLETED = "dxy_proxy_quality_ranking_completed"
 COMPLETED_NO_SAFE_PROXY = "dxy_proxy_quality_ranking_completed_no_safe_proxy"
 BLOCKED_MISSING_DATA = "dxy_proxy_quality_ranking_blocked_missing_data"
+ADAPTER_COMPLETED = "dxy_proxy_row_adapter_completed"
+ADAPTER_COMPLETED_WITH_FALLBACK = "dxy_proxy_row_adapter_completed_with_fallback_recommended"
+ADAPTER_BLOCKED_NO_PARSEABLE_PROXY = "dxy_proxy_row_adapter_blocked_no_parseable_proxy_rows"
 
 FUTURE_LABEL_CANDIDATES = [
     "dollar_strength",
@@ -54,6 +60,9 @@ TIMEFRAME_MINUTES = {
     "M10": 10,
     "M15": 15,
 }
+
+PROXY_REQUIRED_COLUMNS = ["time", "open", "high", "low", "close"]
+PROXY_TIMESTAMP_COLUMNS = ["time", "timestamp", "timestamp_utc"]
 
 
 def build_xauusd_dxy_proxy_quality_ranker_v0_66(
@@ -162,6 +171,117 @@ def save_xauusd_dxy_proxy_quality_ranker(report: dict[str, Any], output: str | P
     output_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def build_xauusd_dxy_proxy_row_adapter_report_v0_68_1(
+    *,
+    root: str | Path = ".",
+    source_ranker_path: str | Path = DEFAULT_OUTPUT,
+    source_event_study_path: str | Path = DEFAULT_SOURCE_EVENT_STUDY,
+    candidate_symbols: Iterable[str] = DEFAULT_CANDIDATE_SYMBOLS,
+    proxy_rows_by_symbol: dict[str, Iterable[Any]] | None = None,
+    attempt_mt5_readonly: bool = True,
+    mt5_module: Any | None = None,
+) -> dict[str, Any]:
+    """Diagnose the v0_66 to v0_68 proxy-row handoff without exporting market data."""
+    root_path = Path(root)
+    symbols = [_normalize_symbol(symbol) for symbol in candidate_symbols if _normalize_symbol(symbol)]
+    injected = {
+        _normalize_symbol(symbol): list(rows)
+        for symbol, rows in (proxy_rows_by_symbol or {}).items()
+    }
+    mt5_rows = (
+        _copy_m15_rows_by_symbol(symbols=symbols, mt5_module=mt5_module)
+        if attempt_mt5_readonly and proxy_rows_by_symbol is None
+        else {"rows_by_symbol": {}, "summary": _empty_adapter_mt5_summary(attempted=False)}
+    )
+    rows_by_symbol = injected or mt5_rows["rows_by_symbol"]
+    parseability = {
+        symbol: _strip_adapter_rows(
+            adapt_dxy_proxy_rows(
+                rows_by_symbol.get(symbol, []),
+                symbol=symbol,
+                timeframe="M15",
+                copy_rates_attempted=bool(mt5_rows["summary"].get("attempted")) or symbol in injected,
+            )
+        )
+        for symbol in symbols
+    }
+    selected_symbol = _selected_parseable_symbol(parseability, symbols)
+    fallback_symbol = choose_fallback_proxy_symbol(
+        parseability,
+        preferred_order=symbols,
+        excluded_symbol="DXYN" if _parseable_count(parseability.get("DXYN")) <= 0 else None,
+    )
+    if selected_symbol:
+        adapter_status = (
+            ADAPTER_COMPLETED_WITH_FALLBACK
+            if _parseable_count(parseability.get("DXYN")) <= 0 and fallback_symbol
+            else ADAPTER_COMPLETED
+        )
+    else:
+        adapter_status = ADAPTER_BLOCKED_NO_PARSEABLE_PROXY
+    ranker = _read_json(_resolve(root_path, source_ranker_path))
+    event_study = _read_json(_resolve(root_path, source_event_study_path))
+    root_cause = _v0_68_blocker_root_cause(ranker, event_study, parseability, mt5_rows["summary"])
+    report: dict[str, Any] = {
+        "adapter_version": PROXY_ROW_ADAPTER_VERSION,
+        "adapter_status": adapter_status,
+        "source_quality_ranker_version": RANKER_VERSION,
+        "source_event_study_version": "v0_68",
+        "symbols_checked": symbols,
+        "parseability_by_symbol": parseability,
+        "selected_parseable_proxy_symbol_or_null": selected_symbol,
+        "fallback_proxy_symbol_or_null": fallback_symbol
+        if _parseable_count(parseability.get("DXYN")) <= 0
+        else None,
+        "v0_68_blocker_root_cause": root_cause,
+        "shared_adapter_created_or_updated": True,
+        "event_study_updated_to_use_shared_adapter": True,
+        "safe_asof_alignment_possible_after_adapter": bool(selected_symbol),
+        "aligned_dataset_created": False,
+        "data_csv_touched": False,
+        "lookahead_risk_detected": False,
+        "labels_used_as_trade_blockers": False,
+        "labels_used_for_strategy_testing": False,
+        "approved_for_strategy_testing": False,
+        "approved_for_trade_filtering": False,
+        "train_validation_only": True,
+        "oos_used": False,
+        "repeated_oos_review": False,
+        "retune_performed": False,
+        "threshold_search_performed": False,
+        "parameter_grid_performed": False,
+        "executable_candidate_created": False,
+        "demo_execution_allowed": False,
+        "order_send_called": False,
+        "order_check_called": False,
+        "live_allowed": False,
+        "trade_recommendation_output": False,
+        "mt5_readonly_summary": mt5_rows["summary"],
+        "recommended_next_step": (
+            "rerun_v0_68_dxy_conditioned_event_study_with_shared_adapter"
+            if selected_symbol
+            else "v0_69_yield_or_brent_context_feasibility_before_new_strategy"
+        ),
+    }
+    report["safety"] = {
+        "research_only": True,
+        "strategy_rules_created": False,
+        "strategy_rules_modified": False,
+        "trade_signals_output": False,
+        **{flag: report[flag] for flag in report if isinstance(report.get(flag), bool)},
+    }
+    return report
+
+
+def save_xauusd_dxy_proxy_row_adapter_report(
+    report: dict[str, Any],
+    output: str | Path = DEFAULT_ROW_ADAPTER_OUTPUT,
+) -> None:
+    output_path = Path(output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
 def safe_backward_asof_alignment_pairs(
     xauusd_timestamps: Iterable[Any],
     proxy_timestamps: Iterable[Any],
@@ -190,6 +310,91 @@ def assert_no_future_proxy_bars(aligned_pairs: Iterable[dict[str, Any]]) -> None
         proxy_time = _parse_timestamp(pair.get("proxy_timestamp"))
         if xau_time and proxy_time and proxy_time > xau_time:
             raise ValueError("future proxy bar detected in as-of alignment")
+
+
+def adapt_dxy_proxy_rows(
+    rows: Iterable[Any] | None,
+    *,
+    symbol: str,
+    timeframe: str = "M15",
+    copy_rates_attempted: bool,
+) -> dict[str, Any]:
+    """Normalize MT5/local proxy rows in memory and report parseability diagnostics."""
+    raw_rows = list(rows or [])
+    parsed_rows: list[dict[str, Any]] = []
+    invalid_ohlc_count = 0
+    missing_timestamp_count = 0
+    rows_with_required_columns = 0
+    timestamps_in_input_order: list[datetime] = []
+    seen_timestamps: set[datetime] = set()
+    duplicate_timestamp_count = 0
+
+    for raw in raw_rows:
+        required_present = _proxy_required_columns_present(raw)
+        if required_present:
+            rows_with_required_columns += 1
+        parsed = _adapt_single_proxy_row(raw, symbol=symbol, timeframe=timeframe)
+        timestamp = _parse_timestamp(
+            _row_value(raw, "time") or _row_value(raw, "timestamp") or _row_value(raw, "timestamp_utc")
+        )
+        if timestamp is None:
+            missing_timestamp_count += 1
+        else:
+            timestamps_in_input_order.append(timestamp)
+            if timestamp in seen_timestamps:
+                duplicate_timestamp_count += 1
+            seen_timestamps.add(timestamp)
+        if parsed is None:
+            if timestamp is not None or required_present:
+                invalid_ohlc_count += 1
+            continue
+        parsed_rows.append(parsed)
+
+    monotonic = _monotonic_non_decreasing(timestamps_in_input_order) if timestamps_in_input_order else None
+    first_timestamp = min((row["timestamp"] for row in parsed_rows), default=None)
+    last_timestamp = max((row["timestamp"] for row in parsed_rows), default=None)
+    reason = _proxy_unparseable_reason(
+        copied_row_count=len(raw_rows),
+        parseable_row_count=len(parsed_rows),
+        required_columns_present=bool(raw_rows) and rows_with_required_columns == len(raw_rows),
+        missing_timestamp_count=missing_timestamp_count,
+        invalid_ohlc_count=invalid_ohlc_count,
+        duplicate_timestamp_count=duplicate_timestamp_count,
+        monotonic_timestamp_order=monotonic,
+    )
+    return {
+        "adapter_version": PROXY_ROW_ADAPTER_VERSION,
+        "symbol_selected": _normalize_symbol(symbol),
+        "timeframe": str(timeframe),
+        "copy_rates_attempted": bool(copy_rates_attempted),
+        "copied_row_count": len(raw_rows),
+        "parseable_row_count": len(parsed_rows),
+        "first_timestamp": _format_ts(first_timestamp),
+        "last_timestamp": _format_ts(last_timestamp),
+        "required_columns_present": bool(raw_rows) and rows_with_required_columns == len(raw_rows),
+        "invalid_ohlc_count": invalid_ohlc_count,
+        "duplicate_timestamp_count": duplicate_timestamp_count,
+        "monotonic_timestamp_order": monotonic,
+        "reason_if_unparseable": reason,
+        "rows": parsed_rows,
+    }
+
+
+def choose_fallback_proxy_symbol(
+    parseability_by_symbol: dict[str, dict[str, Any]],
+    *,
+    preferred_order: Iterable[str] = DEFAULT_CANDIDATE_SYMBOLS,
+    excluded_symbol: str | None = None,
+) -> str | None:
+    excluded = _normalize_symbol(excluded_symbol)
+    for symbol in preferred_order:
+        normalized = _normalize_symbol(symbol)
+        if excluded and normalized == excluded:
+            continue
+        detail = parseability_by_symbol.get(normalized, {})
+        if int(detail.get("parseable_row_count") or 0) > 0:
+            return normalized
+    return None
 
 
 def _assess_symbol(
@@ -428,6 +633,87 @@ def _row_quality(series_by_timeframe: dict[str, list[Any]]) -> dict[str, Any]:
     }
 
 
+def _adapt_single_proxy_row(raw: Any, *, symbol: str, timeframe: str) -> dict[str, Any] | None:
+    timestamp = _parse_timestamp(
+        _row_value(raw, "time") or _row_value(raw, "timestamp") or _row_value(raw, "timestamp_utc")
+    )
+    ohlc = {key: _number_or_none(_row_value(raw, key)) for key in ("open", "high", "low", "close")}
+    if timestamp is None or any(value is None for value in ohlc.values()):
+        return None
+    open_value = float(ohlc["open"])
+    high_value = float(ohlc["high"])
+    low_value = float(ohlc["low"])
+    close_value = float(ohlc["close"])
+    if (
+        min(open_value, high_value, low_value, close_value) <= 0
+        or high_value < max(open_value, close_value)
+        or low_value > min(open_value, close_value)
+    ):
+        return None
+    return {
+        "timestamp": timestamp,
+        "timestamp_utc": _format_ts(timestamp),
+        "symbol": _normalize_symbol(symbol),
+        "timeframe": str(timeframe),
+        "open": open_value,
+        "high": high_value,
+        "low": low_value,
+        "close": close_value,
+        "tick_volume": _number_or_none(_row_value(raw, "tick_volume") or _row_value(raw, "volume")),
+        "spread": _number_or_none(_row_value(raw, "spread")),
+        "source": _row_value(raw, "source") or "mt5_readonly_or_injected",
+    }
+
+
+def _proxy_required_columns_present(raw: Any) -> bool:
+    has_timestamp = any(_has_row_key(raw, key) for key in PROXY_TIMESTAMP_COLUMNS)
+    return has_timestamp and all(_has_row_key(raw, key) for key in ("open", "high", "low", "close"))
+
+
+def _proxy_unparseable_reason(
+    *,
+    copied_row_count: int,
+    parseable_row_count: int,
+    required_columns_present: bool,
+    missing_timestamp_count: int,
+    invalid_ohlc_count: int,
+    duplicate_timestamp_count: int,
+    monotonic_timestamp_order: bool | None,
+) -> str | None:
+    if parseable_row_count > 0:
+        return None
+    if copied_row_count <= 0:
+        return "no_mt5_rows"
+    if not required_columns_present:
+        return "parser_mismatch_or_missing_required_columns"
+    if missing_timestamp_count > 0:
+        return "timestamp_conversion_mismatch"
+    if invalid_ohlc_count > 0:
+        return "invalid_ohlc"
+    if duplicate_timestamp_count > 0:
+        return "duplicate_timestamps"
+    if monotonic_timestamp_order is False:
+        return "non_monotonic_timestamps"
+    return "no_parseable_rows"
+
+
+def _monotonic_non_decreasing(values: list[datetime]) -> bool:
+    return all(current >= previous for previous, current in zip(values, values[1:]))
+
+
+def _has_row_key(row: Any, key: str) -> bool:
+    if isinstance(row, dict):
+        return key in row
+    names = getattr(getattr(row, "dtype", None), "names", None)
+    if names and key in names:
+        return True
+    try:
+        row[key]
+        return True
+    except (TypeError, KeyError, IndexError, ValueError):
+        return hasattr(row, key)
+
+
 def _discover_mt5_detail(*, symbols: list[str], mt5_module: Any | None) -> dict[str, Any]:
     mt5 = mt5_module
     if mt5 is None:
@@ -488,6 +774,150 @@ def _discover_mt5_detail(*, symbols: list[str], mt5_module: Any | None) -> dict[
             shutdown_called=shutdown_called,
             blockers=[f"mt5_readonly_detail_exception:{type(exc).__name__}:{exc}"],
         )
+
+
+def _copy_m15_rows_by_symbol(*, symbols: list[str], mt5_module: Any | None) -> dict[str, Any]:
+    mt5 = mt5_module
+    if mt5 is None:
+        try:
+            mt5 = importlib.import_module("MetaTrader5")
+        except ImportError:
+            return {
+                "rows_by_symbol": {},
+                "summary": _empty_adapter_mt5_summary(
+                    attempted=True,
+                    status="metatrader5_package_unavailable",
+                    blockers=["metatrader5_package_unavailable"],
+                ),
+            }
+    initialized = False
+    shutdown_called = False
+    try:
+        if not mt5.initialize():
+            return {
+                "rows_by_symbol": {},
+                "summary": _empty_adapter_mt5_summary(
+                    attempted=True,
+                    status="mt5_initialize_failed",
+                    blockers=["mt5_initialize_failed"],
+                ),
+            }
+        initialized = True
+        mt5_timeframe = getattr(mt5, "TIMEFRAME_M15", None)
+        copy_rates = getattr(mt5, "copy_rates_from_pos", None)
+        available = sorted({_symbol_name(item) for item in (mt5.symbols_get() or []) if _symbol_name(item)})
+        rows_by_symbol: dict[str, list[Any]] = {}
+        attempted_by_symbol = {}
+        for symbol in symbols:
+            rows: list[Any] = []
+            attempted = symbol in available and mt5_timeframe is not None and callable(copy_rates)
+            if attempted:
+                copied = copy_rates(symbol, mt5_timeframe, 0, 10000)
+                rows = list(copied) if copied is not None else []
+            rows_by_symbol[symbol] = rows
+            attempted_by_symbol[symbol] = attempted
+        mt5.shutdown()
+        shutdown_called = True
+        return {
+            "rows_by_symbol": rows_by_symbol,
+            "summary": {
+                "attempted": True,
+                "status": "readonly_m15_copy_rates_completed",
+                "timeframe": "M15",
+                "candidate_symbols_available": [symbol for symbol in symbols if symbol in available],
+                "copy_rates_attempted_by_symbol": attempted_by_symbol,
+                "copy_rates_rows_total": sum(len(rows) for rows in rows_by_symbol.values()),
+                "mt5_initialized": initialized,
+                "mt5_shutdown_called": shutdown_called,
+                "order_send_called": False,
+                "order_check_called": False,
+                "blockers": [],
+            },
+        }
+    except Exception as exc:
+        if initialized and not shutdown_called:
+            mt5.shutdown()
+            shutdown_called = True
+        return {
+            "rows_by_symbol": {},
+            "summary": _empty_adapter_mt5_summary(
+                attempted=True,
+                status="mt5_readonly_m15_copy_rates_failed",
+                initialized=initialized,
+                shutdown_called=shutdown_called,
+                blockers=[f"mt5_readonly_m15_copy_rates_exception:{type(exc).__name__}:{exc}"],
+            ),
+        }
+
+
+def _empty_adapter_mt5_summary(
+    *,
+    attempted: bool,
+    status: str = "not_attempted",
+    initialized: bool = False,
+    shutdown_called: bool = False,
+    blockers: list[str] | None = None,
+) -> dict[str, Any]:
+    return {
+        "attempted": attempted,
+        "status": status,
+        "timeframe": "M15",
+        "candidate_symbols_available": [],
+        "copy_rates_attempted_by_symbol": {},
+        "copy_rates_rows_total": 0,
+        "mt5_initialized": initialized,
+        "mt5_shutdown_called": shutdown_called,
+        "order_send_called": False,
+        "order_check_called": False,
+        "blockers": blockers or [],
+    }
+
+
+def _strip_adapter_rows(detail: dict[str, Any]) -> dict[str, Any]:
+    return {key: value for key, value in detail.items() if key != "rows"}
+
+
+def _selected_parseable_symbol(parseability: dict[str, dict[str, Any]], symbols: list[str]) -> str | None:
+    for symbol in symbols:
+        if _parseable_count(parseability.get(symbol)) > 0:
+            return symbol
+    return None
+
+
+def _parseable_count(detail: dict[str, Any] | None) -> int:
+    return int((detail or {}).get("parseable_row_count") or 0)
+
+
+def _v0_68_blocker_root_cause(
+    ranker: Any,
+    event_study: Any,
+    parseability: dict[str, dict[str, Any]],
+    mt5_summary: dict[str, Any],
+) -> str:
+    selected = "DXYN"
+    detail = parseability.get(selected, {})
+    if not mt5_summary.get("attempted"):
+        return "fallback_not_attempted"
+    if selected not in set(mt5_summary.get("candidate_symbols_available") or []):
+        return "symbol_specific_issue"
+    if detail.get("copy_rates_attempted") is False:
+        return "missing_m15"
+    if int(detail.get("copied_row_count") or 0) <= 0:
+        return "no_mt5_rows"
+    if _parseable_count(detail) <= 0:
+        reason = str(detail.get("reason_if_unparseable") or "")
+        if reason == "timestamp_conversion_mismatch":
+            return "timestamp_conversion_mismatch"
+        if reason == "invalid_ohlc":
+            return "invalid_ohlc"
+        if reason == "parser_mismatch_or_missing_required_columns":
+            return "parser_mismatch"
+        return reason or "parser_mismatch"
+    if _parseable_count(detail) > 0 and int(detail.get("copied_row_count") or 0) > 0:
+        return "timestamp_conversion_mismatch"
+    if isinstance(ranker, dict) and ranker.get("selected_proxy_symbol_or_null") == selected:
+        return "parser_mismatch"
+    return "fallback_not_attempted"
 
 
 def _empty_mt5_detail(
@@ -620,11 +1050,21 @@ def _resolve(root: Path, path: str | Path) -> Path:
 
 def _row_value(row: Any, key: str) -> Any:
     if isinstance(row, dict):
-        return row.get(key)
+        return _coerce_scalar(row.get(key))
     try:
-        return row[key]
+        return _coerce_scalar(row[key])
     except (TypeError, KeyError, IndexError, ValueError):
-        return getattr(row, key, None)
+        return _coerce_scalar(getattr(row, key, None))
+
+
+def _coerce_scalar(value: Any) -> Any:
+    item = getattr(value, "item", None)
+    if callable(item):
+        try:
+            return item()
+        except (TypeError, ValueError):
+            return value
+    return value
 
 
 def _number_or_none(value: Any) -> float | None:

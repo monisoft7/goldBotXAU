@@ -2,14 +2,12 @@
   "aligned_dataset_created": false,
   "approved_for_strategy_testing": false,
   "approved_for_trade_filtering": false,
-  "blockers": [
-    "selected_proxy_rows_unavailable"
-  ],
+  "blockers": [],
   "clear_lead_count": 0,
   "clear_leads": [],
   "data_csv_touched": false,
   "demo_execution_allowed": false,
-  "event_count": 0,
+  "event_count": 30,
   "executable_candidate_created": false,
   "label_conditioned_summary": {
     "dxy_gold_pressure_aligned": {
@@ -39,15 +37,18 @@
       "validation_event_count": 0
     },
     "dxy_shock_down": {
-      "candidate_count": 0,
-      "diagnostic_note": "label did not occur in the available event sample",
-      "event_count": 0,
+      "candidate_count": 4,
+      "diagnostic_note": "aggregate label slice is descriptive only because train/validation sample is small",
+      "event_count": 11,
       "label": "dxy_shock_down",
-      "positive_outcome_share_train": 0.0,
+      "positive_outcome_share_train": 0.36363636363636365,
       "positive_outcome_share_validation": 0.0,
-      "source_versions": [],
-      "train_average_return_r": 0.0,
-      "train_event_count": 0,
+      "source_versions": [
+        "v0_53",
+        "v0_60"
+      ],
+      "train_average_return_r": -0.30615764096454107,
+      "train_event_count": 11,
       "validation_average_return_r": 0.0,
       "validation_event_count": 0
     },
@@ -65,28 +66,34 @@
       "validation_event_count": 0
     },
     "dxy_strength": {
-      "candidate_count": 0,
-      "diagnostic_note": "label did not occur in the available event sample",
-      "event_count": 0,
+      "candidate_count": 3,
+      "diagnostic_note": "aggregate label slice is descriptive only because train/validation sample is small",
+      "event_count": 3,
       "label": "dxy_strength",
-      "positive_outcome_share_train": 0.0,
+      "positive_outcome_share_train": 0.6666666666666666,
       "positive_outcome_share_validation": 0.0,
-      "source_versions": [],
-      "train_average_return_r": 0.0,
-      "train_event_count": 0,
+      "source_versions": [
+        "v0_53",
+        "v0_60"
+      ],
+      "train_average_return_r": 0.5572060997373292,
+      "train_event_count": 3,
       "validation_average_return_r": 0.0,
       "validation_event_count": 0
     },
     "dxy_weakness": {
-      "candidate_count": 0,
-      "diagnostic_note": "label did not occur in the available event sample",
-      "event_count": 0,
+      "candidate_count": 5,
+      "diagnostic_note": "aggregate label slice is descriptive only because train/validation sample is small",
+      "event_count": 15,
       "label": "dxy_weakness",
-      "positive_outcome_share_train": 0.0,
+      "positive_outcome_share_train": 0.3333333333333333,
       "positive_outcome_share_validation": 0.0,
-      "source_versions": [],
-      "train_average_return_r": 0.0,
-      "train_event_count": 0,
+      "source_versions": [
+        "v0_53",
+        "v0_60"
+      ],
+      "train_average_return_r": -0.16417805063137528,
+      "train_event_count": 15,
       "validation_average_return_r": 0.0,
       "validation_event_count": 0
     },
@@ -176,24 +183,33 @@
     "v0_63"
   ],
   "proxy_readonly_summary": {
+    "adapter_version": "v0_68_1",
     "alignment_storage": "in_memory_only",
     "allowed_join_direction": "backward",
     "attempted": true,
-    "blockers": [
-      "selected_proxy_rows_unavailable"
-    ],
+    "blockers": [],
     "candidate_symbols_available": [
       "DXYN",
       "USDX"
     ],
+    "copied_row_count": 10000,
+    "duplicate_timestamp_count": 0,
+    "fallback_attempted": false,
+    "first_timestamp": "2021-09-15T18:30:00",
+    "invalid_ohlc_count": 0,
+    "last_timestamp": "2024-10-02T23:00:00",
+    "monotonic_timestamp_order": true,
     "mt5_initialized": true,
     "mt5_shutdown_called": true,
     "order_check_called": false,
     "order_send_called": false,
+    "parseable_row_count": 10000,
     "persistent_aligned_csv_created": false,
-    "row_count": 0,
+    "reason_if_unparseable": null,
+    "required_columns_present": true,
+    "row_count": 10000,
     "selected_proxy_symbol": "DXYN",
-    "status": "selected_proxy_rows_unavailable",
+    "status": "readonly_proxy_rows_loaded",
     "timeframe": "M15"
   },
   "recommended_next_step": "v0_69_yield_or_brent_context_feasibility_before_new_strategy",
@@ -230,8 +246,42 @@
   "selected_proxy_symbol": "DXYN",
   "source_label_design_version": "v0_67",
   "source_proxy_ranker_version": "v0_66",
-  "strongest_diagnostic_observations": [],
-  "study_status": "dxy_conditioned_event_study_blocked_missing_data",
+  "strongest_diagnostic_observations": [
+    {
+      "candidate_count": 5,
+      "diagnostic_strength": "descriptive_only",
+      "event_count": 15,
+      "label": "dxy_weakness",
+      "observation_scope": "aggregate_train_validation_diagnostic_only_not_strategy",
+      "train_average_return_r": -0.16417805063137528,
+      "train_event_count": 15,
+      "validation_average_return_r": 0.0,
+      "validation_event_count": 0
+    },
+    {
+      "candidate_count": 4,
+      "diagnostic_strength": "descriptive_only",
+      "event_count": 11,
+      "label": "dxy_shock_down",
+      "observation_scope": "aggregate_train_validation_diagnostic_only_not_strategy",
+      "train_average_return_r": -0.30615764096454107,
+      "train_event_count": 11,
+      "validation_average_return_r": 0.0,
+      "validation_event_count": 0
+    },
+    {
+      "candidate_count": 3,
+      "diagnostic_strength": "descriptive_only",
+      "event_count": 3,
+      "label": "dxy_strength",
+      "observation_scope": "aggregate_train_validation_diagnostic_only_not_strategy",
+      "train_average_return_r": 0.5572060997373292,
+      "train_event_count": 3,
+      "validation_average_return_r": 0.0,
+      "validation_event_count": 0
+    }
+  ],
+  "study_status": "dxy_conditioned_event_study_completed_no_clear_leads",
   "study_version": "v0_68",
   "threshold_search_performed": false,
   "trade_recommendation_output": false,

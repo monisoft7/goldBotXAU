@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_68"
+CONTEXT_VERSION = "v0_68_1"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1155,6 +1155,54 @@ def _dxy_regime_label_design_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _dxy_proxy_row_adapter_summary(root: Path) -> dict[str, Any] | None:
+    adapter_path = _report_path(root, "xauusd_dxy_proxy_row_adapter_v0_68_1.json")
+    if not adapter_path.exists():
+        return None
+    report = json.loads(adapter_path.read_text(encoding="utf-8"))
+    return {
+        "adapter_version": report.get("adapter_version"),
+        "adapter_status": report.get("adapter_status"),
+        "source_quality_ranker_version": report.get("source_quality_ranker_version"),
+        "source_event_study_version": report.get("source_event_study_version"),
+        "symbols_checked": report.get("symbols_checked"),
+        "selected_parseable_proxy_symbol_or_null": report.get("selected_parseable_proxy_symbol_or_null"),
+        "fallback_proxy_symbol_or_null": report.get("fallback_proxy_symbol_or_null"),
+        "v0_68_blocker_root_cause": report.get("v0_68_blocker_root_cause"),
+        "shared_adapter_created_or_updated": report.get("shared_adapter_created_or_updated"),
+        "event_study_updated_to_use_shared_adapter": report.get("event_study_updated_to_use_shared_adapter"),
+        "safe_asof_alignment_possible_after_adapter": report.get("safe_asof_alignment_possible_after_adapter"),
+        "aligned_dataset_created": report.get("aligned_dataset_created"),
+        "data_csv_touched": report.get("data_csv_touched"),
+        "lookahead_risk_detected": report.get("lookahead_risk_detected"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "aligned_dataset_created",
+                "data_csv_touched",
+                "lookahead_risk_detected",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
 def _dxy_conditioned_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_dxy_conditioned_event_study_v0_68.json")
     if not study_path.exists():
@@ -1442,6 +1490,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_dxy_proxy_context_audit": _dxy_proxy_context_audit_summary(root),
         "latest_dxy_proxy_quality_ranker": _dxy_proxy_quality_ranker_summary(root),
         "latest_dxy_regime_label_design": _dxy_regime_label_design_summary(root),
+        "latest_dxy_proxy_row_adapter": _dxy_proxy_row_adapter_summary(root),
         "latest_dxy_conditioned_event_study": _dxy_conditioned_event_study_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
