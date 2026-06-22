@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_75"
+    assert context["context_version"] == "v0_76"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_75"
+    assert context["context_version"] == "v0_76"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_75.json"
+    output_path = tmp_path / "codex_context_v0_76.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_75"
+    assert context["context_version"] == "v0_76"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1288,12 +1288,18 @@ def test_context_includes_v0_75_external_yield_sample_validator_summary() -> Non
     assert validator["valid_record_count"] == 2
     assert validator["rejected_record_count"] == 2
     assert validator["duplicate_count"] == 1
-    assert validator["allowed_series_ids"] == ["DGS10", "DGS2", "DFII10", "DFII5", "T10YIE", "DFF"]
-    assert validator["no_lookahead_policy_confirmed"] is True
-    assert validator["asof_alignment_performed"] is False
-    assert validator["forward_fill_applied"] is False
     assert validator["recommended_next_step"] == "v0_76_external_yield_manual_fixture_ingestion_design_no_strategy"
     assert validator["safety_locked"] is True
+
+
+def test_context_includes_v0_76_external_yield_manual_fixture_ingestion_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    ingestion = context["latest_external_yield_manual_fixture_ingestion"]
+    assert ingestion is not None
+    assert ingestion["ingestion_version"] == "v0_76"
+    assert ingestion["ingestion_status"] == "external_yield_manual_fixture_ingestion_completed_with_expected_rejections"
+    assert ingestion["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

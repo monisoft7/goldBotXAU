@@ -1,0 +1,160 @@
+{
+  "allowed_series_ids": [
+    "DGS10",
+    "DGS2",
+    "DFII10",
+    "DFII5",
+    "T10YIE",
+    "DFF"
+  ],
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "asof_alignment_performed": false,
+  "coverage_by_series": {
+    "DFII10": {
+      "first_observation_date": "2026-06-18",
+      "last_observation_date": "2026-06-18",
+      "record_count": 1
+    },
+    "DGS10": {
+      "first_observation_date": "2026-06-18",
+      "last_observation_date": "2026-06-18",
+      "record_count": 1
+    },
+    "DGS2": {
+      "first_observation_date": "2026-06-17",
+      "last_observation_date": "2026-06-17",
+      "record_count": 1
+    }
+  },
+  "data_csv_touched": false,
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "duplicate_count": 1,
+  "duplicate_keys": [
+    {
+      "observation_date": "2026-06-18",
+      "series_id": "DGS10"
+    }
+  ],
+  "executable_candidate_created": false,
+  "explicit_missing_value_count": 1,
+  "explicit_missing_value_markers_allowed": [
+    "",
+    ".",
+    "NA",
+    "N/A",
+    "NULL",
+    "null"
+  ],
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "fixture_source": "inline_or_test_fixture_only",
+  "forward_fill_applied": false,
+  "future_label_candidates_preserved": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling"
+  ],
+  "generated_at_utc": "2026-06-22T22:23:14Z",
+  "ingestion_status": "external_yield_manual_fixture_ingestion_completed_with_expected_rejections",
+  "ingestion_version": "v0_76",
+  "intraday_timestamp_inferred": false,
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "market_csv_created": false,
+  "no_lookahead_policy_confirmed": true,
+  "normalized_record_count": 3,
+  "normalized_records": [
+    {
+      "input_index": 1,
+      "observation_date": "2026-06-18",
+      "quality_flag": "source_missing_marker",
+      "release_timestamp": "2026-06-19T20:15:00+00:00",
+      "series_id": "DFII10",
+      "source_name": "FRED / Federal Reserve Economic Data",
+      "source_reference": "explicit missing marker policy sample",
+      "value": null,
+      "value_policy": "explicit_missing_marker",
+      "value_unit": "percent",
+      "vintage_date": "2026-06-19"
+    },
+    {
+      "input_index": 0,
+      "observation_date": "2026-06-18",
+      "quality_flag": "sample_valid",
+      "release_timestamp": "2026-06-19T20:15:00+00:00",
+      "series_id": "DGS10",
+      "source_name": "FRED / Federal Reserve Economic Data",
+      "source_reference": "inline manual fixture only",
+      "value": 4.12,
+      "value_policy": "numeric_observed",
+      "value_unit": "percent",
+      "vintage_date": "2026-06-19"
+    },
+    {
+      "input_index": 2,
+      "observation_date": "2026-06-17",
+      "quality_flag": "sample_valid",
+      "release_timestamp": "2026-06-18T20:15:00+00:00",
+      "series_id": "DGS2",
+      "source_name": "FRED / Federal Reserve Economic Data",
+      "source_reference": "inline manual fixture only",
+      "value": 4.7,
+      "value_policy": "numeric_observed",
+      "value_unit": "percent",
+      "vintage_date": "2026-06-18"
+    }
+  ],
+  "oos_used": false,
+  "optional_columns": [
+    "release_timestamp",
+    "vintage_date",
+    "value_unit",
+    "source_reference",
+    "quality_flag"
+  ],
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "recommended_next_step": "v0_77_external_yield_asof_alignment_design_no_strategy",
+  "records_rejected": 2,
+  "records_seen": 5,
+  "records_valid": 3,
+  "rejection_reasons": {
+    "duplicate_series_id_observation_date": 1,
+    "empty_source_name": 1,
+    "invalid_non_numeric_value": 1,
+    "invalid_observation_date": 1,
+    "invalid_series_id": 1,
+    "release_timestamp_missing_timezone": 1
+  },
+  "repeated_oos_review": false,
+  "required_columns": [
+    "series_id",
+    "observation_date",
+    "value",
+    "source_name"
+  ],
+  "retune_performed": false,
+  "source_schema_version": "v0_74",
+  "source_validator_version": "v0_75",
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "warnings": [
+    "manual_fixture_ingestion_only_not_external_data_download",
+    "normalized_records_are_report_summary_only_not_persistent_dataset",
+    "no_xauusd_asof_alignment_performed",
+    "yield_labels_are_not_trade_blockers"
+  ]
+}
