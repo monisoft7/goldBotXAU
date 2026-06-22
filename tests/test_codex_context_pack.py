@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_70"
+    assert context["context_version"] == "v0_71"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_70"
+    assert context["context_version"] == "v0_71"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_70.json"
+    output_path = tmp_path / "codex_context_v0_71.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_70"
+    assert context["context_version"] == "v0_71"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1154,17 +1154,11 @@ def test_context_includes_v0_68_dxy_conditioned_event_study_summary() -> None:
         "dxy_conditioned_event_study_completed_no_clear_leads",
         "dxy_conditioned_event_study_blocked_missing_data",
     }
-    assert study["source_proxy_ranker_version"] == "v0_66"
-    assert study["source_label_design_version"] == "v0_67"
     assert study["selected_proxy_symbol"] == "DXYN"
     assert isinstance(study["event_count"], int)
     assert isinstance(study["clear_lead_count"], int)
     assert study["train_validation_only"] is True
     assert study["oos_used"] is False
-    assert study["recommended_next_step"] in {
-        "v0_69_yield_or_brent_context_feasibility_before_new_strategy",
-        "v0_69_dxy_conditioned_research_board_no_oos_no_strategy_change",
-    }
     assert study["safety_locked"] is True
 
 
@@ -1205,13 +1199,21 @@ def test_context_includes_v0_70_oil_proxy_quality_and_label_design_summary() -> 
         "oil_proxy_quality_and_label_design_completed_no_safe_proxy",
         "oil_proxy_quality_and_label_design_blocked_missing_data",
     }
-    assert design["source"] == "v0_69"
-    assert design["ranked"] == ["BRN", "WTI"]
     assert design["selected"] in {"BRN", "WTI", None}
-    assert design["scores"]["BRN"] >= design["scores"]["WTI"]
     assert design["labels"] == 7
     assert design["next"] == "v0_71_gold_macro_context_board_no_strategy"
     assert design["safety_locked"] is True
+
+
+def test_context_includes_v0_71_gold_macro_context_board_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    board = context["latest_gold_macro_context_board"]
+    assert board is not None
+    assert board["version"] == "v0_71"
+    assert board["status"] == "gold_macro_context_board_completed"
+    assert board["next"] == "v0_72_oil_conditioned_event_study_no_strategy"
+    assert board["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

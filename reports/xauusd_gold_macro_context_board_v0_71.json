@@ -1,0 +1,110 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "board_status": "gold_macro_context_board_completed",
+  "board_version": "v0_71",
+  "context_layers_not_ready": [
+    "dxy_no_clear_leads"
+  ],
+  "context_layers_ready_for_diagnostic_study": [
+    "oil"
+  ],
+  "data_csv_touched": false,
+  "decision_reason": "DXY has no clear leads, while oil has feasible ranked proxies and descriptive labels ready for a diagnostic event study.",
+  "demo_execution_allowed": false,
+  "dxy_alone_gives_research_lead": false,
+  "dxy_clear_lead_count": 0,
+  "dxy_context_summary": {
+    "clear_lead_count": 0,
+    "decision_note": "DXY event study completed with no clear leads, so no DXY-conditioned strategy board is recommended.",
+    "event_count": 30,
+    "event_study_status": "dxy_conditioned_event_study_completed_no_clear_leads",
+    "fallback_proxy_symbol": "USDX",
+    "feasibility_status": "dxy_proxy_context_feasibility_completed",
+    "research_lead_available": false,
+    "selected_proxy_symbol": "DXYN",
+    "status": "dxy_context_reviewed",
+    "strategy_board_recommended": false
+  },
+  "executable_candidate_created": false,
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "macro_context_decision": "run_oil_conditioned_event_study_next",
+  "missing_inputs": [],
+  "next_research_step": "v0_72_oil_conditioned_event_study_no_strategy",
+  "oil_context_summary": {
+    "fallback_proxy_symbol": "WTI",
+    "feasibility_status": "oil_proxy_context_feasibility_completed",
+    "label_count": 7,
+    "label_design_status": "oil_proxy_quality_and_label_design_completed",
+    "labels_defined": [
+      "oil_strength",
+      "oil_weakness",
+      "oil_shock_up",
+      "oil_shock_down",
+      "gold_oil_inflation_pressure_aligned",
+      "gold_oil_safe_haven_conflict",
+      "oil_supply_shock_context_candidate"
+    ],
+    "quality_design_status": "oil_proxy_quality_and_label_design_completed",
+    "quality_scores_by_symbol": {
+      "BRN": 121,
+      "WTI": 118
+    },
+    "ready_for_diagnostic_event_study": true,
+    "selected_proxy_symbol": "BRN",
+    "status": "oil_context_reviewed",
+    "usable_proxy_symbols": [
+      "BRN",
+      "WTI"
+    ]
+  },
+  "oil_event_study_completed": false,
+  "oil_ready_for_event_study": true,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "rejected_next_steps": [
+    {
+      "reason": "DXY event study produced no clear leads.",
+      "step": "dxy_conditioned_strategy_board"
+    },
+    {
+      "reason": "This board is decision/reporting only and does not create strategy logic.",
+      "step": "new_strategy_creation"
+    },
+    {
+      "reason": "The macro context board is train/validation-only research infrastructure.",
+      "step": "oos_review"
+    },
+    {
+      "reason": "Execution remains outside this research-only board.",
+      "step": "live_or_demo_execution"
+    },
+    {
+      "reason": "Yield/real-yield can wait until the oil-conditioned diagnostic event study is attempted, unless oil inputs are missing.",
+      "step": "yield_real_yield_feasibility_next"
+    }
+  ],
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "source_versions_considered": [
+    "v0_65",
+    "v0_66",
+    "v0_67",
+    "v0_68",
+    "v0_68_1",
+    "v0_69",
+    "v0_70"
+  ],
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "yield_real_yield_feasibility_should_wait": true
+}

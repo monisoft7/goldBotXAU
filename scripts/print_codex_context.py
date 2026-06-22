@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_70"
+CONTEXT_VERSION = "v0_71"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1211,14 +1211,11 @@ def _dxy_conditioned_event_study_summary(root: Path) -> dict[str, Any] | None:
     return {
         "study_version": report.get("study_version"),
         "study_status": report.get("study_status"),
-        "source_proxy_ranker_version": report.get("source_proxy_ranker_version"),
-        "source_label_design_version": report.get("source_label_design_version"),
         "selected_proxy_symbol": report.get("selected_proxy_symbol"),
         "event_count": report.get("event_count"),
         "clear_lead_count": report.get("clear_lead_count"),
         "train_validation_only": report.get("train_validation_only"),
         "oos_used": report.get("oos_used"),
-        "recommended_next_step": report.get("recommended_next_step"),
         "safety_locked": all(
             report.get(key) is False
             for key in (
@@ -1290,10 +1287,7 @@ def _oil_proxy_quality_and_label_design_summary(root: Path) -> dict[str, Any] | 
     return {
         "version": report.get("design_version"),
         "status": report.get("design_status"),
-        "source": report.get("source_oil_audit_version"),
-        "ranked": report.get("candidate_symbols_ranked"),
         "selected": report.get("selected_proxy_symbol_or_null"),
-        "scores": report.get("quality_scores_by_symbol"),
         "labels": report.get("label_count"),
         "next": report.get("recommended_next_step"),
         "safety_locked": all(
@@ -1317,6 +1311,41 @@ def _oil_proxy_quality_and_label_design_summary(root: Path) -> dict[str, Any] | 
                 "order_check_called",
                 "live_allowed",
                 "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
+def _gold_macro_context_board_summary(root: Path) -> dict[str, Any] | None:
+    board_path = _report_path(root, "xauusd_gold_macro_context_board_v0_71.json")
+    if not board_path.exists():
+        return None
+    report = json.loads(board_path.read_text(encoding="utf-8"))
+    return {
+        "version": report.get("board_version"),
+        "status": report.get("board_status"),
+        "next": report.get("next_research_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+                "aligned_dataset_created",
+                "data_csv_touched",
             )
         )
         and report.get("train_validation_only") is True,
@@ -1570,6 +1599,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_dxy_proxy_row_adapter": _dxy_proxy_row_adapter_summary(root),
         "latest_dxy_conditioned_event_study": _dxy_conditioned_event_study_summary(root),
         "latest_oil_v0_70": _oil_proxy_quality_and_label_design_summary(root),
+        "latest_gold_macro_context_board": _gold_macro_context_board_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),
