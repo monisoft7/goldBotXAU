@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_73"
+    assert context["context_version"] == "v0_74"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_73"
+    assert context["context_version"] == "v0_74"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_73.json"
+    output_path = tmp_path / "codex_context_v0_74.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_73"
+    assert context["context_version"] == "v0_74"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1258,6 +1258,22 @@ def test_context_includes_v0_73_yield_context_feasibility_summary() -> None:
         "v0_74_external_yield_dataset_schema_design_no_strategy",
     }
     assert audit["safety_locked"] is True
+
+
+def test_context_includes_v0_74_external_yield_dataset_schema_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    schema = context["latest_external_yield_dataset_schema"]
+    assert schema is not None
+    assert schema["schema_version"] == "v0_74"
+    assert schema["schema_status"] == "external_yield_dataset_schema_completed"
+    assert schema["source_yield_feasibility_version"] == "v0_73"
+    assert schema["external_dataset_required"] is True
+    assert schema["candidate_series"] == ["DGS10", "DGS2", "DFII10", "DFII5", "T10YIE", "DFF"]
+    assert schema["required_future_columns"] == ["series_id", "observation_date", "value", "source_name"]
+    assert schema["future_label_count"] == 8
+    assert schema["recommended_next_step"] == "v0_75_external_yield_sample_fixture_validator_no_strategy"
+    assert schema["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

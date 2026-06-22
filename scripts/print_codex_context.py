@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_73"
+CONTEXT_VERSION = "v0_74"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1430,6 +1430,55 @@ def _yield_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _external_yield_dataset_schema_summary(root: Path) -> dict[str, Any] | None:
+    schema_path = _report_path(root, "xauusd_external_yield_dataset_schema_v0_74.json")
+    if not schema_path.exists():
+        return None
+    report = json.loads(schema_path.read_text(encoding="utf-8"))
+    return {
+        "schema_version": report.get("schema_version"),
+        "schema_status": report.get("schema_status"),
+        "source_yield_feasibility_version": report.get("source_yield_feasibility_version"),
+        "external_dataset_required": report.get("external_dataset_required"),
+        "candidate_series": [
+            series.get("series_id")
+            for series in report.get("candidate_series", [])
+            if isinstance(series, dict)
+        ],
+        "required_future_columns": report.get("required_future_columns"),
+        "future_label_count": len(report.get("future_label_candidates", []))
+        if isinstance(report.get("future_label_candidates"), list)
+        else None,
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "external_api_called",
+                "external_data_downloaded",
+                "dataset_file_created",
+                "market_csv_created",
+                "data_csv_touched",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1685,6 +1734,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_gold_macro_context_board": _gold_macro_context_board_summary(root),
         "latest_oil_conditioned_event_study": _oil_conditioned_event_study_summary(root),
         "latest_yield_context_feasibility": _yield_context_feasibility_summary(root),
+        "latest_external_yield_dataset_schema": _external_yield_dataset_schema_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

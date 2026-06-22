@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_73 Yield context feasibility audit
+- Last completed checkpoint: v0_74 External yield dataset schema contract
 - OOS: no OOS used in v0_68_1; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Current test baseline: 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_73 audited local/MT5 US yield and rate proxy feasibility, found no usable local yield proxy among the requested candidate symbols, documented external dataset schema requirements for FRED/Federal Reserve series, selected next step `v0_74_external_yield_dataset_schema_design_no_strategy`, and did not perform strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
+- Execution status: research infrastructure only; v0_74 defined the external yield / real-yield dataset schema and ingestion contract needed after v0_73 found no usable local yield proxy; it documented FRED/Federal Reserve series references only (`DGS10`, `DGS2`, `DFII10`, `DFII5`, `T10YIE`, `DFF`), accepted future CSV/JSONL columns, release/as-of/no-lookahead policies, and future label candidates without calling external APIs, downloading data, creating dataset files, touching `data/*.csv`, approving trade filtering, or modifying trading rules
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -46,16 +46,61 @@
 - Latest gold macro context board: `reports/xauusd_gold_macro_context_board_v0_71.json`
 - Latest oil-conditioned event study: `reports/xauusd_oil_conditioned_event_study_v0_72.json`
 - Latest yield context feasibility audit: `reports/xauusd_yield_context_feasibility_v0_73.json`
+- Latest external yield dataset schema: `reports/xauusd_external_yield_dataset_schema_v0_74.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_73_yield_context_feasibility_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_73`)
+- Latest checkpoint: `docs/checkpoints/v0_74_external_yield_dataset_schema_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_74`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `external_yield_dataset_schema_design_next`; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, and v0_73 found no usable local yield proxy, so the next safest research branch is external yield dataset schema design only
-- Next safe task: v0_74_external_yield_dataset_schema_design_no_strategy; keep yield/real-yield work as diagnostic research only, use schema/planning only unless local data is explicitly provided, do not call external web APIs unless separately approved, and keep no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `external_yield_dataset_schema_completed`; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, v0_73 found no usable local yield proxy, and v0_74 completed schema/design only for future external yield fixture validation
+- Next safe task: v0_75_external_yield_sample_fixture_validator_no_strategy; keep yield/real-yield work as diagnostic research only, use local synthetic/sample fixture validation only unless separately approved, do not call external web APIs, do not download external data, do not create persistent market CSV datasets, do not touch `data/*.csv`, and keep no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_74 External Yield Dataset Schema Result
+
+- Schema module: `src/research/xauusd_external_yield_dataset_schema.py`
+- Schema script: `scripts/build_xauusd_external_yield_dataset_schema_v0_74.py`
+- Schema report: `reports/xauusd_external_yield_dataset_schema_v0_74.json`
+- Schema version: `v0_74`
+- Schema status: `external_yield_dataset_schema_completed`
+- Source yield feasibility version: `v0_73`
+- External dataset required: `true`
+- Candidate external series documented as references only: `DGS10`, `DGS2`, `DFII10`, `DFII5`, `T10YIE`, `DFF`
+- Accepted future file formats: `CSV`, `JSONL`
+- Required future columns: `series_id`, `observation_date`, `value`, `source_name`
+- Optional future columns: `release_timestamp`, `vintage_date`, `value_unit`, `source_reference`, `quality_flag`
+- Required schema fields include release timestamp, timezone, missing-value, revision, as-of alignment, no-lookahead, allowed forward-fill, and data-quality flag policies
+- Future label candidates only: `nominal_yield_rising`, `nominal_yield_falling`, `real_yield_rising`, `real_yield_falling`, `yield_shock_up`, `yield_shock_down`, `gold_yield_pressure_aligned`, `gold_yield_decoupling`
+- External API called: `false`
+- External data downloaded: `false`
+- Dataset file created: `false`
+- Market CSV created: `false`
+- Data CSV touched: `false`
+- Recommended next step: `v0_75_external_yield_sample_fixture_validator_no_strategy`
+- Targeted tests: `66 passed`
+
+Safety state:
+
+- Labels used as trade blockers: `false`
+- Labels used for strategy testing: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+
+v0_74 is schema/design infrastructure only. It does not import yield data, create persistent datasets, approve yield labels as trade filters, blockers, entry rules, exit rules, signals, or recommendations.
 
 ## v0_73 Yield Context Feasibility Result
 
