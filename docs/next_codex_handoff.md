@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_71 Gold macro context board
+- Last completed checkpoint: v0_72 Oil-conditioned event study
 - OOS: no OOS used in v0_68_1; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Current test baseline: 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit/context pack tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_71 consolidated DXY and oil context evidence, found DXY has `clear_lead_count=0`, found oil is ready for a diagnostic event study, selected next step `v0_72_oil_conditioned_event_study_no_strategy`, and did not perform strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
+- Execution status: research infrastructure only; v0_72 ran the oil-conditioned diagnostic event study on BRN with WTI as fallback metadata only, found `event_count=30` and `clear_lead_count=0`, selected next step `v0_73_yield_real_yield_context_feasibility_no_strategy`, and did not perform strategy testing, trade filtering approval, execution, order sending, order checking, or aligned CSV export
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -44,16 +44,54 @@
 - Latest oil proxy context audit: `reports/xauusd_oil_proxy_context_audit_v0_69.json`
 - Latest oil proxy quality and label design: `reports/xauusd_oil_proxy_quality_and_label_design_v0_70.json`
 - Latest gold macro context board: `reports/xauusd_gold_macro_context_board_v0_71.json`
+- Latest oil-conditioned event study: `reports/xauusd_oil_conditioned_event_study_v0_72.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_71_gold_macro_context_board_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_71`)
+- Latest checkpoint: `docs/checkpoints/v0_72_oil_conditioned_event_study_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_72`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `run_oil_conditioned_event_study_next`; DXY event study has `clear_lead_count=0`, oil has feasible ranked proxies and descriptive labels, and oil is ready for diagnostic event study only
-- Next safe task: v0_72_oil_conditioned_event_study_no_strategy; keep oil work as diagnostic research only, with no strategy testing unless explicitly approved, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `yield_real_yield_context_feasibility_next`; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, and the next safest research branch is yield/real-yield context feasibility only
+- Next safe task: v0_73_yield_real_yield_context_feasibility_no_strategy; keep yield/real-yield work as diagnostic research only, with no strategy testing unless explicitly approved, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no aligned market CSV export, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_72 Oil-Conditioned Event Study Result
+
+- Study module: `src/research/xauusd_oil_conditioned_event_study.py`
+- Study script: `scripts/run_xauusd_oil_conditioned_event_study_v0_72.py`
+- Study report: `reports/xauusd_oil_conditioned_event_study_v0_72.json`
+- Study status: `oil_conditioned_event_study_completed_no_clear_leads`
+- Source oil quality/design version: `v0_70`
+- Source macro context board version: `v0_71`
+- Selected proxy/fallback: `BRN` / `WTI`
+- Labels evaluated: `oil_strength`, `oil_weakness`, `oil_shock_up`, `oil_shock_down`, `gold_oil_inflation_pressure_aligned`, `gold_oil_safe_haven_conflict`, `oil_supply_shock_context_candidate`
+- Prior research versions considered: `v0_53`, `v0_56`, `v0_60`, `v0_63`, `v0_68`, `v0_71`
+- Event count: `30`
+- Clear lead count: `0`
+- Strongest diagnostic observations: descriptive-only oil slices; no clear train/validation diagnostic lead
+- Next recommended step: `v0_73_yield_real_yield_context_feasibility_no_strategy`
+- Labels used as trade blockers: `false`
+- Labels used for strategy testing: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+- Aligned dataset created: `false`
+- Data CSV touched: `false`
+- Lookahead risk detected: `false`
+
+v0_72 is a diagnostic event study only. It does not approve oil labels as trade filters, blockers, entry rules, exit rules, signals, or recommendations.
 
 ## v0_71 Gold Macro Context Board Result
 

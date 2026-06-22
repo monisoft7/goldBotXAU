@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_71"
+    assert context["context_version"] == "v0_72"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_71"
+    assert context["context_version"] == "v0_72"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_71.json"
+    output_path = tmp_path / "codex_context_v0_72.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_71"
+    assert context["context_version"] == "v0_72"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1214,6 +1214,26 @@ def test_context_includes_v0_71_gold_macro_context_board_summary() -> None:
     assert board["status"] == "gold_macro_context_board_completed"
     assert board["next"] == "v0_72_oil_conditioned_event_study_no_strategy"
     assert board["safety_locked"] is True
+
+
+def test_context_includes_v0_72_oil_conditioned_event_study_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    study = context["latest_oil_conditioned_event_study"]
+    assert study is not None
+    assert study["study_version"] == "v0_72"
+    assert study["study_status"] in {
+        "oil_conditioned_event_study_completed",
+        "oil_conditioned_event_study_completed_no_clear_leads",
+        "oil_conditioned_event_study_blocked_missing_data",
+    }
+    assert study["selected_proxy_symbol"] == "BRN"
+    assert study["fallback_proxy_symbol"] == "WTI"
+    assert isinstance(study["event_count"], int)
+    assert isinstance(study["clear_lead_count"], int)
+    assert study["train_validation_only"] is True
+    assert study["oos_used"] is False
+    assert study["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:
