@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from functools import lru_cache
 import json
 import re
 import sys
@@ -16,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_72"
+CONTEXT_VERSION = "v0_73"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1386,6 +1387,49 @@ def _oil_conditioned_event_study_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _yield_context_feasibility_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = _report_path(root, "xauusd_yield_context_feasibility_v0_73.json")
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "selected_local_proxy_symbol_or_null": report.get("selected_local_proxy_symbol_or_null"),
+        "local_yield_proxy_available": report.get("local_yield_proxy_available"),
+        "external_dataset_required": report.get("external_dataset_required"),
+        "usable_local_proxy_count": len(report.get("usable_local_proxy_symbols", []))
+        if isinstance(report.get("usable_local_proxy_symbols"), list)
+        else None,
+        "safe_asof_alignment_feasible": report.get("safe_asof_alignment_feasible"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "lookahead_risk_detected",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+                "aligned_dataset_created",
+                "data_csv_touched",
+            )
+        )
+        and report.get("train_validation_only") is True,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1575,7 +1619,12 @@ def _forward_observation_cycle_protocol_summary(root: Path) -> dict[str, Any] | 
 
 
 def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
-    root = root.resolve()
+    return _build_codex_context_cached(str(root.resolve()))
+
+
+@lru_cache(maxsize=4)
+def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
+    root = Path(root_text)
     health = build_project_health_report(root)
     registry = research_candidate_registry()
 
@@ -1635,6 +1684,7 @@ def build_codex_context(root: Path = ROOT) -> dict[str, Any]:
         "latest_oil_v0_70": _oil_proxy_quality_and_label_design_summary(root),
         "latest_gold_macro_context_board": _gold_macro_context_board_summary(root),
         "latest_oil_conditioned_event_study": _oil_conditioned_event_study_summary(root),
+        "latest_yield_context_feasibility": _yield_context_feasibility_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

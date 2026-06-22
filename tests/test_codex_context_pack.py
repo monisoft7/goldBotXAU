@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_72"
+    assert context["context_version"] == "v0_73"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 26000
+    assert len(context_text) < 27500
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_72"
+    assert context["context_version"] == "v0_73"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_72.json"
+    output_path = tmp_path / "codex_context_v0_73.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_72"
+    assert context["context_version"] == "v0_73"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1234,6 +1234,30 @@ def test_context_includes_v0_72_oil_conditioned_event_study_summary() -> None:
     assert study["train_validation_only"] is True
     assert study["oos_used"] is False
     assert study["safety_locked"] is True
+
+
+def test_context_includes_v0_73_yield_context_feasibility_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_yield_context_feasibility"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_73"
+    assert audit["audit_status"] in {
+        "yield_context_feasibility_completed",
+        "no_usable_local_yield_proxy_found",
+        "yield_context_audit_blocked_missing_data",
+    }
+    assert audit["selected_local_proxy_symbol_or_null"] is None or isinstance(
+        audit["selected_local_proxy_symbol_or_null"], str
+    )
+    assert audit["local_yield_proxy_available"] in {True, False}
+    assert audit["external_dataset_required"] in {True, False}
+    assert audit["safe_asof_alignment_feasible"] in {True, False}
+    assert audit["recommended_next_step"] in {
+        "v0_74_yield_proxy_quality_and_label_design",
+        "v0_74_external_yield_dataset_schema_design_no_strategy",
+    }
+    assert audit["safety_locked"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

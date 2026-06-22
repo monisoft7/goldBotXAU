@@ -1,0 +1,690 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "audit_status": "no_usable_local_yield_proxy_found",
+  "audit_version": "v0_73",
+  "candidate_symbols_checked": [
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US10Y",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US02Y",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US05Y",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US30Y",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "UST10Y",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "UST02Y",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "TNX",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "TYX",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "FVX",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "IRX",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US10YT",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "10YUS",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "2YUS",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "USGG10YR",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "TNOTE",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US10Y.BOND",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    },
+    {
+      "copied_row_count": 0,
+      "duplicate_timestamp_count": 0,
+      "first_timestamp": null,
+      "gap_summary": {
+        "bar_count": 0,
+        "gap_count_gt_3x_median": 0,
+        "largest_gap_seconds": null
+      },
+      "invalid_ohlc_count": 0,
+      "last_timestamp": null,
+      "monotonic_timestamp_order": null,
+      "overlap_with_xauusd_summary": {
+        "first_overlap_timestamp": null,
+        "last_overlap_timestamp": null,
+        "overlap_available": false,
+        "proxy_first_timestamp": null,
+        "proxy_last_timestamp": null,
+        "xauusd_first_timestamp": null,
+        "xauusd_last_timestamp": null
+      },
+      "parseable_row_count": 0,
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "required_columns_present": false,
+      "safe_asof_alignment_feasible": false,
+      "symbol": "US10Y.cash",
+      "symbol_found": false,
+      "symbol_selected": false,
+      "timeframe": null
+    }
+  ],
+  "data_csv_touched": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "external_api_called": false,
+  "external_dataset_candidates": [
+    "DGS10",
+    "DGS2",
+    "DFII10",
+    "DFII5",
+    "T10YIE",
+    "DFF"
+  ],
+  "external_dataset_feasibility": {
+    "alignment_policy": {
+      "daily_yield_data_applied_by_backward_asof": true,
+      "intraday_forward_fill_allowed_before_official_timestamp_policy": false,
+      "lookahead_allowed": false,
+      "official_timestamp_assumption_required_before_intraday_use": true,
+      "safe_backward_asof_only": true
+    },
+    "download_performed": false,
+    "external_api_called": false,
+    "required": true,
+    "required_fields": [
+      "timestamp/date",
+      "value",
+      "series_id",
+      "release/source metadata"
+    ],
+    "series_candidates": [
+      "DGS10",
+      "DGS2",
+      "DFII10",
+      "DFII5",
+      "T10YIE",
+      "DFF"
+    ]
+  },
+  "external_dataset_required": true,
+  "external_schema_requirements": [
+    "timestamp/date",
+    "value",
+    "series_id",
+    "release/source metadata"
+  ],
+  "future_label_candidates": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling"
+  ],
+  "gap_summary": {
+    "bar_count": 0,
+    "gap_count_gt_3x_median": 0,
+    "largest_gap_seconds": null
+  },
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "local_yield_proxy_available": false,
+  "lookahead_risk_detected": false,
+  "mt5_initialized": true,
+  "mt5_shutdown_called": true,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "overlap_summary": {
+    "first_overlap_timestamp": null,
+    "last_overlap_timestamp": null,
+    "overlap_available": false,
+    "proxy_first_timestamp": null,
+    "proxy_last_timestamp": null,
+    "xauusd_first_timestamp": null,
+    "xauusd_last_timestamp": null
+  },
+  "parameter_grid_performed": false,
+  "persistent_aligned_csv_created": false,
+  "proxy_timeframes_available": [],
+  "recommended_next_step": "v0_74_external_yield_dataset_schema_design_no_strategy",
+  "rejected_local_proxy_symbols": [
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US10Y"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US02Y"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US05Y"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US30Y"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "UST10Y"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "UST02Y"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "TNX"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "TYX"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "FVX"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "IRX"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US10YT"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "10YUS"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "2YUS"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "USGG10YR"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "TNOTE"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US10Y.BOND"
+    },
+    {
+      "reason_if_rejected": "symbol_not_found_in_local_mt5",
+      "symbol": "US10Y.cash"
+    }
+  ],
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "safe_asof_alignment_feasible": false,
+  "selected_local_proxy_symbol_or_null": null,
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "usable_local_proxy_symbols": [],
+  "warnings": [
+    "yield_context_research_infrastructure_only_not_strategy",
+    "future_yield_labels_are_not_trade_blockers",
+    "external_dataset_schema_documented_without_download",
+    "persistent_aligned_market_csv_not_created"
+  ],
+  "xauusd_timeframes_available": []
+}
