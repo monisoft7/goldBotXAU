@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_74"
+CONTEXT_VERSION = "v0_75"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1479,6 +1479,56 @@ def _external_yield_dataset_schema_summary(root: Path) -> dict[str, Any] | None:
     }
 
 
+def _external_yield_sample_validator_summary(root: Path) -> dict[str, Any] | None:
+    validator_path = _report_path(root, "xauusd_external_yield_sample_validator_v0_75.json")
+    if not validator_path.exists():
+        return None
+    report = json.loads(validator_path.read_text(encoding="utf-8"))
+    return {
+        "validator_version": report.get("validator_version"),
+        "validator_status": report.get("validator_status"),
+        "source_schema_version": report.get("source_schema_version"),
+        "sample_records_validated": report.get("sample_records_validated"),
+        "valid_record_count": report.get("valid_record_count"),
+        "rejected_record_count": report.get("rejected_record_count"),
+        "duplicate_count": report.get("duplicate_count"),
+        "allowed_series_ids": report.get("allowed_series_ids"),
+        "no_lookahead_policy_confirmed": report.get("no_lookahead_policy_confirmed"),
+        "asof_alignment_performed": report.get("asof_alignment_performed"),
+        "forward_fill_applied": report.get("forward_fill_applied"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": all(
+            report.get(key) is False
+            for key in (
+                "external_api_called",
+                "external_data_downloaded",
+                "dataset_file_created",
+                "market_csv_created",
+                "data_csv_touched",
+                "asof_alignment_performed",
+                "forward_fill_applied",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True
+        and report.get("no_lookahead_policy_confirmed") is True,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1735,6 +1785,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_oil_conditioned_event_study": _oil_conditioned_event_study_summary(root),
         "latest_yield_context_feasibility": _yield_context_feasibility_summary(root),
         "latest_external_yield_dataset_schema": _external_yield_dataset_schema_summary(root),
+        "latest_external_yield_sample_validator": _external_yield_sample_validator_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

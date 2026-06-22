@@ -1,0 +1,122 @@
+{
+  "allowed_forward_fill_policy": "Forward fill is documented as a future daily-yield policy only after official observability; it is not applied to intraday XAUUSD samples in v0_75.",
+  "allowed_series_ids": [
+    "DGS10",
+    "DGS2",
+    "DFII10",
+    "DFII5",
+    "T10YIE",
+    "DFF"
+  ],
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "asof_alignment_performed": false,
+  "data_csv_touched": false,
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "duplicate_count": 1,
+  "duplicate_keys": [
+    {
+      "observation_date": "2026-06-18",
+      "series_id": "DGS10"
+    }
+  ],
+  "executable_candidate_created": false,
+  "explicit_missing_value_count": 1,
+  "explicit_missing_value_markers_allowed": [
+    "",
+    ".",
+    "NA",
+    "N/A",
+    "NULL",
+    "null"
+  ],
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "forward_fill_applied": false,
+  "future_label_candidates_preserved": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling"
+  ],
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "market_csv_created": false,
+  "no_lookahead_policy": "Sample validation confirms only schema-level observability rules. Future XAUUSD alignment must use backward as-of only after official release timestamps or documented assumptions are available.",
+  "no_lookahead_policy_confirmed": true,
+  "oos_used": false,
+  "optional_columns": [
+    "release_timestamp",
+    "vintage_date",
+    "value_unit",
+    "source_reference",
+    "quality_flag"
+  ],
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "recommended_next_step": "v0_76_external_yield_manual_fixture_ingestion_design_no_strategy",
+  "records_sortable_by_series_id_observation_date": true,
+  "rejected_record_count": 2,
+  "rejection_reasons": {
+    "duplicate_series_id_observation_date": 1,
+    "empty_source_name": 1,
+    "invalid_non_numeric_value": 1,
+    "invalid_observation_date": 1,
+    "invalid_series_id": 1,
+    "release_timestamp_missing_timezone": 1
+  },
+  "repeated_oos_review": false,
+  "required_columns": [
+    "series_id",
+    "observation_date",
+    "value",
+    "source_name"
+  ],
+  "retune_performed": false,
+  "sample_records_validated": 4,
+  "sorted_sample_keys": [
+    {
+      "input_index": 3,
+      "observation_date": "2026/06/18",
+      "series_id": "BADYIELD"
+    },
+    {
+      "input_index": 1,
+      "observation_date": "2026-06-18",
+      "series_id": "DFII10"
+    },
+    {
+      "input_index": 0,
+      "observation_date": "2026-06-18",
+      "series_id": "DGS10"
+    },
+    {
+      "input_index": 2,
+      "observation_date": "2026-06-18",
+      "series_id": "DGS10"
+    }
+  ],
+  "source_schema_version": "v0_74",
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "valid_record_count": 2,
+  "validator_status": "external_yield_sample_validator_completed_with_expected_fixture_rejections",
+  "validator_version": "v0_75",
+  "warnings": [
+    "sample_fixture_validation_only_not_data_import",
+    "external_series_are_not_fetched",
+    "no_asof_alignment_to_xauusd_performed",
+    "yield_labels_are_not_trade_blockers"
+  ]
+}
