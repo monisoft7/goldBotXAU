@@ -1,0 +1,383 @@
+{
+  "aligned_dataset_created": false,
+  "alignment_summary": [
+    {
+      "aligned_series_count": 6,
+      "series_results": {
+        "DFF": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DFF",
+          "value": 4.95
+        },
+        "DFII10": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DFII10",
+          "value": 1.9
+        },
+        "DFII5": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DFII5",
+          "value": 1.7
+        },
+        "DGS10": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS10",
+          "value": 4.1
+        },
+        "DGS2": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS2",
+          "value": 4.7
+        },
+        "T10YIE": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "T10YIE",
+          "value": 2.2
+        }
+      },
+      "target_timestamp": "2026-06-18T21:00:00+00:00"
+    },
+    {
+      "aligned_series_count": 6,
+      "series_results": {
+        "DFF": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "DFF",
+          "value": 5.05
+        },
+        "DFII10": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "DFII10",
+          "value": 2.12
+        },
+        "DFII5": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "DFII5",
+          "value": 1.91
+        },
+        "DGS10": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "DGS10",
+          "value": 4.3
+        },
+        "DGS2": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "DGS2",
+          "value": 4.88
+        },
+        "T10YIE": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "T10YIE",
+          "value": 2.1
+        }
+      },
+      "target_timestamp": "2026-06-19T21:00:00+00:00"
+    }
+  ],
+  "application_status": "external_yield_label_fixture_application_completed_with_not_applicable_labels",
+  "application_version": "v0_79",
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "backward_asof_only": true,
+  "data_csv_touched": false,
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "fixture_record_count": 18,
+  "forward_fill_applied": false,
+  "intraday_timestamp_inferred": false,
+  "label_counts": {
+    "breakeven_inflation_falling": {
+      "false": 0,
+      "not_applicable": 1,
+      "true": 1
+    },
+    "breakeven_inflation_rising": {
+      "false": 1,
+      "not_applicable": 1,
+      "true": 0
+    },
+    "fed_funds_pressure_easing": {
+      "false": 1,
+      "not_applicable": 1,
+      "true": 0
+    },
+    "fed_funds_pressure_tightening": {
+      "false": 0,
+      "not_applicable": 1,
+      "true": 1
+    },
+    "gold_yield_decoupling": {
+      "false": 1,
+      "not_applicable": 1,
+      "true": 0
+    },
+    "gold_yield_pressure_aligned": {
+      "false": 0,
+      "not_applicable": 1,
+      "true": 1
+    },
+    "nominal_yield_falling": {
+      "false": 1,
+      "not_applicable": 1,
+      "true": 0
+    },
+    "nominal_yield_rising": {
+      "false": 0,
+      "not_applicable": 1,
+      "true": 1
+    },
+    "real_yield_falling": {
+      "false": 1,
+      "not_applicable": 1,
+      "true": 0
+    },
+    "real_yield_rising": {
+      "false": 0,
+      "not_applicable": 1,
+      "true": 1
+    },
+    "yield_shock_down": {
+      "false": 1,
+      "not_applicable": 1,
+      "true": 0
+    },
+    "yield_shock_up": {
+      "false": 0,
+      "not_applicable": 1,
+      "true": 1
+    }
+  },
+  "label_dataset_exported": false,
+  "labels_applied": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling",
+    "breakeven_inflation_rising",
+    "breakeven_inflation_falling",
+    "fed_funds_pressure_tightening",
+    "fed_funds_pressure_easing"
+  ],
+  "labels_not_applicable": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling",
+    "breakeven_inflation_rising",
+    "breakeven_inflation_falling",
+    "fed_funds_pressure_tightening",
+    "fed_funds_pressure_easing"
+  ],
+  "labels_requested": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling",
+    "breakeven_inflation_rising",
+    "breakeven_inflation_falling",
+    "fed_funds_pressure_tightening",
+    "fed_funds_pressure_easing"
+  ],
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "market_csv_created": false,
+  "no_lookahead_policy_confirmed": true,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "real_xauusd_data_used": false,
+  "recommended_next_step": "v0_80_external_yield_context_readiness_board_no_strategy",
+  "records_alignable": 18,
+  "records_not_alignable": 0,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "source_alignment_version": "v0_77",
+  "source_ingestion_version": "v0_76",
+  "source_label_design_version": "v0_78",
+  "source_schema_version": "v0_74",
+  "source_validator_version": "v0_75",
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "synthetic_gold_context_real_xauusd_data_used": false,
+  "synthetic_gold_context_used": true,
+  "synthetic_target_timestamp_count": 2,
+  "synthetic_target_timestamps_used": true,
+  "synthetic_thresholds": {
+    "policy": "fixed illustrative fixture threshold only; not searched, tuned, or approved as a strategy parameter",
+    "yield_shock_threshold_percentage_points": 0.15
+  },
+  "synthetic_thresholds_used": true,
+  "target_label_results": [
+    {
+      "labels": {
+        "breakeven_inflation_falling": {
+          "reason": "missing_prior_released_breakeven_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "breakeven_inflation_rising": {
+          "reason": "missing_prior_released_breakeven_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "fed_funds_pressure_easing": {
+          "reason": "missing_prior_released_fed_funds_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "fed_funds_pressure_tightening": {
+          "reason": "missing_prior_released_fed_funds_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "gold_yield_decoupling": {
+          "reason": "missing_prior_released_yield_pressure_or_synthetic_gold_context_direction",
+          "status": "not_applicable",
+          "value": null
+        },
+        "gold_yield_pressure_aligned": {
+          "reason": "missing_prior_released_yield_pressure_or_synthetic_gold_context_direction",
+          "status": "not_applicable",
+          "value": null
+        },
+        "nominal_yield_falling": {
+          "reason": "missing_prior_released_nominal_yield_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "nominal_yield_rising": {
+          "reason": "missing_prior_released_nominal_yield_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "real_yield_falling": {
+          "reason": "missing_prior_released_real_yield_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "real_yield_rising": {
+          "reason": "missing_prior_released_real_yield_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "yield_shock_down": {
+          "reason": "missing_prior_released_shock_reference_observation",
+          "status": "not_applicable",
+          "value": null
+        },
+        "yield_shock_up": {
+          "reason": "missing_prior_released_shock_reference_observation",
+          "status": "not_applicable",
+          "value": null
+        }
+      },
+      "synthetic_gold_context_direction": "down",
+      "target_timestamp": "2026-06-18T21:00:00+00:00"
+    },
+    {
+      "labels": {
+        "breakeven_inflation_falling": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": true
+        },
+        "breakeven_inflation_rising": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": false
+        },
+        "fed_funds_pressure_easing": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": false
+        },
+        "fed_funds_pressure_tightening": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": true
+        },
+        "gold_yield_decoupling": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": false
+        },
+        "gold_yield_pressure_aligned": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": true
+        },
+        "nominal_yield_falling": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": false
+        },
+        "nominal_yield_rising": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": true
+        },
+        "real_yield_falling": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": false
+        },
+        "real_yield_rising": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": true
+        },
+        "yield_shock_down": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": false
+        },
+        "yield_shock_up": {
+          "reason": "computed_from_prior_released_fixture_observation",
+          "status": "applied",
+          "value": true
+        }
+      },
+      "synthetic_gold_context_direction": "down",
+      "target_timestamp": "2026-06-19T21:00:00+00:00"
+    }
+  ],
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "warnings": [
+    "fixture_label_application_only_not_real_data_ingestion",
+    "synthetic_gold_context_direction_is_not_real_xauusd_data",
+    "fixed_synthetic_thresholds_are_not_strategy_parameters",
+    "labels_are_not_trade_blockers_or_trade_filters"
+  ]
+}
