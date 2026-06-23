@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_83"
+CONTEXT_VERSION = "v0_84"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1914,6 +1914,57 @@ def _executable_candidate_train_validation_summary(root: Path) -> list[Any] | No
     ]
 
 
+def _trading_decision_sprint_summary(root: Path) -> list[Any] | None:
+    sprint_path = _report_path(root, "xauusd_trading_decision_sprint_v0_84.json")
+    if not sprint_path.exists():
+        return None
+    report = json.loads(sprint_path.read_text(encoding="utf-8"))
+    safety_locked = (
+        all(
+            report.get(key) is False
+            for key in (
+                "oos_used",
+                "repeated_oos_review",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "executable_order_request_created",
+                "trade_recommendation_output",
+                "user_facing_buy_sell_signal_output",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "broad_search_performed",
+                "existing_strategy_rules_modified",
+                "rejected_candidates_modified",
+                "v0_26_traded_as_is",
+                "external_api_called",
+                "external_data_downloaded",
+                "dataset_file_created",
+                "market_csv_created",
+                "data_csv_touched",
+                "oos_allowed_now",
+                "demo_allowed_now",
+                "live_allowed_now",
+            )
+        )
+        and report.get("train_validation_only") is True
+        and report.get("validation_used_for_rescue_selection") is False
+        and report.get("rescue_variant_evaluated_count", 0) <= 1
+    )
+    return [
+        report.get("sprint_version"),
+        report.get("source_candidate_id"),
+        report.get("sprint_status"),
+        report.get("selected_rescue_decision"),
+        report.get("passed_all_train_validation_gates"),
+        report.get("candidate_promotable_to_oos_review"),
+        report.get("candidate_closed"),
+        report.get("recommended_next_step"),
+        safety_locked,
+    ]
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -2179,6 +2230,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "m": _master_trading_path_reentry_board_summary(root),
         "x82": _executable_fixed_rule_candidate_design_summary(root),
         "x83": _executable_candidate_train_validation_summary(root),
+        "x84": _trading_decision_sprint_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

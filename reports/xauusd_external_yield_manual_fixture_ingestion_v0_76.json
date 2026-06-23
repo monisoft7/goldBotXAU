@@ -61,7 +61,7 @@
     "gold_yield_pressure_aligned",
     "gold_yield_decoupling"
   ],
-  "generated_at_utc": "2026-06-23T14:03:20Z",
+  "generated_at_utc": "2026-06-23T16:37:28Z",
   "ingestion_status": "external_yield_manual_fixture_ingestion_completed_with_expected_rejections",
   "ingestion_version": "v0_76",
   "intraday_timestamp_inferred": false,
