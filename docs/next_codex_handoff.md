@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_79 External yield label fixture application
+- Last completed checkpoint: v0_80 External yield context readiness board
 - OOS: no OOS used in v0_76; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Current test baseline: 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_79 applies descriptive external yield / real-yield labels to controlled synthetic fixture records and synthetic target timestamps only, preserves release timestamp and backward as-of policies, and does not call external APIs, download data, create persistent datasets, touch `data/*.csv`, use real XAUUSD data, align labels to XAUUSD bars, create trade signals, use labels as trade blockers, approve trade filtering, or modify trading rules
+- Execution status: research infrastructure only; v0_80 consolidates v0_73-v0_79 external yield / real-yield context reports into a readiness board for future human-supplied sample preflight, preserves release timestamp and backward as-of policies, and does not call external APIs, download data, create persistent datasets, touch `data/*.csv`, use real XAUUSD data, use real yield data, align labels to XAUUSD bars, create trade signals, use labels as trade blockers, approve trade filtering, or modify trading rules
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -52,16 +52,69 @@
 - Latest external yield as-of alignment design: `reports/xauusd_external_yield_asof_alignment_design_v0_77.json`
 - Latest external yield label design: `reports/xauusd_external_yield_label_design_v0_78.json`
 - Latest external yield label fixture application: `reports/xauusd_external_yield_label_fixture_application_v0_79.json`
+- Latest external yield context readiness board: `reports/xauusd_external_yield_context_readiness_board_v0_80.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_79_external_yield_label_fixture_application_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_79`)
+- Latest checkpoint: `docs/checkpoints/v0_80_external_yield_context_readiness_board_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_80`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `external_yield_label_fixture_application_completed_with_not_applicable_labels`; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, v0_73 found no usable local yield proxy, v0_74 completed schema/design only, v0_75 completed inline sample validation without external data access or XAUUSD alignment, v0_76 completed controlled manual fixture ingestion without persistent datasets, v0_77 completed backward as-of alignment design using synthetic timestamps only, v0_78 defined 12 descriptive yield / real-yield labels with release timestamp and backward-as-of requirements, and v0_79 applied all 12 labels deterministically to controlled synthetic fixture snapshots with expected not-applicable cases where no prior released comparison existed
-- Next safe task: v0_80_external_yield_context_readiness_board_no_strategy; keep yield/real-yield work as diagnostic research only, use synthetic or inline fixture examples only unless separately approved, do not download data or create market CSVs, do not call external web APIs, do not require API keys, do not touch `data/*.csv`, do not apply labels to real XAUUSD bars, do not use yield labels as trade blockers, and keep no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `external_yield_context_readiness_completed`; readiness decision `ready_for_human_supplied_external_yield_sample_preflight`; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, v0_73 found no usable local yield proxy, v0_74 completed schema/design only, v0_75 completed inline sample validation without external data access or XAUUSD alignment, v0_76 completed controlled manual fixture ingestion without persistent datasets, v0_77 completed backward as-of alignment design using synthetic timestamps only, v0_78 defined 12 descriptive yield / real-yield labels with release timestamp and backward-as-of requirements, v0_79 applied all 12 labels deterministically to controlled synthetic fixture snapshots with expected not-applicable cases, and v0_80 determined the path is ready for a future human-supplied external yield sample preflight
+- Next safe task: v0_81_human_supplied_external_yield_sample_preflight_no_strategy; use a small manually supplied CSV/JSONL sample only, require allowed v0_74/v0_78 series IDs, v0_74 columns, timezone-aware `release_timestamp`, and `source_name`; do not download data or create market CSVs, do not call external web APIs, do not require API keys, do not touch `data/*.csv`, do not align to real XAUUSD bars in v0_81 unless a later board allows it, do not use yield labels as trade blockers, and keep no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_80 External Yield Context Readiness Board Result
+
+- Board module: `src/research/xauusd_external_yield_context_readiness_board.py`
+- Board script: `scripts/run_xauusd_external_yield_context_readiness_board_v0_80.py`
+- Board report: `reports/xauusd_external_yield_context_readiness_board_v0_80.json`
+- Board version: `v0_80`
+- Readiness status: `external_yield_context_readiness_completed`
+- Readiness decision: `ready_for_human_supplied_external_yield_sample_preflight`
+- Source reports present: `v0_73`, `v0_74`, `v0_75`, `v0_76`, `v0_77`, `v0_78`, `v0_79`
+- Missing source reports: none
+- Local yield proxy available: `false`
+- External dataset required: `true`
+- Schema ready: `true`
+- Validator ready: `true`
+- Manual fixture ingestion ready: `true`
+- Backward as-of alignment design ready: `true`
+- Label design ready: `true`
+- Fixture label application ready: `true`
+- Not-applicable labels accepted: `true`
+- Recommended next step: `v0_81_human_supplied_external_yield_sample_preflight_no_strategy`
+- Targeted tests: `74 passed`
+
+Safety state:
+
+- External API called: `false`
+- External data downloaded: `false`
+- Dataset file created: `false`
+- Market CSV created: `false`
+- Data CSV touched: `false`
+- Real XAUUSD data used: `false`
+- Real yield data used: `false`
+- Aligned dataset created: `false`
+- Label dataset exported: `false`
+- Labels used as trade blockers: `false`
+- Labels used for strategy testing: `false`
+- Approved for strategy testing: `false`
+- Approved for trade filtering: `false`
+- Train/validation only: `true`
+- OOS used: `false`
+- Repeated OOS review: `false`
+- Retune performed: `false`
+- Threshold search performed: `false`
+- Parameter grid performed: `false`
+- Executable candidate created: `false`
+- Demo execution allowed: `false`
+- Order send called: `false`
+- Order check called: `false`
+- Live allowed: `false`
+- Trade recommendation output: `false`
+
+v0_80 is a reporting and decision board only. It does not ingest real yield data, use real XAUUSD data, call external APIs, download files, touch `data/*.csv`, export aligned datasets, create trade signals, use labels as trade blockers, approve trade filtering, run OOS, retune, search thresholds, run parameter grids, or modify trading rules.
 
 ## v0_79 External Yield Label Fixture Application Result
 

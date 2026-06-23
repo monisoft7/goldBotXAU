@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_79"
+    assert context["context_version"] == "v0_80"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_79"
+    assert context["context_version"] == "v0_80"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_79.json"
+    output_path = tmp_path / "codex_context_v0_80.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_79"
+    assert context["context_version"] == "v0_80"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1323,11 +1323,21 @@ def test_context_includes_v0_78_external_yield_label_design_summary() -> None:
 def test_context_includes_v0_79_external_yield_label_fixture_application_summary() -> None:
     context = build_codex_context(ROOT)
 
-    application = context["latest_external_yield_label_fixture_application"]
+    application = context["ylf"]
     assert application is not None
     assert application["v"] == "v0_79"
     assert application["n"] == [12, 12, 12, 18, 2]
     assert application["safe"] is True
+
+
+def test_context_includes_v0_80_external_yield_context_readiness_board_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    board = context["yr"]
+    assert board is not None
+    assert board["v"] == "v0_80"
+    assert board["m"] == 0
+    assert board["safe"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

@@ -1,0 +1,186 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "asof_alignment_design_ready": true,
+  "backward_asof_policy_confirmed": true,
+  "board_version": "v0_80",
+  "data_csv_touched": false,
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "external_dataset_required": true,
+  "fixture_label_application_ready": true,
+  "label_dataset_exported": false,
+  "label_design_ready": true,
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "local_yield_proxy_available": false,
+  "manual_fixture_ingestion_ready": true,
+  "market_csv_created": false,
+  "missing_source_reports": [],
+  "no_lookahead_policy_confirmed": true,
+  "not_applicable_labels_accepted": true,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "readiness_decision": "ready_for_human_supplied_external_yield_sample_preflight",
+  "readiness_reason": "v0_73 through v0_79 are present, external yield context infrastructure is complete, not-applicable fixture labels are expected, and all safety flags remain closed.",
+  "readiness_status": "external_yield_context_readiness_completed",
+  "real_xauusd_data_used": false,
+  "real_yield_data_used": false,
+  "recommended_next_step": "v0_81_human_supplied_external_yield_sample_preflight_no_strategy",
+  "rejected_next_steps": [
+    "strategy_testing",
+    "oos_review",
+    "retune",
+    "threshold_search",
+    "parameter_grid",
+    "trade_filtering_approval",
+    "xauusd_alignment_in_v0_81_without_later_board",
+    "external_api_download",
+    "persistent_market_csv_creation",
+    "demo_or_live_execution"
+  ],
+  "repeated_oos_review": false,
+  "required_preflight_inputs_for_v0_81": {
+    "allowed_series_ids": [
+      "DGS10",
+      "DGS2",
+      "DFII10",
+      "DFII5",
+      "T10YIE",
+      "DFF"
+    ],
+    "api_key_required": false,
+    "automated_download_allowed": false,
+    "data_csv_allowed": false,
+    "release_timestamp_required_with_timezone": true,
+    "required_columns": [
+      "series_id",
+      "observation_date",
+      "value",
+      "source_name"
+    ],
+    "required_series_by_label": {
+      "breakeven_inflation_falling": [
+        "T10YIE"
+      ],
+      "breakeven_inflation_rising": [
+        "T10YIE"
+      ],
+      "fed_funds_pressure_easing": [
+        "DFF"
+      ],
+      "fed_funds_pressure_tightening": [
+        "DFF"
+      ],
+      "gold_yield_decoupling": [
+        "DGS10",
+        "DFII10"
+      ],
+      "gold_yield_pressure_aligned": [
+        "DGS10",
+        "DFII10"
+      ],
+      "nominal_yield_falling": [
+        "DGS10",
+        "DGS2"
+      ],
+      "nominal_yield_rising": [
+        "DGS10",
+        "DGS2"
+      ],
+      "real_yield_falling": [
+        "DFII10",
+        "DFII5"
+      ],
+      "real_yield_rising": [
+        "DFII10",
+        "DFII5"
+      ],
+      "yield_shock_down": [
+        "DGS10",
+        "DGS2",
+        "DFII10"
+      ],
+      "yield_shock_up": [
+        "DGS10",
+        "DGS2",
+        "DFII10"
+      ]
+    },
+    "sample_size": "small_manual_csv_or_jsonl_sample_only",
+    "source_name_required": true,
+    "xauusd_alignment_allowed_in_v0_81": false
+  },
+  "retune_performed": false,
+  "schema_ready": true,
+  "source_reports_present": [
+    "v0_73",
+    "v0_74",
+    "v0_75",
+    "v0_76",
+    "v0_77",
+    "v0_78",
+    "v0_79"
+  ],
+  "source_status_summary": {
+    "v0_73": {
+      "recommended_next_step": "v0_74_external_yield_dataset_schema_design_no_strategy",
+      "safety_flags_closed": true,
+      "status": "no_usable_local_yield_proxy_found"
+    },
+    "v0_74": {
+      "recommended_next_step": "v0_75_external_yield_sample_fixture_validator_no_strategy",
+      "safety_flags_closed": true,
+      "status": "external_yield_dataset_schema_completed"
+    },
+    "v0_75": {
+      "recommended_next_step": "v0_76_external_yield_manual_fixture_ingestion_design_no_strategy",
+      "safety_flags_closed": true,
+      "status": "external_yield_sample_validator_completed_with_expected_fixture_rejections"
+    },
+    "v0_76": {
+      "recommended_next_step": "v0_77_external_yield_asof_alignment_design_no_strategy",
+      "safety_flags_closed": true,
+      "status": "external_yield_manual_fixture_ingestion_completed_with_expected_rejections"
+    },
+    "v0_77": {
+      "recommended_next_step": "v0_78_external_yield_label_design_no_strategy",
+      "safety_flags_closed": true,
+      "status": "external_yield_asof_alignment_design_completed_with_expected_rejections"
+    },
+    "v0_78": {
+      "recommended_next_step": "v0_79_external_yield_label_fixture_application_no_strategy",
+      "safety_flags_closed": true,
+      "status": "external_yield_label_design_completed"
+    },
+    "v0_79": {
+      "recommended_next_step": "v0_80_external_yield_context_readiness_board_no_strategy",
+      "safety_flags_closed": true,
+      "status": "external_yield_label_fixture_application_completed_with_not_applicable_labels"
+    }
+  },
+  "source_versions_considered": [
+    "v0_73",
+    "v0_74",
+    "v0_75",
+    "v0_76",
+    "v0_77",
+    "v0_78",
+    "v0_79"
+  ],
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "unsafe_source_reasons": [],
+  "validator_ready": true
+}
