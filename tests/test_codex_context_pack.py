@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_76"
+    assert context["context_version"] == "v0_77"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_76"
+    assert context["context_version"] == "v0_77"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_76.json"
+    output_path = tmp_path / "codex_context_v0_77.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_76"
+    assert context["context_version"] == "v0_77"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1265,15 +1265,11 @@ def test_context_includes_v0_74_external_yield_dataset_schema_summary() -> None:
 
     schema = context["latest_external_yield_dataset_schema"]
     assert schema is not None
-    assert schema["schema_version"] == "v0_74"
-    assert schema["schema_status"] == "external_yield_dataset_schema_completed"
-    assert schema["source_yield_feasibility_version"] == "v0_73"
-    assert schema["external_dataset_required"] is True
-    assert schema["candidate_series"] == ["DGS10", "DGS2", "DFII10", "DFII5", "T10YIE", "DFF"]
-    assert schema["required_future_columns"] == ["series_id", "observation_date", "value", "source_name"]
-    assert schema["future_label_count"] == 8
-    assert schema["recommended_next_step"] == "v0_75_external_yield_sample_fixture_validator_no_strategy"
-    assert schema["safety_locked"] is True
+    assert schema["version"] == "v0_74"
+    assert schema["status"] == "external_yield_dataset_schema_completed"
+    assert schema["series_count"] == 6
+    assert schema["next"] == "v0_75_external_yield_sample_fixture_validator_no_strategy"
+    assert schema["safe"] is True
 
 
 def test_context_includes_v0_75_external_yield_sample_validator_summary() -> None:
@@ -1281,15 +1277,13 @@ def test_context_includes_v0_75_external_yield_sample_validator_summary() -> Non
 
     validator = context["latest_external_yield_sample_validator"]
     assert validator is not None
-    assert validator["validator_version"] == "v0_75"
-    assert validator["validator_status"] == "external_yield_sample_validator_completed_with_expected_fixture_rejections"
-    assert validator["source_schema_version"] == "v0_74"
-    assert validator["sample_records_validated"] == 4
-    assert validator["valid_record_count"] == 2
-    assert validator["rejected_record_count"] == 2
-    assert validator["duplicate_count"] == 1
-    assert validator["recommended_next_step"] == "v0_76_external_yield_manual_fixture_ingestion_design_no_strategy"
-    assert validator["safety_locked"] is True
+    assert validator["version"] == "v0_75"
+    assert validator["status"] == "external_yield_sample_validator_completed_with_expected_fixture_rejections"
+    assert validator["valid"] == 2
+    assert validator["rejected"] == 2
+    assert validator["dupes"] == 1
+    assert validator["next"] == "v0_76_external_yield_manual_fixture_ingestion_design_no_strategy"
+    assert validator["safe"] is True
 
 
 def test_context_includes_v0_76_external_yield_manual_fixture_ingestion_summary() -> None:
@@ -1297,9 +1291,23 @@ def test_context_includes_v0_76_external_yield_manual_fixture_ingestion_summary(
 
     ingestion = context["latest_external_yield_manual_fixture_ingestion"]
     assert ingestion is not None
-    assert ingestion["ingestion_version"] == "v0_76"
-    assert ingestion["ingestion_status"] == "external_yield_manual_fixture_ingestion_completed_with_expected_rejections"
-    assert ingestion["safety_locked"] is True
+    assert ingestion["version"] == "v0_76"
+    assert ingestion["status"] == "external_yield_manual_fixture_ingestion_completed_with_expected_rejections"
+    assert ingestion["safe"] is True
+
+
+def test_context_includes_v0_77_external_yield_asof_alignment_design_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    alignment = context["latest_external_yield_asof_alignment_design"]
+    assert alignment is not None
+    assert alignment["version"] == "v0_77"
+    assert alignment["status"] == "external_yield_asof_alignment_design_completed_with_expected_rejections"
+    assert alignment["records"] == {"seen": 7, "alignable": 3, "not_alignable": 4}
+    assert alignment["targets"] == {"seen": 4, "aligned": 3, "unaligned": 1}
+    assert alignment["dupes"] == 1
+    assert alignment["next"] == "v0_78_external_yield_label_design_no_strategy"
+    assert alignment["safe"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

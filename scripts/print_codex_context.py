@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_76"
+CONTEXT_VERSION = "v0_77"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1435,47 +1435,39 @@ def _external_yield_dataset_schema_summary(root: Path) -> dict[str, Any] | None:
     if not schema_path.exists():
         return None
     report = json.loads(schema_path.read_text(encoding="utf-8"))
-    return {
-        "schema_version": report.get("schema_version"),
-        "schema_status": report.get("schema_status"),
-        "source_yield_feasibility_version": report.get("source_yield_feasibility_version"),
-        "external_dataset_required": report.get("external_dataset_required"),
-        "candidate_series": [
-            series.get("series_id")
-            for series in report.get("candidate_series", [])
-            if isinstance(series, dict)
-        ],
-        "required_future_columns": report.get("required_future_columns"),
-        "future_label_count": len(report.get("future_label_candidates", []))
-        if isinstance(report.get("future_label_candidates"), list)
-        else None,
-        "recommended_next_step": report.get("recommended_next_step"),
-        "safety_locked": all(
-            report.get(key) is False
-            for key in (
-                "external_api_called",
-                "external_data_downloaded",
-                "dataset_file_created",
-                "market_csv_created",
-                "data_csv_touched",
-                "labels_used_as_trade_blockers",
-                "labels_used_for_strategy_testing",
-                "approved_for_strategy_testing",
-                "approved_for_trade_filtering",
-                "oos_used",
-                "repeated_oos_review",
-                "retune_performed",
-                "threshold_search_performed",
-                "parameter_grid_performed",
-                "executable_candidate_created",
-                "demo_execution_allowed",
-                "order_send_called",
-                "order_check_called",
-                "live_allowed",
-                "trade_recommendation_output",
-            )
+    safety_locked = all(
+        report.get(key) is False
+        for key in (
+            "external_api_called",
+            "external_data_downloaded",
+            "dataset_file_created",
+            "market_csv_created",
+            "data_csv_touched",
+            "labels_used_as_trade_blockers",
+            "labels_used_for_strategy_testing",
+            "approved_for_strategy_testing",
+            "approved_for_trade_filtering",
+            "oos_used",
+            "repeated_oos_review",
+            "retune_performed",
+            "threshold_search_performed",
+            "parameter_grid_performed",
+            "executable_candidate_created",
+            "demo_execution_allowed",
+            "order_send_called",
+            "order_check_called",
+            "live_allowed",
+            "trade_recommendation_output",
         )
-        and report.get("train_validation_only") is True,
+    )
+    return {
+        "version": report.get("schema_version"),
+        "status": report.get("schema_status"),
+        "series_count": len(report.get("candidate_series", []))
+        if isinstance(report.get("candidate_series"), list)
+        else None,
+        "next": report.get("recommended_next_step"),
+        "safe": safety_locked and report.get("train_validation_only") is True,
     }
 
 
@@ -1484,16 +1476,8 @@ def _external_yield_sample_validator_summary(root: Path) -> dict[str, Any] | Non
     if not validator_path.exists():
         return None
     report = json.loads(validator_path.read_text(encoding="utf-8"))
-    return {
-        "validator_version": report.get("validator_version"),
-        "validator_status": report.get("validator_status"),
-        "source_schema_version": report.get("source_schema_version"),
-        "sample_records_validated": report.get("sample_records_validated"),
-        "valid_record_count": report.get("valid_record_count"),
-        "rejected_record_count": report.get("rejected_record_count"),
-        "duplicate_count": report.get("duplicate_count"),
-        "recommended_next_step": report.get("recommended_next_step"),
-        "safety_locked": all(
+    safety_locked = (
+        all(
             report.get(key) is False
             for key in (
                 "external_api_called",
@@ -1521,7 +1505,16 @@ def _external_yield_sample_validator_summary(root: Path) -> dict[str, Any] | Non
             )
         )
         and report.get("train_validation_only") is True
-        and report.get("no_lookahead_policy_confirmed") is True,
+        and report.get("no_lookahead_policy_confirmed") is True
+    )
+    return {
+        "version": report.get("validator_version"),
+        "status": report.get("validator_status"),
+        "valid": report.get("valid_record_count"),
+        "rejected": report.get("rejected_record_count"),
+        "dupes": report.get("duplicate_count"),
+        "next": report.get("recommended_next_step"),
+        "safe": safety_locked,
     }
 
 
@@ -1530,10 +1523,8 @@ def _external_yield_manual_fixture_ingestion_summary(root: Path) -> dict[str, An
     if not ingestion_path.exists():
         return None
     report = json.loads(ingestion_path.read_text(encoding="utf-8"))
-    return {
-        "ingestion_version": report.get("ingestion_version"),
-        "ingestion_status": report.get("ingestion_status"),
-        "safety_locked": all(
+    safety_locked = (
+        all(
             report.get(key) is False
             for key in (
                 "external_api_called",
@@ -1562,7 +1553,73 @@ def _external_yield_manual_fixture_ingestion_summary(root: Path) -> dict[str, An
             )
         )
         and report.get("train_validation_only") is True
-        and report.get("no_lookahead_policy_confirmed") is True,
+        and report.get("no_lookahead_policy_confirmed") is True
+    )
+    return {
+        "version": report.get("ingestion_version"),
+        "status": report.get("ingestion_status"),
+        "safe": safety_locked,
+    }
+
+
+def _external_yield_asof_alignment_design_summary(root: Path) -> dict[str, Any] | None:
+    alignment_path = _report_path(root, "xauusd_external_yield_asof_alignment_design_v0_77.json")
+    if not alignment_path.exists():
+        return None
+    report = json.loads(alignment_path.read_text(encoding="utf-8"))
+    safety_locked = (
+        all(
+            report.get(key) is False
+            for key in (
+                "external_api_called",
+                "external_data_downloaded",
+                "dataset_file_created",
+                "market_csv_created",
+                "data_csv_touched",
+                "real_xauusd_data_used",
+                "forward_fill_applied",
+                "intraday_timestamp_inferred",
+                "aligned_dataset_created",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+            )
+        )
+        and report.get("train_validation_only") is True
+        and report.get("synthetic_target_timestamps_used") is True
+        and report.get("timezone_policy_enforced") is True
+        and report.get("release_timestamp_policy_enforced") is True
+        and report.get("no_lookahead_policy_confirmed") is True
+        and report.get("backward_asof_only") is True
+    )
+    return {
+        "version": report.get("alignment_version"),
+        "status": report.get("alignment_status"),
+        "records": {
+            "seen": report.get("records_seen"),
+            "alignable": report.get("records_alignable"),
+            "not_alignable": report.get("records_not_alignable"),
+        },
+        "targets": {
+            "seen": report.get("target_timestamp_count"),
+            "aligned": report.get("aligned_target_count"),
+            "unaligned": report.get("unaligned_target_count"),
+        },
+        "dupes": report.get("duplicate_count"),
+        "next": report.get("recommended_next_step"),
+        "safe": safety_locked,
     }
 
 
@@ -1824,6 +1881,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_external_yield_dataset_schema": _external_yield_dataset_schema_summary(root),
         "latest_external_yield_sample_validator": _external_yield_sample_validator_summary(root),
         "latest_external_yield_manual_fixture_ingestion": _external_yield_manual_fixture_ingestion_summary(root),
+        "latest_external_yield_asof_alignment_design": _external_yield_asof_alignment_design_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

@@ -1,0 +1,196 @@
+{
+  "aligned_dataset_created": false,
+  "aligned_target_count": 3,
+  "alignment_cases_tested": [
+    "same_day_target_after_release_timestamp_aligned",
+    "same_day_target_before_release_timestamp_not_aligned_or_previous_only",
+    "target_between_two_releases_previous_released_record",
+    "target_before_first_release_no_aligned_value",
+    "missing_release_timestamp_not_alignable",
+    "timezone_less_release_timestamp_rejected",
+    "duplicate_series_date_flagged",
+    "multiple_series_aligned_independently"
+  ],
+  "alignment_status": "external_yield_asof_alignment_design_completed_with_expected_rejections",
+  "alignment_summary": [
+    {
+      "aligned_series_count": 0,
+      "series_results": {
+        "DFF": null,
+        "DFII10": null,
+        "DGS10": null,
+        "DGS2": null,
+        "T10YIE": null
+      },
+      "target_timestamp": "2026-06-18T19:00:00+00:00"
+    },
+    {
+      "aligned_series_count": 2,
+      "series_results": {
+        "DFF": null,
+        "DFII10": null,
+        "DGS10": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS10",
+          "value": 4.1
+        },
+        "DGS2": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS2",
+          "value": 4.7
+        },
+        "T10YIE": null
+      },
+      "target_timestamp": "2026-06-18T21:00:00+00:00"
+    },
+    {
+      "aligned_series_count": 2,
+      "series_results": {
+        "DFF": null,
+        "DFII10": null,
+        "DGS10": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS10",
+          "value": 4.1
+        },
+        "DGS2": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS2",
+          "value": 4.7
+        },
+        "T10YIE": null
+      },
+      "target_timestamp": "2026-06-19T19:00:00+00:00"
+    },
+    {
+      "aligned_series_count": 2,
+      "series_results": {
+        "DFF": null,
+        "DFII10": null,
+        "DGS10": {
+          "observation_date": "2026-06-18",
+          "release_timestamp": "2026-06-19T20:15:00+00:00",
+          "series_id": "DGS10",
+          "value": 4.12
+        },
+        "DGS2": {
+          "observation_date": "2026-06-17",
+          "release_timestamp": "2026-06-18T20:15:00+00:00",
+          "series_id": "DGS2",
+          "value": 4.7
+        },
+        "T10YIE": null
+      },
+      "target_timestamp": "2026-06-19T21:00:00+00:00"
+    }
+  ],
+  "alignment_version": "v0_77",
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "backward_asof_only": true,
+  "data_csv_touched": false,
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "duplicate_count": 1,
+  "duplicate_keys": [
+    {
+      "observation_date": "2026-06-18",
+      "series_id": "DGS10"
+    }
+  ],
+  "executable_candidate_created": false,
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "forward_fill_applied": false,
+  "future_label_candidates_preserved": [
+    "nominal_yield_rising",
+    "nominal_yield_falling",
+    "real_yield_rising",
+    "real_yield_falling",
+    "yield_shock_up",
+    "yield_shock_down",
+    "gold_yield_pressure_aligned",
+    "gold_yield_decoupling"
+  ],
+  "intraday_timestamp_inferred": false,
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "market_csv_created": false,
+  "no_lookahead_policy_confirmed": true,
+  "not_alignable_records": [
+    {
+      "input_index": 3,
+      "observation_date": "2026-06-18",
+      "reasons": [
+        "explicit_missing_value_not_alignable"
+      ],
+      "series_id": "DFII10"
+    },
+    {
+      "input_index": 4,
+      "observation_date": "2026-06-18",
+      "reasons": [
+        "release_timestamp_missing"
+      ],
+      "series_id": "DFF"
+    },
+    {
+      "input_index": 5,
+      "observation_date": "2026-06-18",
+      "reasons": [
+        "release_timestamp_missing_timezone"
+      ],
+      "series_id": "T10YIE"
+    },
+    {
+      "input_index": 6,
+      "observation_date": "2026-06-18",
+      "reasons": [
+        "duplicate_series_id_observation_date"
+      ],
+      "series_id": "DGS10"
+    }
+  ],
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "real_xauusd_data_used": false,
+  "recommended_next_step": "v0_78_external_yield_label_design_no_strategy",
+  "records_alignable": 3,
+  "records_not_alignable": 4,
+  "records_seen": 7,
+  "rejection_reasons": {
+    "duplicate_series_id_observation_date": 1,
+    "explicit_missing_value_not_alignable": 1,
+    "release_timestamp_missing": 1,
+    "release_timestamp_missing_timezone": 1
+  },
+  "release_timestamp_policy_enforced": true,
+  "repeated_oos_review": false,
+  "retune_performed": false,
+  "source_ingestion_version": "v0_76",
+  "source_schema_version": "v0_74",
+  "source_validator_version": "v0_75",
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "synthetic_target_timestamps_used": true,
+  "target_timestamp_count": 4,
+  "threshold_search_performed": false,
+  "timezone_policy_enforced": true,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "unaligned_target_count": 1,
+  "warnings": [
+    "alignment_design_uses_synthetic_in_memory_timestamps_only",
+    "release_timestamp_is_required_for_intraday_availability",
+    "no_forward_fill_or_intraday_timestamp_inference",
+    "yield_labels_are_not_trade_blockers"
+  ]
+}
