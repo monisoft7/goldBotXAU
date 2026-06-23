@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_81"
+    assert context["context_version"] == "v0_82"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 27500
+    assert len(context_text) < 28000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_81"
+    assert context["context_version"] == "v0_82"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_81.json"
+    output_path = tmp_path / "codex_context_v0_82.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_81"
+    assert context["context_version"] == "v0_82"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1343,8 +1343,21 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_81"
+    assert context["context_version"] == "v0_82"
     assert context["m"] is True
+
+
+def test_context_includes_v0_82_executable_fixed_rule_candidate_design_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    assert context["x82"] == [
+        "v0_82",
+        "xauusd_ny_displacement_retest_executable_v0_82",
+        "executable_fixed_rule_candidate_design_completed",
+        True,
+        "v0_83_executable_candidate_train_validation_evaluation_no_oos",
+        True,
+    ]
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

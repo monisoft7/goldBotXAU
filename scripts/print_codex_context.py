@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_81"
+CONTEXT_VERSION = "v0_82"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1814,6 +1814,60 @@ def _master_trading_path_reentry_board_summary(root: Path) -> bool | None:
     return safety_locked
 
 
+def _executable_fixed_rule_candidate_design_summary(root: Path) -> dict[str, Any] | None:
+    design_path = _report_path(root, "xauusd_executable_fixed_rule_candidate_design_v0_82.json")
+    if not design_path.exists():
+        return None
+    report = json.loads(design_path.read_text(encoding="utf-8"))
+    safety_locked = (
+        all(
+            report.get(key) is False
+            for key in (
+                "oos_allowed_now",
+                "demo_allowed_now",
+                "live_allowed_now",
+                "order_request_ready",
+                "execution_ready",
+                "strategy_testing_performed",
+                "train_validation_performed",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "existing_strategy_rules_modified",
+                "rejected_candidates_modified",
+                "external_api_called",
+                "external_data_downloaded",
+                "dataset_file_created",
+                "market_csv_created",
+                "data_csv_touched",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+                "approved_for_strategy_testing",
+                "approved_for_oos",
+                "approved_for_demo",
+            )
+        )
+        and report.get("explicit_side_mapping") is True
+        and report.get("direction_ambiguity_resolved") is True
+        and report.get("buy_rule_defined") is True
+        and report.get("sell_rule_defined") is True
+        and report.get("future_evaluation_plan_defined") is True
+    )
+    return [
+        report.get("design_version"),
+        report.get("candidate_id"),
+        report.get("design_status"),
+        report.get("explicit_side_mapping") is True and report.get("direction_ambiguity_resolved") is True,
+        report.get("future_evaluation_step"),
+        safety_locked,
+    ]
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -2077,6 +2131,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "ylf": _external_yield_label_fixture_application_summary(root),
         "yr": _external_yield_context_readiness_board_summary(root),
         "m": _master_trading_path_reentry_board_summary(root),
+        "x82": _executable_fixed_rule_candidate_design_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),
