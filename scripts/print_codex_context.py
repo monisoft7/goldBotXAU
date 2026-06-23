@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_77"
+CONTEXT_VERSION = "v0_78"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -1623,6 +1623,56 @@ def _external_yield_asof_alignment_design_summary(root: Path) -> dict[str, Any] 
     }
 
 
+def _external_yield_label_design_summary(root: Path) -> dict[str, Any] | None:
+    label_path = _report_path(root, "xauusd_external_yield_label_design_v0_78.json")
+    if not label_path.exists():
+        return None
+    report = json.loads(label_path.read_text(encoding="utf-8"))
+    safety_locked = (
+        all(
+            report.get(key) is False
+            for key in (
+                "external_api_called",
+                "external_data_downloaded",
+                "dataset_file_created",
+                "market_csv_created",
+                "data_csv_touched",
+                "real_xauusd_data_used",
+                "aligned_dataset_created",
+                "labels_used_as_trade_blockers",
+                "labels_used_for_strategy_testing",
+                "approved_for_strategy_testing",
+                "approved_for_trade_filtering",
+                "oos_used",
+                "repeated_oos_review",
+                "retune_performed",
+                "threshold_search_performed",
+                "parameter_grid_performed",
+                "executable_candidate_created",
+                "demo_execution_allowed",
+                "order_send_called",
+                "order_check_called",
+                "live_allowed",
+                "trade_recommendation_output",
+                "trade_signals_output",
+                "strategy_rules_created",
+                "strategy_rules_modified",
+            )
+        )
+        and report.get("train_validation_only") is True
+        and report.get("release_timestamp_policy_required") is True
+        and report.get("backward_asof_required") is True
+        and report.get("no_lookahead_policy_confirmed") is True
+    )
+    return {
+        "v": report.get("label_design_version"),
+        "status": report.get("label_design_status"),
+        "count": report.get("label_count"),
+        "next": report.get("recommended_next_step"),
+        "safe": safety_locked,
+    }
+
+
 def _context_labeled_event_study_summary(root: Path) -> dict[str, Any] | None:
     study_path = _report_path(root, "xauusd_context_labeled_event_study_v0_63.json")
     if not study_path.exists():
@@ -1882,6 +1932,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_external_yield_sample_validator": _external_yield_sample_validator_summary(root),
         "latest_external_yield_manual_fixture_ingestion": _external_yield_manual_fixture_ingestion_summary(root),
         "latest_external_yield_asof_alignment_design": _external_yield_asof_alignment_design_summary(root),
+        "latest_yield_labels": _external_yield_label_design_summary(root),
         "latest_context_labeled_event_study": _context_labeled_event_study_summary(root),
         "latest_repository_consolidation_plan": _repository_consolidation_summary(root),
         "latest_repository_cleanup": _repository_cleanup_summary(root),

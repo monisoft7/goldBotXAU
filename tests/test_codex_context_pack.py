@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_77"
+    assert context["context_version"] == "v0_78"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_77"
+    assert context["context_version"] == "v0_78"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_77.json"
+    output_path = tmp_path / "codex_context_v0_78.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_77"
+    assert context["context_version"] == "v0_78"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1308,6 +1308,18 @@ def test_context_includes_v0_77_external_yield_asof_alignment_design_summary() -
     assert alignment["dupes"] == 1
     assert alignment["next"] == "v0_78_external_yield_label_design_no_strategy"
     assert alignment["safe"] is True
+
+
+def test_context_includes_v0_78_external_yield_label_design_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    design = context["latest_yield_labels"]
+    assert design is not None
+    assert design["v"] == "v0_78"
+    assert design["status"] == "external_yield_label_design_completed"
+    assert design["count"] == 12
+    assert design["next"] == "v0_79_external_yield_label_fixture_application_no_strategy"
+    assert design["safe"] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:

@@ -1,0 +1,345 @@
+{
+  "aligned_dataset_created": false,
+  "approved_for_strategy_testing": false,
+  "approved_for_trade_filtering": false,
+  "backward_asof_required": true,
+  "data_csv_touched": false,
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "executable_candidate_created": false,
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "label_count": 12,
+  "label_design_status": "external_yield_label_design_completed",
+  "label_design_version": "v0_78",
+  "labels_defined": [
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Nominal Treasury yield context is increasing versus a prior eligible observation.",
+      "label_name": "nominal_yield_rising",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "DGS10",
+        "DGS2"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Nominal Treasury yield context is decreasing versus a prior eligible observation.",
+      "label_name": "nominal_yield_falling",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "DGS10",
+        "DGS2"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Real yield context is increasing versus a prior eligible observation.",
+      "label_name": "real_yield_rising",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "DFII10",
+        "DFII5"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Real yield context is decreasing versus a prior eligible observation.",
+      "label_name": "real_yield_falling",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "DFII10",
+        "DFII5"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "A large upward yield move is present for macro-regime description only.",
+      "label_name": "yield_shock_up",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "fixed_shock_reference"
+      ],
+      "required_series": [
+        "DGS10",
+        "DGS2",
+        "DFII10"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "A large downward yield move is present for macro-regime description only.",
+      "label_name": "yield_shock_down",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "fixed_shock_reference"
+      ],
+      "required_series": [
+        "DGS10",
+        "DGS2",
+        "DFII10"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Nominal and real yield context point in the same pressure direction for gold macro review.",
+      "label_name": "gold_yield_pressure_aligned",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "pressure_direction_reference"
+      ],
+      "required_series": [
+        "DGS10",
+        "DFII10"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Nominal and real yield context diverge, marking a possible macro-context decoupling.",
+      "label_name": "gold_yield_decoupling",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "pressure_direction_reference"
+      ],
+      "required_series": [
+        "DGS10",
+        "DFII10"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Inflation breakeven context is increasing versus a prior eligible observation.",
+      "label_name": "breakeven_inflation_rising",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "T10YIE"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Inflation breakeven context is decreasing versus a prior eligible observation.",
+      "label_name": "breakeven_inflation_falling",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "T10YIE"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Effective Fed funds context indicates tighter policy pressure for macro review.",
+      "label_name": "fed_funds_pressure_tightening",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "DFF"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    },
+    {
+      "intended_interpretation_for_xauusd_macro_context": "Effective Fed funds context indicates easier policy pressure for macro review.",
+      "label_name": "fed_funds_pressure_easing",
+      "no_lookahead_rule": "Observation dates alone are not availability proof. Same-day values before release_timestamp, future releases, and timezone-ambiguous releases are excluded.",
+      "not_a_trade_signal_warning": "Descriptive macro-context label only; not a buy/sell signal, not a trade blocker, and not approved for strategy testing or trade filtering.",
+      "release_timestamp_requirement": "Each input observation must have an explicit timezone-aware release_timestamp, or a documented official release-time assumption must be approved before any future intraday label application.",
+      "required_input_fields": [
+        "series_id",
+        "observation_date",
+        "value",
+        "source_name",
+        "release_timestamp",
+        "comparison_window"
+      ],
+      "required_series": [
+        "DFF"
+      ],
+      "safe_backward_asof_requirement": "Future label application may use only observations whose release_timestamp is at or before the target timestamp; forward or nearest-future joins fail closed.",
+      "timeframe_applicability": "Daily yield or rate observations may describe future intraday XAUUSD macro context only after backward as-of eligibility is proven."
+    }
+  ],
+  "labels_used_as_trade_blockers": false,
+  "labels_used_for_strategy_testing": false,
+  "live_allowed": false,
+  "market_csv_created": false,
+  "no_lookahead_policy_confirmed": true,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "real_xauusd_data_used": false,
+  "recommended_next_step": "v0_79_external_yield_label_fixture_application_no_strategy",
+  "release_timestamp_policy_required": true,
+  "repeated_oos_review": false,
+  "required_series_by_label": {
+    "breakeven_inflation_falling": [
+      "T10YIE"
+    ],
+    "breakeven_inflation_rising": [
+      "T10YIE"
+    ],
+    "fed_funds_pressure_easing": [
+      "DFF"
+    ],
+    "fed_funds_pressure_tightening": [
+      "DFF"
+    ],
+    "gold_yield_decoupling": [
+      "DGS10",
+      "DFII10"
+    ],
+    "gold_yield_pressure_aligned": [
+      "DGS10",
+      "DFII10"
+    ],
+    "nominal_yield_falling": [
+      "DGS10",
+      "DGS2"
+    ],
+    "nominal_yield_rising": [
+      "DGS10",
+      "DGS2"
+    ],
+    "real_yield_falling": [
+      "DFII10",
+      "DFII5"
+    ],
+    "real_yield_rising": [
+      "DFII10",
+      "DFII5"
+    ],
+    "yield_shock_down": [
+      "DGS10",
+      "DGS2",
+      "DFII10"
+    ],
+    "yield_shock_up": [
+      "DGS10",
+      "DGS2",
+      "DFII10"
+    ]
+  },
+  "retune_performed": false,
+  "source_alignment_version": "v0_77",
+  "source_ingestion_version": "v0_76",
+  "source_schema_version": "v0_74",
+  "source_validator_version": "v0_75",
+  "strategy_rules_created": false,
+  "strategy_rules_modified": false,
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_signals_output": false,
+  "train_validation_only": true,
+  "warnings": [
+    "label_design_only_not_real_data_ingestion",
+    "labels_are_descriptive_macro_context_only",
+    "no_xauusd_alignment_or_persistent_dataset_created",
+    "labels_are_not_trade_blockers_or_trade_filters"
+  ]
+}
