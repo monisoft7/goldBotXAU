@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_80 External yield context readiness board
+- Last completed checkpoint: v0_81 Master trading path re-entry board
 - OOS: no OOS used in v0_76; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Current test baseline: 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: research infrastructure only; v0_80 consolidates v0_73-v0_79 external yield / real-yield context reports into a readiness board for future human-supplied sample preflight, preserves release timestamp and backward as-of policies, and does not call external APIs, download data, create persistent datasets, touch `data/*.csv`, use real XAUUSD data, use real yield data, align labels to XAUUSD bars, create trade signals, use labels as trade blockers, approve trade filtering, or modify trading rules
+- Execution status: reporting/decision board only; v0_81 closes the context-infrastructure detour as a safe stopping point and returns the project to the main trading path through one future design-only fixed-rule executable candidate step; no OOS, no strategy testing, no retune, no threshold search, no parameter grid, no executable candidate created, no demo/live execution, no order_send/order_check, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no label trade filtering approval, and no trade recommendation output
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -53,16 +53,36 @@
 - Latest external yield label design: `reports/xauusd_external_yield_label_design_v0_78.json`
 - Latest external yield label fixture application: `reports/xauusd_external_yield_label_fixture_application_v0_79.json`
 - Latest external yield context readiness board: `reports/xauusd_external_yield_context_readiness_board_v0_80.json`
+- Latest master trading path re-entry board: `reports/xauusd_master_trading_path_reentry_board_v0_81.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_80_external_yield_context_readiness_board_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_80`)
+- Latest checkpoint: `docs/checkpoints/v0_81_master_trading_path_reentry_board_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_81`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `external_yield_context_readiness_completed`; readiness decision `ready_for_human_supplied_external_yield_sample_preflight`; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, v0_73 found no usable local yield proxy, v0_74 completed schema/design only, v0_75 completed inline sample validation without external data access or XAUUSD alignment, v0_76 completed controlled manual fixture ingestion without persistent datasets, v0_77 completed backward as-of alignment design using synthetic timestamps only, v0_78 defined 12 descriptive yield / real-yield labels with release timestamp and backward-as-of requirements, v0_79 applied all 12 labels deterministically to controlled synthetic fixture snapshots with expected not-applicable cases, and v0_80 determined the path is ready for a future human-supplied external yield sample preflight
-- Next safe task: v0_81_human_supplied_external_yield_sample_preflight_no_strategy; use a small manually supplied CSV/JSONL sample only, require allowed v0_74/v0_78 series IDs, v0_74 columns, timezone-aware `release_timestamp`, and `source_name`; do not download data or create market CSVs, do not call external web APIs, do not require API keys, do not touch `data/*.csv`, do not align to real XAUUSD bars in v0_81 unless a later board allows it, do not use yield labels as trade blockers, and keep no strategy testing, no trade filtering approval, no OOS, no retune, no threshold search, no parameter grid, no executable candidates for demo, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `master_trading_path_reentry_completed`; context infrastructure is complete but not the primary next path; DXY event study has `clear_lead_count=0`, oil-conditioned event study has `clear_lead_count=0`, v0_73 found no usable local yield proxy, v0_80 determined external yield context is ready for a future human-supplied sample preflight, v0_26 remains non-tradeable as-is because direction/side mapping is unresolved, no current executable candidate is available, and OOS/demo/live remain disallowed
+- Next safe task: v0_82_executable_fixed_rule_candidate_design_no_oos; design exactly one fixed-rule executable XAUUSD candidate with explicit direction/side mapping, entry condition, invalidation/stop concept, target/exit concept, train/validation evaluation plan, cost/spread policy, and minimum trade count gate; do not run OOS until train/validation passes, do not run demo until OOS passes, and keep no strategy testing in v0_81, no OOS, no retune, no threshold search, no parameter grid, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no demo/live execution, no order_send/order_check, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_81 Master Trading Path Re-entry Board Result
+
+- Board module: `src/research/xauusd_master_trading_path_reentry_board.py`
+- Board script: `scripts/run_xauusd_master_trading_path_reentry_board_v0_81.py`
+- Board report: `reports/xauusd_master_trading_path_reentry_board_v0_81.json`
+- Board version: `v0_81`
+- Board status: `master_trading_path_reentry_completed`
+- Context infrastructure status: `complete_but_not_primary_path_for_next_step`
+- Recommended primary path: `design_one_fixed_rule_executable_candidate_without_oos`
+- Recommended next step: `v0_82_executable_fixed_rule_candidate_design_no_oos`
+- Current executable candidate available: `false`
+- OOS allowed now: `false`
+- Demo allowed now: `false`
+- Live allowed now: `false`
+- Strategy testing allowed now: `false`
+- Targeted tests: `75 passed`
+
+v0_81 is a decision/reporting board only. It closes the DXY/oil/yield context-infrastructure detour as a safe stopping point and recommends returning to the main trading path through a future v0_82 design-only fixed-rule candidate step. It does not create an executable candidate, modify strategy rules, run strategy testing, run OOS, retune, search thresholds, run parameter grids, call external APIs, download data, create datasets, touch `data/*.csv`, send/check orders, allow demo/live execution, or output trade recommendations.
 
 ## v0_80 External Yield Context Readiness Board Result
 
