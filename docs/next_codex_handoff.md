@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_82 Executable fixed-rule candidate design
+- Last completed checkpoint: v0_83 Executable candidate train/validation evaluation
 - OOS: no OOS used in v0_76; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 76 passed for v0_82 targeted executable fixed-rule candidate design/context pack tests; prior 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Current test baseline: 76 passed for v0_83 targeted executable candidate train/validation evaluation/context pack tests; prior 76 passed for v0_82 targeted executable fixed-rule candidate design/context pack tests; prior 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: v0_82 candidate design only; one new XAUUSD fixed-rule candidate design now exists with explicit internal side mapping, but no strategy testing, no train/validation, no OOS, no order path, no demo/live execution, no order_send/order_check, no retune, no threshold search, no parameter grid, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no label trade filtering approval, and no trade recommendation output
+- Execution status: v0_83 evaluated the fixed v0_82 candidate on train/validation only and failed fixed gates; no OOS, no order path, no demo/live execution, no order_send/order_check, no retune, no threshold search, no parameter grid, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no label trade filtering approval, and no trade recommendation output
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -55,16 +55,39 @@
 - Latest external yield context readiness board: `reports/xauusd_external_yield_context_readiness_board_v0_80.json`
 - Latest master trading path re-entry board: `reports/xauusd_master_trading_path_reentry_board_v0_81.json`
 - Latest executable fixed-rule candidate design: `reports/xauusd_executable_fixed_rule_candidate_design_v0_82.json`
+- Latest executable candidate train/validation evaluation: `reports/xauusd_executable_candidate_train_validation_v0_83.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_82_executable_fixed_rule_candidate_design_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_82`)
+- Latest checkpoint: `docs/checkpoints/v0_83_executable_candidate_train_validation_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_83`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `executable_fixed_rule_candidate_design_completed`; v0_82 defines `xauusd_ny_displacement_retest_executable_v0_82` as a design-only NY-session displacement + retest continuation candidate with explicit long/short side mapping, while v0_26 remains non-tradeable as-is because direction/side mapping is unresolved. OOS/demo/live remain disallowed.
-- Next safe task: v0_83_executable_candidate_train_validation_evaluation_no_oos; evaluate only the fixed v0_82 design on train/validation, require the declared gates, and do not run OOS unless a later checkpoint explicitly passes train/validation gates and approves it. Keep no OOS in v0_83, no demo/live execution, no order_send/order_check, no retune, no threshold search, no parameter grid, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `executable_candidate_train_validation_failed`; v0_83 evaluated `xauusd_ny_displacement_retest_executable_v0_82` on train/validation only and did not promote it to OOS review. It passed minimum train/validation trade counts, validation expectancy, and cost sensitivity, but failed validation profit factor, train/validation drawdown, and train/validation consecutive-loss gates. OOS/demo/live remain disallowed.
+- Next safe task: v0_84_candidate_failure_postmortem_no_retune; document the failed v0_83 fixed-gate result without retuning or changing v0_82 rules. Keep no OOS, no demo/live execution, no order_send/order_check, no retune, no threshold search, no parameter grid, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no trade recommendations, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_83 Executable Candidate Train/Validation Evaluation Result
+
+- Evaluation module: `src/research/xauusd_executable_candidate_train_validation.py`
+- Evaluation script: `scripts/run_xauusd_executable_candidate_train_validation_v0_83.py`
+- Evaluation report: `reports/xauusd_executable_candidate_train_validation_v0_83.json`
+- Evaluation version: `v0_83`
+- Evaluation status: `executable_candidate_train_validation_failed`
+- Candidate id: `xauusd_ny_displacement_retest_executable_v0_82`
+- Source design version: `v0_82`
+- Train/validation only: `true`
+- OOS used: `false`
+- Train trades: `443`
+- Validation trades: `80`
+- Validation profit factor: `1.189712471424468`
+- Validation expectancy R: `0.09679576294770034`
+- Train max drawdown R: `17.00780599375519`
+- Validation max drawdown R: `8.087901279760274`
+- Candidate promotable to OOS review: `false`
+- Recommended next step: `v0_84_candidate_failure_postmortem_no_retune`
+
+v0_83 evaluated the fixed v0_82 NY displacement/retest candidate on train/validation only. It failed the fixed train/validation gates and did not create an OOS, demo/live, order, retune, threshold-search, parameter-grid, external-data, dataset, `data/*.csv`, or trade-recommendation path.
 
 ## v0_82 Executable Fixed-Rule Candidate Design Result
 

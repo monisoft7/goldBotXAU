@@ -1,0 +1,357 @@
+{
+  "blockers": [
+    "validation_profit_factor_gate",
+    "train_max_drawdown_gate_R",
+    "validation_max_drawdown_gate_R",
+    "train_max_consecutive_loss_gate",
+    "validation_max_consecutive_loss_gate"
+  ],
+  "candidate_id": "xauusd_ny_displacement_retest_executable_v0_82",
+  "candidate_promotable_to_oos_review": false,
+  "candidate_rules_preserved": true,
+  "combined_train_validation_metrics": {
+    "exit_reason_counts": {
+      "stop": 238,
+      "target_1_5r": 197,
+      "time_stop_24_m5_bars": 88
+    },
+    "expectancy_R": 0.10235408417663126,
+    "gross_loss_R": 259.8572227898528,
+    "gross_profit_R": 313.38840881423096,
+    "losses": 278,
+    "max_consecutive_losses": 9,
+    "max_drawdown_R": 18.33156260751185,
+    "profit_factor": 1.206002301762722,
+    "side_counts": {
+      "long": 292,
+      "short": 231
+    },
+    "trades": 523,
+    "win_rate": 0.4684512428298279,
+    "wins": 245
+  },
+  "cost_sensitivity_summary": {
+    "base_cost_R_per_trade": 0.03,
+    "cost_sensitivity_passed": true,
+    "cost_sensitivity_required": true,
+    "sensitivity_cost_R_per_trade": 0.06,
+    "validation_expectancy_R_after_sensitivity_cost": 0.06679576294770033,
+    "validation_expectancy_R_delta": -0.030000000000000013,
+    "validation_profit_factor_after_sensitivity_cost": 1.1269040602460667
+  },
+  "data_csv_touched": false,
+  "data_files_used": {
+    "M15": [
+      "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m15_xauusd_2023-01-01_2026-06-11.csv"
+    ],
+    "M5": [
+      "C:/Users/THE BLU WALF/Desktop/goldBotXAU/data/xauusd_m5_xauusd_2023-01-01_2025-12-31.csv"
+    ]
+  },
+  "data_ranges_used": {
+    "train": {
+      "candle_count": 235668,
+      "end": "2025-06-30T23:55:00",
+      "start": "2023-01-03T01:00:00"
+    },
+    "validation": {
+      "candle_count": 47544,
+      "end": "2025-12-31T23:55:00",
+      "start": "2025-07-01T01:00:00"
+    }
+  },
+  "dataset_file_created": false,
+  "demo_execution_allowed": false,
+  "evaluation_name": "v0_83_executable_candidate_train_validation_evaluation_no_oos",
+  "evaluation_status": "executable_candidate_train_validation_failed",
+  "evaluation_version": "v0_83",
+  "executable_order_request_created": false,
+  "existing_strategy_rules_modified": false,
+  "explicit_side_mapping": {
+    "long": "bullish_displacement_plus_controlled_retest_hold",
+    "short": "bearish_displacement_plus_controlled_retest_hold"
+  },
+  "external_api_called": false,
+  "external_data_downloaded": false,
+  "failure_reasons": [
+    "validation_profit_factor_gate",
+    "train_max_drawdown_gate_R",
+    "validation_max_drawdown_gate_R",
+    "train_max_consecutive_loss_gate",
+    "validation_max_consecutive_loss_gate"
+  ],
+  "fixed_evaluation_rules": {
+    "close_location_threshold": 0.7,
+    "cost_r_per_trade": 0.03,
+    "cost_sensitivity_cost_r_per_trade": 0.06,
+    "displacement_lookback_m15": 16,
+    "entry": "close_of_m5_hold_candle_after_retest",
+    "maximum_retest_overshoot_r": 0.35,
+    "minimum_body_to_range_ratio": 0.6,
+    "no_overlapping_trades": true,
+    "one_position_at_a_time": true,
+    "retest_window_m5_bars": 12,
+    "session_window_utc": "12:30-17:00",
+    "stop": "displacement_origin_or_retest_extreme_plus_fixed_buffer",
+    "target": "fixed_1_5R",
+    "time_stop_m5_bars": 24,
+    "timeframes": [
+      "M15",
+      "M5"
+    ]
+  },
+  "fixed_gate": {
+    "cost_sensitivity_required": true,
+    "max_consecutive_loss_gate": 5,
+    "max_drawdown_gate_R": 8.0,
+    "minimum_train_trade_count_gate": 60,
+    "minimum_validation_trade_count_gate": 25,
+    "validation_expectancy_gate_R": 0.05,
+    "validation_profit_factor_gate": 1.25
+  },
+  "gate_results": {
+    "cost_sensitivity_required": {
+      "observed": 0.06679576294770033,
+      "passed": true,
+      "threshold": "positive_validation_expectancy_after_double_cost"
+    },
+    "minimum_train_trade_count_gate": {
+      "observed": 443,
+      "passed": true,
+      "threshold": 60
+    },
+    "minimum_validation_trade_count_gate": {
+      "observed": 80,
+      "passed": true,
+      "threshold": 25
+    },
+    "train_max_consecutive_loss_gate": {
+      "observed": 9,
+      "passed": false,
+      "threshold": 5
+    },
+    "train_max_drawdown_gate_R": {
+      "observed": 17.00780599375519,
+      "passed": false,
+      "threshold": 8.0
+    },
+    "validation_expectancy_gate_R": {
+      "observed": 0.09679576294770034,
+      "passed": true,
+      "threshold": 0.05
+    },
+    "validation_max_consecutive_loss_gate": {
+      "observed": 6,
+      "passed": false,
+      "threshold": 5
+    },
+    "validation_max_drawdown_gate_R": {
+      "observed": 8.087901279760274,
+      "passed": false,
+      "threshold": 8.0
+    },
+    "validation_profit_factor_gate": {
+      "observed": 1.189712471424468,
+      "passed": false,
+      "threshold": 1.25
+    }
+  },
+  "live_allowed": false,
+  "market_csv_created": false,
+  "next_step_if_failed": "v0_84_candidate_failure_postmortem_no_retune",
+  "next_step_if_passed": "v0_84_single_oos_review_for_executable_candidate",
+  "no_overlapping_trades_enforced": true,
+  "one_position_at_a_time_enforced": true,
+  "oos_allowed_now": false,
+  "oos_rows_counted": 0,
+  "oos_rows_read": false,
+  "oos_used": false,
+  "order_check_called": false,
+  "order_send_called": false,
+  "parameter_grid_performed": false,
+  "passed_all_train_validation_gates": false,
+  "recommended_next_step": "v0_84_candidate_failure_postmortem_no_retune",
+  "rejected_candidates_modified": false,
+  "retune_performed": false,
+  "safety_flags": {
+    "data_csv_touched": false,
+    "dataset_file_created": false,
+    "demo_execution_allowed": false,
+    "executable_order_request_created": false,
+    "existing_strategy_rules_modified": false,
+    "external_api_called": false,
+    "external_data_downloaded": false,
+    "live_allowed": false,
+    "market_csv_created": false,
+    "order_check_called": false,
+    "order_send_called": false,
+    "parameter_grid_performed": false,
+    "rejected_candidates_modified": false,
+    "retune_performed": false,
+    "threshold_search_performed": false,
+    "trade_recommendation_output": false,
+    "v0_26_traded_as_is": false
+  },
+  "source_design_rules_sha256": "fe43f37778f181dd006ebb4443ef832e27a8eca659d3132aad1dea82615e93d2",
+  "source_design_version": "v0_82",
+  "split_candle_counts": {
+    "M15": {
+      "other": 0,
+      "train": 58922,
+      "validation": 11922
+    },
+    "M5": {
+      "other": 0,
+      "train": 176746,
+      "validation": 35622
+    }
+  },
+  "threshold_search_performed": false,
+  "trade_recommendation_output": false,
+  "trade_records_count": 523,
+  "trade_records_output_path_or_null": null,
+  "trade_records_sample": [
+    {
+      "candidate_id": "xauusd_ny_displacement_retest_executable_v0_82",
+      "cost_R": 0.03,
+      "entry_price": 1856.5,
+      "entry_timestamp": "2023-01-04T14:20:00",
+      "exit_price": 1859.23,
+      "exit_reason": "stop",
+      "exit_timestamp": "2023-01-04T15:25:00",
+      "gross_return_R": -1.0,
+      "return_R": -1.03,
+      "side": "short",
+      "split": "train",
+      "stop_price": 1859.23,
+      "target_price": 1852.405,
+      "won": false
+    },
+    {
+      "candidate_id": "xauusd_ny_displacement_retest_executable_v0_82",
+      "cost_R": 0.03,
+      "entry_price": 1847.43,
+      "entry_timestamp": "2023-01-06T15:40:00",
+      "exit_price": 1861.48,
+      "exit_reason": "time_stop_24_m5_bars",
+      "exit_timestamp": "2023-01-06T17:40:00",
+      "gross_return_R": 1.1321514907332684,
+      "return_R": 1.1021514907332683,
+      "side": "long",
+      "split": "train",
+      "stop_price": 1835.02,
+      "target_price": 1866.045,
+      "won": true
+    },
+    {
+      "candidate_id": "xauusd_ny_displacement_retest_executable_v0_82",
+      "cost_R": 0.03,
+      "entry_price": 1870.83,
+      "entry_timestamp": "2023-01-09T13:35:00",
+      "exit_price": 1872.24,
+      "exit_reason": "stop",
+      "exit_timestamp": "2023-01-09T13:55:00",
+      "gross_return_R": -1.0,
+      "return_R": -1.03,
+      "side": "short",
+      "split": "train",
+      "stop_price": 1872.24,
+      "target_price": 1868.7149999999997,
+      "won": false
+    },
+    {
+      "candidate_id": "xauusd_ny_displacement_retest_executable_v0_82",
+      "cost_R": 0.03,
+      "entry_price": 1871.73,
+      "entry_timestamp": "2023-01-11T16:55:00",
+      "exit_price": 1867.71,
+      "exit_reason": "target_1_5r",
+      "exit_timestamp": "2023-01-11T18:15:00",
+      "gross_return_R": 1.4999999999999576,
+      "return_R": 1.4699999999999576,
+      "side": "short",
+      "split": "train",
+      "stop_price": 1874.41,
+      "target_price": 1867.71,
+      "won": true
+    },
+    {
+      "candidate_id": "xauusd_ny_displacement_retest_executable_v0_82",
+      "cost_R": 0.03,
+      "entry_price": 1885.71,
+      "entry_timestamp": "2023-01-12T13:10:00",
+      "exit_price": 1888.17,
+      "exit_reason": "target_1_5r",
+      "exit_timestamp": "2023-01-12T14:20:00",
+      "gross_return_R": 1.4999999999999307,
+      "return_R": 1.4699999999999307,
+      "side": "long",
+      "split": "train",
+      "stop_price": 1884.07,
+      "target_price": 1888.17,
+      "won": true
+    }
+  ],
+  "train_expectancy_R": 0.10335784421797319,
+  "train_max_consecutive_losses": 9,
+  "train_max_drawdown_R": 17.00780599375519,
+  "train_metrics": {
+    "exit_reason_counts": {
+      "stop": 201,
+      "target_1_5r": 165,
+      "time_stop_24_m5_bars": 77
+    },
+    "expectancy_R": 0.10335784421797319,
+    "gross_loss_R": 219.03934203761622,
+    "gross_profit_R": 264.8268670261783,
+    "losses": 235,
+    "max_consecutive_losses": 9,
+    "max_drawdown_R": 17.00780599375519,
+    "profit_factor": 1.2090379041619788,
+    "side_counts": {
+      "long": 239,
+      "short": 204
+    },
+    "trades": 443,
+    "win_rate": 0.46952595936794583,
+    "wins": 208
+  },
+  "train_profit_factor": 1.2090379041619788,
+  "train_trade_count": 443,
+  "train_validation_only": true,
+  "train_win_rate": 0.46952595936794583,
+  "v0_26_traded_as_is": false,
+  "validation_expectancy_R": 0.09679576294770034,
+  "validation_max_consecutive_losses": 6,
+  "validation_max_drawdown_R": 8.087901279760274,
+  "validation_metrics": {
+    "exit_reason_counts": {
+      "stop": 37,
+      "target_1_5r": 32,
+      "time_stop_24_m5_bars": 11
+    },
+    "expectancy_R": 0.09679576294770034,
+    "gross_loss_R": 40.81788075223659,
+    "gross_profit_R": 48.561541788052615,
+    "losses": 43,
+    "max_consecutive_losses": 6,
+    "max_drawdown_R": 8.087901279760274,
+    "profit_factor": 1.189712471424468,
+    "side_counts": {
+      "long": 53,
+      "short": 27
+    },
+    "trades": 80,
+    "win_rate": 0.4625,
+    "wins": 37
+  },
+  "validation_profit_factor": 1.189712471424468,
+  "validation_trade_count": 80,
+  "validation_win_rate": 0.4625,
+  "warnings": [
+    "fixed_rule_train_validation_research_records_only",
+    "oos_rows_filtered_before_split_counts_and_evaluation",
+    "same_candle_stop_target_resolution_is_stop_first",
+    "cost_policy_applied_as_fixed_R_deduction_and_sensitivity_check"
+  ]
+}
