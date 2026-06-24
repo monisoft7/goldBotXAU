@@ -65,8 +65,6 @@ def _oos_repair_summary(root: Path) -> dict[str, Any] | None:
     report = json.loads(repair_path.read_text(encoding="utf-8"))
     return {
         "repair_version": report.get("repair_version"),
-        "marker_report_mismatch_detected": report.get("marker_report_mismatch_detected"),
-        "overwritten_report_detected": report.get("overwritten_report_detected"),
         "marker_decision_preserved": report.get("marker_decision_preserved"),
         "detailed_oos_metrics_available": report.get("detailed_oos_metrics_available"),
         "repeat_review_allowed": report.get("repeat_review_allowed"),
@@ -84,7 +82,6 @@ def _post_oos_governance_summary(root: Path) -> dict[str, Any] | None:
         "source_oos_marker_decision": report.get("source_oos_marker_decision"),
         "detailed_oos_metrics_available": report.get("detailed_oos_metrics_available"),
         "repeat_oos_review_allowed": report.get("repeat_oos_review_allowed"),
-        "governance_status": report.get("governance_status"),
         "paper_shadow_protocol_status": report.get("paper_shadow_protocol_status"),
         "execution_allowed": report.get("execution_allowed"),
         "demo_allowed": report.get("demo_allowed"),
@@ -120,6 +117,16 @@ def _paper_forward_watcher_summary(root: Path) -> dict[str, Any] | None:
         "watch_version": report.get("watch_version"),
         "candidate_id": report.get("candidate_id"),
         "watch_status": report.get("watch_status"),
+        "data_source_status": report.get("data_source_status"),
+        "real_market_observation_started": report.get("real_market_observation_started"),
+        "execution_allowed": report.get("execution_allowed"),
+        "demo_allowed": report.get("demo_allowed"),
+        "live_allowed": report.get("live_allowed"),
+        "order_send_allowed": report.get("order_send_allowed"),
+        "order_check_allowed": report.get("order_check_allowed"),
+        "repeated_oos_review": report.get("repeated_oos_review"),
+        "candidate_rules_modified": report.get("candidate_rules_modified"),
+        "candidate_rules_preserved": report.get("candidate_rules_preserved"),
         "watch_record_count": report.get("watch_record_count"),
     }
 
@@ -179,9 +186,7 @@ def _forward_observation_journal_summary(root: Path) -> dict[str, Any] | None:
         "candidate_id": report.get("candidate_id"),
         "observation_status": report.get("observation_status"),
         "real_market_observation_started": report.get("real_market_observation_started"),
-        "journal_record_count": report.get("journal_record_count"),
         "timeframes_used": report.get("timeframes_used"),
-        "data_files_used": report.get("data_files_used"),
         "execution_allowed": report.get("execution_allowed"),
         "demo_allowed": report.get("demo_allowed"),
         "live_allowed": report.get("live_allowed"),
@@ -2126,8 +2131,6 @@ def _repository_cleanup_summary(root: Path) -> dict[str, Any] | None:
     return {
         "cleanup_version": report.get("cleanup_version"),
         "cleanup_status": report.get("cleanup_status"),
-        "files_deleted_count": report.get("files_deleted_count"),
-        "files_archived_count": report.get("files_archived_count"),
         "data_csv_touched": report.get("data_csv_touched"),
         "safety_files_touched": report.get("safety_files_touched"),
         "latest_context_files_touched": report.get("latest_context_files_touched"),
@@ -2338,4 +2341,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
