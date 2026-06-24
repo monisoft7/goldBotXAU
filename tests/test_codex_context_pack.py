@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_87"
+    assert context["context_version"] == "v0_88"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 28500
+    assert len(context_text) < 29000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_87"
+    assert context["context_version"] == "v0_88"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_87.json"
+    output_path = tmp_path / "codex_context_v0_88.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_87"
+    assert context["context_version"] == "v0_88"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -159,6 +159,24 @@ def test_context_includes_v0_87_paper_forward_watcher_summary() -> None:
     assert isinstance(watcher["watch_record_count"], int)
     assert watcher["recommended_next_step"] == "v0_88_paper_forward_watcher_loop_journal"
     assert watcher["safety_locked"] is True
+
+
+def test_context_includes_v0_88_paper_forward_watcher_loop_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    loop = context["latest_paper_forward_watcher_loop"]
+    assert loop is not None
+    assert loop["loop_version"] == "v0_88"
+    assert loop["loop_status"] in {
+        "loop_completed",
+        "loop_completed_no_observations",
+        "loop_blocked",
+    }
+    assert loop["cycle_count"] == 3
+    assert isinstance(loop["observation_count"], int)
+    assert loop["paper_observation_only"] is True
+    assert loop["recommended_next_step"] == "v0_89_paper_forward_outcome_tracker"
+    assert loop["safety_locked"] is True
 
 
 def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
@@ -1366,7 +1384,7 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_87"
+    assert context["context_version"] == "v0_88"
     assert context["m"] is True
 
 

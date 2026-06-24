@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_87"
+CONTEXT_VERSION = "v0_88"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -144,6 +144,40 @@ def _paper_forward_watcher_summary(root: Path) -> dict[str, Any] | None:
         "timeframes_used": report.get("timeframes_used"),
         "watch_record_count": report.get("watch_record_count"),
         "recommended_next_step": report.get("recommended_next_step") or report.get("next_recommended_step"),
+        "safety_locked": safety_locked,
+    }
+
+
+def _paper_forward_watcher_loop_summary(root: Path) -> dict[str, Any] | None:
+    loop_path = _report_path(root, "xauusd_paper_forward_watcher_loop_v0_88.json")
+    if not loop_path.exists():
+        return None
+    report = json.loads(loop_path.read_text(encoding="utf-8"))
+    safety_locked = all(
+        report.get(key) is False
+        for key in (
+            "execution_allowed",
+            "demo_allowed",
+            "live_allowed",
+            "order_send_called",
+            "order_check_called",
+            "order_send_allowed",
+            "order_check_allowed",
+            "trade_recommendation_output",
+            "user_facing_buy_sell_signal_output",
+            "data_csv_touched",
+            "market_csv_created",
+            "external_api_called",
+            "external_data_downloaded",
+        )
+    ) and report.get("paper_observation_only") is True
+    return {
+        "loop_version": report.get("loop_version"),
+        "loop_status": report.get("loop_status"),
+        "cycle_count": report.get("cycle_count"),
+        "observation_count": report.get("observation_count"),
+        "paper_observation_only": report.get("paper_observation_only"),
+        "recommended_next_step": report.get("recommended_next_step"),
         "safety_locked": safety_locked,
     }
 
@@ -2262,6 +2296,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_post_oos_governance": _post_oos_governance_summary(root),
         "latest_paper_shadow_journal": _paper_shadow_journal_summary(root),
         "latest_paper_forward_watcher": _paper_forward_watcher_summary(root),
+        "latest_paper_forward_watcher_loop": _paper_forward_watcher_loop_summary(root),
         "latest_forward_observation_plan": _forward_observation_plan_summary(root),
         "latest_forward_observation_runner": _forward_observation_runner_summary(root),
         "latest_forward_observation_journal": _forward_observation_journal_summary(root),
