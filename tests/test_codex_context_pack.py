@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_90"
+    assert context["context_version"] == "v0_91"
     json.dumps(context)
 
 
@@ -55,7 +55,7 @@ def test_context_does_not_include_huge_report_payloads_or_equity_curves() -> Non
 
     assert "equity_curve" not in context_text
     assert "train_metrics" not in context_text
-    assert len(context_text) < 30000
+    assert len(context_text) < 32000
 
 
 def test_context_cli_json_works() -> None:
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_90"
+    assert context["context_version"] == "v0_91"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_90.json"
+    output_path = tmp_path / "codex_context_v0_91.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_90"
+    assert context["context_version"] == "v0_91"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -225,6 +225,41 @@ def test_context_includes_v0_90_paper_directional_watcher_summary() -> None:
     assert watcher["direction_annotation_method"] == "fixed_ohlc_structure_no_optimization"
     assert watcher["recommended_next_step"] == "v0_91_directional_outcome_tracker"
     assert watcher["safety_locked"] is True
+
+
+def test_context_includes_v0_91_paper_directional_outcome_audit_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    audit = context["latest_paper_directional_outcome_audit"]
+    assert audit is not None
+    assert audit["audit_version"] == "v0_91"
+    assert audit["audit_status"] in {
+        "directional_outcome_audit_completed",
+        "directional_outcome_audit_completed_insufficient_directional_sample",
+        "directional_outcome_audit_completed_not_promising",
+        "directional_outcome_audit_blocked",
+    }
+    assert audit["source_watch_version"] == "v0_90"
+    assert isinstance(audit["scanned_row_count"], int)
+    assert isinstance(audit["directional_observation_count"], int)
+    assert isinstance(audit["null_direction_observation_count"], int)
+    assert isinstance(audit["records_evaluated"], int)
+    assert isinstance(audit["records_blocked"], int)
+    assert isinstance(audit["outcome_counts"], dict)
+    assert isinstance(audit["favorable_rate"], float)
+    assert isinstance(audit["adverse_rate"], float)
+    assert audit["decision"] in {
+        "insufficient_directional_frequency",
+        "current_direction_rule_not_promising",
+        "current_direction_rule_promising_for_more_forward_paper_only",
+        "inconclusive_continue_paper_only",
+    }
+    assert audit["recommended_next_step"] in {
+        "v0_92_request_alternative_fixed_direction_rules_from_external_reviewer",
+        "v0_92_kill_current_direction_rule_and_request_alternatives",
+        "v0_92_forward_paper_directional_loop_live_observation_no_demo",
+    }
+    assert audit["safety_locked"] is True
 
 
 def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
@@ -1432,7 +1467,7 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_90"
+    assert context["context_version"] == "v0_91"
     assert context["m"] is True
 
 

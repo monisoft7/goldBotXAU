@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_90 Paper directional observation layer
-- OOS: no OOS used in v0_90; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 81 passed for v0_90 targeted paper direction annotator/context pack tests; prior 79 passed for v0_89 targeted paper outcome tracker/context pack tests; prior 79 passed for v0_88 targeted paper watcher loop journal/context pack tests; prior 75 passed for v0_87 targeted paper watcher real CSV/context pack tests; prior 80 passed for v0_85 targeted fresh executable candidate sprint/context pack tests; prior 76 passed for v0_84 targeted trading decision sprint/context pack tests; prior 76 passed for v0_83 targeted executable candidate train/validation evaluation/context pack tests; prior 76 passed for v0_82 targeted executable fixed-rule candidate design/context pack tests; prior 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_91 Paper directional outcome audit
+- OOS: no OOS used in v0_91; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 84 passed for v0_91 targeted paper directional outcome audit/context pack tests; prior 81 passed for v0_90 targeted paper direction annotator/context pack tests; prior 79 passed for v0_89 targeted paper outcome tracker/context pack tests; prior 79 passed for v0_88 targeted paper watcher loop journal/context pack tests; prior 75 passed for v0_87 targeted paper watcher real CSV/context pack tests; prior 80 passed for v0_85 targeted fresh executable candidate sprint/context pack tests; prior 76 passed for v0_84 targeted trading decision sprint/context pack tests; prior 76 passed for v0_83 targeted executable candidate train/validation evaluation/context pack tests; prior 76 passed for v0_82 targeted executable fixed-rule candidate design/context pack tests; prior 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: v0_90 reads existing local XAUUSD market CSV rows read-only and applies a deterministic fixed OHLC structure annotation to produce paper-only `paper_observation_direction` values. The latest run found 2 directional paper observations and 48 null-direction observations in the selected rows, and left 4 JSONL directional journal records after append. This direction is not an executable side, not a trade signal, and not user-facing buy/sell advice. Execution/demo/live/order paths remain disabled. No OOS, backtest, retune, threshold search, parameter grid, optimization, external API/download, market CSV creation, persistent market dataset creation, `data/*.csv` touch, executable order request, or trade recommendation output was introduced.
+- Execution status: v0_91 reads existing local XAUUSD market CSV rows read-only, applies the v0_90 fixed OHLC paper direction annotator in memory, and evaluates paper directional outcomes over a fixed 12-bar horizon. The latest run scanned 5000 rows from 2026-01-01, evaluated 300 directional observations, blocked 0 records, and returned `current_direction_rule_not_promising` because favorable rate `0.906667` was lower than adverse rate `0.936667` when both-sided moves count into both rates. Execution/demo/live/order paths remain disabled. No OOS, backtest, retune, threshold search, parameter grid, optimization, external API/download, market CSV creation, persistent market dataset creation, `data/*.csv` touch, executable order request, or trade recommendation output was introduced.
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -64,16 +64,44 @@
 - Latest paper forward outcome tracker: `reports/xauusd_paper_forward_outcome_tracker_v0_89.json`
 - Latest paper directional watcher: `reports/xauusd_paper_directional_watcher_v0_90.json`
 - Latest paper directional journal: `reports/xauusd_paper_directional_journal_v0_90.jsonl`
+- Latest paper directional outcome audit: `reports/xauusd_paper_directional_outcome_audit_v0_91.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_90_paper_directional_observation_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_90`)
+- Latest checkpoint: `docs/checkpoints/v0_91_paper_directional_outcome_audit_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_91`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `directional_watch_completed`; v0_90 added fixed paper-only direction annotations without converting direction into execution or advice. OOS/demo/live remain disallowed.
-- Next safe task: v0_91_directional_outcome_tracker; evaluate v0_90 paper directional journal outcomes using fixed paper-only thresholds without strategy research, backtest, OOS, retune, a new strategy, demo/live execution, order_send/order_check, executable order request, trade recommendations or user-facing buy/sell signals, threshold search, parameter grid, optimization, broad search unless explicitly scoped, external APIs/downloads, dataset creation, `data/*.csv` touch, context-label trade filtering approval, safety/governance file removal, `data/*.csv` staging, or `git add .`
+- Latest decision: `current_direction_rule_not_promising`; v0_91 audited the v0_90 fixed paper-only direction annotations and found adverse movement rate exceeded favorable movement rate. OOS/demo/live remain disallowed.
+- Next safe task: v0_92_kill_current_direction_rule_and_request_alternatives; do not promote, retune, optimize, grid/search thresholds, run OOS/backtests, create a new strategy without explicit scope, enable demo/live execution, call order_send/order_check, create an executable order request, output trade recommendations or user-facing buy/sell signals, use external APIs/downloads, create datasets, touch `data/*.csv`, stage `data/*.csv`, or use `git add .`
+
+## v0_91 Paper Directional Outcome Audit Result
+
+- Audit module: `src/research/xauusd_paper_directional_outcome_audit.py`
+- Audit script: `scripts/run_xauusd_paper_directional_outcome_audit_v0_91.py`
+- Audit report: `reports/xauusd_paper_directional_outcome_audit_v0_91.json`
+- Audit version: `v0_91`
+- Audit status: `directional_outcome_audit_completed_not_promising`
+- Source watch version: `v0_90`
+- Direction annotation method: `fixed_ohlc_structure_no_optimization`
+- Lookback bars: `12`
+- Horizon bars: `12`
+- Scanned row count: `5000`
+- Directional observation count: `300`
+- Null direction observation count: `4300`
+- Records evaluated: `300`
+- Records blocked: `0`
+- Outcome counts: `favorable_move_observed=19`, `adverse_move_observed=28`, `both_favorable_and_adverse_observed=253`, `neutral_or_insufficient_move=0`, `blocked_missing_future_rows=0`
+- Favorable rate: `0.906667`
+- Adverse rate: `0.936667`
+- Both favorable and adverse rate: `0.843333`
+- Decision: `current_direction_rule_not_promising`
+- Recommended next step: `v0_92_kill_current_direction_rule_and_request_alternatives`
+
+v0_91 is paper-only diagnostic evidence. It is not a backtest, not OOS, not promotion, not optimization, not an executable direction rule, not a trade signal, and not user-facing buy/sell advice.
+
+No OOS, backtest, retune, parameter search, threshold search, parameter grid, optimization, external API/download, demo/live execution, executable order request, order sending, order checking, market CSV creation, persistent market dataset creation, or `data/*.csv` modification was introduced.
 
 ## v0_90 Paper Directional Observation Result
 

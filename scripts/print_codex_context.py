@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_90"
+CONTEXT_VERSION = "v0_91"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -255,6 +255,49 @@ def _paper_directional_watcher_summary(root: Path) -> dict[str, Any] | None:
         "timeframes_used": report.get("timeframes_used"),
         "lookback_bars": report.get("lookback_bars"),
         "direction_annotation_method": report.get("direction_annotation_method"),
+        "recommended_next_step": report.get("recommended_next_step"),
+        "safety_locked": safety_locked,
+    }
+
+
+def _paper_directional_outcome_audit_summary(root: Path) -> dict[str, Any] | None:
+    audit_path = _report_path(root, "xauusd_paper_directional_outcome_audit_v0_91.json")
+    if not audit_path.exists():
+        return None
+    report = json.loads(audit_path.read_text(encoding="utf-8"))
+    safety_locked = all(
+        report.get(key) is False
+        for key in (
+            "execution_allowed",
+            "demo_allowed",
+            "live_allowed",
+            "order_send_called",
+            "order_check_called",
+            "order_send_allowed",
+            "order_check_allowed",
+            "trade_recommendation_output",
+            "user_facing_buy_sell_signal_output",
+            "data_csv_touched",
+            "external_api_called",
+            "external_data_downloaded",
+            "threshold_search_performed",
+            "parameter_grid_performed",
+            "optimization_performed",
+        )
+    ) and report.get("paper_observation_only") is True
+    return {
+        "audit_version": report.get("audit_version"),
+        "audit_status": report.get("audit_status"),
+        "source_watch_version": report.get("source_watch_version"),
+        "scanned_row_count": report.get("scanned_row_count"),
+        "directional_observation_count": report.get("directional_observation_count"),
+        "null_direction_observation_count": report.get("null_direction_observation_count"),
+        "records_evaluated": report.get("records_evaluated"),
+        "records_blocked": report.get("records_blocked"),
+        "outcome_counts": report.get("outcome_counts"),
+        "favorable_rate": report.get("favorable_rate"),
+        "adverse_rate": report.get("adverse_rate"),
+        "decision": report.get("decision"),
         "recommended_next_step": report.get("recommended_next_step"),
         "safety_locked": safety_locked,
     }
@@ -2377,6 +2420,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_paper_forward_watcher_loop": _paper_forward_watcher_loop_summary(root),
         "latest_paper_forward_outcome_tracker": _paper_forward_outcome_tracker_summary(root),
         "latest_paper_directional_watcher": _paper_directional_watcher_summary(root),
+        "latest_paper_directional_outcome_audit": _paper_directional_outcome_audit_summary(root),
         "latest_forward_observation_plan": _forward_observation_plan_summary(root),
         "latest_forward_observation_runner": _forward_observation_runner_summary(root),
         "latest_forward_observation_journal": _forward_observation_journal_summary(root),
