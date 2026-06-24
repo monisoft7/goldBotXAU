@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_89"
+    assert context["context_version"] == "v0_90"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_89"
+    assert context["context_version"] == "v0_90"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_89.json"
+    output_path = tmp_path / "codex_context_v0_90.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_89"
+    assert context["context_version"] == "v0_90"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -203,6 +203,28 @@ def test_context_includes_v0_89_paper_forward_outcome_tracker_summary() -> None:
     assert tracker["real_market_observation_used"] in {True, False}
     assert tracker["recommended_next_step"] == "v0_90_paper_forward_performance_summary"
     assert tracker["safety_locked"] is True
+
+
+def test_context_includes_v0_90_paper_directional_watcher_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    watcher = context["latest_paper_directional_watcher"]
+    assert watcher is not None
+    assert watcher["watch_version"] == "v0_90"
+    assert watcher["watch_status"] in {
+        "directional_watch_completed",
+        "directional_watch_completed_no_directional_records",
+        "directional_watch_blocked",
+    }
+    assert watcher["run_mode"] == "local_readonly_directional_paper_observation"
+    assert isinstance(watcher["directional_observation_count"], int)
+    assert isinstance(watcher["null_direction_observation_count"], int)
+    assert isinstance(watcher["journal_record_count"], int)
+    assert isinstance(watcher["timeframes_used"], list)
+    assert watcher["lookback_bars"] == 12
+    assert watcher["direction_annotation_method"] == "fixed_ohlc_structure_no_optimization"
+    assert watcher["recommended_next_step"] == "v0_91_directional_outcome_tracker"
+    assert watcher["safety_locked"] is True
 
 
 def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
@@ -1410,7 +1432,7 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_89"
+    assert context["context_version"] == "v0_90"
     assert context["m"] is True
 
 
