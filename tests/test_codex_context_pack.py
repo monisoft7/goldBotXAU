@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_84"
+    assert context["context_version"] == "v0_85"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_84"
+    assert context["context_version"] == "v0_85"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_84.json"
+    output_path = tmp_path / "codex_context_v0_85.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_84"
+    assert context["context_version"] == "v0_85"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -1343,7 +1343,7 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_84"
+    assert context["context_version"] == "v0_85"
     assert context["m"] is True
 
 
@@ -1410,6 +1410,29 @@ def test_context_includes_v0_84_trading_decision_sprint_summary() -> None:
         "v0_85_repair_trade_diagnostics_then_decide",
     }
     assert summary[8] is True
+
+
+def test_context_includes_v0_85_fresh_executable_candidate_sprint_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    summary = context["x85"]
+    assert summary is not None
+    assert summary[0] == "v0_85"
+    assert summary[1] in {
+        "fresh_executable_candidate_sprint_passed_candidate_ready_for_single_oos",
+        "fresh_executable_candidate_sprint_failed_all_candidates",
+        "fresh_executable_candidate_sprint_blocked",
+    }
+    assert summary[2] == "xauusd_ny_displacement_retest_executable_v0_82"
+    assert summary[3] <= 3
+    assert isinstance(summary[4], int)
+    assert summary[5] is None or isinstance(summary[5], str)
+    assert summary[6] in {
+        "v0_86_single_oos_review_for_selected_executable_candidate",
+        "v0_86_strategy_family_review_or_stop",
+        "v0_86_repair_evaluator_then_rerun_sprint",
+    }
+    assert summary[7] is True
 
 
 def test_context_includes_v0_63_context_labeled_event_study_summary() -> None:
