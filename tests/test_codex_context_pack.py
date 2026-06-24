@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_85"
+    assert context["context_version"] == "v0_86"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_85"
+    assert context["context_version"] == "v0_86"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_85.json"
+    output_path = tmp_path / "codex_context_v0_86.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_85"
+    assert context["context_version"] == "v0_86"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -136,6 +136,27 @@ def test_context_includes_v0_31_paper_shadow_journal_summary() -> None:
     assert journal["live_allowed"] is False
     assert journal["repeated_oos_review"] is False
     assert journal["candidate_rules_modified"] is False
+
+
+def test_context_includes_v0_86_paper_forward_watcher_summary() -> None:
+    context = build_codex_context(ROOT)
+
+    watcher = context["latest_paper_forward_watcher"]
+    assert watcher is not None
+    assert watcher["watch_version"] == "v0_86"
+    assert watcher["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
+    assert watcher["watch_status"] in {"watch_completed", "blocked"}
+    assert watcher["data_source_status"] in {"synthetic_fixtures_only", "fixture_csv"}
+    assert watcher["real_market_observation_started"] is False
+    assert watcher["execution_allowed"] is False
+    assert watcher["demo_allowed"] is False
+    assert watcher["live_allowed"] is False
+    assert watcher["order_send_allowed"] is False
+    assert watcher["order_check_allowed"] is False
+    assert watcher["repeated_oos_review"] is False
+    assert watcher["candidate_rules_modified"] is False
+    assert watcher["candidate_rules_preserved"] is True
+    assert isinstance(watcher["watch_record_count"], int)
 
 
 def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
@@ -1343,7 +1364,7 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_85"
+    assert context["context_version"] == "v0_86"
     assert context["m"] is True
 
 

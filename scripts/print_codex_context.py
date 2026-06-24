@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 from scripts.project_health_check import build_project_health_report
 from src.research.candidate_registry import research_candidate_registry
 
-CONTEXT_VERSION = "v0_85"
+CONTEXT_VERSION = "v0_86"
 
 
 def _latest_known_test_count(root: Path) -> int | None:
@@ -108,6 +108,19 @@ def _paper_shadow_journal_summary(root: Path) -> dict[str, Any] | None:
         "live_allowed": report.get("live_allowed"),
         "repeated_oos_review": report.get("repeated_oos_review"),
         "candidate_rules_modified": report.get("candidate_rules_modified"),
+    }
+
+
+def _paper_forward_watcher_summary(root: Path) -> dict[str, Any] | None:
+    watcher_path = _report_path(root, "xauusd_paper_forward_watcher_v0_86.json")
+    if not watcher_path.exists():
+        return None
+    report = json.loads(watcher_path.read_text(encoding="utf-8"))
+    return {
+        "watch_version": report.get("watch_version"),
+        "candidate_id": report.get("candidate_id"),
+        "watch_status": report.get("watch_status"),
+        "watch_record_count": report.get("watch_record_count"),
     }
 
 
@@ -2228,6 +2241,7 @@ def _build_codex_context_cached(root_text: str) -> dict[str, Any]:
         "latest_oos_repair": _oos_repair_summary(root),
         "latest_post_oos_governance": _post_oos_governance_summary(root),
         "latest_paper_shadow_journal": _paper_shadow_journal_summary(root),
+        "latest_paper_forward_watcher": _paper_forward_watcher_summary(root),
         "latest_forward_observation_plan": _forward_observation_plan_summary(root),
         "latest_forward_observation_runner": _forward_observation_runner_summary(root),
         "latest_forward_observation_journal": _forward_observation_journal_summary(root),

@@ -1,0 +1,96 @@
+{
+  "allowed_timeframes": [
+    "M5",
+    "M10"
+  ],
+  "blockers": [],
+  "candidate_id": "xauusd_compression_then_expansion_v0_26",
+  "candidate_rules_lock": {
+    "fixed_rules_hash_sha256": "e8744cb060337cccc4a65ce7ff08548a9edc6e14fa0f62966574faed6e168083",
+    "fixed_rules_source": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json",
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "retune_allowed": false,
+    "rule_change_allowed": false,
+    "threshold_search_allowed": false
+  },
+  "candidate_rules_modified": false,
+  "candidate_rules_preserved": true,
+  "data_source_status": "synthetic_fixtures_only",
+  "demo_allowed": false,
+  "execution_allowed": false,
+  "generated_at": "2026-06-24T08:47:08.013734+00:00",
+  "journal_record_count": 2,
+  "live_allowed": false,
+  "next_recommended_step": "v0_87_review_paper_forward_watcher_or_stop",
+  "non_actions_performed": {
+    "candidate_rules_changed": false,
+    "market_data_exported": false,
+    "mt5_called": false,
+    "new_backtest_evaluated": false,
+    "new_oos_run_performed": false,
+    "new_strategy_variant_created": false,
+    "repeated_oos_review": false
+  },
+  "order_check_allowed": false,
+  "order_send_allowed": false,
+  "real_market_observation_started": false,
+  "repeated_oos_review": false,
+  "safety": {
+    "averaging_into_loss_allowed": false,
+    "demo_allowed": false,
+    "directional_instruction_output_allowed": false,
+    "execution_allowed": false,
+    "execution_queue_allowed": false,
+    "live_allowed": false,
+    "martingale_allowed": false,
+    "new_backtest_allowed": false,
+    "new_oos_evaluation_allowed": false,
+    "oos_repeat_allowed": false,
+    "order_check_allowed": false,
+    "order_path_allowed": false,
+    "order_send_allowed": false,
+    "parameter_grid_allowed": false,
+    "parameter_optimization_allowed": false,
+    "recommendation_output_allowed": false,
+    "retune_allowed": false,
+    "threshold_search_allowed": false,
+    "trade_recommendation_output_allowed": false
+  },
+  "source_files_inspected": [],
+  "source_files_used": [],
+  "source_reports": {
+    "candidate_report": "reports\\xauusd_compression_expansion_candidate_v0_26_train_validation.json"
+  },
+  "timeframes_used": [
+    "M10",
+    "M5"
+  ],
+  "watch_record_count": 2,
+  "watch_records": [
+    {
+      "direction_assigned": null,
+      "invalidation_note": null,
+      "notes": "synthetic fixture journal record; timeframe=M10; data_quality=local fixture csv; risk_note=observation only",
+      "reason": "rule match",
+      "setup_label": "lowest range reference block",
+      "status": "expansion observed",
+      "symbol": "XAUUSD",
+      "timeframe": "M10",
+      "timestamp": "2026-06-14T00:00:00+00:00"
+    },
+    {
+      "direction_assigned": null,
+      "invalidation_note": null,
+      "notes": "synthetic fixture journal record; timeframe=M5; data_quality=local fixture csv; risk_note=observation only",
+      "reason": "rule match",
+      "setup_label": "lowest range reference block",
+      "status": "expansion observed",
+      "symbol": "XAUUSD",
+      "timeframe": "M5",
+      "timestamp": "2026-06-14T00:00:00+00:00"
+    }
+  ],
+  "watch_status": "watch_completed",
+  "watch_version": "v0_86"
+}

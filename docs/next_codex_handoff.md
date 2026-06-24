@@ -64,10 +64,10 @@
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
 - Latest checkpoint: `docs/checkpoints/v0_85_fresh_executable_candidate_sprint_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_85`)
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_86`)
 - Latest health report: `reports/project_health_v0_64_2.json`
 - Latest decision: `fresh_executable_candidate_sprint_failed_all_candidates`; v0_85 evaluated exactly three fresh fixed-rule candidate families on train/validation only and selected none. All failed candidates stay closed to OOS. OOS/demo/live remain disallowed.
-- Next safe task: v0_86_strategy_family_review_or_stop; review whether to stop strategy-family work or choose a new bounded research direction. Do not rescue v0_82 again, do not retune v0_85 failed candidates, do not run OOS on failed candidates, no demo/live execution, no order_send/order_check, no executable order request, no trade recommendations or user-facing buy/sell signals, no threshold search, no parameter grid, no broad search unless explicitly scoped, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Next safe task: v0_86_paper_forward_watcher; build a paper-only forward watcher instead of continuing strategy-family review. Do not rescue v0_82 again, do not retune v0_85 failed candidates, do not run OOS on failed candidates, no demo/live execution, no order_send/order_check, no executable order request, no trade recommendations or user-facing buy/sell signals, no threshold search, no parameter grid, no broad search unless explicitly scoped, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
 
 ## v0_85 Fresh Executable Candidate Sprint Result
 
@@ -81,7 +81,7 @@
 - Passing candidates: none
 - Selected candidate: none
 - Candidate promotable to OOS review: `false`
-- Recommended next step: `v0_86_strategy_family_review_or_stop`
+- Recommended next step: `v0_86_paper_forward_watcher`
 
 v0_85 evaluated three fixed fresh families once: NY opening-range breakout continuation, London-to-NY liquidity sweep reversal, and impulse-pullback continuation. All failed unchanged train/validation gates, so no failed candidate is promotable to OOS.
 
