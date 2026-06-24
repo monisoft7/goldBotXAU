@@ -1,14 +1,14 @@
 # Next Codex Handoff
 
 - Current project: goldBotXAU
-- Last completed checkpoint: v0_85 Fresh executable candidate sprint
-- OOS: no OOS used in v0_85; historical OOS lock state remains governed by checked-in reports and registry
-- Current test baseline: 80 passed for v0_85 targeted fresh executable candidate sprint/context pack tests; prior 76 passed for v0_84 targeted trading decision sprint/context pack tests; prior 76 passed for v0_83 targeted executable candidate train/validation evaluation/context pack tests; prior 76 passed for v0_82 targeted executable fixed-rule candidate design/context pack tests; prior 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
+- Last completed checkpoint: v0_87 Local read-only market CSV paper watcher
+- OOS: no OOS used in v0_87; historical OOS lock state remains governed by checked-in reports and registry
+- Current test baseline: 75 passed for v0_87 targeted paper watcher real CSV/context pack tests; prior 80 passed for v0_85 targeted fresh executable candidate sprint/context pack tests; prior 76 passed for v0_84 targeted trading decision sprint/context pack tests; prior 76 passed for v0_83 targeted executable candidate train/validation evaluation/context pack tests; prior 76 passed for v0_82 targeted executable fixed-rule candidate design/context pack tests; prior 75 passed for v0_81 targeted master trading path re-entry board/context pack tests; prior 74 passed for v0_80 targeted external yield context readiness board/context pack tests; prior 72 passed for v0_79 targeted external yield label fixture application/context pack tests; prior 70 passed for v0_78 targeted external yield label design/context pack tests; prior 72 passed for v0_77 targeted external yield as-of alignment design/context pack tests; prior 69 passed for v0_76 targeted external yield manual fixture ingestion/context pack tests; prior 72 passed for v0_75 targeted external yield sample validator/context pack tests; prior 66 passed for v0_74 targeted external yield dataset schema/context pack tests; prior 66 passed for v0_73 targeted yield context feasibility/context pack tests; prior 66 passed for v0_72 targeted oil-conditioned event study/context pack tests; prior 64 passed for v0_71 targeted gold macro context board/context pack tests; prior 64 passed for v0_70 targeted oil proxy quality/label design/context pack tests; prior 63 passed for v0_69 targeted oil proxy audit/context pack tests; prior 71 passed for v0_68_1 targeted DXY proxy row adapter/DXY-conditioned event study/context pack tests; prior 62 passed for v0_68 targeted DXY-conditioned event study/context pack tests; prior 61 passed for v0_67 targeted DXY regime label design/context pack tests; prior 60 passed for v0_66 targeted DXY proxy ranker/context pack tests; prior 59 passed for v0_65 targeted DXY proxy audit tests; prior 364 passed for v0_64_2 full pytest; prior v0_64_1 targeted baseline 61 passed before apply, prior v0_64 targeted baseline 55 passed, prior v0_63 targeted baseline 53 passed, prior v0_62 targeted baseline 53 passed, prior v0_61 targeted baseline 59 passed, prior v0_60 targeted baseline 53 passed, prior v0_59 targeted baseline 53 passed, prior v0_58 targeted baseline 54 passed, and prior broad baseline 574 passed before v0_47
 - Health status: warnings only due to documented safety mentions
 - Rejected candidate count: 6
 - Eligible for OOS review count: 0
 - Strategy status: v0_26 compression/expansion closed as execution path; no retune
-- Execution status: v0_85 ran a fresh executable candidate sprint on exactly three predeclared fixed-rule XAUUSD candidate families. All three failed unchanged train/validation gates, no candidate was selected, and no failed candidate is promotable to OOS. No OOS, no order path, no demo/live execution, no order_send/order_check, no retune, no threshold search, no parameter grid, no broad search, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no label trade filtering approval, and no trade recommendation output.
+- Execution status: v0_87 runs the paper watcher in local read-only market CSV mode. It produced 30 paper observation records from existing local XAUUSD CSV rows, set `real_market_observation_started=true`, and kept execution/demo/live/order paths disabled. No OOS, backtest, retune, threshold search, parameter grid, external API/download, market CSV creation, persistent market dataset creation, `data/*.csv` touch, executable order request, or trade recommendation output was introduced.
 - Locked candidate: `xauusd_compression_then_expansion_v0_26`
 - Latest candidate report: `reports/xauusd_compression_expansion_candidate_v0_26_train_validation.json`
 - Latest final demo readiness gate: `reports/xauusd_final_demo_readiness_gate_v0_41.json`
@@ -58,16 +58,36 @@
 - Latest executable candidate train/validation evaluation: `reports/xauusd_executable_candidate_train_validation_v0_83.json`
 - Latest trading decision sprint: `reports/xauusd_trading_decision_sprint_v0_84.json`
 - Latest fresh executable candidate sprint: `reports/xauusd_fresh_executable_candidate_sprint_v0_85.json`
+- Latest paper forward watcher: `reports/xauusd_paper_forward_watcher_v0_87.json`
 - Latest repository consolidation plan: `reports/repository_consolidation_plan_v0_64.json`
 - Latest repository cleanup result: `reports/repository_cleanup_applied_v0_64_1.json`
 - Latest repository cleanup repair: `reports/repository_cleanup_repair_v0_64_2.json`
 - Latest active project map: `docs/active_project_map.md`
 - Latest retired experiments archive: `docs/retired_experiments_archive.md`
-- Latest checkpoint: `docs/checkpoints/v0_85_fresh_executable_candidate_sprint_result.md`
-- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_86`)
+- Latest checkpoint: `docs/checkpoints/v0_87_paper_forward_watcher_real_csv_result.md`
+- Latest context pack generator: `scripts/print_codex_context.py` (`context_version=v0_87`)
 - Latest health report: `reports/project_health_v0_64_2.json`
-- Latest decision: `fresh_executable_candidate_sprint_failed_all_candidates`; v0_85 evaluated exactly three fresh fixed-rule candidate families on train/validation only and selected none. All failed candidates stay closed to OOS. OOS/demo/live remain disallowed.
-- Next safe task: v0_86_paper_forward_watcher; build a paper-only forward watcher instead of continuing strategy-family review. Do not rescue v0_82 again, do not retune v0_85 failed candidates, do not run OOS on failed candidates, no demo/live execution, no order_send/order_check, no executable order request, no trade recommendations or user-facing buy/sell signals, no threshold search, no parameter grid, no broad search unless explicitly scoped, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+- Latest decision: `watch_completed`; v0_87 upgraded the paper-only watcher to local read-only market CSV observation mode and produced paper observation records only. OOS/demo/live remain disallowed.
+- Next safe task: v0_88_paper_forward_watcher_loop_journal; continue paper-only observation journaling from local read-only inputs. Do not continue strategy research, do not backtest, do not run OOS, do not retune, do not create a new strategy, no demo/live execution, no order_send/order_check, no executable order request, no trade recommendations or user-facing buy/sell signals, no threshold search, no parameter grid, no broad search unless explicitly scoped, no external APIs/downloads, no dataset creation, no `data/*.csv` touch, no context-label trade filtering approval, no safety/governance file removal, no `data/*.csv` staging, and no `git add .`
+
+## v0_87 Paper Forward Watcher Real CSV Result
+
+- Watcher module: `src/research/xauusd_paper_forward_watcher.py`
+- Watcher script: `scripts/run_xauusd_paper_forward_watcher_v0_87.py`
+- Watcher report: `reports/xauusd_paper_forward_watcher_v0_87.json`
+- Watcher version: `v0_87`
+- Watch status: `watch_completed`
+- Run mode: `real_read_only`
+- Data source status: `local_readonly_market_csv`
+- Real market observation started: `true`
+- Paper observation only: `true`
+- Watch record count: `30`
+- Timeframes used: `M5`, `M10`
+- Recommended next step: `v0_88_paper_forward_watcher_loop_journal`
+
+v0_87 discovers existing local XAUUSD CSV files under `data/`, reads rows read-only, and emits observation records only. It does not output trade recommendations or user-facing buy/sell signals.
+
+No OOS, backtest, retune, parameter search, threshold search, parameter grid, external API/download, demo/live execution, executable order request, order sending, order checking, market CSV creation, persistent market dataset creation, or `data/*.csv` modification was introduced.
 
 ## v0_85 Fresh Executable Candidate Sprint Result
 

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_print_codex_context_returns_valid_json() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_86"
+    assert context["context_version"] == "v0_87"
     json.dumps(context)
 
 
@@ -73,11 +73,11 @@ def test_context_cli_json_works() -> None:
     context = json.loads(completed.stdout)
 
     assert context["project"] == "goldBotXAU"
-    assert context["context_version"] == "v0_86"
+    assert context["context_version"] == "v0_87"
 
 
 def test_context_cli_output_writes_report(tmp_path: Path) -> None:
-    output_path = tmp_path / "codex_context_v0_86.json"
+    output_path = tmp_path / "codex_context_v0_87.json"
 
     subprocess.run(
         [
@@ -94,7 +94,7 @@ def test_context_cli_output_writes_report(tmp_path: Path) -> None:
     )
 
     context = json.loads(output_path.read_text(encoding="utf-8"))
-    assert context["context_version"] == "v0_86"
+    assert context["context_version"] == "v0_87"
 
 
 def test_context_includes_v0_29_1_repair_summary() -> None:
@@ -138,25 +138,27 @@ def test_context_includes_v0_31_paper_shadow_journal_summary() -> None:
     assert journal["candidate_rules_modified"] is False
 
 
-def test_context_includes_v0_86_paper_forward_watcher_summary() -> None:
+def test_context_includes_v0_87_paper_forward_watcher_summary() -> None:
     context = build_codex_context(ROOT)
 
     watcher = context["latest_paper_forward_watcher"]
     assert watcher is not None
-    assert watcher["watch_version"] == "v0_86"
-    assert watcher["candidate_id"] == "xauusd_compression_then_expansion_v0_26"
-    assert watcher["watch_status"] in {"watch_completed", "blocked"}
-    assert watcher["data_source_status"] in {"synthetic_fixtures_only", "fixture_csv"}
-    assert watcher["real_market_observation_started"] is False
-    assert watcher["execution_allowed"] is False
-    assert watcher["demo_allowed"] is False
-    assert watcher["live_allowed"] is False
-    assert watcher["order_send_allowed"] is False
-    assert watcher["order_check_allowed"] is False
-    assert watcher["repeated_oos_review"] is False
-    assert watcher["candidate_rules_modified"] is False
-    assert watcher["candidate_rules_preserved"] is True
+    assert watcher["watch_version"] == "v0_87"
+    assert watcher["watch_status"] in {
+        "watch_completed",
+        "watch_completed_no_records",
+        "blocked_missing_local_market_csv",
+    }
+    assert watcher["run_mode"] == "real_read_only"
+    assert watcher["data_source_status"] == "local_readonly_market_csv"
+    assert watcher["real_market_observation_started"] in {True, False}
+    assert watcher["paper_observation_only"] is True
+    assert isinstance(watcher["source_file_count"], int)
+    assert watcher["source_file_count"] >= 1
+    assert isinstance(watcher["timeframes_used"], list)
     assert isinstance(watcher["watch_record_count"], int)
+    assert watcher["recommended_next_step"] == "v0_88_paper_forward_watcher_loop_journal"
+    assert watcher["safety_locked"] is True
 
 
 def test_context_includes_v0_32_forward_observation_plan_summary() -> None:
@@ -1364,7 +1366,7 @@ def test_context_includes_v0_80_external_yield_context_readiness_board_summary()
 def test_context_includes_v0_81_master_trading_path_reentry_board_summary() -> None:
     context = build_codex_context(ROOT)
 
-    assert context["context_version"] == "v0_86"
+    assert context["context_version"] == "v0_87"
     assert context["m"] is True
 
 
@@ -1452,6 +1454,7 @@ def test_context_includes_v0_85_fresh_executable_candidate_sprint_summary() -> N
         "v0_86_single_oos_review_for_selected_executable_candidate",
         "v0_86_strategy_family_review_or_stop",
         "v0_86_repair_evaluator_then_rerun_sprint",
+        "v0_86_paper_forward_watcher",
     }
     assert summary[7] is True
 
